@@ -11,5 +11,12 @@
 		"check": "astro check",
 		"lint": "biome check .",
 		"format": "biome format --write ."
+	},
+	"dependencies": {
+		"@astrojs/node": "^11.1.4",
+		"@fontsource/abril-fatface": "^5.3.0",
+		"@fontsource/old-standard-tt": "^5.3.0",
+		"@fontsource/unifrakturmaguntia": "^5.3.0",
+		"astro": "^7.2.8"
 	}
 }
