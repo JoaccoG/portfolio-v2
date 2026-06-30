@@ -1,0 +1,90 @@
+html,
+body {
+	margin: 0;
+	padding: 0;
+	background: var(--ground, #0f0c08);
+}
+
+html {
+	scrollbar-gutter: stable;
+	scrollbar-width: thin;
+	scrollbar-color: #4a3e2c #0f0c08;
+}
+
+body {
+	overscroll-behavior-y: none;
+	font-family: var(--fBD, 'Old Standard TT'), Georgia, serif;
+	color: var(--ink, #1c1710);
+	font-synthesis: none;
+}
+
+::selection {
+	background: rgba(180, 52, 42, 0.24);
+}
+
+a {
+	color: inherit;
+	text-decoration: none;
+}
+
+a:hover {
+	color: var(--acc, #b4342a);
+}
+
+:focus-visible {
+	outline: 2px solid var(--acc, #b4342a);
+	outline-offset: 3px;
+}
+
+input,
+textarea,
+button {
+	font: inherit;
+	color: inherit;
+}
+
+a,
+button,
+label,
+input,
+textarea,
+select {
+	cursor: inherit;
+}
+
+@keyframes tickmove {
+	to {
+		transform: translateX(-50%);
+	}
+}
+
+@keyframes spin {
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+@keyframes stampin {
+	0% {
+		transform: rotate(-20deg) scale(1.9);
+		opacity: 0;
+	}
+
+	55% {
+		opacity: 1;
+	}
+
+	100% {
+		transform: rotate(-8deg) scale(1);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+	}
+}
