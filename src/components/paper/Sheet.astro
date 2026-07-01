@@ -1,0 +1,51 @@
+<div class="ground">
+	<div class="frame">
+		<div class="stack">
+			<div class="sheet">
+				<div class="inner"><slot /></div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<style>
+	.ground {
+		background: var(--ground, #0f0c08);
+		overflow-x: clip;
+	}
+
+	.frame {
+		padding: calc((100% - min(96.5vw, 1560px)) / 2) 0;
+	}
+
+	.stack {
+		position: relative;
+		width: min(96.5vw, 1560px);
+		margin: 0 auto;
+	}
+
+	.sheet {
+		position: relative;
+		width: 100%;
+		border-radius: 2px;
+		background: linear-gradient(
+			165deg,
+			#f3ecda 0%,
+			#f0e6d0 38%,
+			#f2ead8 62%,
+			#eee3cc 100%
+		);
+		box-shadow:
+			inset 0 1px 0 rgba(255, 251, 240, 0.4),
+			inset 1px 0 0 rgba(255, 251, 240, 0.25),
+			inset 0 -1px 0 rgba(88, 66, 34, 0.22),
+			inset -1px 0 0 rgba(88, 66, 34, 0.14);
+	}
+
+	.inner {
+		position: relative;
+		z-index: 4;
+		padding: 0 var(--pad-x, clamp(1rem, 3.6vw, 3.6rem))
+			clamp(2rem, 5vw, 3.6rem);
+	}
+</style>
