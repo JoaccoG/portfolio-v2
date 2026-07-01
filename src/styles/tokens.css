@@ -1,0 +1,18 @@
+:root {
+	--ink: #1c1710;
+	--ink-soft: #3a3222;
+	--paper: #f2ead8;
+	--paper-plate: #e4d8be;
+	--ground: #0f0c08;
+	--cream: #e9e0cc;
+	--under-1: #e7dbc1;
+	--under-2: #ddd0b4;
+	--under-3: #d3c6aa;
+	--acc: #b4342a;
+	--stamp-red: #a8352c;
+	--fNP: 'UnifrakturMaguntia', 'Bodoni MT', Didot, serif;
+	--fHD: 'Abril Fatface', Didot, serif;
+	--fBD: 'Old Standard TT', Georgia, serif;
+	--sheet-w: min(96.5vw, 1560px);
+	--pad-x: clamp(1rem, 3.6vw, 3.6rem);
+}
