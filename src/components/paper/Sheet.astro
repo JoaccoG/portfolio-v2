@@ -1,6 +1,15 @@
 <div class="ground">
 	<div class="frame">
 		<div class="stack">
+			<div class="shadow-wide" aria-hidden="true"></div>
+			<div class="blob blob-bl" aria-hidden="true"></div>
+			<div class="blob blob-br" aria-hidden="true"></div>
+			<div class="blob blob-l" aria-hidden="true"></div>
+			<div class="blob blob-r" aria-hidden="true"></div>
+			<div class="under under-3" aria-hidden="true"></div>
+			<div class="under under-2" aria-hidden="true"></div>
+			<div class="under under-1" aria-hidden="true"></div>
+			<div class="shadow-tight" aria-hidden="true"></div>
 			<div class="sheet">
 				<div class="inner"><slot /></div>
 			</div>
@@ -22,6 +31,117 @@
 		position: relative;
 		width: min(96.5vw, 1560px);
 		margin: 0 auto;
+	}
+
+	.shadow-wide {
+		position: absolute;
+		inset: 6px 2px 0 2px;
+		pointer-events: none;
+		box-shadow:
+			0 2px 5px rgba(8, 5, 2, 0.35),
+			0 18px 42px -16px rgba(8, 5, 2, 0.46),
+			0 40px 110px rgba(0, 0, 0, 0.5),
+			0 60px 140px -40px rgba(5, 3, 1, 0.39);
+	}
+
+	.blob {
+		position: absolute;
+		pointer-events: none;
+		border-radius: 50%;
+	}
+
+	.blob-bl {
+		left: 5%;
+		width: 38%;
+		bottom: -30px;
+		height: 46px;
+		background: radial-gradient(
+			50% 50% at 50% 50%,
+			rgba(0, 0, 0, 0.55),
+			transparent 72%
+		);
+		filter: blur(14px);
+		opacity: 0.39;
+	}
+
+	.blob-br {
+		right: 3%;
+		width: 30%;
+		bottom: -24px;
+		height: 38px;
+		background: radial-gradient(
+			50% 50% at 50% 50%,
+			rgba(0, 0, 0, 0.5),
+			transparent 72%
+		);
+		filter: blur(12px);
+		opacity: 0.28;
+	}
+
+	.blob-l {
+		left: -28px;
+		top: 18%;
+		width: 46px;
+		height: 30%;
+		background: radial-gradient(
+			50% 50% at 50% 50%,
+			rgba(0, 0, 0, 0.45),
+			transparent 72%
+		);
+		filter: blur(16px);
+		opacity: 0.22;
+	}
+
+	.blob-r {
+		right: -26px;
+		top: 54%;
+		width: 42px;
+		height: 26%;
+		background: radial-gradient(
+			50% 50% at 50% 50%,
+			rgba(0, 0, 0, 0.45),
+			transparent 72%
+		);
+		filter: blur(16px);
+		opacity: 0.2;
+	}
+
+	.under {
+		position: absolute;
+		pointer-events: none;
+	}
+
+	.under-3 {
+		inset: -5px -11px -18px -8px;
+		transform: rotate(0.03deg);
+		background: var(--under-3, #d3c6aa);
+		border-radius: 3px;
+		box-shadow: 0 2px 3px rgba(18, 12, 5, 0.3);
+	}
+
+	.under-2 {
+		inset: -3px -8px -13px -6px;
+		transform: rotate(-0.05deg);
+		background: var(--under-2, #ddd0b4);
+		border-radius: 2px;
+		box-shadow: 0 2px 3px rgba(18, 12, 5, 0.32);
+	}
+
+	.under-1 {
+		inset: -2px -5px -8px -3px;
+		transform: rotate(0.04deg);
+		background: var(--under-1, #e7dbc1);
+		border-radius: 2px;
+		box-shadow: 0 1px 2px rgba(18, 12, 5, 0.35);
+	}
+
+	.shadow-tight {
+		position: absolute;
+		inset: 4px 3px 4px 3px;
+		pointer-events: none;
+		box-shadow:
+			0 2px 5px rgba(15, 10, 4, 0.38),
+			0 9px 20px -6px rgba(15, 10, 4, 0.3);
 	}
 
 	.sheet {
