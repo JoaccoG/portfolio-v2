@@ -10,8 +10,10 @@
 			<div class="under under-2" aria-hidden="true"></div>
 			<div class="under under-1" aria-hidden="true"></div>
 			<div class="shadow-tight" aria-hidden="true"></div>
-			<div class="sheet">
-				<div class="inner"><slot /></div>
+			<div class="deckle">
+				<div class="sheet">
+					<div class="inner"><slot /></div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -144,6 +146,24 @@
 			0 9px 20px -6px rgba(15, 10, 4, 0.3);
 	}
 
+	.deckle {
+		position: relative;
+		-webkit-mask:
+			url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2226%22 height=%22640%22><path fill=%22white%22 d=%22M4.5 0L3.4 62L5 128L3.8 198L5.4 262L4.2 306L4.4 330L9 341L4.1 353L3.5 422L5.1 486L4 558L4.5 640L26 640L26 0Z%22/></svg>')
+			left top / 26px 640px repeat-y,
+			url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2226%22 height=%22640%22><path fill=%22white%22 d=%22M21.5 0L22.6 58L21 124L22.4 202L20.8 258L22 302L21.7 336L17 347L21.9 359L22.5 424L21 482L22.2 560L21.5 640L0 640L0 0Z%22/></svg>')
+			right top / 26px 640px repeat-y,
+			linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)) 20px 0 /
+			calc(100% - 40px) 100% no-repeat;
+		mask:
+			url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2226%22 height=%22640%22><path fill=%22white%22 d=%22M4.5 0L3.4 62L5 128L3.8 198L5.4 262L4.2 306L4.4 330L9 341L4.1 353L3.5 422L5.1 486L4 558L4.5 640L26 640L26 0Z%22/></svg>')
+			left top / 26px 640px repeat-y,
+			url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2226%22 height=%22640%22><path fill=%22white%22 d=%22M21.5 0L22.6 58L21 124L22.4 202L20.8 258L22 302L21.7 336L17 347L21.9 359L22.5 424L21 482L22.2 560L21.5 640L0 640L0 0Z%22/></svg>')
+			right top / 26px 640px repeat-y,
+			linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)) 20px 0 /
+			calc(100% - 40px) 100% no-repeat;
+	}
+
 	.sheet {
 		position: relative;
 		width: 100%;
@@ -160,6 +180,20 @@
 			inset 1px 0 0 rgba(255, 251, 240, 0.25),
 			inset 0 -1px 0 rgba(88, 66, 34, 0.22),
 			inset -1px 0 0 rgba(88, 66, 34, 0.14);
+		-webkit-mask:
+			url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%2232%22><path fill=%22white%22 d=%22M0 5L70 3.6L150 5.8L235 3.9L300 6.2L352 5L376 9.8L404 4.6L470 5.9L545 3.7L620 6.1L700 4.2L755 6L800 5L800 32L0 32Z%22/></svg>')
+			left top / 800px 32px repeat-x,
+			url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22820%22 height=%2234%22><path fill=%22white%22 d=%22M0 0L820 0L820 28L760 26.6L680 28.8L600 26.2L520 28.4L470 27L442 22.4L410 27.8L330 26.4L250 28.6L170 26.7L90 28.3L40 27.2L0 28Z%22/></svg>')
+			left bottom / 820px 34px repeat-x,
+			linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)) 0 26px / 100%
+			calc(100% - 54px) no-repeat;
+		mask:
+			url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%2232%22><path fill=%22white%22 d=%22M0 5L70 3.6L150 5.8L235 3.9L300 6.2L352 5L376 9.8L404 4.6L470 5.9L545 3.7L620 6.1L700 4.2L755 6L800 5L800 32L0 32Z%22/></svg>')
+			left top / 800px 32px repeat-x,
+			url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22820%22 height=%2234%22><path fill=%22white%22 d=%22M0 0L820 0L820 28L760 26.6L680 28.8L600 26.2L520 28.4L470 27L442 22.4L410 27.8L330 26.4L250 28.6L170 26.7L90 28.3L40 27.2L0 28Z%22/></svg>')
+			left bottom / 820px 34px repeat-x,
+			linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)) 0 26px / 100%
+			calc(100% - 54px) no-repeat;
 	}
 
 	.inner {
