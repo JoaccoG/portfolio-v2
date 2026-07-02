@@ -1,7 +1,18 @@
 ---
+import Sheet from '../components/paper/Sheet.astro';
 import Base from '../layouts/Base.astro';
 ---
 
 <Base>
-	<main></main>
+	<main>
+		<Sheet>
+			<div class="placeholder"></div>
+		</Sheet>
+	</main>
 </Base>
+
+<style>
+	.placeholder {
+		min-height: 260vh;
+	}
+</style>

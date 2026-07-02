@@ -1,0 +1,304 @@
+<div class="ground">
+	<div class="frame">
+		<div class="stack">
+			<div class="shadow-wide" aria-hidden="true"></div>
+			<div class="blob blob-bl" aria-hidden="true"></div>
+			<div class="blob blob-br" aria-hidden="true"></div>
+			<div class="blob blob-l" aria-hidden="true"></div>
+			<div class="blob blob-r" aria-hidden="true"></div>
+			<div class="under under-3" aria-hidden="true"></div>
+			<div class="under under-2" aria-hidden="true"></div>
+			<div class="under under-1" aria-hidden="true"></div>
+			<div class="shadow-tight" aria-hidden="true"></div>
+			<div class="deckle">
+				<div class="sheet">
+					<div class="tex tex-dots" aria-hidden="true"></div>
+					<div class="tex tex-grain" aria-hidden="true"></div>
+					<div class="tex tex-mottle" aria-hidden="true"></div>
+					<div class="tex tex-sheen" aria-hidden="true"></div>
+					<div class="tex tex-bands" aria-hidden="true"></div>
+					<div class="tex tex-edges" aria-hidden="true"></div>
+					<div class="tex tex-vignette" aria-hidden="true"></div>
+					<div class="inner"><slot /></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<style>
+	.ground {
+		background: var(--ground, #0f0c08);
+		overflow-x: clip;
+	}
+
+	.frame {
+		padding: calc((100% - min(96.5vw, 1560px)) / 2) 0;
+	}
+
+	.stack {
+		position: relative;
+		width: min(96.5vw, 1560px);
+		margin: 0 auto;
+	}
+
+	.shadow-wide {
+		position: absolute;
+		inset: 6px 2px 0 2px;
+		pointer-events: none;
+		box-shadow:
+			0 2px 5px rgba(8, 5, 2, 0.35),
+			0 18px 42px -16px rgba(8, 5, 2, 0.46),
+			0 40px 110px rgba(0, 0, 0, 0.5),
+			0 60px 140px -40px rgba(5, 3, 1, 0.39);
+	}
+
+	.blob {
+		position: absolute;
+		pointer-events: none;
+		border-radius: 50%;
+	}
+
+	.blob-bl {
+		left: 5%;
+		width: 38%;
+		bottom: -30px;
+		height: 46px;
+		background: radial-gradient(
+			50% 50% at 50% 50%,
+			rgba(0, 0, 0, 0.55),
+			transparent 72%
+		);
+		filter: blur(14px);
+		opacity: 0.39;
+	}
+
+	.blob-br {
+		right: 3%;
+		width: 30%;
+		bottom: -24px;
+		height: 38px;
+		background: radial-gradient(
+			50% 50% at 50% 50%,
+			rgba(0, 0, 0, 0.5),
+			transparent 72%
+		);
+		filter: blur(12px);
+		opacity: 0.28;
+	}
+
+	.blob-l {
+		left: -28px;
+		top: 18%;
+		width: 46px;
+		height: 30%;
+		background: radial-gradient(
+			50% 50% at 50% 50%,
+			rgba(0, 0, 0, 0.45),
+			transparent 72%
+		);
+		filter: blur(16px);
+		opacity: 0.22;
+	}
+
+	.blob-r {
+		right: -26px;
+		top: 54%;
+		width: 42px;
+		height: 26%;
+		background: radial-gradient(
+			50% 50% at 50% 50%,
+			rgba(0, 0, 0, 0.45),
+			transparent 72%
+		);
+		filter: blur(16px);
+		opacity: 0.2;
+	}
+
+	.under {
+		position: absolute;
+		pointer-events: none;
+	}
+
+	.under-3 {
+		inset: -5px -11px -18px -8px;
+		transform: rotate(0.03deg);
+		background: var(--under-3, #d3c6aa);
+		border-radius: 3px;
+		box-shadow: 0 2px 3px rgba(18, 12, 5, 0.3);
+	}
+
+	.under-2 {
+		inset: -3px -8px -13px -6px;
+		transform: rotate(-0.05deg);
+		background: var(--under-2, #ddd0b4);
+		border-radius: 2px;
+		box-shadow: 0 2px 3px rgba(18, 12, 5, 0.32);
+	}
+
+	.under-1 {
+		inset: -2px -5px -8px -3px;
+		transform: rotate(0.04deg);
+		background: var(--under-1, #e7dbc1);
+		border-radius: 2px;
+		box-shadow: 0 1px 2px rgba(18, 12, 5, 0.35);
+	}
+
+	.shadow-tight {
+		position: absolute;
+		inset: 4px 3px 4px 3px;
+		pointer-events: none;
+		box-shadow:
+			0 2px 5px rgba(15, 10, 4, 0.38),
+			0 9px 20px -6px rgba(15, 10, 4, 0.3);
+	}
+
+	.deckle {
+		position: relative;
+		-webkit-mask:
+			url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2226%22 height=%22640%22><path fill=%22white%22 d=%22M4.5 0L3.4 62L5 128L3.8 198L5.4 262L4.2 306L4.4 330L9 341L4.1 353L3.5 422L5.1 486L4 558L4.5 640L26 640L26 0Z%22/></svg>')
+			left top / 26px 640px repeat-y,
+			url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2226%22 height=%22640%22><path fill=%22white%22 d=%22M21.5 0L22.6 58L21 124L22.4 202L20.8 258L22 302L21.7 336L17 347L21.9 359L22.5 424L21 482L22.2 560L21.5 640L0 640L0 0Z%22/></svg>')
+			right top / 26px 640px repeat-y,
+			linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)) 20px 0 /
+			calc(100% - 40px) 100% no-repeat;
+		mask:
+			url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2226%22 height=%22640%22><path fill=%22white%22 d=%22M4.5 0L3.4 62L5 128L3.8 198L5.4 262L4.2 306L4.4 330L9 341L4.1 353L3.5 422L5.1 486L4 558L4.5 640L26 640L26 0Z%22/></svg>')
+			left top / 26px 640px repeat-y,
+			url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2226%22 height=%22640%22><path fill=%22white%22 d=%22M21.5 0L22.6 58L21 124L22.4 202L20.8 258L22 302L21.7 336L17 347L21.9 359L22.5 424L21 482L22.2 560L21.5 640L0 640L0 0Z%22/></svg>')
+			right top / 26px 640px repeat-y,
+			linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)) 20px 0 /
+			calc(100% - 40px) 100% no-repeat;
+	}
+
+	.sheet {
+		position: relative;
+		width: 100%;
+		border-radius: 2px;
+		background: linear-gradient(
+			165deg,
+			#f3ecda 0%,
+			#f0e6d0 38%,
+			#f2ead8 62%,
+			#eee3cc 100%
+		);
+		box-shadow:
+			inset 0 1px 0 rgba(255, 251, 240, 0.4),
+			inset 1px 0 0 rgba(255, 251, 240, 0.25),
+			inset 0 -1px 0 rgba(88, 66, 34, 0.22),
+			inset -1px 0 0 rgba(88, 66, 34, 0.14);
+		-webkit-mask:
+			url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%2232%22><path fill=%22white%22 d=%22M0 5L70 3.6L150 5.8L235 3.9L300 6.2L352 5L376 9.8L404 4.6L470 5.9L545 3.7L620 6.1L700 4.2L755 6L800 5L800 32L0 32Z%22/></svg>')
+			left top / 800px 32px repeat-x,
+			url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22820%22 height=%2234%22><path fill=%22white%22 d=%22M0 0L820 0L820 28L760 26.6L680 28.8L600 26.2L520 28.4L470 27L442 22.4L410 27.8L330 26.4L250 28.6L170 26.7L90 28.3L40 27.2L0 28Z%22/></svg>')
+			left bottom / 820px 34px repeat-x,
+			linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)) 0 26px / 100%
+			calc(100% - 54px) no-repeat;
+		mask:
+			url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%2232%22><path fill=%22white%22 d=%22M0 5L70 3.6L150 5.8L235 3.9L300 6.2L352 5L376 9.8L404 4.6L470 5.9L545 3.7L620 6.1L700 4.2L755 6L800 5L800 32L0 32Z%22/></svg>')
+			left top / 800px 32px repeat-x,
+			url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22820%22 height=%2234%22><path fill=%22white%22 d=%22M0 0L820 0L820 28L760 26.6L680 28.8L600 26.2L520 28.4L470 27L442 22.4L410 27.8L330 26.4L250 28.6L170 26.7L90 28.3L40 27.2L0 28Z%22/></svg>')
+			left bottom / 820px 34px repeat-x,
+			linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)) 0 26px / 100%
+			calc(100% - 54px) no-repeat;
+	}
+
+	.tex {
+		position: absolute;
+		inset: 0;
+		pointer-events: none;
+		mix-blend-mode: multiply;
+	}
+
+	.tex-dots {
+		z-index: 1;
+		opacity: 0.22;
+		background-image: radial-gradient(
+			rgba(56, 42, 24, 0.55) 0.75px,
+			transparent 1.05px
+		);
+		background-size: 6.5px 6.5px;
+	}
+
+	.tex-grain {
+		z-index: 1;
+		opacity: 0.38;
+		background-size: 150px 150px;
+		background-image: url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22140%22 height=%22140%22><filter id=%22f%22><feTurbulence type=%22fractalNoise%22 baseFrequency=%220.85%22 numOctaves=%222%22 seed=%223%22/></filter><rect width=%22140%22 height=%22140%22 filter=%22url(%23f)%22 opacity=%220.55%22/></svg>');
+	}
+
+	.tex-mottle {
+		z-index: 1;
+		opacity: 0.38;
+		background-size: 1200px 1200px;
+		background-image: url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22400%22><filter id=%22m%22><feTurbulence type=%22fractalNoise%22 baseFrequency=%220.006%22 numOctaves=%223%22 seed=%227%22/><feColorMatrix type=%22matrix%22 values=%220 0 0 0 0.42 0 0 0 0 0.31 0 0 0 0 0.15 0.8 0.8 0.8 0 -0.85%22/></filter><rect width=%22400%22 height=%22400%22 filter=%22url(%23m)%22/></svg>');
+	}
+
+	.tex-sheen {
+		z-index: 2;
+		mix-blend-mode: soft-light;
+		opacity: 0.25;
+		background: linear-gradient(
+			104deg,
+			rgba(255, 250, 236, 0) 22%,
+			rgba(255, 250, 236, 0.7) 38%,
+			rgba(255, 250, 236, 0) 52%,
+			rgba(84, 64, 34, 0.5) 78%,
+			rgba(84, 64, 34, 0) 92%
+		);
+	}
+
+	.tex-bands {
+		z-index: 2;
+		mix-blend-mode: soft-light;
+		opacity: 0.15;
+		background: repeating-linear-gradient(
+			178deg,
+			rgba(255, 252, 240, 0) 0px,
+			rgba(255, 252, 240, 0) 210px,
+			rgba(255, 252, 240, 0.4) 226px,
+			rgba(255, 252, 240, 0) 242px,
+			rgba(255, 252, 240, 0) 380px,
+			rgba(60, 44, 20, 0.32) 398px,
+			rgba(60, 44, 20, 0) 416px,
+			rgba(60, 44, 20, 0) 560px
+		);
+	}
+
+	.tex-edges {
+		z-index: 2;
+		opacity: 0.25;
+		background-image:
+			linear-gradient(
+				90deg,
+				rgba(96, 72, 36, 0.34),
+				transparent 30px,
+				transparent calc(100% - 34px),
+				rgba(96, 72, 36, 0.3)
+			),
+			linear-gradient(
+				180deg,
+				rgba(96, 72, 36, 0.3),
+				transparent 34px,
+				transparent calc(100% - 40px),
+				rgba(96, 72, 36, 0.36)
+			);
+	}
+
+	.tex-vignette {
+		z-index: 6;
+		opacity: 0.64;
+		background-image:
+			linear-gradient(90deg, rgba(60, 42, 20, 0.24), transparent 7%),
+			linear-gradient(-90deg, rgba(60, 42, 20, 0.24), transparent 7%),
+			linear-gradient(180deg, rgba(60, 42, 20, 0.2), transparent 2.2%),
+			linear-gradient(0deg, rgba(60, 42, 20, 0.2), transparent 2.2%);
+	}
+
+	.inner {
+		position: relative;
+		z-index: 4;
+		padding: 0 var(--pad-x, clamp(1rem, 3.6vw, 3.6rem))
+			clamp(2rem, 5vw, 3.6rem);
+	}
+</style>
