@@ -13,7 +13,7 @@ html {
 
 body {
 	overscroll-behavior-y: none;
-	font-family: var(--fBD, 'Old Standard TT'), Georgia, serif;
+	font-family: var(--fBD, "Old Standard TT"), Georgia, serif;
 	color: var(--ink, #1c1710);
 	font-synthesis: none;
 }
