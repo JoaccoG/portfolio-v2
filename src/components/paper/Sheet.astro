@@ -15,6 +15,10 @@
 					<div class="tex tex-dots" aria-hidden="true"></div>
 					<div class="tex tex-grain" aria-hidden="true"></div>
 					<div class="tex tex-mottle" aria-hidden="true"></div>
+					<div class="tex tex-sheen" aria-hidden="true"></div>
+					<div class="tex tex-bands" aria-hidden="true"></div>
+					<div class="tex tex-edges" aria-hidden="true"></div>
+					<div class="tex tex-vignette" aria-hidden="true"></div>
 					<div class="inner"><slot /></div>
 				</div>
 			</div>
@@ -228,6 +232,67 @@
 		opacity: 0.38;
 		background-size: 1200px 1200px;
 		background-image: url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22400%22><filter id=%22m%22><feTurbulence type=%22fractalNoise%22 baseFrequency=%220.006%22 numOctaves=%223%22 seed=%227%22/><feColorMatrix type=%22matrix%22 values=%220 0 0 0 0.42 0 0 0 0 0.31 0 0 0 0 0.15 0.8 0.8 0.8 0 -0.85%22/></filter><rect width=%22400%22 height=%22400%22 filter=%22url(%23m)%22/></svg>');
+	}
+
+	.tex-sheen {
+		z-index: 2;
+		mix-blend-mode: soft-light;
+		opacity: 0.25;
+		background: linear-gradient(
+			104deg,
+			rgba(255, 250, 236, 0) 22%,
+			rgba(255, 250, 236, 0.7) 38%,
+			rgba(255, 250, 236, 0) 52%,
+			rgba(84, 64, 34, 0.5) 78%,
+			rgba(84, 64, 34, 0) 92%
+		);
+	}
+
+	.tex-bands {
+		z-index: 2;
+		mix-blend-mode: soft-light;
+		opacity: 0.15;
+		background: repeating-linear-gradient(
+			178deg,
+			rgba(255, 252, 240, 0) 0px,
+			rgba(255, 252, 240, 0) 210px,
+			rgba(255, 252, 240, 0.4) 226px,
+			rgba(255, 252, 240, 0) 242px,
+			rgba(255, 252, 240, 0) 380px,
+			rgba(60, 44, 20, 0.32) 398px,
+			rgba(60, 44, 20, 0) 416px,
+			rgba(60, 44, 20, 0) 560px
+		);
+	}
+
+	.tex-edges {
+		z-index: 2;
+		opacity: 0.25;
+		background-image:
+			linear-gradient(
+				90deg,
+				rgba(96, 72, 36, 0.34),
+				transparent 30px,
+				transparent calc(100% - 34px),
+				rgba(96, 72, 36, 0.3)
+			),
+			linear-gradient(
+				180deg,
+				rgba(96, 72, 36, 0.3),
+				transparent 34px,
+				transparent calc(100% - 40px),
+				rgba(96, 72, 36, 0.36)
+			);
+	}
+
+	.tex-vignette {
+		z-index: 6;
+		opacity: 0.64;
+		background-image:
+			linear-gradient(90deg, rgba(60, 42, 20, 0.24), transparent 7%),
+			linear-gradient(-90deg, rgba(60, 42, 20, 0.24), transparent 7%),
+			linear-gradient(180deg, rgba(60, 42, 20, 0.2), transparent 2.2%),
+			linear-gradient(0deg, rgba(60, 42, 20, 0.2), transparent 2.2%);
 	}
 
 	.inner {
