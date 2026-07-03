@@ -1,18 +1,29 @@
 ---
+import Masthead from '../components/Masthead.astro';
 import Sheet from '../components/paper/Sheet.astro';
+import Ticker from '../components/Ticker.astro';
 import Base from '../layouts/Base.astro';
 ---
 
 <Base>
 	<main>
 		<Sheet>
+			<Ticker />
+			<header>
+				<Masthead />
+			</header>
 			<div class="placeholder"></div>
 		</Sheet>
 	</main>
 </Base>
 
 <style>
+	header {
+		position: relative;
+		padding-top: clamp(0.9rem, 2vw, 1.6rem);
+	}
+
 	.placeholder {
-		min-height: 260vh;
+		min-height: 200vh;
 	}
 </style>
