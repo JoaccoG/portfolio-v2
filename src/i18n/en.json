@@ -21,5 +21,34 @@
 			"AN INQUEST INTO THE FAULTY LEDGER NAMED THE INSPECTOR’S OWN HAND",
 			"THE CACHE REMEMBERED WHAT THE DATABASE HAD SWORN TO FORGET"
 		]
+	},
+	"masthead": {
+		"issueNo": "No. 001",
+		"motto": "All the Code That Is Fit to Ship.",
+		"price": "2¢",
+		"weather": {
+			"label": "THE WEATHER.",
+			"report": "Sixty frames per second; no jank expected. Light hydration before noon."
+		},
+		"nameplate": ["The", "Daily", "Godoy"],
+		"stamp": {
+			"lines": ["ENGLISH", "EDITION"],
+			"cta": "CHANGE ☞",
+			"ariaLabel": "Cambiar a la edición en castellano"
+		},
+		"press": {
+			"label": "THE PRESS.",
+			"sealTop": "THE DAILY GODOY",
+			"sealBottom": "MORNING EDITION",
+			"sealEst": "EST. 2026",
+			"silent": "SILENT ☞",
+			"audible": "AUDIBLE ☞",
+			"toggleAria": "Alternar los sonidos de la imprenta"
+		},
+		"folio": [
+			"BUENOS AIRES & THE WIDER WEB",
+			"MORNING EDITION — AUGUST 25, 1926",
+			"PROPRIETOR: J. GODOY, ENGINEER"
+		]
 	}
 }
