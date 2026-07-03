@@ -1,0 +1,47 @@
+---
+import { copy } from '../i18n/t';
+
+const items = copy.ticker.items;
+---
+
+<div class="ticker">
+	<div class="row" aria-hidden="true">
+		{
+			[0, 1].map(() => (
+				<span>
+					{items.map((item) => (
+						<>
+							{item}
+							<span class="sep">✦</span>
+						</>
+					))}
+				</span>
+			))
+		}
+	</div>
+</div>
+
+<style>
+	.ticker {
+		overflow: hidden;
+		border-bottom: 1px solid rgba(28, 23, 16, 0.55);
+		padding: 0.55rem 0;
+		margin: 0 calc(var(--pad-x, clamp(1rem, 3.6vw, 3.6rem)) * -1);
+		opacity: calc(var(--mh, 1));
+		transition: opacity 0.9s ease 0.3s;
+	}
+
+	.row {
+		display: flex;
+		width: max-content;
+		white-space: nowrap;
+		animation: tickmove 106s linear infinite;
+		font-size: 0.64rem;
+		letter-spacing: 0.26em;
+	}
+
+	.sep {
+		color: var(--acc, #b4342a);
+		padding: 0 1.2rem;
+	}
+</style>
