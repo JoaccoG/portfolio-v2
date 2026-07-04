@@ -1,10 +1,16 @@
 ---
+import { Image } from 'astro:assets';
+import portrait from '../assets/portrait.webp';
+import portraitMoustache from '../assets/portrait-moustache.webp';
 import { copy } from '../i18n/t';
 
 const h = copy.hero;
 const [p1, ...rest] = h.paragraphs;
 const dropCap = p1.charAt(0);
 const p1Rest = p1.slice(1);
+const portraitWidths = [420, 640, 920, 1254];
+const portraitSizes =
+	'(max-width: 1019px) 420px, (max-width: 1560px) 30vw, 460px';
 ---
 
 <div class="grid">
@@ -33,6 +39,90 @@ const p1Rest = p1.slice(1);
 			</div>
 		</div>
 	</div>
+	<aside>
+		<span class="divider" aria-hidden="true"></span>
+		<figure>
+			<div class="clip">
+				<div class="frame">
+					<div class="pwrap" data-cur="1">
+						<Image
+							src={portrait}
+							alt={h.portrait.alt}
+							widths={portraitWidths}
+							sizes={portraitSizes}
+							quality={90}
+							loading="eager"
+							class="pimg"
+						/>
+						<Image
+							src={portraitMoustache}
+							alt=""
+							aria-hidden="true"
+							widths={portraitWidths}
+							sizes={portraitSizes}
+							quality={90}
+							loading="lazy"
+							class="pimg pimg-mo"
+						/>
+					</div>
+				</div>
+			</div>
+			<figcaption>
+				{h.portrait.caption}<span class="cap-it">{h.portrait.captionItalic}</span>
+			</figcaption>
+		</figure>
+		<div class="card card-index">
+			<p class="card-title">{h.inThisEdition.title}</p>
+			<div class="index-rows">
+				{
+					h.inThisEdition.rows.map((row) => (
+						<button type="button" data-cur="1" data-target={row.target} class="index-row">
+							<span class="index-label">{row.label}</span>
+							<span>☞</span>
+						</button>
+					))
+				}
+			</div>
+		</div>
+		<div class="card card-almanac">
+			<p class="card-title title-almanac">{h.almanac.title}</p>
+			{
+				h.almanac.rows.map((row) => (
+					<div class="alm-row">
+						<span>{row.label}</span>
+						<span class:list={['alm-leader', { 'leader-min': 'nowrap' in row }]} />
+						<span
+							class:list={[
+								'alm-value',
+								{
+									'val-acc': 'accent' in row,
+									'val-nowrap': 'nowrap' in row,
+									'val-right': 'alignRight' in row,
+								},
+							]}
+						>
+							{row.value}
+						</span>
+					</div>
+				))
+			}
+			<p class="alm-footer">{h.almanac.footer}</p>
+		</div>
+		<div class="card card-notices">
+			<p class="card-title title-notices">{h.notices.title}</p>
+			{
+				h.notices.items.map((item, i) => (
+					<p class:list={['notice', { 'notice-last': i === h.notices.items.length - 1 }]}>
+						<span class="notice-lead">{item.lead}</span> {item.body}
+					</p>
+				))
+			}
+		</div>
+	</aside>
+</div>
+<div class="cue" aria-hidden="true">
+	<span class="cue-label">{h.cue}</span>
+	<span class="cue-arrow">▼</span>
 </div>
 
 <style>
@@ -160,5 +250,240 @@ const p1Rest = p1.slice(1);
 		line-height: 0.76;
 		padding: 0.05em 0.12em 0 0;
 		font-weight: 600;
+	}
+
+	aside {
+		display: flex;
+		flex-direction: column;
+		gap: 1.3rem;
+		position: relative;
+		padding-left: var(--colPad, clamp(1.2rem, 2.4vw, 2.2rem));
+	}
+
+	.divider {
+		display: var(--colD, block);
+		position: absolute;
+		left: 0;
+		top: 0;
+		bottom: 0;
+		width: 1px;
+		background: rgba(28, 23, 16, 0.25);
+		transform: scaleY(var(--mh, 1));
+		transform-origin: 50% 0;
+		transition: transform 1.3s cubic-bezier(0.19, 1, 0.22, 1) 0.75s;
+	}
+
+	figure {
+		margin: 0 auto;
+		max-width: var(--portMax, none);
+		width: 100%;
+		transform: translateY(calc(var(--hp, 0) * -18px));
+	}
+
+	.clip {
+		clip-path: inset(calc((1 - var(--mh, 1)) * 100%) 0 0 0);
+		transition: clip-path 1.2s cubic-bezier(0.19, 1, 0.22, 1) 0.7s;
+	}
+
+	.frame {
+		aspect-ratio: 1 / 1;
+		border: 1px solid rgba(28, 23, 16, 0.55);
+		box-shadow:
+			inset 0 0 0 3px var(--paper, #f2ead8),
+			inset 0 0 0 4px rgba(28, 23, 16, 0.55);
+		overflow: hidden;
+	}
+
+	.pwrap {
+		width: 100%;
+		height: 100%;
+		position: relative;
+	}
+
+	.pwrap:hover {
+		--mo: 1;
+	}
+
+	.pimg {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		filter: sepia(0.08) contrast(1.02);
+	}
+
+	.pimg-mo {
+		position: absolute;
+		inset: 0;
+		opacity: var(--mo, 0);
+		transition: opacity 0.3s ease;
+	}
+
+	figcaption {
+		text-align: center;
+		font-size: 0.66rem;
+		letter-spacing: 0.16em;
+		padding-top: 0.5rem;
+		opacity: calc(var(--mh, 1));
+		transform: translateY(calc((1 - var(--mh, 1)) * 14px));
+		transition:
+			opacity 0.8s ease 0.95s,
+			transform 0.8s cubic-bezier(0.19, 1, 0.22, 1) 0.95s;
+	}
+
+	.cap-it {
+		font-style: italic;
+		letter-spacing: 0.04em;
+	}
+
+	.card {
+		border: 3px double rgba(28, 23, 16, 0.6);
+		padding: 0.9rem 1rem;
+		background: var(--paper, #f2ead8);
+		opacity: calc(var(--mh, 1));
+	}
+
+	.card-index {
+		transition: opacity 0.9s ease 1s;
+	}
+
+	.card-almanac {
+		padding: 0.9rem 1rem 0.85rem;
+		transition: opacity 0.9s ease 1.12s;
+	}
+
+	.card-notices {
+		transition: opacity 0.9s ease 1.24s;
+	}
+
+	.card-title {
+		margin: 0 0 0.35rem;
+		text-align: center;
+		font-size: 0.66rem;
+		letter-spacing: 0.28em;
+		font-weight: 700;
+		border-bottom: 3px double rgba(28, 23, 16, 0.65);
+		padding-bottom: 0.5rem;
+	}
+
+	.title-almanac {
+		margin: 0 0 0.6rem;
+	}
+
+	.title-notices {
+		margin: 0 0 0.65rem;
+	}
+
+	.index-rows {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.index-row {
+		display: flex;
+		justify-content: space-between;
+		gap: 1rem;
+		padding: 0.5rem 0.2rem;
+		background: none;
+		border: none;
+		font-size: 0.82rem;
+		cursor: inherit;
+		text-align: left;
+		transition: transform 0.3s ease;
+	}
+
+	.index-row:hover {
+		color: var(--acc, #b4342a);
+		transform: translateX(5px);
+	}
+
+	.index-row + .index-row {
+		border-top: 1px dotted rgba(28, 23, 16, 0.45);
+	}
+
+	.index-label {
+		font-style: italic;
+	}
+
+	.alm-row {
+		display: flex;
+		align-items: baseline;
+		font-size: 0.64rem;
+		letter-spacing: 0.14em;
+		padding: 0.3rem 0;
+	}
+
+	.alm-leader {
+		flex: 1;
+		border-bottom: 1px dotted rgba(28, 23, 16, 0.5);
+		margin: 0 0.5em 0.2em;
+		align-self: flex-end;
+	}
+
+	.leader-min {
+		min-width: 10px;
+	}
+
+	.alm-value {
+		font-weight: 700;
+	}
+
+	.val-acc {
+		color: var(--acc, #b4342a);
+	}
+
+	.val-nowrap {
+		white-space: nowrap;
+		letter-spacing: 0.08em;
+	}
+
+	.val-right {
+		text-align: right;
+	}
+
+	.alm-footer {
+		margin: 0.6rem 0 0;
+		text-align: center;
+		font-size: 0.72rem;
+		font-style: italic;
+	}
+
+	.notice {
+		margin: 0 0 0.65rem;
+		font-size: 0.82rem;
+		font-style: italic;
+		line-height: 1.55;
+	}
+
+	.notice-last {
+		margin: 0;
+	}
+
+	.notice-lead {
+		font-style: normal;
+		font-size: 0.58rem;
+		letter-spacing: 0.18em;
+		font-weight: 700;
+		color: var(--acc, #b4342a);
+	}
+
+	.cue {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 8px;
+		padding: clamp(1.4rem, 3vw, 2.2rem) 0 0.4rem;
+		opacity: calc(var(--cue, 1) * var(--mh, 1));
+		transition: opacity 0.6s ease;
+	}
+
+	.cue-label {
+		font-size: 0.6rem;
+		letter-spacing: 0.34em;
+	}
+
+	.cue-arrow {
+		color: var(--acc, #b4342a);
+		font-size: 0.8rem;
 	}
 </style>
