@@ -1,0 +1,164 @@
+---
+import { copy } from '../i18n/t';
+
+const h = copy.hero;
+const [p1, ...rest] = h.paragraphs;
+const dropCap = p1.charAt(0);
+const p1Rest = p1.slice(1);
+---
+
+<div class="grid">
+	<div>
+		<p class="kicker-mask">
+			<span class="kicker">{h.kicker}</span>
+		</p>
+		<h2 class="headline">
+			<span class="line-mask lm-1"><span class="line line-1">{h.headline[0]}</span></span>
+			<span class="line-mask lm-2">
+				<span class="line line-2">{h.headline[1]}<span class="acc">.</span></span>
+			</span>
+		</h2>
+		<div class="lead-body">
+			<p class="dek">{h.dek}</p>
+			<p class="byline">{h.byline}</p>
+			<div class="columns">
+				<p class="para">
+					<span class="drop-cap">{dropCap}</span>{p1Rest}
+				</p>
+				{rest.slice(0, -1).map((para) => <p class="para">{para}</p>)}
+				<p class="para-last">{rest[rest.length - 1]}</p>
+				<p class="closer">
+					{h.closer}<span class="closer-sig">{h.closerSignature}</span>
+				</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+<style>
+	.grid {
+		display: grid;
+		grid-template-columns: var(--gLead, 2.15fr 1fr);
+		gap: clamp(1.4rem, 3vw, 2.8rem);
+		padding-top: clamp(1.4rem, 3vw, 2.4rem);
+	}
+
+	.kicker-mask {
+		margin: 0 0 0.8rem;
+		overflow: hidden;
+	}
+
+	.kicker {
+		display: inline-block;
+		font-size: 0.68rem;
+		letter-spacing: 0.3em;
+		color: var(--acc, #b4342a);
+		font-weight: 700;
+		transform: translateY(calc((1 - var(--mh, 1)) * 130%));
+		transition: transform 0.8s cubic-bezier(0.19, 1, 0.22, 1) 0.5s;
+	}
+
+	.headline {
+		margin: 0 0 1.2rem;
+		font-family: var(--fHD, 'Bodoni Moda'), Didot, serif;
+		font-weight: 620;
+		font-size: clamp(2.9rem, 8.6vw, 8.2rem);
+		line-height: 0.95;
+		letter-spacing: 0.002em;
+		text-transform: uppercase;
+	}
+
+	.line-mask {
+		display: block;
+		overflow: hidden;
+	}
+
+	.lm-1 {
+		padding-bottom: 0.04em;
+	}
+
+	.lm-2 {
+		padding-bottom: 0.06em;
+	}
+
+	.line {
+		display: inline-block;
+		transform: translateY(calc((1 - var(--mh, 1)) * 110%));
+	}
+
+	.line-1 {
+		transition: transform 1s cubic-bezier(0.19, 1, 0.22, 1) 0.55s;
+	}
+
+	.line-2 {
+		transition: transform 1s cubic-bezier(0.19, 1, 0.22, 1) 0.67s;
+	}
+
+	.acc {
+		color: var(--acc, #b4342a);
+	}
+
+	.lead-body {
+		opacity: calc(var(--mh, 1));
+		transform: translateY(calc((1 - var(--mh, 1)) * 24px));
+		transition:
+			opacity 0.9s ease 0.85s,
+			transform 0.9s cubic-bezier(0.19, 1, 0.22, 1) 0.85s;
+	}
+
+	.dek {
+		margin: 0 0 1.1rem;
+		font-style: italic;
+		font-size: clamp(1.05rem, 2vw, 1.35rem);
+		line-height: 1.5;
+		color: var(--ink-soft, #3a3222);
+		max-width: 46rem;
+		text-wrap: pretty;
+	}
+
+	.byline {
+		margin: 0 0 1.3rem;
+		font-size: 0.66rem;
+		letter-spacing: 0.22em;
+		border-top: 1px solid rgba(28, 23, 16, 0.4);
+		border-bottom: 1px solid rgba(28, 23, 16, 0.4);
+		padding: 0.4rem 0;
+		max-width: 46rem;
+	}
+
+	.columns {
+		columns: var(--leadCols, 2);
+		column-gap: 2.2rem;
+		column-rule: 1px solid rgba(28, 23, 16, 0.2);
+		font-size: 0.96rem;
+		line-height: 1.62;
+		text-align: justify;
+		hyphens: auto;
+		max-width: 46rem;
+	}
+
+	.para {
+		margin: 0 0 0.9rem;
+	}
+
+	.para-last {
+		margin: 0;
+	}
+
+	.closer {
+		margin: 0.9rem 0 0;
+	}
+
+	.closer-sig {
+		letter-spacing: 0.12em;
+	}
+
+	.drop-cap {
+		float: left;
+		font-family: var(--fHD, 'Bodoni Moda'), Didot, serif;
+		font-size: 3.4em;
+		line-height: 0.76;
+		padding: 0.05em 0.12em 0 0;
+		font-weight: 600;
+	}
+</style>
