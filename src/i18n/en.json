@@ -2,5 +2,53 @@
 	"meta": {
 		"title": "The Daily Godoy — Joaquín Godoy, Software Engineer",
 		"description": "The Daily Godoy, morning edition. Being an account of the works, appointments and telegrams of Joaquín Godoy, software engineer of Buenos Aires."
+	},
+	"ticker": {
+		"items": [
+			"A MILLION ENTRIES RECONCILED BEFORE THE COFFEE COOLED",
+			"THE NIGHTLY BUILD COMPLETED BEFORE THE LAMPLIGHTER MADE HIS ROUNDS",
+			"MEMORY LEAK CORNERED AND SEALED BEFORE IT REACHED THE CELLAR",
+			"LATEST DEPLOY ARRIVED ON FRIDAY AND NOT A SOUL WAS AWAKENED",
+			"THE SERVERS ENDURED THE MIDNIGHT RUSH WITHOUT LOSS OF COMPOSURE",
+			"THE PIPELINE RAN ALL WINTER WITHOUT A DAY OF CONVALESCENCE",
+			"OUTAGE FORETOLD BY THE INSTRUMENTS AND AVERTED BEFORE BREAKFAST",
+			"A QUERY CROSSED THREE MILLION ROWS AND RETURNED BEFORE THE INK DRIED",
+			"THE OLD MONOLITH RETIRED WITH HONOURS; ITS DUTIES ASSUMED BY LESSER ENGINES",
+			"THE CLOCKS WERE TURNED BACK ONE VERSION AND ALL WAS FORGIVEN",
+			"CROWD AT THE GATES DIVIDED EVENLY AMONG TWELVE DOORMEN",
+			"CONTRAPTIONS EXAMINED HOURLY BY A THOUSAND TIRELESS INSPECTORS",
+			"TWO GENTLEMEN AMENDED THE SAME PARAGRAPH; PISTOLS AT DAWN AVERTED BY A CAREFUL MERGE",
+			"AN INQUEST INTO THE FAULTY LEDGER NAMED THE INSPECTOR’S OWN HAND",
+			"THE CACHE REMEMBERED WHAT THE DATABASE HAD SWORN TO FORGET"
+		]
+	},
+	"masthead": {
+		"issueNo": "No. 001",
+		"motto": "All the Code That Is Fit to Ship.",
+		"price": "2¢",
+		"weather": {
+			"label": "THE WEATHER.",
+			"report": "Sixty frames per second; no jank expected. Light hydration before noon."
+		},
+		"nameplate": ["The", "Daily", "Godoy"],
+		"stamp": {
+			"lines": ["ENGLISH", "EDITION"],
+			"cta": "CHANGE ☞",
+			"ariaLabel": "Cambiar a la edición en castellano"
+		},
+		"press": {
+			"label": "THE PRESS.",
+			"sealTop": "THE DAILY GODOY",
+			"sealBottom": "MORNING EDITION",
+			"sealEst": "EST. 2026",
+			"silent": "SILENT ☞",
+			"audible": "AUDIBLE ☞",
+			"toggleAria": "Alternar los sonidos de la imprenta"
+		},
+		"folio": [
+			"BUENOS AIRES & THE WIDER WEB",
+			"MORNING EDITION — AUGUST 25, 1926",
+			"PROPRIETOR: J. GODOY, ENGINEER"
+		]
 	}
 }

@@ -1,0 +1,345 @@
+---
+import { copy } from '../i18n/t';
+
+const m = copy.masthead;
+---
+
+<div class="top">
+	<span class="mask"><span class="rise rise-1">{m.issueNo}</span></span>
+	<span class="mask"><span class="rise rise-2 motto">{m.motto}</span></span>
+	<span class="mask"><span class="rise rise-3">{m.price}</span></span>
+</div>
+
+<div class="plate-row">
+	<div class="ear weather">
+		<span class="ear-label">{m.weather.label}</span>
+		<span class="weather-report">{m.weather.report}</span>
+	</div>
+
+	<h1 class="nameplate">
+		<span class="fleuron fleuron-l" aria-hidden="true">✦</span>
+		{
+			m.nameplate.map((word, i) => (
+				<span class:list={['word-mask', { gap: i < m.nameplate.length - 1 }]}>
+					<span class:list={['word', `word-${i + 1}`]}>{word}</span>
+				</span>
+			))
+		}
+		<span class="fleuron fleuron-r" aria-hidden="true">✦</span>
+		<button type="button" class="stamp" data-cur="1" aria-label={m.stamp.ariaLabel}>
+			<span class="stamp-inner">
+				{m.stamp.lines[0]}<br />{m.stamp.lines[1]}<br />
+				<span class="stamp-cta">{m.stamp.cta}</span>
+			</span>
+		</button>
+	</h1>
+
+	<div class="ear press">
+		<span class="ear-label">{m.press.label}</span>
+		<button
+			type="button"
+			class="seal-btn"
+			data-cur="1"
+			aria-pressed="false"
+			aria-label={m.press.toggleAria}
+		>
+			<svg viewBox="0 0 100 100" class="seal">
+				<defs>
+					<path id="sealtop" d="M 15,50 A 35,35 0 0 1 85,50"></path>
+					<path id="sealbot" d="M 9.5,50 A 40.5,40.5 0 0 0 90.5,50"></path>
+				</defs>
+				<circle
+					cx="50"
+					cy="50"
+					r="47.5"
+					fill="none"
+					stroke="var(--acc, #b4342a)"
+					stroke-width="1.3"></circle>
+				<circle
+					cx="50"
+					cy="50"
+					r="26"
+					fill="none"
+					stroke="rgba(28,23,16,.4)"
+					stroke-width=".8"></circle>
+				<text text-anchor="middle" class="seal-arc">
+					<textPath href="#sealtop" startOffset="50%">{m.press.sealTop}</textPath>
+				</text>
+				<text text-anchor="middle" class="seal-arc">
+					<textPath href="#sealbot" startOffset="50%">{m.press.sealBottom}</textPath>
+				</text>
+				<text x="14" y="53.5" text-anchor="middle" class="seal-dot">·</text>
+				<text x="86" y="53.5" text-anchor="middle" class="seal-dot">·</text>
+				<text x="50" y="52" text-anchor="middle" class="seal-fleuron">❦</text>
+				<text x="50" y="63" text-anchor="middle" class="seal-est">{m.press.sealEst}</text>
+			</svg>
+		</button>
+		<button type="button" class="sound-toggle" data-cur="1" aria-pressed="false">
+			{m.press.silent}
+		</button>
+	</div>
+</div>
+
+<div class="folio">
+	<span>{m.folio[0]}</span>
+	<span class="folio-sep" aria-hidden="true">✦</span>
+	<span>{m.folio[1]}</span>
+	<span class="folio-sep" aria-hidden="true">✦</span>
+	<span>{m.folio[2]}</span>
+</div>
+
+<style>
+	.top {
+		display: flex;
+		justify-content: space-between;
+		align-items: baseline;
+		font-size: clamp(0.58rem, 1vw, 0.7rem);
+		letter-spacing: 0.2em;
+	}
+
+	.mask {
+		display: block;
+		overflow: hidden;
+	}
+
+	.rise {
+		display: inline-block;
+		transform: translateY(calc((1 - var(--mh, 1)) * 115%));
+	}
+
+	.rise-1 {
+		transition: transform 0.8s cubic-bezier(0.19, 1, 0.22, 1) 0.05s;
+	}
+
+	.rise-2 {
+		transition: transform 0.8s cubic-bezier(0.19, 1, 0.22, 1) 0.12s;
+	}
+
+	.rise-3 {
+		transition: transform 0.8s cubic-bezier(0.19, 1, 0.22, 1) 0.19s;
+	}
+
+	.motto {
+		font-style: italic;
+		letter-spacing: 0.1em;
+	}
+
+	.plate-row {
+		position: relative;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: clamp(1rem, 2.4vw, 2rem);
+		padding: clamp(1rem, 2.6vw, 2rem) 0 clamp(0.7rem, 1.6vw, 1.2rem);
+	}
+
+	.ear {
+		display: var(--ears, flex);
+		flex-direction: column;
+		max-width: 11rem;
+		letter-spacing: 0.14em;
+	}
+
+	.weather {
+		gap: 0.35rem;
+		padding: 0.85rem 0;
+		font-size: 0.74rem;
+		opacity: calc(var(--mh, 1));
+		transition: opacity 0.9s ease 0.5s;
+	}
+
+	.ear-label {
+		font-weight: 700;
+	}
+
+	.weather-report {
+		font-style: italic;
+		letter-spacing: 0.04em;
+		line-height: 1.5;
+	}
+
+	.nameplate {
+		margin: 0 auto;
+		position: relative;
+		display: flex;
+		align-items: baseline;
+		white-space: nowrap;
+		font-family: var(--fNP, 'Bodoni Moda'), 'Bodoni MT', Didot, serif;
+		font-weight: 560;
+		font-size: clamp(2.7rem, 8.6vw, 8rem);
+		line-height: 1;
+		letter-spacing: 0.005em;
+	}
+
+	.fleuron {
+		align-self: center;
+		color: var(--acc, #b4342a);
+		font-size: 0.16em;
+		line-height: 1;
+		opacity: calc(var(--mh, 1));
+	}
+
+	.fleuron-l {
+		margin-right: 0.3em;
+		transition: opacity 0.9s ease 0.45s;
+	}
+
+	.fleuron-r {
+		margin-left: 0.3em;
+		transition: opacity 0.9s ease 0.55s;
+	}
+
+	.word-mask {
+		display: block;
+		overflow: hidden;
+		padding-bottom: 0.06em;
+	}
+
+	.word-mask.gap {
+		margin-right: 0.22em;
+	}
+
+	.word {
+		display: inline-block;
+		transform: translateY(calc((1 - var(--mh, 1)) * 112%));
+	}
+
+	.word-1 {
+		transition: transform 0.95s cubic-bezier(0.19, 1, 0.22, 1) 0.1s;
+	}
+
+	.word-2 {
+		transition: transform 0.95s cubic-bezier(0.19, 1, 0.22, 1) 0.2s;
+	}
+
+	.word-3 {
+		transition: transform 0.95s cubic-bezier(0.19, 1, 0.22, 1) 0.3s;
+	}
+
+	.stamp {
+		display: var(--stampD, flex);
+		position: absolute;
+		right: -0.12em;
+		top: -0.48em;
+		background: var(--paper, #f2ead8);
+		border: 2px solid var(--stamp-red, #a8352c);
+		padding: 3px;
+		color: var(--stamp-red, #a8352c);
+		cursor: inherit;
+		transform: rotate(4deg);
+		opacity: calc(var(--mh, 1) * 0.85);
+		transition:
+			transform 0.35s ease,
+			opacity 0.9s ease 0.6s;
+	}
+
+	.stamp:hover {
+		transform: rotate(4deg) scale(1.07);
+	}
+
+	.stamp-inner {
+		display: block;
+		border: 1px solid var(--stamp-red, #a8352c);
+		padding: 0.34rem 0.85rem;
+		font-family: var(--fBD, 'Old Standard TT'), Georgia, serif;
+		font-size: 0.52rem;
+		letter-spacing: 0.2em;
+		font-weight: 700;
+		line-height: 1.6;
+		text-align: center;
+	}
+
+	.stamp-cta {
+		display: block;
+		border-top: 1px solid rgba(168, 53, 44, 0.55);
+		margin-top: 0.22rem;
+		padding-top: 0.22rem;
+		font-size: 0.48rem;
+		letter-spacing: 0.24em;
+	}
+
+	.press {
+		align-items: center;
+		gap: 0.45rem;
+		padding: 0.6rem 0;
+		font-size: 0.6rem;
+		text-align: center;
+		opacity: calc(var(--mh, 1));
+		transition: opacity 0.9s ease 0.58s;
+	}
+
+	.seal-btn {
+		width: clamp(64px, 6.4vw, 92px);
+		background: var(--paper, #f2ead8);
+		border: none;
+		border-radius: 50%;
+		padding: 0;
+		cursor: inherit;
+	}
+
+	.seal {
+		width: 100%;
+		display: block;
+		animation: spin 18s linear infinite;
+		animation-play-state: var(--sealPlay, paused);
+	}
+
+	.seal-arc {
+		font-family: var(--fBD, 'Old Standard TT'), serif;
+		font-size: 8.4px;
+		letter-spacing: 0.16em;
+		fill: var(--acc, #b4342a);
+	}
+
+	.seal-dot {
+		font-family: Georgia, serif;
+		font-size: 7px;
+		fill: var(--acc, #b4342a);
+	}
+
+	.seal-fleuron {
+		font-family: Georgia, serif;
+		font-size: 13px;
+		fill: var(--acc, #b4342a);
+	}
+
+	.seal-est {
+		font-family: var(--fBD, 'Old Standard TT'), serif;
+		font-size: 5.6px;
+		letter-spacing: 0.14em;
+		fill: var(--acc, #b4342a);
+	}
+
+	.sound-toggle {
+		background: none;
+		border: none;
+		padding: 0.3rem 0;
+		font-size: 0.6rem;
+		letter-spacing: 0.14em;
+		cursor: inherit;
+		font-style: italic;
+	}
+
+	.sound-toggle:hover {
+		color: var(--acc, #b4342a);
+	}
+
+	.folio {
+		position: relative;
+		border-top: 3px double rgba(28, 23, 16, 0.75);
+		border-bottom: 3px double rgba(28, 23, 16, 0.75);
+		padding: 0.45rem 0;
+		display: flex;
+		justify-content: center;
+		gap: 1.6rem;
+		flex-wrap: wrap;
+		font-size: clamp(0.6rem, 1.1vw, 0.72rem);
+		letter-spacing: 0.2em;
+		opacity: calc(var(--mh, 1));
+		transition: opacity 0.9s ease 0.45s;
+	}
+
+	.folio-sep {
+		color: var(--acc, #b4342a);
+	}
+</style>

@@ -1,0 +1,59 @@
+:root {
+	--gLead: 2.15fr 1fr;
+	--rowSwap: 0;
+	--gApp: 1.5fr 0.9fr;
+	--gP2: 2fr 1fr;
+	--g4: repeat(4, 1fr);
+	--leadCols: 2;
+	--pcGrid: 1.15fr 1fr;
+	--pcRule: 1px dotted rgba(28, 23, 16, 0.5);
+	--pcPadR: 1.5rem;
+	--p2Cols: 2;
+	--colB: 1px solid rgba(28, 23, 16, 0.25);
+	--colD: block;
+	--colPad: clamp(1.2rem, 2.4vw, 2.2rem);
+	--ears: flex;
+	--portMax: none;
+	--stampD: flex;
+	--pbl: 40%;
+}
+
+@media (max-width: 1099.98px) {
+	:root {
+		--ears: none;
+	}
+}
+
+@media (max-width: 1019.98px) {
+	:root {
+		--gLead: 1fr;
+		--gRow: 1fr 1fr;
+		--gApp: 1fr;
+		--gP2: 1fr;
+		--g4: repeat(2, 1fr);
+		--colB: none;
+		--colD: none;
+		--colPad: 0rem;
+		--portMax: 420px;
+		--pbl: 8%;
+	}
+}
+
+@media (max-width: 719.98px) {
+	:root {
+		--gRow: 1fr;
+		--rowSwap: 2;
+		--g4: 1fr;
+		--leadCols: 1;
+		--pcGrid: 1fr;
+		--pcRule: none;
+		--pcPadR: 0;
+		--p2Cols: 1;
+	}
+}
+
+@media (max-width: 559.98px) {
+	:root {
+		--stampD: none;
+	}
+}
