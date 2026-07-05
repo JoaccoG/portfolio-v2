@@ -50,5 +50,78 @@
 			"MORNING EDITION — AUGUST 25, 1926",
 			"PROPRIETOR: J. GODOY, ENGINEER"
 		]
+	},
+	"hero": {
+		"kicker": "LATE INTELLIGENCE — TECHNOLOGY",
+		"headline": ["SOFTWARE", "WITH A SPINE"],
+		"dek": "Local engineer Joaquín Godoy observed wiring machines to speak plainly. Witnesses report entire systems “explaining themselves” without supervision. The engineer insists the feat owes much to a peculiar contrivance he calls “Artificial Intelligence” — whatever that may be.",
+		"byline": "BY OUR TECHNOLOGY CORRESPONDENT — WIRED FROM THE SCENE",
+		"paragraphs": [
+			"Mr. Godoy makes no secret of his enthusiasm. The thinking machine, he declares, is the greatest alteration to his trade in a generation, and he will say so at length to anyone who calls. Your correspondent, who had come prepared for the usual denials, found him instead at a side bench of the workshop, sleeves up, arguing with the apparatus.",
+			"He grants its faults readily. It will produce a hundred pages before breakfast and answer for none of them; it has no name upon the work and no cause ever to return. He does not appear to regard this as reason to set it aside — only as reason to remain in the room. Responsibility, he holds, has not yet been mechanised, and until it is, the engineer’s signature is the only one on the drawing. (Consulted upon the point, the apparatus offered several opinions and settled upon none.)",
+			"The rest is a matter of what the contrivance is fed. His preference runs to machinery that will stand upright: readable in the morning, honest under load, and unbowed by the fashions of the season. A machine of good posture, he observes, the new apparatus may be trusted with. A machine of poor posture it will simply build wrong, and faster.",
+			"Beauty, he maintains, is of little use unless the machinery continues to behave when no one is watching.",
+			"Callers describe ledgers reconciling themselves, queries confessing their cost before execution, and entire systems reporting their ailments in plain language. The result is machinery built not merely to function, but to endure inspection, alteration, and the occasional indignity of being inherited by another man."
+		],
+		"closer": "The full particulars of his works appear in the columns below. — ",
+		"closerSignature": "ED.",
+		"portrait": {
+			"alt": "Engraved portrait of Joaquín Godoy, curly-haired young engineer in a dark coat and cravat, 1901 style",
+			"caption": "MR. J. GODOY, ENGINEER — ",
+			"captionItalic": "from an engraving taken this year"
+		},
+		"inThisEdition": {
+			"title": "IN THIS EDITION",
+			"rows": [
+				{ "label": "The Profile Piece — in four parts", "target": "profile" },
+				{ "label": "Machinery Lately Constructed", "target": "works" },
+				{
+					"label": "Appointments & Advertisements",
+					"target": "appointments"
+				},
+				{ "label": "Telegrams to the Editor", "target": "telegrams" }
+			]
+		},
+		"almanac": {
+			"title": "THE ALMANAC",
+			"rows": [
+				{
+					"label": "SUN RISES UPON THE DEPLOY",
+					"value": "6:12",
+					"accent": true
+				},
+				{
+					"label": "MOON",
+					"value": "FAVOURABLE FOR REFACTORING",
+					"alignRight": true
+				},
+				{
+					"label": "MERCURY",
+					"value": "RETROGRADE; COMMIT WITH CAUTION",
+					"accent": true,
+					"nowrap": true
+				},
+				{ "label": "TIDE OF CORRESPONDENCE", "value": "HIGH AT NOON" }
+			],
+			"footer": "Consult before deploying. The stars accept no tickets."
+		},
+		"notices": {
+			"title": "NOTICES TO CORRESPONDENTS",
+			"items": [
+				{
+					"lead": "TO ANXIOUS RECRUITER —",
+					"body": "The engineer is aware of your seventeen messages; a reply is being composed by hand."
+				},
+				{
+					"lead": "TO J.S. OF PALERMO —",
+					"body": "No. The machine cannot mend your printer. Nothing can."
+				},
+				{
+					"lead": "TO A STUDENT, ADRIFT —",
+					"body": "Begin smaller than you dare admit. Then finish it."
+				}
+			]
+		},
+		"cue": "TURN THE PAGE"
 	}
 }
