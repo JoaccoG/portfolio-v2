@@ -1,4 +1,5 @@
 ---
+import Hero from '../components/Hero.astro';
 import Masthead from '../components/Masthead.astro';
 import Sheet from '../components/paper/Sheet.astro';
 import Ticker from '../components/Ticker.astro';
@@ -11,6 +12,7 @@ import Base from '../layouts/Base.astro';
 			<Ticker />
 			<header>
 				<Masthead />
+				<Hero />
 			</header>
 			<div class="placeholder"></div>
 		</Sheet>
@@ -24,6 +26,6 @@ import Base from '../layouts/Base.astro';
 	}
 
 	.placeholder {
-		min-height: 200vh;
+		min-height: 100vh;
 	}
 </style>
