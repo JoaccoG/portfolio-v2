@@ -1,0 +1,9 @@
+{
+	"order": 1,
+	"kickerLabel": "THE LEDGER QUESTION",
+	"year": 1925,
+	"titleLines": ["THE LEDGERLINE", "AFFAIR."],
+	"dek": "A reconciliation engine of unusual temperament settles a million entries nightly and confesses nothing to chance.",
+	"composedWith": "COMPOSED WITH GO, KAFKA & POSTGRES",
+	"deepDive": true
+}
