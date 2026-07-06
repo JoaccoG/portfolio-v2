@@ -123,5 +123,37 @@
 			]
 		},
 		"cue": "TURN THE PAGE"
+	},
+	"profile": {
+		"kicker": "THE PROFILE PIECE",
+		"title": "An Account of the Subject, in Four Parts",
+		"parts": [
+			{
+				"kicker": "PART I — OF ORIGINS",
+				"title": "Foundations.",
+				"body": "His trade began, as such things often do, with curiosity. Taking systems apart, tracing their workings, and wondering why some machines endured while others collapsed beneath their own cleverness.",
+				"tight": "The habit, it is said, never quite left him.",
+				"footer": "THE HABIT OF ASKING WHY."
+			},
+			{
+				"kicker": "PART II — OF METHOD",
+				"title": "Practice.",
+				"body": "Godoy works chiefly by subtraction. He favours plain structures, legible code, and tools that earn their place. New machinery is welcomed when it shortens the road, but never when it obscures where the road leads.",
+				"footer": "TOOLS. METHODS. INSTINCTS."
+			},
+			{
+				"kicker": "PART III — OF CONVICTION",
+				"title": "Principles.",
+				"body": "He has little patience for complexity without cause, ornament without purpose, or contraptions their maker cannot explain. Software, he maintains, ought to be useful, understandable, and built to survive the hands that come after his own.",
+				"footer": "WHAT HE REFUSES TO SHIP."
+			},
+			{
+				"kicker": "PART IV — OF THE MAN HIMSELF",
+				"title": "Elsewhere.",
+				"body": "Away from the workshop, the subject’s curiosities range considerably farther afield. He may be found wandering invented worlds, following public affairs with perhaps too much attention, losing an evening to music or a book, or pursuing some entirely unnecessary question simply because it caught his interest.",
+				"tight": "By all accounts, the machinery is only part of the man.",
+				"footer": "LIFE BEYOND THE MACHINERY."
+			}
+		]
 	}
 }
