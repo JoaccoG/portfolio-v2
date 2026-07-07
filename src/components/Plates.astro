@@ -1,0 +1,333 @@
+---
+import { getCollection } from 'astro:content';
+import { copy } from '../i18n/t';
+
+const m = copy.machinery;
+const romans = [
+	'I',
+	'II',
+	'III',
+	'IV',
+	'V',
+	'VI',
+	'VII',
+	'VIII',
+	'IX',
+	'X',
+	'XI',
+	'XII',
+];
+const projects = (await getCollection('projects')).sort(
+	(a, b) => a.data.order - b.data.order,
+);
+const countWord = m.numberWords[projects.length] ?? String(projects.length);
+const subtitle = m.subtitle.replace('{count}', countWord);
+const plateKicker = (i: number, label: string, year: number) =>
+	m.plateKicker
+		.replace('{n}', String(i + 1))
+		.replace('{label}', label)
+		.replace('{year}', String(year));
+const plateLabel = (i: number) => m.plateLabel.replace('{roman}', romans[i]);
+---
+
+<section id="works" data-goto="works">
+	<div class="head" data-rv="1">
+		<p class="head-kicker">{m.kicker}</p>
+		<h3>{m.title}<span class="acc">.</span></h3>
+		<p class="head-sub">{subtitle}</p>
+	</div>
+	{
+		projects.map((project, i) => {
+			const imageLeft = i % 2 === 0;
+			const body = (
+				<>
+					<div class="plate-img">
+						<div class="clip">
+							<div class="pframe">
+								<div class:list={['halftone', imageLeft ? 'zoom-r' : 'zoom-l']}>
+									<span class="chip">{m.chip}</span>
+								</div>
+							</div>
+						</div>
+						<span class:list={['label', imageLeft ? 'label-l' : 'label-r']}>
+							{plateLabel(i)}
+						</span>
+					</div>
+					<div class:list={[{ 'text-swap': !imageLeft }]}>
+						<p class:list={['meta-kicker', { 'kicker-acc': project.data.deepDive }]}>
+							{plateKicker(i, project.data.kickerLabel, project.data.year)}
+						</p>
+						<h4>
+							<span class="tmask tm-1">
+								<span class="tline tl-1">{project.data.titleLines[0]}</span>
+							</span>
+							<span class="tmask tm-2">
+								<span class="tline tl-2">{project.data.titleLines[1]}</span>
+							</span>
+						</h4>
+						<p class="dek">{project.data.dek}</p>
+						<p class="composed">{project.data.composedWith}</p>
+						{project.data.deepDive ? (
+							<p class="full-account">{m.fullAccount}</p>
+						) : (
+							<p class="follow">{m.accountFollow}</p>
+						)}
+					</div>
+				</>
+			);
+			return (
+				<article data-rv="1" data-plate="1" class:list={[{ last: i === projects.length - 1 }]}>
+					{project.data.deepDive ? (
+						<button type="button" data-cur="1" class:list={['row', { 'row-swap': !imageLeft }]}>
+							{body}
+						</button>
+					) : (
+						<div class:list={['row', { 'row-swap': !imageLeft }]}>{body}</div>
+					)}
+				</article>
+			);
+		})
+	}
+</section>
+
+<style>
+	section {
+		padding-top: clamp(2.4rem, 6vw, 4rem);
+	}
+
+	.head {
+		text-align: center;
+		opacity: var(--rv, 1);
+		transform: translateY(calc((1 - var(--rv, 1)) * 22px));
+		transition:
+			opacity 0.9s ease,
+			transform 0.9s cubic-bezier(0.19, 1, 0.22, 1);
+	}
+
+	.head-kicker {
+		margin: 0 0 0.5rem;
+		font-size: 0.64rem;
+		letter-spacing: 0.3em;
+		color: var(--acc, #b4342a);
+		font-weight: 700;
+	}
+
+	h3 {
+		margin: 0;
+		font-family: var(--fHD, 'Bodoni Moda'), Didot, serif;
+		font-weight: 620;
+		font-size: clamp(2.2rem, 6vw, 4.8rem);
+		line-height: 1;
+		text-transform: uppercase;
+	}
+
+	.acc {
+		color: var(--acc, #b4342a);
+	}
+
+	.head-sub {
+		margin: 0.7rem 0 0;
+		font-size: 0.66rem;
+		letter-spacing: 0.24em;
+		font-style: italic;
+	}
+
+	article {
+		margin-top: 0;
+		border-top: 1px solid rgba(28, 23, 16, 0.4);
+		opacity: var(--rv, 1);
+		transition: opacity 0.9s ease;
+	}
+
+	article:first-of-type {
+		margin-top: clamp(2rem, 4.6vw, 3.2rem);
+	}
+
+	article.last {
+		border-bottom: 1px solid rgba(28, 23, 16, 0.4);
+	}
+
+	.row {
+		display: grid;
+		grid-template-columns: var(--gRow, 1.05fr 1fr);
+		gap: clamp(1.4rem, 3.4vw, 3rem);
+		align-items: center;
+		width: 100%;
+		background: none;
+		border: none;
+		padding: clamp(1.6rem, 3.6vw, 2.6rem) 0;
+		text-align: left;
+		cursor: inherit;
+		color: var(--ink, #1c1710);
+	}
+
+	.row-swap {
+		grid-template-columns: var(--gRow, 1fr 1.05fr);
+	}
+
+	.text-swap {
+		order: var(--rowSwap, 0);
+	}
+
+	.plate-img {
+		position: relative;
+	}
+
+	.clip {
+		clip-path: inset(calc((1 - var(--rv, 1)) * 12%) calc((1 - var(--rv, 1)) * 9%));
+		transition: clip-path 1.2s cubic-bezier(0.19, 1, 0.22, 1) 0.1s;
+	}
+
+	.pframe {
+		aspect-ratio: 16 / 10;
+		border: 1px solid rgba(28, 23, 16, 0.55);
+		box-shadow:
+			inset 0 0 0 3px var(--paper, #f2ead8),
+			inset 0 0 0 4px rgba(28, 23, 16, 0.55);
+		overflow: hidden;
+	}
+
+	.halftone {
+		width: 100%;
+		height: 100%;
+		background-color: var(--paper-plate, #e4d8be);
+		background-image: radial-gradient(
+			rgba(28, 23, 16, 0.5) 1px,
+			transparent 1.15px
+		);
+		background-size: 5px 5px;
+		display: grid;
+		place-items: center;
+		transition: transform 0.9s cubic-bezier(0.19, 1, 0.22, 1);
+	}
+
+	.zoom-r:hover {
+		transform: scale(1.04) rotate(0.4deg);
+	}
+
+	.zoom-l:hover {
+		transform: scale(1.04) rotate(-0.4deg);
+	}
+
+	article:hover {
+		--u: 1;
+	}
+
+	.chip {
+		font-size: 0.6rem;
+		letter-spacing: 0.2em;
+		background: var(--paper, #f2ead8);
+		border: 1px solid rgba(28, 23, 16, 0.5);
+		padding: 0.5rem 0.8rem;
+	}
+
+	.label {
+		position: absolute;
+		top: -0.6rem;
+		background: color-mix(
+			in oklab,
+			var(--ink, #1c1710) calc((1 - var(--u, 0)) * 100%),
+			var(--acc, #b4342a) calc(var(--u, 0) * 100%)
+		);
+		transition: background 0.5s ease;
+		color: var(--paper, #f2ead8);
+		font-size: 0.56rem;
+		letter-spacing: 0.24em;
+		padding: 0.35rem 0.7rem;
+	}
+
+	.label-l {
+		left: 1rem;
+	}
+
+	.label-r {
+		right: 1rem;
+	}
+
+	.meta-kicker {
+		margin: 0 0 0.6rem;
+		font-size: 0.62rem;
+		letter-spacing: 0.3em;
+		font-weight: 700;
+	}
+
+	.kicker-acc {
+		color: var(--acc, #b4342a);
+	}
+
+	h4 {
+		margin: 0 0 0.8rem;
+		font-family: var(--fHD, 'Bodoni Moda'), Didot, serif;
+		font-weight: 640;
+		font-size: clamp(1.9rem, 4.4vw, 3.6rem);
+		line-height: 0.98;
+		text-transform: uppercase;
+	}
+
+	.tmask {
+		display: block;
+		overflow: hidden;
+	}
+
+	.tm-1 {
+		padding-bottom: 0.04em;
+	}
+
+	.tm-2 {
+		padding-bottom: 0.06em;
+	}
+
+	.tline {
+		display: inline-block;
+		background-image: linear-gradient(
+			var(--acc, #b4342a),
+			var(--acc, #b4342a)
+		);
+		background-repeat: no-repeat;
+		background-position: 0 94%;
+		background-size: calc(var(--u, 0) * 100%) 4px;
+		transform: translateY(calc((1 - var(--rv, 1)) * 110%));
+	}
+
+	.tl-1 {
+		transition:
+			transform 0.9s cubic-bezier(0.19, 1, 0.22, 1) 0.15s,
+			background-size 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+	}
+
+	.tl-2 {
+		transition:
+			transform 0.9s cubic-bezier(0.19, 1, 0.22, 1) 0.25s,
+			background-size 0.5s cubic-bezier(0.19, 1, 0.22, 1) 0.45s;
+	}
+
+	.dek {
+		margin: 0 0 0.9rem;
+		font-style: italic;
+		font-size: clamp(0.95rem, 1.7vw, 1.15rem);
+		line-height: 1.55;
+		color: var(--ink-soft, #3a3222);
+	}
+
+	.composed {
+		margin: 0 0 1rem;
+		font-size: 0.62rem;
+		letter-spacing: 0.2em;
+	}
+
+	.full-account {
+		margin: 0;
+		font-size: 0.74rem;
+		letter-spacing: 0.2em;
+		color: var(--acc, #b4342a);
+		font-weight: 700;
+	}
+
+	.follow {
+		margin: 0;
+		font-size: 0.72rem;
+		letter-spacing: 0.18em;
+		font-style: italic;
+		opacity: 0.65;
+	}
+</style>
