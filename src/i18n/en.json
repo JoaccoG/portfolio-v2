@@ -192,5 +192,103 @@
 		"chip": "ENGRAVING FORTHCOMING — DROP SCREENSHOT",
 		"fullAccount": "☞ FULL ACCOUNT ON PAGE TWO",
 		"accountFollow": "Account to follow in a future edition."
+	},
+	"cvAd": {
+		"kicker": "— ADVERTISEMENT —",
+		"title": "OBTAIN THE SUBJECT'S PAPERS",
+		"dek": "The complete Curriculum Vitae, dispatched to your reading-room by electronic post. State your preferred tongue.",
+		"links": [
+			{
+				"label": "ENGLISH EDITION",
+				"href": "#cv-english"
+			},
+			{
+				"label": "EDICIÓN EN ESPAÑOL",
+				"href": "#cv-espanol"
+			}
+		],
+		"footer": "THE COMPLETE RECORD, FOLDED FOR THE POCKET."
+	},
+	"appointments": {
+		"kicker": "THE SERVICE COLUMN",
+		"title": "Appointments",
+		"sub": "PROFESSIONAL POSTINGS — ENQUIRIES ENTERTAINED.",
+		"rows": [
+			{
+				"dates": "1925 — THIS DAY",
+				"current": true,
+				"role": "Semi-Senior Software Engineer, ",
+				"company": "MarketFully",
+				"note": "Now entrusted with broader systems, greater ownership, and machinery expected to endure."
+			},
+			{
+				"dates": "1924 — 1925",
+				"role": "Software Engineer, ",
+				"company": "Vodafone",
+				"note": "Given greater charge of the works, carrying ideas from first sketch to finished form."
+			},
+			{
+				"dates": "1923 — 1924",
+				"role": "Full Stack Junior Developer, ",
+				"company": "Vodafone",
+				"note": "Entered the trade building, tending, and learning the machinery from both ends."
+			}
+		]
+	},
+	"parodyAds": {
+		"kicker": "— ADVERTISEMENT —",
+		"ads": [
+			{
+				"title": [
+					{
+						"t": "GODOY'S PATENT "
+					},
+					{
+						"t": "TYPE-SCRIPT",
+						"acc": true
+					},
+					{
+						"t": " TONIC"
+					}
+				],
+				"lines": [
+					"Strengthens weak types! Cures the undefined at any hour.",
+					"Guaranteed null-safe or your penny returned."
+				]
+			},
+			{
+				"title": [
+					{
+						"t": "ELECTRIC "
+					},
+					{
+						"t": "PYTHON",
+						"acc": true
+					},
+					{
+						"t": "IC SNAKE OIL"
+					}
+				],
+				"lines": [
+					"Automates the tedious and simplifies the obscure.",
+					"Batteries included."
+				]
+			},
+			{
+				"title": [
+					{
+						"t": "RUST",
+						"acc": true
+					},
+					{
+						"t": "-PROOF IRONWORKS"
+					}
+				],
+				"lines": [
+					"Memory-safe machinery, forged without a garbage man.",
+					"If it compiles, it holds."
+				]
+			}
+		]
 	}
 }
