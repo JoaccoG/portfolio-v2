@@ -73,13 +73,22 @@
 		"inThisEdition": {
 			"title": "IN THIS EDITION",
 			"rows": [
-				{ "label": "The Profile Piece — in four parts", "target": "profile" },
-				{ "label": "Machinery Lately Constructed", "target": "works" },
+				{
+					"label": "The Profile Piece — in four parts",
+					"target": "profile"
+				},
+				{
+					"label": "Machinery Lately Constructed",
+					"target": "works"
+				},
 				{
 					"label": "Appointments & Advertisements",
 					"target": "appointments"
 				},
-				{ "label": "Telegrams to the Editor", "target": "telegrams" }
+				{
+					"label": "Telegrams to the Editor",
+					"target": "telegrams"
+				}
 			]
 		},
 		"almanac": {
@@ -101,7 +110,10 @@
 					"accent": true,
 					"nowrap": true
 				},
-				{ "label": "TIDE OF CORRESPONDENCE", "value": "HIGH AT NOON" }
+				{
+					"label": "TIDE OF CORRESPONDENCE",
+					"value": "HIGH AT NOON"
+				}
 			],
 			"footer": "Consult before deploying. The stars accept no tickets."
 		},
@@ -155,5 +167,30 @@
 				"footer": "LIFE BEYOND THE MACHINERY."
 			}
 		]
+	},
+	"machinery": {
+		"kicker": "FROM THE WORKSHOP FLOOR",
+		"title": "MACHINERY LATELY CONSTRUCTED",
+		"subtitle": "{count} ACCOUNTS, ALL CONTINUED OVERLEAF",
+		"numberWords": [
+			"ZERO",
+			"ONE",
+			"TWO",
+			"THREE",
+			"FOUR",
+			"FIVE",
+			"SIX",
+			"SEVEN",
+			"EIGHT",
+			"NINE",
+			"TEN",
+			"ELEVEN",
+			"TWELVE"
+		],
+		"plateKicker": "No. {n} — {label} · {year}",
+		"plateLabel": "PLATE No. {roman}",
+		"chip": "ENGRAVING FORTHCOMING — DROP SCREENSHOT",
+		"fullAccount": "☞ FULL ACCOUNT ON PAGE TWO",
+		"accountFollow": "Account to follow in a future edition."
 	}
 }

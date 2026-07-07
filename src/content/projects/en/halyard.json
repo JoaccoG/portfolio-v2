@@ -1,0 +1,8 @@
+{
+	"order": 2,
+	"kickerLabel": "MARITIME MECHANICS",
+	"year": 1924,
+	"titleLines": ["HALYARD HOISTS", "THE PREVIEW."],
+	"dek": "A command-line contraption raises disposable environments and dismantles them without ceremony or regret.",
+	"composedWith": "COMPOSED WITH RUST, DOCKER & GRPC"
+}
