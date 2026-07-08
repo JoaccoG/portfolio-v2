@@ -1,0 +1,208 @@
+---
+import { copy } from '../i18n/t';
+
+const a = copy.appointments;
+const p = copy.parodyAds;
+---
+
+<section id="appointments" data-goto="appointments">
+	<div class="service" data-rv="1">
+		<p class="kicker">{a.kicker}</p>
+		<h3>{a.title}<span class="acc">.</span></h3>
+		<p class="sub">{a.sub}</p>
+		<div class="rows">
+			{
+				a.rows.map((row, i) => (
+					<div class:list={['row', { 'row-last': i === a.rows.length - 1 }]}>
+						<span class:list={['dates', { current: 'current' in row }]}>
+							{row.dates}
+						</span>
+						<div class="post">
+							<p class="role">
+								{row.role}<span class="company">{row.company}</span>
+							</p>
+							<p class="note">{row.note}</p>
+						</div>
+					</div>
+				))
+			}
+		</div>
+	</div>
+	<div class="ads">
+		{
+			p.ads.map((ad, i) => (
+				<div class:list={['ad', `ad-${i}`]} data-rv="1">
+					<p class="ad-kicker">{p.kicker}</p>
+					<p class="ad-title">
+						{ad.title.map((seg) =>
+							'acc' in seg ? <span class="acc">{seg.t}</span> : seg.t,
+						)}
+					</p>
+					{ad.lines.map((line) => (
+						<p class="ad-line">{line}</p>
+					))}
+				</div>
+			))
+		}
+	</div>
+</section>
+
+<style>
+	section {
+		padding-top: clamp(2.4rem, 6vw, 4rem);
+		display: grid;
+		grid-template-columns: var(--gApp, 1.5fr 0.9fr);
+		gap: clamp(1.6rem, 4vw, 3.4rem);
+	}
+
+	.service {
+		opacity: var(--rv, 1);
+		transform: translateY(calc((1 - var(--rv, 1)) * 22px));
+		transition:
+			opacity 0.9s ease,
+			transform 0.9s cubic-bezier(0.19, 1, 0.22, 1);
+	}
+
+	.kicker {
+		margin: 0 0 0.5rem;
+		font-size: 0.64rem;
+		letter-spacing: 0.3em;
+		color: var(--acc, #b4342a);
+		font-weight: 700;
+	}
+
+	h3 {
+		margin: 0 0 0.4rem;
+		font-family: var(--fHD, 'Bodoni Moda'), Didot, serif;
+		font-weight: 620;
+		font-size: clamp(2rem, 4.6vw, 3.6rem);
+		line-height: 1;
+		text-transform: uppercase;
+	}
+
+	.acc {
+		color: var(--acc, #b4342a);
+	}
+
+	.sub {
+		margin: 0 0 1.4rem;
+		font-size: 0.64rem;
+		letter-spacing: 0.22em;
+		font-style: italic;
+	}
+
+	.rows {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.row {
+		padding: 1.1rem 0;
+		border-top: 1px dotted rgba(28, 23, 16, 0.5);
+		display: flex;
+		gap: 1.6rem;
+		flex-wrap: wrap;
+		align-items: baseline;
+	}
+
+	.row-last {
+		border-bottom: 1px dotted rgba(28, 23, 16, 0.5);
+	}
+
+	.dates {
+		font-size: 0.64rem;
+		letter-spacing: 0.22em;
+		min-width: 7.5rem;
+	}
+
+	.current {
+		color: var(--acc, #b4342a);
+		font-weight: 700;
+	}
+
+	.post {
+		flex: 1;
+		min-width: 15rem;
+	}
+
+	.role {
+		margin: 0 0 0.2rem;
+		font-family: var(--fHD, 'Bodoni Moda'), Didot, serif;
+		font-size: clamp(1.2rem, 2.4vw, 1.7rem);
+		font-weight: 600;
+	}
+
+	.company {
+		font-style: italic;
+	}
+
+	.note {
+		margin: 0;
+		font-size: 0.9rem;
+		font-style: italic;
+		opacity: 0.75;
+	}
+
+	.ads {
+		display: flex;
+		flex-direction: column;
+		gap: 1.2rem;
+		border-left: var(--colB, 1px solid rgba(28, 23, 16, 0.25));
+		padding-left: var(--colPad, clamp(1.2rem, 2.4vw, 2.2rem));
+	}
+
+	.ad {
+		border: 3px double rgba(28, 23, 16, 0.6);
+		padding: 1rem 1.1rem;
+		text-align: center;
+		background: var(--paper, #f2ead8);
+		opacity: var(--rv, 1);
+	}
+
+	.ad-0 {
+		transform: rotate(-1.1deg) translateY(calc((1 - var(--rv, 1)) * 20px));
+		transition:
+			opacity 0.8s ease 0.05s,
+			transform 0.5s cubic-bezier(0.19, 1, 0.22, 1) 0.05s;
+	}
+
+	.ad-1 {
+		transform: rotate(0.9deg) translateY(calc((1 - var(--rv, 1)) * 20px));
+		transition:
+			opacity 0.8s ease 0.15s,
+			transform 0.5s cubic-bezier(0.19, 1, 0.22, 1) 0.15s;
+	}
+
+	.ad-2 {
+		transform: rotate(-0.7deg) translateY(calc((1 - var(--rv, 1)) * 20px));
+		transition:
+			opacity 0.8s ease 0.25s,
+			transform 0.5s cubic-bezier(0.19, 1, 0.22, 1) 0.25s;
+	}
+
+	.ad:hover {
+		transform: rotate(0deg) translateY(-4px);
+		box-shadow: 5px 6px 0 rgba(28, 23, 16, 0.12);
+	}
+
+	.ad-kicker {
+		margin: 0 0 0.25rem;
+		font-size: 0.56rem;
+		letter-spacing: 0.32em;
+	}
+
+	.ad-title {
+		margin: 0 0 0.35rem;
+		font-family: var(--fHD, 'Bodoni Moda'), Didot, serif;
+		font-weight: 680;
+		font-size: 1.3rem;
+		line-height: 1.1;
+	}
+
+	.ad-line {
+		margin: 0;
+		font-size: 0.8rem;
+		font-style: italic;
+		line-height: 1.5;
+	}
+</style>
