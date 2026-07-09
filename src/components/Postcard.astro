@@ -1,0 +1,285 @@
+---
+import { copy } from '../i18n/t';
+
+const t = copy.telegrams;
+---
+
+<section id="telegrams" data-goto="telegrams">
+	<div class="head" data-rv="1">
+		<p class="kicker">{t.kicker}</p>
+		<h3>{t.title}<span class="acc">.</span></h3>
+		<p class="sub">{t.sub}</p>
+	</div>
+	<div class="card" data-rv="1">
+		<p class="pc-title">{t.postcard}</p>
+		<p class="pc-sub">{t.postcardSub}</p>
+		<form novalidate data-telegram>
+			<div class="grid">
+				<div class="message">
+					<label for="tg-msg">{t.messageLabel}</label>
+				<textarea
+						id="tg-msg"
+						name="message"
+						rows="5"
+						data-cur="1"
+						placeholder={t.messagePlaceholder}></textarea>
+				</div>
+				<div class="address">
+					<div class="stamp" aria-hidden="true">
+						<div class="stamp-inner">
+							❦<br /><span class="stamp-b">{t.stampLines[0]}</span><br />{
+								t.stampLines[1]
+							}<br />{t.stampLines[2]}
+						</div>
+					</div>
+					<p class="to-label">{t.toLabel}</p>
+					<p class="to-line">{t.toLines[0]}</p>
+					<p class="to-line to-line-last">{t.toLines[1]}</p>
+					<label class="from-label" for="tg-email">{t.fromLabel}</label>
+					<input
+						id="tg-email"
+						name="email"
+						type="email"
+						autocomplete="email"
+						data-cur="1"
+						placeholder={t.emailPlaceholder}
+					/>
+				</div>
+			</div>
+			<div class="footer">
+				<span class="window">{t.responseWindow}</span>
+				<button type="submit" data-cur="1">{t.submit}</button>
+			</div>
+		</form>
+	</div>
+</section>
+
+<style>
+	section {
+		padding-top: clamp(2.4rem, 6vw, 4rem);
+	}
+
+	.head {
+		text-align: center;
+		opacity: var(--rv, 1);
+		transform: translateY(calc((1 - var(--rv, 1)) * 22px));
+		transition:
+			opacity 0.9s ease,
+			transform 0.9s cubic-bezier(0.19, 1, 0.22, 1);
+	}
+
+	.kicker {
+		margin: 0 0 0.5rem;
+		font-size: 0.64rem;
+		letter-spacing: 0.3em;
+		color: var(--acc, #b4342a);
+		font-weight: 700;
+	}
+
+	h3 {
+		margin: 0;
+		font-family: var(--fHD, 'Bodoni Moda'), Didot, serif;
+		font-weight: 620;
+		font-size: clamp(2rem, 5.4vw, 4.2rem);
+		line-height: 1;
+		text-transform: uppercase;
+	}
+
+	.acc {
+		color: var(--acc, #b4342a);
+	}
+
+	.sub {
+		margin: 0.6rem 0 0;
+		font-size: 0.64rem;
+		letter-spacing: 0.24em;
+		font-style: italic;
+	}
+
+	.card {
+		max-width: 46rem;
+		margin: clamp(1.6rem, 4vw, 2.6rem) auto 0;
+		border: 1px solid rgba(28, 23, 16, 0.6);
+		box-shadow:
+			inset 0 0 0 4px var(--paper, #f2ead8),
+			inset 0 0 0 5px rgba(28, 23, 16, 0.6),
+			6px 8px 0 rgba(28, 23, 16, 0.1);
+		padding: clamp(1rem, 2.6vw, 1.8rem) clamp(1.3rem, 3.4vw, 2.4rem);
+		position: relative;
+		background: var(--paper, #f2ead8);
+		transform: rotate(0.4deg) translateY(calc((1 - var(--rv, 1)) * 26px));
+		opacity: var(--rv, 1);
+		transition:
+			opacity 0.9s ease,
+			transform 0.9s cubic-bezier(0.19, 1, 0.22, 1);
+	}
+
+	.pc-title {
+		margin: 0 0 0.15rem;
+		text-align: center;
+		font-family: var(--fHD, 'Bodoni Moda'), Didot, serif;
+		font-weight: 650;
+		font-size: clamp(1.3rem, 2.6vw, 1.7rem);
+		letter-spacing: 0.08em;
+	}
+
+	.pc-sub {
+		margin: 0 0 1.5rem;
+		text-align: center;
+		font-size: 0.52rem;
+		letter-spacing: 0.26em;
+	}
+
+	form {
+		display: flex;
+		flex-direction: column;
+		gap: 1.3rem;
+	}
+
+	.grid {
+		display: grid;
+		grid-template-columns: var(--pcGrid, 1.15fr 1fr);
+		gap: 1.5rem;
+	}
+
+	.message {
+		border-right: var(--pcRule, 1px dotted rgba(28, 23, 16, 0.5));
+		padding-right: var(--pcPadR, 1.5rem);
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+	}
+
+	label {
+		font-size: 0.56rem;
+		letter-spacing: 0.26em;
+		font-weight: 700;
+	}
+
+	textarea {
+		background: repeating-linear-gradient(
+			0deg,
+			transparent 0 2em,
+			rgba(28, 23, 16, 0.3) 2em calc(2em + 1px)
+		);
+		line-height: 2em;
+		border: none;
+		padding: 0;
+		font-size: 1.02rem;
+		font-style: italic;
+		resize: vertical;
+		min-height: 10em;
+		outline: none;
+		border-radius: 0;
+		cursor: inherit;
+	}
+
+	textarea:focus {
+		background: repeating-linear-gradient(
+			0deg,
+			transparent 0 2em,
+			rgba(180, 52, 42, 0.4) 2em calc(2em + 1px)
+		);
+	}
+
+	.address {
+		position: relative;
+	}
+
+	.stamp {
+		position: absolute;
+		top: 0;
+		right: 0;
+		border: 1px dashed rgba(28, 23, 16, 0.5);
+		padding: 3px;
+		background: var(--paper, #f2ead8);
+		display: var(--stampD, block);
+	}
+
+	.stamp-inner {
+		border: 1px solid var(--stamp-red, #a8352c);
+		color: var(--stamp-red, #a8352c);
+		padding: 0.4rem 0.5rem;
+		text-align: center;
+		font-size: 0.5rem;
+		letter-spacing: 0.16em;
+		line-height: 1.5;
+	}
+
+	.stamp-b {
+		font-weight: 700;
+	}
+
+	.to-label {
+		margin: 0;
+		font-size: 0.56rem;
+		letter-spacing: 0.26em;
+		font-weight: 700;
+	}
+
+	.to-line {
+		margin: 0;
+		border-bottom: 1px dotted rgba(28, 23, 16, 0.5);
+		padding: 0.4rem 0 0.3rem;
+		font-size: 0.92rem;
+		font-style: italic;
+		max-width: calc(100% - 6.6rem);
+	}
+
+	.to-line-last {
+		margin: 0 0 1.2rem;
+	}
+
+	.from-label {
+		display: block;
+	}
+
+	input {
+		width: 100%;
+		box-sizing: border-box;
+		background: transparent;
+		border: none;
+		border-bottom: 1px dotted rgba(28, 23, 16, 0.55);
+		padding: 0.4rem 0 0.3rem;
+		font-size: 1rem;
+		font-style: italic;
+		outline: none;
+		border-radius: 0;
+		cursor: inherit;
+	}
+
+	input:focus {
+		border-bottom: 1px solid var(--acc, #b4342a);
+	}
+
+	.footer {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1.4rem;
+		flex-wrap: wrap;
+	}
+
+	.window {
+		font-size: 0.62rem;
+		letter-spacing: 0.2em;
+		font-style: italic;
+	}
+
+	button {
+		background: none;
+		border: 1px solid var(--ink, #1c1710);
+		padding: 0.9rem 1.7rem;
+		font-size: 0.7rem;
+		letter-spacing: 0.28em;
+		cursor: inherit;
+		transition:
+			background 0.25s ease,
+			color 0.25s ease;
+	}
+
+	button:hover {
+		background: var(--ink, #1c1710);
+		color: var(--paper, #f2ead8);
+	}
+</style>
