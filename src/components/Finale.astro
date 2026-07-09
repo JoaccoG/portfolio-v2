@@ -1,0 +1,46 @@
+---
+import { copy } from '../i18n/t';
+
+const f = copy.finale;
+---
+
+<div class="mask" data-sec="finale">
+	<p aria-hidden="true">{f.sign}<span class="acc">.</span></p>
+</div>
+<p class="colophon">
+	{f.colophon.join(' · ')} · <span class="acc">❦</span>
+</p>
+
+<style>
+	.mask {
+		overflow: hidden;
+		margin: clamp(1.8rem, 4vw, 3rem)
+			calc(var(--pad-x, clamp(1rem, 3.6vw, 3.6rem)) * -1) 0;
+		border-top: 1px solid rgba(28, 23, 16, 0.45);
+	}
+
+	.mask p {
+		margin: 0;
+		text-align: center;
+		font-family: var(--fHD, 'Bodoni Moda'), Didot, serif;
+		font-weight: 680;
+		font-size: clamp(6rem, 21.5vw, 20rem);
+		line-height: 0.74;
+		letter-spacing: 0.01em;
+		transform: translateY(calc((0.34 - var(--fp, 0) * 0.16) * 100%));
+		user-select: none;
+	}
+
+	.acc {
+		color: var(--acc, #b4342a);
+	}
+
+	.colophon {
+		margin: 0;
+		text-align: center;
+		font-size: 0.58rem;
+		letter-spacing: 0.24em;
+		border-top: 3px double rgba(28, 23, 16, 0.7);
+		padding-top: 0.9rem;
+	}
+</style>

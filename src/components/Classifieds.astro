@@ -1,0 +1,82 @@
+---
+import { copy } from '../i18n/t';
+
+const c = copy.classifieds;
+---
+
+<div class="wrap">
+	<p class="heading">{c.heading}</p>
+	<div class="grid" data-rv="1">
+		{
+			c.items.map((item, i) => (
+				<p class:list={[{ ruled: i > 0 }]}>
+					<span class="lead">{item.lead}</span>{' '}
+					{item.segments.map((seg) => {
+						const href = 'href' in seg ? seg.href : undefined;
+						const external = href !== undefined && !href.startsWith('mailto:');
+						return href ? (
+							<a
+								href={href}
+								target={external ? '_blank' : undefined}
+								rel={external ? 'noreferrer' : undefined}
+								data-cur="1"
+							>
+								{seg.t}
+							</a>
+						) : (
+							seg.t
+						);
+					})}
+				</p>
+			))
+		}
+	</div>
+</div>
+
+<style>
+	.wrap {
+		border-top: 3px double rgba(28, 23, 16, 0.7);
+		padding-top: 1.2rem;
+	}
+
+	.heading {
+		margin: 0 0 1rem;
+		text-align: center;
+		font-size: 0.66rem;
+		letter-spacing: 0.32em;
+		font-weight: 700;
+	}
+
+	.grid {
+		display: grid;
+		grid-template-columns: var(--g4, repeat(4, 1fr));
+		gap: clamp(1rem, 2.4vw, 1.8rem);
+		font-size: 0.78rem;
+		line-height: 1.55;
+		opacity: var(--rv, 1);
+		transition: opacity 0.9s ease;
+	}
+
+	p {
+		margin: 0;
+	}
+
+	.ruled {
+		border-left: var(--colB, 1px solid rgba(28, 23, 16, 0.25));
+		padding-left: var(--colPad, 1.2rem);
+	}
+
+	.lead {
+		font-weight: 700;
+		color: var(--acc, #b4342a);
+	}
+
+	a {
+		text-decoration: underline;
+		text-underline-offset: 3px;
+	}
+
+	a:hover {
+		color: var(--acc, #b4342a);
+	}
+</style>
