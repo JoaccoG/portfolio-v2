@@ -1,6 +1,8 @@
 ---
 import Appointments from '../components/Appointments.astro';
+import Classifieds from '../components/Classifieds.astro';
 import CvAd from '../components/CvAd.astro';
+import Finale from '../components/Finale.astro';
 import Hero from '../components/Hero.astro';
 import Masthead from '../components/Masthead.astro';
 import Plates from '../components/Plates.astro';
@@ -24,7 +26,10 @@ import Base from '../layouts/Base.astro';
 			<Plates />
 			<Appointments />
 			<Postcard />
-			<div class="placeholder"></div>
+			<footer>
+				<Classifieds />
+				<Finale />
+			</footer>
 		</Sheet>
 	</main>
 </Base>
@@ -35,7 +40,7 @@ import Base from '../layouts/Base.astro';
 		padding-top: clamp(0.9rem, 2vw, 1.6rem);
 	}
 
-	.placeholder {
-		min-height: 100vh;
+	footer {
+		margin-top: clamp(2.6rem, 6vw, 4.4rem);
 	}
 </style>
