@@ -31,16 +31,18 @@ const p = copy.parodyAds;
 	<div class="ads">
 		{
 			p.ads.map((ad, i) => (
-				<div class:list={['ad', `ad-${i}`]} data-rv="1">
-					<p class="ad-kicker">{p.kicker}</p>
-					<p class="ad-title">
-						{ad.title.map((seg) =>
-							'acc' in seg ? <span class="acc">{seg.t}</span> : seg.t,
-						)}
-					</p>
-					{ad.lines.map((line) => (
-						<p class="ad-line">{line}</p>
-					))}
+				<div class:list={['ad-rv', `ad-rv-${i}`]} data-rv="1">
+					<div class:list={['ad', `ad-${i}`]}>
+						<p class="ad-kicker">{p.kicker}</p>
+						<p class="ad-title">
+							{ad.title.map((seg) =>
+								'acc' in seg ? <span class="acc">{seg.t}</span> : seg.t,
+							)}
+						</p>
+						{ad.lines.map((line) => (
+							<p class="ad-line">{line}</p>
+						))}
+					</div>
 				</div>
 			))
 		}
@@ -151,33 +153,47 @@ const p = copy.parodyAds;
 		padding-left: var(--colPad, clamp(1.2rem, 2.4vw, 2.2rem));
 	}
 
-	.ad {
-		border: 3px double rgba(28, 23, 16, 0.6);
-		padding: 1rem 1.1rem;
-		text-align: center;
-		background: var(--paper, #f2ead8);
+	.ad-rv {
 		opacity: var(--rv, 1);
+		transform: translateY(calc((1 - var(--rv, 1)) * 20px));
 	}
 
-	.ad-0 {
-		transform: rotate(-1.1deg) translateY(calc((1 - var(--rv, 1)) * 20px));
+	.ad-rv-0 {
 		transition:
 			opacity 0.8s ease 0.05s,
 			transform 0.5s cubic-bezier(0.19, 1, 0.22, 1) 0.05s;
 	}
 
-	.ad-1 {
-		transform: rotate(0.9deg) translateY(calc((1 - var(--rv, 1)) * 20px));
+	.ad-rv-1 {
 		transition:
 			opacity 0.8s ease 0.15s,
 			transform 0.5s cubic-bezier(0.19, 1, 0.22, 1) 0.15s;
 	}
 
-	.ad-2 {
-		transform: rotate(-0.7deg) translateY(calc((1 - var(--rv, 1)) * 20px));
+	.ad-rv-2 {
 		transition:
 			opacity 0.8s ease 0.25s,
 			transform 0.5s cubic-bezier(0.19, 1, 0.22, 1) 0.25s;
+	}
+
+	.ad {
+		border: 3px double rgba(28, 23, 16, 0.6);
+		padding: 1rem 1.1rem;
+		text-align: center;
+		background: var(--paper, #f2ead8);
+		transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+	}
+
+	.ad-0 {
+		transform: rotate(-1.1deg);
+	}
+
+	.ad-1 {
+		transform: rotate(0.9deg);
+	}
+
+	.ad-2 {
+		transform: rotate(-0.7deg);
 	}
 
 	.ad:hover {
