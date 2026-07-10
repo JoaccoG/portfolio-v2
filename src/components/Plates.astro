@@ -55,7 +55,7 @@ const plateLabel = (i: number) => m.plateLabel.replace('{roman}', romans[i]);
 			);
 			const text = (
 				<div class:list={[{ 'text-swap': !imageLeft }]}>
-					<p class:list={['meta-kicker', { 'kicker-acc': project.data.deepDive }]}>
+					<p class:list={['meta-kicker', { 'kicker-acc': project.data.pageTwo }]}>
 						{plateKicker(i, project.data.kickerLabel, project.data.year)}
 					</p>
 					<h4>
@@ -68,7 +68,7 @@ const plateLabel = (i: number) => m.plateLabel.replace('{roman}', romans[i]);
 					</h4>
 					<p class="dek">{project.data.dek}</p>
 					<p class="composed">{project.data.composedWith}</p>
-					{project.data.deepDive ? (
+					{project.data.pageTwo ? (
 						<p class="full-account">{m.fullAccount}</p>
 					) : (
 						<p class="follow">{m.accountFollow}</p>
@@ -88,7 +88,7 @@ const plateLabel = (i: number) => m.plateLabel.replace('{roman}', romans[i]);
 			);
 			return (
 				<article data-rv="1" data-plate="1" class:list={[{ last: i === projects.length - 1 }]}>
-					{project.data.deepDive ? (
+					{project.data.pageTwo ? (
 						<button type="button" data-cur="1" class:list={['row', { 'row-swap': !imageLeft }]}>
 							{body}
 						</button>
