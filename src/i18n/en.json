@@ -47,9 +47,24 @@
 		},
 		"folio": [
 			"BUENOS AIRES & THE WIDER WEB",
-			"MORNING EDITION — AUGUST 25, 1926",
+			"MORNING EDITION — {date}",
 			"PROPRIETOR: J. GODOY, ENGINEER"
-		]
+		],
+		"months": [
+			"JANUARY",
+			"FEBRUARY",
+			"MARCH",
+			"APRIL",
+			"MAY",
+			"JUNE",
+			"JULY",
+			"AUGUST",
+			"SEPTEMBER",
+			"OCTOBER",
+			"NOVEMBER",
+			"DECEMBER"
+		],
+		"dateTemplate": "{month} {day}, {year}"
 	},
 	"hero": {
 		"kicker": "LATE INTELLIGENCE — TECHNOLOGY",

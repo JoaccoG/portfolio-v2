@@ -2,6 +2,12 @@
 import { copy } from '../i18n/t';
 
 const m = copy.masthead;
+const now = new Date();
+const editionDate = m.dateTemplate
+	.replace('{month}', m.months[now.getMonth()] ?? '')
+	.replace('{day}', String(now.getDate()))
+	.replace('{year}', String(now.getFullYear() - 100));
+const [folioPre = '', folioPost = ''] = m.folio[1].split('{date}');
 ---
 
 <div class="top">
@@ -83,10 +89,28 @@ const m = copy.masthead;
 <div class="folio">
 	<span>{m.folio[0]}</span>
 	<span class="folio-sep" aria-hidden="true">✦</span>
-	<span>{m.folio[1]}</span>
+	<span
+		>{folioPre}<span
+			data-live-date
+			data-months={JSON.stringify(m.months)}
+			data-template={m.dateTemplate}>{editionDate}</span
+		>{folioPost}</span
+	>
 	<span class="folio-sep" aria-hidden="true">✦</span>
 	<span>{m.folio[2]}</span>
 </div>
+
+<script>
+	const el = document.querySelector('[data-live-date]');
+	if (el instanceof HTMLElement && el.dataset.months && el.dataset.template) {
+		const months: string[] = JSON.parse(el.dataset.months);
+		const now = new Date();
+		el.textContent = el.dataset.template
+			.replace('{month}', months[now.getMonth()] ?? '')
+			.replace('{day}', String(now.getDate()))
+			.replace('{year}', String(now.getFullYear() - 100));
+	}
+</script>
 
 <style>
 	.top {
