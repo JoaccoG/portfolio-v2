@@ -5,5 +5,32 @@
 	"titleLines": ["THE LEDGERLINE", "AFFAIR."],
 	"dek": "A reconciliation engine of unusual temperament settles a million entries nightly and confesses nothing to chance.",
 	"composedWith": "COMPOSED WITH GO, KAFKA & POSTGRES",
-	"deepDive": true
+	"pageTwo": {
+		"name": "The Ledgerline Affair",
+		"headline": "A MILLION ENTRIES RECONCILED BEFORE THE COFFEE COOLED.",
+		"dek": "Being a full and frank account of the Ledgerline engine: its temperament, its failures survived, and the exactly-once question settled at last.",
+		"figCaption": "THE RECONCILIATION APPARATUS AT REST — ",
+		"figCaptionItalic": "artist's impression awaited",
+		"story": [
+			"It is the opinion of this desk that no ledger should be trusted until it has been made to argue with itself. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+			"[PLACEHOLDER — THE PROBLEM: what was breaking, and what it cost.] Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.",
+			"[PLACEHOLDER — THE APPROACH: the matching algorithm, the failure modes, why exactly-once was worth the fight.] Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.",
+			"[PLACEHOLDER — THE RESULT: numbers, uptime, what the client said.] Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit. — "
+		],
+		"note": "[PLACEHOLDER CASE — REAL PARTICULARS TO FOLLOW]",
+		"particulars": {
+			"role": "Design & build",
+			"year": 1925,
+			"composed": "Go, Kafka, Postgres",
+			"status": "In daily service"
+		},
+		"quote": {
+			"text": "“The books balanced, and nobody had to stay past supper.”",
+			"cite": "A SATISFIED WITNESS"
+		},
+		"links": {
+			"repo": "#repo-ledgerline",
+			"live": "#live-ledgerline"
+		}
+	}
 }
