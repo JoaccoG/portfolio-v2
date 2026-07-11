@@ -400,5 +400,21 @@
 			"PRINTED ON RECYCLED ELECTRONS",
 			"© 2026 J. GODOY, PROPRIETOR"
 		]
+	},
+	"pageTwo": {
+		"ariaLabel": "Page two: {name}",
+		"header": "THE DAILY GODOY — PAGE TWO",
+		"return": "☜ RETURN TO FRONT PAGE",
+		"ghost": "Page Two",
+		"seriesKicker": "No. {n} IN THE SERIES — {series} · {year} ",
+		"readAs": "(read: {real})",
+		"byline": "FROM OUR ENGINEERING DESK — CONTINUED FROM PAGE ONE",
+		"chip": "ENGRAVING FORTHCOMING — DROP A SCREENSHOT OF THE MACHINERY",
+		"particularsTitle": "PARTICULARS.",
+		"particularsLabels": ["ROLE", "YEAR", "COMPOSED", "STATUS"],
+		"repoLink": "☞ INSPECT THE REPOSITORY",
+		"liveLink": "☞ VIEW THE MACHINE IN SERVICE",
+		"signature": "ED.",
+		"footer": "FURTHER ACCOUNTS TO APPEAR IN SUBSEQUENT EDITIONS."
 	}
 }
