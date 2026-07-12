@@ -53,6 +53,11 @@ import PaperTextures from './PaperTextures.astro';
 		position: relative;
 		width: min(96.5vw, 1560px);
 		margin: 0 auto;
+		transform: translateY(calc((1 - var(--intro, 1)) * 58vh))
+			rotate(calc((1 - var(--intro, 1)) * -6.5deg))
+			scale(calc(0.64 + var(--intro, 1) * 0.36));
+		transform-origin: 50% 14%;
+		will-change: transform;
 	}
 
 	.shadow-wide {
