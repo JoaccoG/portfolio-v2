@@ -51,12 +51,12 @@ export function frameVars(s: number, m: Measures): Record<string, string> {
 	return vars;
 }
 
-export function initEngine(): void {
+export function initEngine(): { measure: () => void } | undefined {
 	const doc = document.documentElement;
 	const content = document.querySelector<HTMLElement>(
 		'[data-engine="content"]',
 	);
-	if (!content) return;
+	if (!content) return undefined;
 	const rm = matchMedia('(prefers-reduced-motion: reduce)').matches;
 	const prof = document.querySelector<HTMLElement>('[data-sec="profile"]');
 	const fin = document.querySelector<HTMLElement>('[data-sec="finale"]');
@@ -111,4 +111,5 @@ export function initEngine(): void {
 	new ResizeObserver(measure).observe(content);
 	measure();
 	requestAnimationFrame(loop);
+	return { measure };
 }
