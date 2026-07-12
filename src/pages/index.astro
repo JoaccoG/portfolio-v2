@@ -15,6 +15,7 @@ import Base from '../layouts/Base.astro';
 ---
 
 <Base>
+	<span class="progress" aria-hidden="true"></span>
 	<main>
 		<Sheet>
 			<Ticker />
@@ -36,7 +37,27 @@ import Base from '../layouts/Base.astro';
 	</main>
 </Base>
 
+<script>
+	import { initEngine } from '../engine/engine';
+	import { initReveals } from '../engine/reveal';
+
+	initEngine();
+	initReveals();
+</script>
+
 <style>
+	.progress {
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		height: 3px;
+		z-index: 95;
+		background: var(--acc, #b4342a);
+		transform-origin: 0 50%;
+		transform: scaleX(var(--pg, 0));
+	}
+
 	header {
 		position: relative;
 		padding-top: clamp(0.9rem, 2vw, 1.6rem);

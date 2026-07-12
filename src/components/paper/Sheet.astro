@@ -2,8 +2,8 @@
 import PaperTextures from './PaperTextures.astro';
 ---
 
-<div class="ground">
-	<div class="frame">
+<div class="viewport">
+	<div class="frame" data-engine="content">
 		<div class="stack">
 			<div class="shadow-wide" aria-hidden="true"></div>
 			<div class="blob blob-bl" aria-hidden="true"></div>
@@ -26,15 +26,27 @@ import PaperTextures from './PaperTextures.astro';
 		</div>
 	</div>
 </div>
+<div class="spacer" aria-hidden="true"></div>
 
 <style>
-	.ground {
+	.viewport {
+		position: fixed;
+		inset: 0;
+		overflow: hidden;
 		background: var(--ground, #0f0c08);
-		overflow-x: clip;
 	}
 
 	.frame {
+		position: relative;
 		padding: min(calc((100% - min(96.5vw, 1560px)) / 2), 64px) 0;
+		transform: translate3d(0, calc(var(--sY, 0) * -1px), 0)
+			skewY(calc(var(--vk, 0) * 1deg));
+		transform-origin: 50% 0;
+		will-change: transform;
+	}
+
+	.spacer {
+		height: calc(var(--docH, 9000) * 1px);
 	}
 
 	.stack {
