@@ -1,0 +1,61 @@
+<div class="cur-dot" data-cursor-dot aria-hidden="true"></div>
+<div class="cur-ring" data-cursor-ring aria-hidden="true">
+	<div class="ring-inner">
+		<span class="finger">☞</span>
+	</div>
+</div>
+
+<style>
+	.cur-dot {
+		position: fixed;
+		left: 0;
+		top: 0;
+		z-index: 120;
+		width: 6px;
+		height: 6px;
+		margin: -3px 0 0 -3px;
+		background: var(--cInk, #1c1710);
+		border-radius: 50%;
+		pointer-events: none;
+		opacity: calc(var(--curO, 0) * var(--cdo, 1));
+		transition:
+			opacity 0.25s ease,
+			background 0.4s ease;
+		transform: translate3d(var(--cdx, -60px), var(--cdy, -60px), 0);
+	}
+
+	.cur-ring {
+		position: fixed;
+		left: 0;
+		top: 0;
+		z-index: 120;
+		width: 34px;
+		height: 34px;
+		margin: -17px 0 0 -17px;
+		pointer-events: none;
+		opacity: var(--curO, 0);
+		transform: translate3d(var(--crx, -60px), var(--cry, -60px), 0);
+	}
+
+	.ring-inner {
+		width: 100%;
+		height: 100%;
+		box-sizing: border-box;
+		border: 1.5px solid var(--crc, rgba(28, 23, 16, 0.55));
+		border-radius: 50%;
+		display: grid;
+		place-items: center;
+		transform: scale(var(--crs, 1));
+		transition:
+			transform 0.45s cubic-bezier(0.3, 1.35, 0.45, 1),
+			border-color 0.3s ease;
+	}
+
+	.finger {
+		font-size: 15px;
+		color: var(--acc, #b4342a);
+		opacity: var(--cf, 0);
+		transform: rotate(-24deg);
+		transition: opacity 0.25s ease;
+	}
+</style>
