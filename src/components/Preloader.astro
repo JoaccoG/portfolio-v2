@@ -1,0 +1,72 @@
+---
+import { copy } from '../i18n/t';
+
+const p = copy.preloader;
+---
+
+<div class="pre" aria-hidden="true">
+	<span class="pre-title">{p.title}</span>
+	<span class="pre-fleuron">❦</span>
+	<span class="pre-count" data-precnt>00</span>
+	<span class="pre-bar"><span class="pre-fill"></span></span>
+	<span class="pre-caption">{p.caption}</span>
+</div>
+
+<style>
+	.pre {
+		position: fixed;
+		inset: 0;
+		z-index: 100;
+		background: var(--ground, #0f0c08);
+		color: var(--cream, #e9e0cc);
+		cursor: var(--curCur, auto);
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 1.4rem;
+		opacity: var(--preO, 0);
+		pointer-events: var(--prePE, none);
+		transition: opacity 0.55s ease;
+	}
+
+	.pre-title {
+		font-size: 0.66rem;
+		letter-spacing: 0.44em;
+		padding-left: 0.44em;
+	}
+
+	.pre-fleuron {
+		color: var(--acc, #b4342a);
+		font-size: 1rem;
+	}
+
+	.pre-count {
+		font-family: var(--fHD, 'Bodoni Moda'), Didot, serif;
+		font-size: clamp(3rem, 8vw, 5.5rem);
+		font-weight: 500;
+		line-height: 1;
+	}
+
+	.pre-bar {
+		width: min(38vw, 240px);
+		height: 1px;
+		background: rgba(233, 224, 204, 0.2);
+		position: relative;
+		overflow: hidden;
+	}
+
+	.pre-fill {
+		position: absolute;
+		inset: 0;
+		background: var(--acc, #b4342a);
+		transform-origin: 0 50%;
+		transform: scaleX(var(--plw, 0));
+	}
+
+	.pre-caption {
+		font-size: 0.56rem;
+		letter-spacing: 0.32em;
+		opacity: 0.6;
+	}
+</style>

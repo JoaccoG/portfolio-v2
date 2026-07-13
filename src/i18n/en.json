@@ -416,5 +416,9 @@
 		"liveLink": "☞ VIEW THE MACHINE IN SERVICE",
 		"signature": "ED.",
 		"footer": "FURTHER ACCOUNTS TO APPEAR IN SUBSEQUENT EDITIONS."
+	},
+	"preloader": {
+		"title": "THE DAILY GODOY",
+		"caption": "SETTING THE TYPE — MORNING EDITION"
 	}
 }

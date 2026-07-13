@@ -8,6 +8,7 @@ import Masthead from '../components/Masthead.astro';
 import PageTwo from '../components/PageTwo.astro';
 import Plates from '../components/Plates.astro';
 import Postcard from '../components/Postcard.astro';
+import Preloader from '../components/Preloader.astro';
 import ProfilePiece from '../components/ProfilePiece.astro';
 import Sheet from '../components/paper/Sheet.astro';
 import Ticker from '../components/Ticker.astro';
@@ -15,7 +16,18 @@ import Base from '../layouts/Base.astro';
 ---
 
 <Base>
+	<script is:inline>
+		if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+			const style = document.documentElement.style;
+			style.setProperty('--preO', '1');
+			style.setProperty('--prePE', 'auto');
+			style.setProperty('--intro', '0');
+			style.setProperty('--mh', '0');
+			style.overflow = 'hidden';
+		}
+	</script>
 	<span class="progress" aria-hidden="true"></span>
+	<Preloader />
 	<main>
 		<Sheet>
 			<Ticker />
@@ -39,9 +51,11 @@ import Base from '../layouts/Base.astro';
 
 <script>
 	import { initEngine } from '../engine/engine';
+	import { initIntro } from '../engine/intro';
 	import { initReveals } from '../engine/reveal';
 
-	initEngine();
+	const engine = initEngine();
+	initIntro({ onSettled: () => engine?.measure() });
 	initReveals();
 </script>
 
