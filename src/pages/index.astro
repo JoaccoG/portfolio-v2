@@ -1,6 +1,7 @@
 ---
 import Appointments from '../components/Appointments.astro';
 import Classifieds from '../components/Classifieds.astro';
+import CustomCursor from '../components/CustomCursor.astro';
 import CvAd from '../components/CvAd.astro';
 import Finale from '../components/Finale.astro';
 import Hero from '../components/Hero.astro';
@@ -28,6 +29,7 @@ import Base from '../layouts/Base.astro';
 	</script>
 	<span class="progress" aria-hidden="true"></span>
 	<Preloader />
+	<CustomCursor />
 	<main>
 		<Sheet>
 			<Ticker />
@@ -50,6 +52,7 @@ import Base from '../layouts/Base.astro';
 </Base>
 
 <script>
+	import { initCursor } from '../engine/cursor';
 	import { initEngine } from '../engine/engine';
 	import { initIntro } from '../engine/intro';
 	import { initReveals } from '../engine/reveal';
@@ -57,6 +60,7 @@ import Base from '../layouts/Base.astro';
 	const engine = initEngine();
 	initIntro({ onSettled: () => engine?.measure() });
 	initReveals();
+	initCursor();
 </script>
 
 <style>

@@ -6,6 +6,10 @@ export function initIntro(hooks: IntroHooks = {}): void {
 	const doc = document.documentElement;
 	const sv = (k: string, v: string) => doc.style.setProperty(k, v);
 	let done = false;
+	const restoreCursorInk = () => {
+		doc.style.removeProperty('--cInk');
+		doc.style.removeProperty('--crc');
+	};
 	const settle = () => {
 		if (done) return;
 		done = true;
@@ -14,6 +18,7 @@ export function initIntro(hooks: IntroHooks = {}): void {
 		sv('--intro', '1');
 		sv('--mh', '1');
 		doc.style.overflow = '';
+		restoreCursorInk();
 		hooks.onSettled?.();
 	};
 	if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
@@ -24,6 +29,8 @@ export function initIntro(hooks: IntroHooks = {}): void {
 	sv('--prePE', 'auto');
 	sv('--intro', '0');
 	sv('--mh', '0');
+	sv('--cInk', '#e9e0cc');
+	sv('--crc', 'rgba(233, 224, 204, 0.65)');
 	doc.style.overflow = 'hidden';
 	window.scrollTo(0, 0);
 	const counter = document.querySelector<HTMLElement>('[data-precnt]');
@@ -41,6 +48,7 @@ export function initIntro(hooks: IntroHooks = {}): void {
 		if (el > 1500) {
 			sv('--preO', '0');
 			sv('--prePE', 'none');
+			restoreCursorInk();
 		}
 		const rise = cl(el, 1550, 3350);
 		sv('--intro', String(Math.round((1 - (1 - rise) ** 4) * 1000) / 1000));
