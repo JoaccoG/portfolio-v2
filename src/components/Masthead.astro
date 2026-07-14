@@ -46,6 +46,7 @@ const [folioPre = '', folioPost = ''] = m.folio[1].split('{date}');
 			type="button"
 			class="seal-btn"
 			data-cur="1"
+			data-sound-toggle
 			aria-pressed="false"
 			aria-label={m.press.toggleAria}
 		>
@@ -80,7 +81,16 @@ const [folioPre = '', folioPost = ''] = m.folio[1].split('{date}');
 				<text x="50" y="63" text-anchor="middle" class="seal-est">{m.press.sealEst}</text>
 			</svg>
 		</button>
-		<button type="button" class="sound-toggle" data-cur="1" aria-pressed="false">
+		<button
+			type="button"
+			class="sound-toggle"
+			data-cur="1"
+			data-sound-toggle
+			data-sound-label
+			data-silent={m.press.silent}
+			data-audible={m.press.audible}
+			aria-pressed="false"
+		>
 			{m.press.silent}
 		</button>
 	</div>

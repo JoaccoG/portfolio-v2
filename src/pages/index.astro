@@ -55,12 +55,14 @@ import Base from '../layouts/Base.astro';
 	import { initCursor } from '../engine/cursor';
 	import { initEngine } from '../engine/engine';
 	import { initIntro } from '../engine/intro';
+	import { initMusic } from '../engine/music';
 	import { initReveals } from '../engine/reveal';
 
 	const engine = initEngine();
 	initIntro({ onSettled: () => engine?.measure() });
 	initReveals();
 	initCursor();
+	initMusic();
 </script>
 
 <style>
