@@ -1,8 +1,0 @@
-{
-	"order": 4,
-	"kickerLabel": "PUBLIC WORKS",
-	"year": 1923,
-	"titleLines": ["A LOOKING-GLASS", "FOR SLOW QUERIES."],
-	"dek": "Querylens, an open-source instrument, shows a query its life story before it ever troubles the planner. Free to all.",
-	"composedWith": "COMPOSED WITH TYPESCRIPT & WASM"
-}
