@@ -12,7 +12,7 @@ export function initMusic(): void {
 	const label = document.querySelector<HTMLElement>('[data-sound-label]');
 	const audio = new Audio();
 	audio.preload = 'none';
-	audio.volume = 0.6;
+	audio.volume = 0.2;
 	let index = 0;
 	let playing = false;
 	let failures = 0;
