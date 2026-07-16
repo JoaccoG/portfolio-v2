@@ -21,7 +21,9 @@ const projects = (await getCollection('projects')).sort(
 	(a, b) => a.data.order - b.data.order,
 );
 const countWord = m.numberWords[projects.length] ?? String(projects.length);
-const subtitle = m.subtitle.replace('{count}', countWord);
+const subtitle = (
+	projects.length === 1 ? m.subtitleSingular : m.subtitle
+).replace('{count}', countWord);
 const plateKicker = (i: number, label: string, year: number) =>
 	m.plateKicker
 		.replace('{n}', String(i + 1))
