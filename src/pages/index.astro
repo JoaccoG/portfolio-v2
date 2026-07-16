@@ -56,6 +56,7 @@ import Base from '../layouts/Base.astro';
 	import { initEngine } from '../engine/engine';
 	import { initIntro } from '../engine/intro';
 	import { initMusic } from '../engine/music';
+	import { initOverlay } from '../engine/overlay';
 	import { initReveals } from '../engine/reveal';
 
 	const engine = initEngine();
@@ -63,6 +64,7 @@ import Base from '../layouts/Base.astro';
 	initReveals();
 	initCursor();
 	initMusic();
+	initOverlay();
 </script>
 
 <style>
