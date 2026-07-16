@@ -36,6 +36,8 @@ const projects = (await getCollection('projects'))
 				role="dialog"
 				aria-modal="true"
 				aria-label={p.ariaLabel.replace('{name}', pt.name)}
+				aria-hidden="true"
+				inert
 				data-page-two={project.id}
 			>
 				<div class="p2sheet" lang="en">
