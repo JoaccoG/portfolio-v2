@@ -206,7 +206,8 @@
 		"plateLabel": "PLATE No. {roman}",
 		"chip": "ENGRAVING FORTHCOMING — DROP SCREENSHOT",
 		"fullAccount": "☞ FULL ACCOUNT ON PAGE TWO",
-		"accountFollow": "Account to follow in a future edition."
+		"accountFollow": "Account to follow in a future edition.",
+		"subtitleSingular": "{count} ACCOUNT, CONTINUED OVERLEAF"
 	},
 	"cvAd": {
 		"kicker": "— ADVERTISEMENT —",
