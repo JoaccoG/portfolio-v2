@@ -325,14 +325,14 @@
 		"postmaster": {
 			"prefix": "☞ THE POSTMASTER OBJECTS: ",
 			"email": "A PROPER ADDRESS IS REQUIRED",
-			"blank": "A BLANK WIRE CANNOT BE SENT"
+			"blank": "A BLANK WIRE CANNOT BE SENT",
+			"wireDown": "THE WIRE IS DOWN — TRY AGAIN PRESENTLY"
 		},
 		"sent": {
 			"stampLines": ["THE DAILY", "GODOY"],
 			"stampMid": "DISPATCHED",
 			"stampDate": "AUG 25 · 1901",
-			"text": "Your card is in the post. STOP. The editor will reply. STOP.",
-			"note": "[SUBMISSION SIMULATED — CONNECT AN ENDPOINT LATER]"
+			"text": "Your card is in the post. STOP. The editor will reply. STOP."
 		}
 	},
 	"classifieds": {
