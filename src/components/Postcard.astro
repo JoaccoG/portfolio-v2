@@ -46,11 +46,28 @@ const t = copy.telegrams;
 					/>
 				</div>
 			</div>
+			<input
+				class="trap"
+				type="text"
+				name="wire"
+				tabindex="-1"
+				autocomplete="off"
+				aria-hidden="true"
+			/>
+			<p class="postmaster" role="alert" data-form-error hidden></p>
 			<div class="footer">
 				<span class="window">{t.responseWindow}</span>
 				<button type="submit" data-cur="1">{t.submit}</button>
 			</div>
 		</form>
+		<div class="sent" data-sent-state hidden>
+			<span class="rubber">
+				{t.sent.stampLines[0]}<br />{t.sent.stampLines[1]}<br />
+				<span class="rubber-mid">{t.sent.stampMid}</span><br />
+				{t.sent.stampDate}
+			</span>
+			<p class="sent-text">{t.sent.text}</p>
+		</div>
 	</div>
 </section>
 
@@ -250,6 +267,62 @@ const t = copy.telegrams;
 
 	input:focus {
 		border-bottom: 1px solid var(--acc, #b4342a);
+	}
+
+	.trap {
+		position: absolute;
+		left: -9999px;
+		width: 1px;
+		height: 1px;
+		opacity: 0;
+		pointer-events: none;
+	}
+
+	.postmaster {
+		margin: -0.6rem 0 0;
+		font-size: 0.68rem;
+		letter-spacing: 0.22em;
+		color: var(--acc, #b4342a);
+		font-weight: 700;
+	}
+
+	.sent {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 1.2rem;
+	}
+
+	.sent[hidden] {
+		display: none;
+	}
+
+	.rubber {
+		display: grid;
+		place-items: center;
+		width: 150px;
+		height: 150px;
+		border: 2px solid var(--acc, #b4342a);
+		border-radius: 50%;
+		color: var(--acc, #b4342a);
+		text-align: center;
+		font-size: 0.58rem;
+		letter-spacing: 0.22em;
+		line-height: 1.7;
+		transform: rotate(-8deg);
+		animation: stampin 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+	}
+
+	.rubber-mid {
+		font-family: var(--fHD, 'Bodoni Moda'), Didot, serif;
+		font-size: 1rem;
+		letter-spacing: 0.1em;
+	}
+
+	.sent-text {
+		margin: 0;
+		font-style: italic;
+		font-size: 1.1rem;
 	}
 
 	.footer {
