@@ -216,11 +216,11 @@
 		"links": [
 			{
 				"label": "ENGLISH EDITION",
-				"href": "#cv-english"
+				"href": "/cv/godoy-cv-en.pdf"
 			},
 			{
 				"label": "EDICIÓN EN ESPAÑOL",
-				"href": "#cv-espanol"
+				"href": "/cv/godoy-cv-es.pdf"
 			}
 		],
 		"footer": "THE COMPLETE RECORD, FOLDED FOR THE POCKET."
