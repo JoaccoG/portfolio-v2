@@ -1,5 +1,6 @@
 import { RESEND_API_KEY } from 'astro:env/server';
 import type { APIRoute } from 'astro';
+import { buildTelegramHtml } from '../../server/telegram-template';
 
 export const prerender = false;
 
@@ -52,6 +53,7 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
 			reply_to: email,
 			subject: 'Telegram to the Editor — The Daily Godoy',
 			text: `From: ${email}\n\n${message}`,
+			html: buildTelegramHtml(email, message),
 		}),
 	});
 	if (!sent.ok) return respond({ ok: false, error: 'send' }, 502);
