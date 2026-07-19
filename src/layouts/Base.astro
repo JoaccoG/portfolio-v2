@@ -12,6 +12,29 @@ interface Props {
 
 const { title = copy.meta.title, description = copy.meta.description } =
 	Astro.props;
+const site = Astro.site;
+const canonical = site ? new URL(Astro.url.pathname, site).href : undefined;
+const ogImage = site ? new URL('/og.png', site).href : undefined;
+const person = copy.meta.person;
+const personLd = {
+	'@context': 'https://schema.org',
+	'@type': 'Person',
+	name: person.name,
+	jobTitle: person.jobTitle,
+	email: 'mailto:joaquingodoy2407@gmail.com',
+	address: {
+		'@type': 'PostalAddress',
+		addressLocality: person.locality,
+		addressCountry: person.country,
+	},
+	...(site ? { url: site.href } : {}),
+};
+const siteLd = {
+	'@context': 'https://schema.org',
+	'@type': 'WebSite',
+	name: copy.meta.siteName,
+	...(site ? { url: site.href } : {}),
+};
 ---
 
 <html lang="en">
@@ -20,8 +43,56 @@ const { title = copy.meta.title, description = copy.meta.description } =
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="description" content={description} />
 		<meta name="generator" content={Astro.generator} />
+		<meta name="theme-color" content="#0f0c08" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		{canonical && <link rel="canonical" href={canonical} />}
+		<meta property="og:type" content="website" />
+		<meta property="og:site_name" content={copy.meta.siteName} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:locale" content="en_US" />
+		{canonical && <meta property="og:url" content={canonical} />}
+		{ogImage && <meta property="og:image" content={ogImage} />}
+		{ogImage && <meta property="og:image:width" content="1200" />}
+		{ogImage && <meta property="og:image:height" content="630" />}
+		<meta
+			name="twitter:card"
+			content={ogImage ? 'summary_large_image' : 'summary'}
+		/>
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		{ogImage && <meta name="twitter:image" content={ogImage} />}
+		<link
+			rel="preload"
+			href="/fonts/unifrakturmaguntia-400.woff2"
+			as="font"
+			type="font/woff2"
+			crossorigin
+		/>
+		<link
+			rel="preload"
+			href="/fonts/abril-fatface-400.woff2"
+			as="font"
+			type="font/woff2"
+			crossorigin
+		/>
+		<link
+			rel="preload"
+			href="/fonts/old-standard-tt-400.woff2"
+			as="font"
+			type="font/woff2"
+			crossorigin
+		/>
+		<link
+			rel="preload"
+			href="/fonts/old-standard-tt-400-italic.woff2"
+			as="font"
+			type="font/woff2"
+			crossorigin
+		/>
 		<title>{title}</title>
+		<script type="application/ld+json" set:html={JSON.stringify(personLd)} />
+		<script type="application/ld+json" set:html={JSON.stringify(siteLd)} />
 	</head>
 	<body>
 		<slot />
