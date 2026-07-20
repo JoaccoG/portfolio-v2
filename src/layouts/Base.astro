@@ -14,7 +14,7 @@ const { title = copy.meta.title, description = copy.meta.description } =
 	Astro.props;
 const site = Astro.site;
 const canonical = site ? new URL(Astro.url.pathname, site).href : undefined;
-const ogImage = site ? new URL('/og.png', site).href : undefined;
+const ogImage = site ? new URL('/og.jpg', site).href : undefined;
 const person = copy.meta.person;
 const personLd = {
 	'@context': 'https://schema.org',
