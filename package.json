@@ -21,6 +21,7 @@
 		"@biomejs/biome": "^2.5.10",
 		"pixelmatch": "^7.2.0",
 		"pngjs": "^7.0.0",
+		"sharp": "^0.35.4",
 		"typescript": "^6.0.3"
 	}
 }
