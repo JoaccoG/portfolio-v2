@@ -28,19 +28,19 @@ const p = copy.parodyAds;
 			}
 		</div>
 	</div>
-	<div class="ads">
+	<div class="tonics">
 		{
-			p.ads.map((ad, i) => (
-				<div class:list={['ad-rv', `ad-rv-${i}`]} data-rv="1">
-					<div class:list={['ad', `ad-${i}`]}>
-						<p class="ad-kicker">{p.kicker}</p>
-						<p class="ad-title">
+			p.tonics.map((ad, i) => (
+				<div class:list={['tonic-rv', `tonic-rv-${i}`]} data-rv="1">
+					<div class:list={['tonic', `tonic-${i}`]}>
+						<p class="tonic-kicker">{p.kicker}</p>
+						<p class="tonic-title">
 							{ad.title.map((seg) =>
 								'acc' in seg ? <span class="acc">{seg.t}</span> : seg.t,
 							)}
 						</p>
 						{ad.lines.map((line) => (
-							<p class="ad-line">{line}</p>
+							<p class="tonic-line">{line}</p>
 						))}
 					</div>
 				</div>
@@ -145,7 +145,7 @@ const p = copy.parodyAds;
 		opacity: 0.75;
 	}
 
-	.ads {
+	.tonics {
 		display: flex;
 		flex-direction: column;
 		gap: 1.2rem;
@@ -153,30 +153,30 @@ const p = copy.parodyAds;
 		padding-left: var(--colPad, clamp(1.2rem, 2.4vw, 2.2rem));
 	}
 
-	.ad-rv {
+	.tonic-rv {
 		opacity: var(--rv, 1);
 		transform: translateY(calc((1 - var(--rv, 1)) * 20px));
 	}
 
-	.ad-rv-0 {
+	.tonic-rv-0 {
 		transition:
 			opacity 0.8s ease 0.05s,
 			transform 0.5s cubic-bezier(0.19, 1, 0.22, 1) 0.05s;
 	}
 
-	.ad-rv-1 {
+	.tonic-rv-1 {
 		transition:
 			opacity 0.8s ease 0.15s,
 			transform 0.5s cubic-bezier(0.19, 1, 0.22, 1) 0.15s;
 	}
 
-	.ad-rv-2 {
+	.tonic-rv-2 {
 		transition:
 			opacity 0.8s ease 0.25s,
 			transform 0.5s cubic-bezier(0.19, 1, 0.22, 1) 0.25s;
 	}
 
-	.ad {
+	.tonic {
 		border: 3px double rgba(28, 23, 16, 0.6);
 		padding: 1rem 1.1rem;
 		text-align: center;
@@ -184,30 +184,30 @@ const p = copy.parodyAds;
 		transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
 	}
 
-	.ad-0 {
+	.tonic-0 {
 		transform: rotate(-1.1deg);
 	}
 
-	.ad-1 {
+	.tonic-1 {
 		transform: rotate(0.9deg);
 	}
 
-	.ad-2 {
+	.tonic-2 {
 		transform: rotate(-0.7deg);
 	}
 
-	.ad:hover {
+	.tonic:hover {
 		transform: rotate(0deg) translateY(-4px);
 		box-shadow: 5px 6px 0 rgba(28, 23, 16, 0.12);
 	}
 
-	.ad-kicker {
+	.tonic-kicker {
 		margin: 0 0 0.25rem;
 		font-size: 0.56rem;
 		letter-spacing: 0.32em;
 	}
 
-	.ad-title {
+	.tonic-title {
 		margin: 0 0 0.35rem;
 		font-family: var(--fHD, 'Bodoni Moda'), Didot, serif;
 		font-weight: 680;
@@ -215,7 +215,7 @@ const p = copy.parodyAds;
 		line-height: 1.1;
 	}
 
-	.ad-line {
+	.tonic-line {
 		margin: 0;
 		font-size: 0.8rem;
 		font-style: italic;
