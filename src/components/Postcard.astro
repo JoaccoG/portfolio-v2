@@ -184,11 +184,15 @@ const t = copy.telegrams;
 		padding: 0;
 		font-size: 1.02rem;
 		font-style: italic;
-		resize: vertical;
+		resize: none;
+		height: 10em;
 		min-height: 10em;
+		overflow-y: auto;
 		outline: none;
 		border-radius: 0;
 		cursor: inherit;
+		scrollbar-width: thin;
+		scrollbar-color: rgba(28, 23, 16, 0.4) transparent;
 	}
 
 	textarea:focus {
@@ -197,6 +201,23 @@ const t = copy.telegrams;
 			transparent 0 2em,
 			rgba(180, 52, 42, 0.4) 2em calc(2em + 1px)
 		);
+		scrollbar-color: rgba(180, 52, 42, 0.45) transparent;
+	}
+
+	textarea::-webkit-scrollbar {
+		width: 6px;
+	}
+
+	textarea::-webkit-scrollbar-track {
+		background: transparent;
+	}
+
+	textarea::-webkit-scrollbar-thumb {
+		background: rgba(28, 23, 16, 0.35);
+	}
+
+	textarea:focus::-webkit-scrollbar-thumb {
+		background: rgba(180, 52, 42, 0.45);
 	}
 
 	.address {

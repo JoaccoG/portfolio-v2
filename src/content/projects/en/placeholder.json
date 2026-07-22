@@ -4,5 +4,33 @@
 	"year": 1925,
 	"titleLines": ["LOREM IPSUM", "DOLOR SIT."],
 	"dek": "[PLACEHOLDER — the one-line account of the machine.] Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.",
-	"composedWith": "COMPOSED WITH [PLACEHOLDER, TOOLS & MACHINERY]"
+	"composedWith": "COMPOSED WITH [PLACEHOLDER, TOOLS & MACHINERY]",
+	"pageTwo": {
+		"name": "Lorem Ipsum",
+		"headline": "LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ELIT.",
+		"dek": "[PLACEHOLDER — being a full and frank account of the machine: its temperament, its failures survived, and the question settled at last.]",
+		"figCaption": "THE MACHINERY AT REST — ",
+		"figCaptionItalic": "artist’s impression awaited",
+		"story": [
+			"It is the opinion of this desk that no machine should be trusted until it has been made to argue with itself. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+			"[PLACEHOLDER — THE PROBLEM: what was breaking, and what it cost.] Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.",
+			"[PLACEHOLDER — THE APPROACH: the design, the failure modes, why it was worth the fight.] Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.",
+			"[PLACEHOLDER — THE RESULT: numbers, uptime, what the client said.] Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit. — "
+		],
+		"note": "[PLACEHOLDER CASE — REAL PARTICULARS TO FOLLOW]",
+		"particulars": {
+			"role": "[Placeholder]",
+			"year": 1925,
+			"composed": "[Placeholder, Tools]",
+			"status": "In preparation"
+		},
+		"quote": {
+			"text": "“Lorem ipsum dolor sit amet, consectetur.”",
+			"cite": "A SATISFIED WITNESS"
+		},
+		"links": {
+			"repo": "#repo-placeholder",
+			"live": "#live-placeholder"
+		}
+	}
 }
