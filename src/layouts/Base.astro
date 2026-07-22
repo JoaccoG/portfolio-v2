@@ -27,6 +27,10 @@ const personLd = {
 		addressLocality: person.locality,
 		addressCountry: person.country,
 	},
+	sameAs: [
+		'https://github.com/JoaccoG',
+		'https://www.linkedin.com/in/joaquin--godoy/',
+	],
 	...(site ? { url: site.href } : {}),
 };
 const siteLd = {
