@@ -286,4 +286,11 @@ import PaperTextures from './PaperTextures.astro';
 		padding: 0 var(--pad-x, clamp(1rem, 3.6vw, 3.6rem))
 			clamp(2rem, 5vw, 3.6rem);
 	}
+
+	@media (pointer: coarse) {
+		.tex-sheen,
+		.tex-bands {
+			display: none;
+		}
+	}
 </style>
