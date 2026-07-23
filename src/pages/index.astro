@@ -27,7 +27,7 @@ import Base from '../layouts/Base.astro';
 			style.overflow = 'hidden';
 		}
 	</script>
-	<span class="progress" aria-hidden="true"></span>
+	<span class="progress" data-progress aria-hidden="true"></span>
 	<Preloader />
 	<CustomCursor />
 	<main>
@@ -57,10 +57,13 @@ import Base from '../layouts/Base.astro';
 	import { initForm } from '../engine/form';
 	import { initIntro } from '../engine/intro';
 	import { initMusic } from '../engine/music';
+	import { initNativeEngine } from '../engine/native';
 	import { initOverlay } from '../engine/overlay';
 	import { initReveals } from '../engine/reveal';
 
-	const engine = initEngine();
+	const engine = matchMedia('(pointer: coarse)').matches
+		? initNativeEngine()
+		: initEngine();
 	initIntro({ onSettled: () => engine?.measure() });
 	initReveals();
 	initCursor();
