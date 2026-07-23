@@ -58,6 +58,7 @@ export function initEngine(): { measure: () => void } | undefined {
 	);
 	if (!content) return undefined;
 	const rm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+	const coarse = matchMedia('(pointer: coarse)').matches;
 	const prof = document.querySelector<HTMLElement>('[data-sec="profile"]');
 	const fin = document.querySelector<HTMLElement>('[data-sec="finale"]');
 	const cache = new Map<string, string>();
@@ -86,7 +87,8 @@ export function initEngine(): { measure: () => void } | undefined {
 		const prev = s;
 		s += (target - s) * (rm ? 1 : 0.095);
 		if (Math.abs(target - s) < 0.05) s = target;
-		const vkTarget = rm ? 0 : Math.max(-1.2, Math.min(1.2, (s - prev) * 0.012));
+		const vkTarget =
+			rm || coarse ? 0 : Math.max(-1.2, Math.min(1.2, (s - prev) * 0.012));
 		vk += (vkTarget - vk) * 0.12;
 		if (Math.abs(vk) < 0.002) vk = 0;
 		sv('--vk', String(Math.round(vk * 100) / 100));
