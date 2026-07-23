@@ -288,6 +288,24 @@ import PaperTextures from './PaperTextures.astro';
 	}
 
 	@media (pointer: coarse) {
+		.viewport {
+			position: static;
+			overflow: visible;
+		}
+
+		.frame {
+			transform: none;
+			will-change: auto;
+		}
+
+		.stack {
+			will-change: auto;
+		}
+
+		.spacer {
+			display: none;
+		}
+
 		.tex-sheen,
 		.tex-bands {
 			display: none;
