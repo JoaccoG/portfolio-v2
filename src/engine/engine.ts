@@ -20,6 +20,24 @@ export const docTop = (start: HTMLElement): number => {
 	return top;
 };
 
+export function profileVars(pp: number): Record<string, string> {
+	const vars: Record<string, string> = {};
+	const active = Math.min(3, Math.floor(pp * 4));
+	for (let i = 0; i < 4; i++) {
+		const a = i * 0.25;
+		const b = a + 0.25;
+		const rise = i === 0 ? 1 : ss(cl(pp, a - 0.03, a + 0.045));
+		const fall = i === 3 ? 0 : ss(cl(pp, b - 0.045, b + 0.03));
+		vars[`--pc${i}`] = String(Math.round(rise * (1 - fall) * 1000) / 1000);
+		vars[`--ptk${i}`] =
+			i === active ? 'var(--acc, #b4342a)' : 'rgba(28, 23, 16, 0.25)';
+	}
+	return vars;
+}
+
+export const finaleRamp = (s: number, finTop: number, vh: number): number =>
+	Math.round(ss(cl(s, finTop - vh, finTop - vh * 0.25)) * 1000) / 1000;
+
 export function frameVars(s: number, m: Measures): Record<string, string> {
 	const vars: Record<string, string> = {
 		'--sY': String(Math.round(s * 10) / 10),
@@ -30,23 +48,10 @@ export function frameVars(s: number, m: Measures): Record<string, string> {
 		const travel = Math.max(1, m.profH - m.vh);
 		const pin = Math.min(travel, Math.max(0, s - m.profTop));
 		vars['--pin'] = String(Math.round(pin * 10) / 10);
-		const pp = pin / travel;
-		const active = Math.min(3, Math.floor(pp * 4));
-		for (let i = 0; i < 4; i++) {
-			const a = i * 0.25;
-			const b = a + 0.25;
-			const rise = i === 0 ? 1 : ss(cl(pp, a - 0.03, a + 0.045));
-			const fall = i === 3 ? 0 : ss(cl(pp, b - 0.045, b + 0.03));
-			vars[`--pc${i}`] = String(Math.round(rise * (1 - fall) * 1000) / 1000);
-			vars[`--ptk${i}`] =
-				i === active ? 'var(--acc, #b4342a)' : 'rgba(28, 23, 16, 0.25)';
-		}
+		Object.assign(vars, profileVars(pin / travel));
 	}
 	if (m.finTop !== undefined) {
-		vars['--fp'] = String(
-			Math.round(ss(cl(s, m.finTop - m.vh, m.finTop - m.vh * 0.25)) * 1000) /
-				1000,
-		);
+		vars['--fp'] = String(finaleRamp(s, m.finTop, m.vh));
 	}
 	return vars;
 }
