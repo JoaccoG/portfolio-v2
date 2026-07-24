@@ -314,5 +314,34 @@ import PaperTextures from './PaperTextures.astro';
 		.tex-edges {
 			mix-blend-mode: normal;
 		}
+
+		.sheet {
+			-webkit-mask: none;
+			mask: none;
+		}
+
+		.sheet::before,
+		.sheet::after {
+			content: '';
+			position: absolute;
+			left: 0;
+			right: 0;
+			z-index: 7;
+			pointer-events: none;
+		}
+
+		.sheet::before {
+			top: 0;
+			height: 32px;
+			background: url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%2232%22><path fill=%22%23e7dbc1%22 d=%22M0 0L800 0L800 5L755 6L700 4.2L620 6.1L545 3.7L470 5.9L404 4.6L376 9.8L352 5L300 6.2L235 3.9L150 5.8L70 3.6L0 5Z%22/></svg>')
+				left top / 800px 32px repeat-x;
+		}
+
+		.sheet::after {
+			bottom: 0;
+			height: 34px;
+			background: url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22820%22 height=%2234%22><path fill=%22%23e7dbc1%22 d=%22M0 34L820 34L820 28L760 26.6L680 28.8L600 26.2L520 28.4L470 27L442 22.4L410 27.8L330 26.4L250 28.6L170 26.7L90 28.3L40 27.2L0 28Z%22/></svg>')
+				left bottom / 820px 34px repeat-x;
+		}
 	}
 </style>
