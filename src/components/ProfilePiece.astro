@@ -6,7 +6,7 @@ const numerals = ['I', 'II', 'III', 'IV'];
 ---
 
 <section id="profile" data-sec="profile" data-goto="profile">
-	<div class="board">
+	<div class="board" data-board>
 		<div class="head">
 			<p class="head-kicker">{p.kicker}</p>
 			<p class="head-title">{p.title}</p>
@@ -212,5 +212,19 @@ const numerals = ['I', 'II', 'III', 'IV'];
 
 	.tick-3 {
 		background: var(--ptk3, rgba(28, 23, 16, 0.25));
+	}
+
+	@media (pointer: coarse) {
+		section {
+			height: 380svh;
+		}
+
+		.board {
+			position: sticky;
+			top: 0;
+			height: 100svh;
+			transform: none;
+			will-change: auto;
+		}
 	}
 </style>

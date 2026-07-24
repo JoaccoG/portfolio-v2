@@ -79,6 +79,12 @@ select {
 	}
 }
 
+@media (pointer: coarse) {
+	body {
+		overflow-x: clip;
+	}
+}
+
 @media (prefers-reduced-motion: reduce) {
 	*,
 	*::before,
