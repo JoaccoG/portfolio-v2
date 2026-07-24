@@ -60,6 +60,7 @@ import Base from '../layouts/Base.astro';
 	import { initNativeEngine } from '../engine/native';
 	import { initOverlay } from '../engine/overlay';
 	import { initReveals } from '../engine/reveal';
+	import { initTicker } from '../engine/ticker';
 
 	const engine = matchMedia('(pointer: coarse)').matches
 		? initNativeEngine()
@@ -70,6 +71,7 @@ import Base from '../layouts/Base.astro';
 	initMusic();
 	initOverlay();
 	initForm();
+	initTicker();
 </script>
 
 <style>

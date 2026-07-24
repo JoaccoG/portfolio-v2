@@ -4,7 +4,7 @@ import { copy } from '../i18n/t';
 const items = copy.ticker.items;
 ---
 
-<div class="ticker">
+<div class="ticker" data-ticker>
 	<div class="row" aria-hidden="true">
 		{
 			[0, 1].map(() => (
@@ -36,6 +36,7 @@ const items = copy.ticker.items;
 		width: max-content;
 		white-space: nowrap;
 		animation: tickmove 106s linear infinite;
+		animation-play-state: var(--tk, running);
 		font-size: 0.64rem;
 		letter-spacing: 0.26em;
 	}
