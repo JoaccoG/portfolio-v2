@@ -57,6 +57,17 @@ export function initOverlay(): void {
 	)) {
 		closer.addEventListener('click', close);
 	}
+	for (const overlay of document.querySelectorAll<HTMLElement>(
+		'[data-page-two]',
+	)) {
+		let downOutside = false;
+		overlay.addEventListener('pointerdown', (e) => {
+			downOutside = e.target === overlay;
+		});
+		overlay.addEventListener('click', (e) => {
+			if (downOutside && e.target === overlay) close();
+		});
+	}
 	addEventListener('keydown', (e) => {
 		if (e.key === 'Escape') close();
 	});
