@@ -290,6 +290,18 @@ const t = copy.telegrams;
 		border-bottom: 1px solid var(--acc, #b4342a);
 	}
 
+	input:-webkit-autofill,
+	input:-webkit-autofill:hover,
+	input:-webkit-autofill:focus {
+		-webkit-box-shadow: inset 0 0 0 1000px var(--paper, #f2ead8);
+		-webkit-text-fill-color: var(--ink, #1c1710);
+		caret-color: var(--ink, #1c1710);
+	}
+
+	input:autofill {
+		box-shadow: inset 0 0 0 1000px var(--paper, #f2ead8);
+	}
+
 	.trap {
 		position: absolute;
 		left: -9999px;
