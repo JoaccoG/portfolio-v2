@@ -21,7 +21,6 @@ const t = copy.telegrams;
 						id="tg-msg"
 						name="message"
 						rows="5"
-						data-cur="1"
 						placeholder={t.messagePlaceholder}></textarea>
 				</div>
 				<div class="address">
@@ -41,7 +40,6 @@ const t = copy.telegrams;
 						name="email"
 						type="email"
 						autocomplete="email"
-						data-cur="1"
 						placeholder={t.emailPlaceholder}
 					/>
 				</div>
@@ -196,7 +194,7 @@ const t = copy.telegrams;
 		overflow-y: auto;
 		outline: none;
 		border-radius: 0;
-		cursor: inherit;
+		cursor: text;
 		scrollbar-width: thin;
 		scrollbar-color: rgba(28, 23, 16, 0.4) transparent;
 		transition: --tgLine 0.18s ease;
@@ -289,7 +287,7 @@ const t = copy.telegrams;
 		font-style: italic;
 		outline: none;
 		border-radius: 0;
-		cursor: inherit;
+		cursor: text;
 		transition: border-color 0.18s ease;
 	}
 

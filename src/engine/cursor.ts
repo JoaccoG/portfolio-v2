@@ -22,9 +22,12 @@ export function initCursor(): void {
 		{ passive: true },
 	);
 	document.addEventListener('mouseover', (e) => {
-		const target =
-			e.target instanceof Element ? e.target.closest('[data-cur]') : null;
-		dot.style.setProperty('--cdo', target ? '0' : '1');
+		const el = e.target instanceof Element ? e.target : null;
+		const field = el?.closest('input, textarea') ?? null;
+		const target = el?.closest('[data-cur]') ?? null;
+		dot.style.setProperty('--cdo', target || field ? '0' : '1');
+		if (field) ring.style.setProperty('--curO', '0');
+		else ring.style.removeProperty('--curO');
 		if (target) {
 			ring.style.setProperty('--crs', '1.55');
 			ring.style.setProperty('--crc', 'var(--acc, #b4342a)');
