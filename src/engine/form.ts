@@ -38,7 +38,18 @@ export function initForm(): void {
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({ email, message, wire }),
 			});
-			if (!res.ok) throw new Error(String(res.status));
+			if (!res.ok) {
+				const data = (await res.json().catch(() => null)) as {
+					error?: string;
+				} | null;
+				const code = data?.error;
+				if (code === 'rate') showError(postmaster.rate);
+				else if (code === 'email') showError(postmaster.email);
+				else if (code === 'blank') showError(postmaster.blank);
+				else showError(postmaster.wireDown);
+				if (button) button.disabled = false;
+				return;
+			}
 			form.hidden = true;
 			if (sent) sent.hidden = false;
 		} catch {
