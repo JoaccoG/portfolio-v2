@@ -41,7 +41,7 @@
 		"stamp": {
 			"lines": ["ENGLISH", "EDITION"],
 			"cta": "CHANGE ☞",
-			"ariaLabel": "Cambiar a la edición en castellano"
+			"ariaLabel": "Switch to the Spanish edition"
 		},
 		"press": {
 			"label": "THE PRESS.",
@@ -50,7 +50,7 @@
 			"sealEst": "EST. 2026",
 			"silent": "SILENT ☞",
 			"audible": "AUDIBLE ☞",
-			"toggleAria": "Alternar los sonidos de la imprenta"
+			"toggleAria": "Toggle the press sounds"
 		},
 		"folio": [
 			"BUENOS AIRES & THE WIDER WEB",
