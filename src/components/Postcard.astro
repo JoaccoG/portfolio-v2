@@ -62,12 +62,27 @@ const t = copy.telegrams;
 			<span class="rubber">
 				{t.sent.stampLines[0]}<br />{t.sent.stampLines[1]}<br />
 				<span class="rubber-mid">{t.sent.stampMid}</span><br />
-				{t.sent.stampDate}
+				<span
+					data-stamp-date
+					data-months={JSON.stringify(copy.masthead.months)}
+					data-template={t.sent.stampDateTemplate}>{t.sent.stampDate}</span>
 			</span>
 			<p class="sent-text">{t.sent.text}</p>
 		</div>
 	</div>
 </section>
+
+<script>
+	const el = document.querySelector('[data-stamp-date]');
+	if (el instanceof HTMLElement && el.dataset.months && el.dataset.template) {
+		const months: string[] = JSON.parse(el.dataset.months);
+		const now = new Date();
+		el.textContent = el.dataset.template
+			.replace('{month}', (months[now.getMonth()] ?? '').slice(0, 3))
+			.replace('{day}', String(now.getDate()))
+			.replace('{year}', String(now.getFullYear() - 100));
+	}
+</script>
 
 <style>
 	@property --tgLine {
@@ -155,6 +170,10 @@ const t = copy.telegrams;
 		display: flex;
 		flex-direction: column;
 		gap: 1.3rem;
+	}
+
+	form[hidden] {
+		display: none;
 	}
 
 	.grid {

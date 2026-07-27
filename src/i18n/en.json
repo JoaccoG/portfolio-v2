@@ -339,6 +339,7 @@
 			"stampLines": ["THE DAILY", "GODOY"],
 			"stampMid": "DISPATCHED",
 			"stampDate": "AUG 25 · 1901",
+			"stampDateTemplate": "{month} {day} · {year}",
 			"text": "Your card is in the post, the editor will reply."
 		}
 	},
