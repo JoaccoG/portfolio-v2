@@ -333,6 +333,7 @@
 			"prefix": "☞ THE POSTMASTER OBJECTS: ",
 			"email": "A PROPER ADDRESS IS REQUIRED",
 			"blank": "A BLANK WIRE CANNOT BE SENT",
+			"rate": "THE LINE IS CONGESTED — KINDLY WAIT A MINUTE",
 			"wireDown": "THE WIRE IS DOWN — TRY AGAIN PRESENTLY"
 		},
 		"sent": {
