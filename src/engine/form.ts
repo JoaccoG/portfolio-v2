@@ -43,7 +43,6 @@ export function initForm(): void {
 			if (sent) sent.hidden = false;
 		} catch {
 			showError(postmaster.wireDown);
-		} finally {
 			if (button) button.disabled = false;
 		}
 	});
