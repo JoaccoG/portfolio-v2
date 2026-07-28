@@ -32,10 +32,22 @@ const [folioPre = '', folioPost = ''] = m.folio[1].split('{date}');
 			))
 		}
 		<span class="fleuron fleuron-r" aria-hidden="true">✦</span>
-		<button type="button" class="stamp" data-cur="1" aria-label={m.stamp.ariaLabel}>
+		<button
+			type="button"
+			class="stamp"
+			data-cur="1"
+			data-stamp
+			aria-label={m.stamp.ariaLabel}
+		>
 			<span class="stamp-inner">
 				{m.stamp.lines[0]}<br />{m.stamp.lines[1]}<br />
 				<span class="stamp-cta">{m.stamp.cta}</span>
+				<span
+					class="stamp-note"
+					data-stamp-note
+					data-notice={m.stamp.notice}
+					role="status"
+					lang="es"></span>
 			</span>
 		</button>
 	</h1>
@@ -120,6 +132,20 @@ const [folioPre = '', folioPost = ''] = m.folio[1].split('{date}');
 			.replace('{day}', String(now.getDate()))
 			.replace('{year}', String(now.getFullYear() - 100));
 	}
+
+	const stamp = document.querySelector('[data-stamp]');
+	const note = document.querySelector('[data-stamp-note]');
+	let noteTimer: number | undefined;
+	stamp?.addEventListener('click', () => {
+		if (!(note instanceof HTMLElement)) return;
+		note.textContent = note.dataset.notice ?? '';
+		note.classList.add('on');
+		clearTimeout(noteTimer);
+		noteTimer = window.setTimeout(() => {
+			note.classList.remove('on');
+			note.textContent = '';
+		}, 4000);
+	});
 </script>
 
 <style>
@@ -290,6 +316,28 @@ const [folioPre = '', folioPost = ''] = m.folio[1].split('{date}');
 		padding-top: 0.22rem;
 		font-size: 0.48rem;
 		letter-spacing: 0.24em;
+	}
+
+	.stamp-note {
+		display: none;
+		border-top: 1px solid rgba(168, 53, 44, 0.55);
+		margin-top: 0.22rem;
+		padding-top: 0.22rem;
+		font-size: 0.44rem;
+		letter-spacing: 0.16em;
+		font-style: italic;
+	}
+
+	.stamp-note.on {
+		display: block;
+		animation: note-in 0.35s ease both;
+	}
+
+	@keyframes note-in {
+		from {
+			opacity: 0;
+			transform: translateY(3px);
+		}
 	}
 
 	.press {

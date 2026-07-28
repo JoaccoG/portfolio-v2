@@ -41,6 +41,7 @@
 		"stamp": {
 			"lines": ["ENGLISH", "EDITION"],
 			"cta": "CHANGE ☞",
+			"notice": "EDICIÓN EN CASTELLANO — EN PRENSA",
 			"ariaLabel": "Switch to the Spanish edition"
 		},
 		"press": {
