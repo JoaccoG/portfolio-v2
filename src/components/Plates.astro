@@ -71,7 +71,18 @@ const plateLabel = (i: number) => m.plateLabel.replace('{roman}', romans[i]);
 					<p class="dek">{project.data.dek}</p>
 					<p class="composed">{project.data.composedWith}</p>
 					{project.data.pageTwo ? (
-						<p class="full-account">{m.fullAccount}</p>
+						<button
+							type="button"
+							class="full-account"
+							data-cur="1"
+							data-page-open={project.id}
+							aria-label={m.fullAccountAria.replace(
+								'{title}',
+								project.data.titleLines.join(' '),
+							)}
+						>
+							{m.fullAccount}
+						</button>
 					) : (
 						<p class="follow">{m.accountFollow}</p>
 					)}
@@ -90,18 +101,7 @@ const plateLabel = (i: number) => m.plateLabel.replace('{roman}', romans[i]);
 			);
 			return (
 				<article data-rv="1" data-plate="1" class:list={[{ last: i === projects.length - 1 }]}>
-					{project.data.pageTwo ? (
-						<button
-							type="button"
-							data-cur="1"
-							data-page-open={project.id}
-							class:list={['row', { 'row-swap': !imageLeft }]}
-						>
-							{body}
-						</button>
-					) : (
-						<div class:list={['row', { 'row-swap': !imageLeft }]}>{body}</div>
-					)}
+					<div class:list={['row', { 'row-swap': !imageLeft }]}>{body}</div>
 				</article>
 			);
 		})
@@ -151,6 +151,7 @@ const plateLabel = (i: number) => m.plateLabel.replace('{roman}', romans[i]);
 	}
 
 	article {
+		position: relative;
 		margin-top: 0;
 		border-top: 1px solid rgba(28, 23, 16, 0.4);
 		opacity: var(--rv, 1);
@@ -219,15 +220,16 @@ const plateLabel = (i: number) => m.plateLabel.replace('{roman}', romans[i]);
 		transition: transform 0.9s cubic-bezier(0.19, 1, 0.22, 1);
 	}
 
-	.zoom-r:hover {
+	article:hover .zoom-r {
 		transform: scale(1.04) rotate(0.4deg);
 	}
 
-	.zoom-l:hover {
+	article:hover .zoom-l {
 		transform: scale(1.04) rotate(-0.4deg);
 	}
 
-	article:hover {
+	article:hover,
+	article:focus-within {
 		--u: 1;
 	}
 
@@ -335,10 +337,21 @@ const plateLabel = (i: number) => m.plateLabel.replace('{roman}', romans[i]);
 
 	.full-account {
 		margin: 0;
+		background: none;
+		border: none;
+		padding: 0;
+		text-align: left;
+		cursor: inherit;
 		font-size: 0.74rem;
 		letter-spacing: 0.2em;
 		color: var(--acc, #b4342a);
 		font-weight: 700;
+	}
+
+	.full-account::after {
+		content: '';
+		position: absolute;
+		inset: 0;
 	}
 
 	.follow {
