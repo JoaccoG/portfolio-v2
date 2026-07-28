@@ -111,6 +111,22 @@ export function initEngine(): { measure: () => void } | undefined {
 			window.scrollTo({ top: Math.max(0, docTop(el) - 8), behavior: 'auto' });
 		});
 	}
+	addEventListener('focusin', (e) => {
+		const el = e.target;
+		if (!(el instanceof HTMLElement) || !content.contains(el)) return;
+		let kb = true;
+		try {
+			kb = el.matches(':focus-visible');
+		} catch {
+			kb = true;
+		}
+		if (!kb) return;
+		const rect = el.getBoundingClientRect();
+		if (rect.top >= 0 && rect.bottom <= innerHeight) return;
+		const max = Math.max(1, doc.scrollHeight - innerHeight);
+		const top = Math.min(max, Math.max(0, docTop(el) - innerHeight * 0.35));
+		window.scrollTo(0, top);
+	});
 	addEventListener('resize', measure);
 	if (document.fonts) document.fonts.ready.then(measure);
 	new ResizeObserver(measure).observe(content);
