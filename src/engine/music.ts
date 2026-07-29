@@ -13,7 +13,7 @@ export function initMusic(): void {
 	const audio = new Audio();
 	audio.preload = 'none';
 	audio.volume = 0.2;
-	let index = 0;
+	let index = Math.floor(Math.random() * TRACKS.length);
 	let playing = false;
 	let failures = 0;
 	const render = () => {
