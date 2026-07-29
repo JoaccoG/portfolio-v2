@@ -152,6 +152,13 @@ const t = copy.telegrams;
 			transform 0.9s cubic-bezier(0.19, 1, 0.22, 1);
 	}
 
+	.card:focus-within {
+		transform: rotate(0deg) translateY(calc((1 - var(--rv, 1)) * 26px));
+		transition:
+			opacity 0.9s ease,
+			transform 0.35s ease;
+	}
+
 	.pc-title {
 		margin: 0 0 0.15rem;
 		text-align: center;
