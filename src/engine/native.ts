@@ -78,6 +78,7 @@ export function initNativeEngine(): { measure: () => void } | undefined {
 	});
 	if (prof) io.observe(prof);
 	if (fin) io.observe(fin);
+	const rm = matchMedia('(prefers-reduced-motion: reduce)').matches;
 	for (const btn of document.querySelectorAll<HTMLElement>('[data-target]')) {
 		btn.addEventListener('click', () => {
 			const el = document.querySelector<HTMLElement>(
@@ -86,7 +87,7 @@ export function initNativeEngine(): { measure: () => void } | undefined {
 			if (!el) return;
 			window.scrollTo({
 				top: Math.max(0, docTop(el) - 8),
-				behavior: 'smooth',
+				behavior: rm ? 'auto' : 'smooth',
 			});
 		});
 	}
