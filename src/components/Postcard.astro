@@ -228,7 +228,12 @@ const t = copy.telegrams;
 		transition: --tgLine 0.18s ease;
 	}
 
-	textarea:hover,
+	textarea:hover {
+		--tgLine: color-mix(in srgb, var(--acc, #b4342a) 55%, transparent);
+		scrollbar-color: color-mix(in srgb, var(--acc, #b4342a) 55%, transparent)
+			transparent;
+	}
+
 	textarea:focus {
 		--tgLine: var(--acc, #b4342a);
 		scrollbar-color: var(--acc, #b4342a) transparent;
@@ -247,7 +252,10 @@ const t = copy.telegrams;
 		transition: background 0.18s ease;
 	}
 
-	textarea:hover::-webkit-scrollbar-thumb,
+	textarea:hover::-webkit-scrollbar-thumb {
+		background: color-mix(in srgb, var(--acc, #b4342a) 55%, transparent);
+	}
+
 	textarea:focus::-webkit-scrollbar-thumb {
 		background: var(--acc, #b4342a);
 	}
