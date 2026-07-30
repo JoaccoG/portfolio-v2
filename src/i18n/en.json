@@ -323,7 +323,7 @@
 		"postcard": "POST CARD",
 		"postcardSub": "THE ADDRESS ONLY TO BE WRITTEN ON THIS SIDE — INLAND RATE, 2¢",
 		"messageLabel": "THE MESSAGE — ECONOMY OF WORDS APPRECIATED",
-		"messagePlaceholder": "Dear Sir — I have seen the machinery and wish to discuss it.",
+		"messagePlaceholder": "Dear Sir, I have seen the machinery and wish to discuss it.",
 		"stampLines": ["2¢", "ELECTRONIC", "POST"],
 		"toLabel": "TO —",
 		"toLines": ["Mr. J. Godoy, Engineer", "The Daily Godoy, Bs. As."],
