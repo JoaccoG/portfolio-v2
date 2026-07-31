@@ -332,6 +332,7 @@
 		"emailPlaceholder": "name@domain.com",
 		"responseWindow": "RESPONSE WINDOW — 48 HOURS",
 		"submit": "POST IT ☞",
+		"sending": "ON THE WIRE …",
 		"postmaster": {
 			"prefix": "☞ THE POSTMASTER OBJECTS: ",
 			"email": "A PROPER ADDRESS IS REQUIRED",
