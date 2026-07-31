@@ -91,6 +91,11 @@ export function initNativeEngine(): { measure: () => void } | undefined {
 			});
 		});
 	}
+	const portrait = document.querySelector<HTMLElement>('[data-portrait]');
+	portrait?.addEventListener('click', () => {
+		const on = portrait.style.getPropertyValue('--mo') === '1';
+		portrait.style.setProperty('--mo', on ? '0' : '1');
+	});
 	addEventListener('scroll', schedule, { passive: true });
 	const vv = window.visualViewport;
 	if (vv) vv.addEventListener('resize', measure);

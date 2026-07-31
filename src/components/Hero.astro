@@ -44,7 +44,7 @@ const portraitSizes =
 		<figure>
 			<div class="clip">
 				<div class="frame">
-					<div class="pwrap" data-cur="1">
+					<div class="pwrap" data-cur="1" data-portrait>
 						<Image
 							src={portrait}
 							alt={h.portrait.alt}
@@ -301,8 +301,10 @@ const portraitSizes =
 		position: relative;
 	}
 
-	.pwrap:hover {
-		--mo: 1;
+	@media (hover: hover) {
+		.pwrap:hover {
+			--mo: 1;
+		}
 	}
 
 	.pimg {
