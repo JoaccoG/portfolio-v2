@@ -3,6 +3,7 @@
 		"title": "The Daily Godoy — Joaquín Godoy, Software Engineer",
 		"description": "The Daily Godoy, morning edition. Being an account of the works, appointments and telegrams of Joaquín Godoy, software engineer of Buenos Aires.",
 		"siteName": "The Daily Godoy",
+		"skipToContent": "Skip to the news",
 		"person": {
 			"name": "Joaquín Godoy",
 			"jobTitle": "Software Engineer",
