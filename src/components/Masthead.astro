@@ -27,13 +27,12 @@ const [folioPre = '', folioPost = ''] = m.folio[1].split('{date}');
 		<span class="stamp-inner">
 			{m.stamp.lines[0]}<br />{m.stamp.lines[1]}<br />
 			<span class="stamp-cta">{m.stamp.cta}</span>
-			<span
-				class="stamp-note"
-				data-stamp-note
-				data-notice={m.stamp.notice}
-				role="status"
-				lang="es"></span>
 		</span>
+		<span
+			class="stamp-tip"
+			data-stamp-note
+			data-notice={m.stamp.notice}
+			role="status"></span>
 	</button>
 	<div class="ear weather">
 		<span class="ear-label">{m.weather.label}</span>
@@ -281,6 +280,7 @@ const [folioPre = '', folioPost = ''] = m.folio[1].split('{date}');
 		position: absolute;
 		right: 0;
 		top: 0;
+		z-index: 40;
 		background: var(--paper, #f2ead8);
 		border: 2px solid var(--stamp-red, #a8352c);
 		padding: 3px;
@@ -330,26 +330,42 @@ const [folioPre = '', folioPost = ''] = m.folio[1].split('{date}');
 		letter-spacing: 0.24em;
 	}
 
-	.stamp-note {
-		display: none;
-		border-top: 1px solid rgba(168, 53, 44, 0.55);
-		margin-top: 0.22rem;
-		padding-top: 0.22rem;
-		font-size: 0.44rem;
-		letter-spacing: 0.16em;
-		font-style: italic;
+	.stamp-tip {
+		position: absolute;
+		bottom: calc(100% + 0.6rem);
+		left: 50%;
+		width: max-content;
+		max-width: 13rem;
+		transform: translateX(-50%) rotate(-4deg);
+		background: var(--ink, #1c1710);
+		color: var(--paper, #f2ead8);
+		padding: 0.5rem 0.75rem;
+		font-size: 0.5rem;
+		letter-spacing: 0.14em;
+		line-height: 1.5;
+		text-align: center;
+		opacity: 0;
+		visibility: hidden;
+		pointer-events: none;
+		transition:
+			opacity 0.3s ease,
+			visibility 0.3s;
+		z-index: 20;
 	}
 
-	.stamp-note.on {
-		display: block;
-		animation: note-in 0.35s ease both;
+	.stamp-tip::before {
+		content: '';
+		position: absolute;
+		top: 100%;
+		left: 50%;
+		transform: translateX(-50%);
+		border: 5px solid transparent;
+		border-top-color: var(--ink, #1c1710);
 	}
 
-	@keyframes note-in {
-		from {
-			opacity: 0;
-			transform: translateY(3px);
-		}
+	.stamp-tip.on {
+		opacity: 1;
+		visibility: visible;
 	}
 
 	.press {
