@@ -134,6 +134,49 @@ const portraitSizes =
 		padding-top: clamp(1.4rem, 3vw, 2.4rem);
 	}
 
+	@media (max-width: 1019.98px) {
+		.grid {
+			display: flex;
+			flex-direction: column;
+			gap: 1.3rem;
+		}
+
+		.grid > div,
+		.grid > aside {
+			display: contents;
+		}
+
+		.kicker-mask {
+			order: 1;
+			margin-bottom: 0;
+		}
+
+		.headline {
+			order: 2;
+			margin-bottom: 0;
+		}
+
+		figure {
+			order: 3;
+		}
+
+		.lead-body {
+			order: 4;
+		}
+
+		.card-index {
+			order: 5;
+		}
+
+		.card-almanac {
+			order: 6;
+		}
+
+		.card-notices {
+			order: 7;
+		}
+	}
+
 	.kicker-mask {
 		margin: 0 0 0.8rem;
 		overflow: hidden;
