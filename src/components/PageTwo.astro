@@ -454,4 +454,39 @@ const projects = (await getCollection('projects'))
 		letter-spacing: 0.24em;
 		font-style: italic;
 	}
+
+	@media (min-width: 768px) and (max-width: 1059.98px) {
+		.p2sheet {
+			max-width: calc(100% - 3.5rem);
+		}
+	}
+
+	@media (max-width: 767.98px) {
+		.p2sheet {
+			max-width: none;
+			margin: 9vh 0 0;
+			min-height: 91vh;
+			border-radius: 20px 20px 0 0;
+			overflow: hidden;
+			box-shadow: 0 -14px 44px rgba(0, 0, 0, 0.55);
+			transform: translateY(calc((1 - var(--p2, 0)) * 100%));
+		}
+
+		.p2sheet::before {
+			content: '';
+			position: absolute;
+			top: 0.65rem;
+			left: 50%;
+			transform: translateX(-50%);
+			width: 2.6rem;
+			height: 0.3rem;
+			border-radius: 999px;
+			background: rgba(28, 23, 16, 0.28);
+			z-index: 6;
+		}
+
+		.content {
+			padding-top: 1.9rem;
+		}
+	}
 </style>
