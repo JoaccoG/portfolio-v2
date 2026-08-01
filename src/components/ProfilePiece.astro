@@ -9,7 +9,7 @@ const numerals = ['I', 'II', 'III', 'IV'];
 	<div class="board" data-board>
 		<div class="head">
 			<p class="head-kicker">{p.kicker}</p>
-			<p class="head-title">{p.title}</p>
+			<h2 class="head-title">{p.title}</h2>
 		</div>
 		<div class="ghosts" aria-hidden="true">
 			{numerals.map((n, i) => <span class:list={['ghost', `ghost-${i}`]}>{n}</span>)}

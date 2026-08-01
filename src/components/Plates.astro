@@ -35,7 +35,7 @@ const plateLabel = (i: number) => m.plateLabel.replace('{roman}', romans[i]);
 <section id="works" data-goto="works">
 	<div class="head" data-rv="1">
 		<p class="head-kicker">{m.kicker}</p>
-		<h3>{m.title}<span class="acc">.</span></h3>
+		<h2>{m.title}<span class="acc">.</span></h2>
 		<p class="head-sub">{subtitle}</p>
 	</div>
 	{
@@ -60,14 +60,14 @@ const plateLabel = (i: number) => m.plateLabel.replace('{roman}', romans[i]);
 					<p class:list={['meta-kicker', { 'kicker-acc': project.data.pageTwo }]}>
 						{plateKicker(i, project.data.kickerLabel, project.data.year)}
 					</p>
-					<h4>
+					<h3>
 						<span class="tmask tm-1">
 							<span class="tline tl-1">{project.data.titleLines[0]}</span>
 						</span>
 						<span class="tmask tm-2">
 							<span class="tline tl-2">{project.data.titleLines[1]}</span>
 						</span>
-					</h4>
+					</h3>
 					<p class="dek">{project.data.dek}</p>
 					<p class="composed">{project.data.composedWith}</p>
 					{project.data.pageTwo ? (
@@ -130,7 +130,7 @@ const plateLabel = (i: number) => m.plateLabel.replace('{roman}', romans[i]);
 		font-weight: 700;
 	}
 
-	h3 {
+	h2 {
 		margin: 0;
 		font-family: var(--fHD, 'Bodoni Moda'), Didot, serif;
 		font-weight: 620;
@@ -275,7 +275,7 @@ const plateLabel = (i: number) => m.plateLabel.replace('{roman}', romans[i]);
 		color: var(--acc, #b4342a);
 	}
 
-	h4 {
+	h3 {
 		margin: 0 0 0.8rem;
 		font-family: var(--fHD, 'Bodoni Moda'), Didot, serif;
 		font-weight: 640;
