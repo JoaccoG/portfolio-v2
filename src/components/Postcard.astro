@@ -61,14 +61,16 @@ const t = copy.telegrams;
 			</div>
 		</form>
 		<div class="sent" data-sent-state tabindex="-1" hidden>
-			<span class="rubber">
-				{t.sent.stampLines[0]}<br />{t.sent.stampLines[1]}<br />
-				<span class="rubber-mid">{t.sent.stampMid}</span><br />
-				<span
-					data-stamp-date
-					data-months={JSON.stringify(copy.masthead.months)}
-					data-template={t.sent.stampDateTemplate}>{t.sent.stampDate}</span>
-			</span>
+			<svg class="rubber" viewBox="0 0 100 100" aria-hidden="true">
+				<defs>
+					<path id="disp-top" d="M 16,50 A 34,34 0 0 1 84,50" />
+					<path id="disp-bot" d="M 14,50 A 36,36 0 0 0 86,50" />
+				</defs>
+				<circle cx="50" cy="50" r="47" fill="none" stroke="var(--acc, #b4342a)" stroke-width="1.8" />
+				<text text-anchor="middle" class="rubber-arc"><textPath href="#disp-top" startOffset="50%">{t.sent.stampLines[0]} {t.sent.stampLines[1]}</textPath></text>
+				<text x="50" y="54.5" text-anchor="middle" class="rubber-mid">{t.sent.stampMid}</text>
+				<text text-anchor="middle" class="rubber-arc"><textPath href="#disp-bot" startOffset="50%" data-stamp-date data-months={JSON.stringify(copy.masthead.months)} data-template={t.sent.stampDateTemplate}>{t.sent.stampDate}</textPath></text>
+			</svg>
 			<p class="sent-text">{t.sent.text}</p>
 		</div>
 	</div>
@@ -76,7 +78,11 @@ const t = copy.telegrams;
 
 <script>
 	const el = document.querySelector('[data-stamp-date]');
-	if (el instanceof HTMLElement && el.dataset.months && el.dataset.template) {
+	if (
+		(el instanceof HTMLElement || el instanceof SVGElement) &&
+		el.dataset.months &&
+		el.dataset.template
+	) {
 		const months: string[] = JSON.parse(el.dataset.months);
 		const now = new Date();
 		el.textContent = el.dataset.template
@@ -366,7 +372,7 @@ const t = copy.telegrams;
 	.sent {
 		display: flex;
 		flex-direction: column;
-		align-items: flex-start;
+		align-items: center;
 		gap: 1.2rem;
 	}
 
@@ -375,31 +381,32 @@ const t = copy.telegrams;
 	}
 
 	.rubber {
-		display: grid;
-		place-items: center;
 		width: 150px;
 		height: 150px;
-		border: 2px solid var(--acc, #b4342a);
-		border-radius: 50%;
-		color: var(--acc, #b4342a);
-		text-align: center;
-		font-size: 0.58rem;
-		letter-spacing: 0.22em;
-		line-height: 1.7;
+		overflow: visible;
 		transform: rotate(-8deg);
 		animation: stampin 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) both;
 	}
 
+	.rubber-arc {
+		font-family: var(--fBD, 'Old Standard TT'), serif;
+		font-size: 8px;
+		letter-spacing: 0.14em;
+		fill: var(--acc, #b4342a);
+	}
+
 	.rubber-mid {
 		font-family: var(--fHD, 'Bodoni Moda'), Didot, serif;
-		font-size: 1rem;
-		letter-spacing: 0.1em;
+		font-size: 11.5px;
+		letter-spacing: 0.04em;
+		fill: var(--acc, #b4342a);
 	}
 
 	.sent-text {
 		margin: 0;
 		font-style: italic;
 		font-size: 1.1rem;
+		text-align: center;
 	}
 
 	.footer {
