@@ -1,6 +1,6 @@
 export function initCursor(): void {
 	if (!matchMedia('(pointer: fine)').matches) return;
-	if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+	const rm = matchMedia('(prefers-reduced-motion: reduce)').matches;
 	const doc = document.documentElement;
 	const dot = document.querySelector<HTMLElement>('[data-cursor-dot]');
 	const ring = document.querySelector<HTMLElement>('[data-cursor-ring]');
@@ -38,12 +38,14 @@ export function initCursor(): void {
 			ring.style.setProperty('--cf', '0');
 		}
 	});
+	const df = rm ? 1 : 0.55;
+	const rf = rm ? 1 : 0.16;
 	const loop = () => {
 		requestAnimationFrame(loop);
-		dx += (mx - dx) * 0.55;
-		dy += (my - dy) * 0.55;
-		rx += (mx - rx) * 0.16;
-		ry += (my - ry) * 0.16;
+		dx += (mx - dx) * df;
+		dy += (my - dy) * df;
+		rx += (mx - rx) * rf;
+		ry += (my - ry) * rf;
 		dot.style.setProperty('--cdx', `${Math.round(dx * 10) / 10}px`);
 		dot.style.setProperty('--cdy', `${Math.round(dy * 10) / 10}px`);
 		ring.style.setProperty('--crx', `${Math.round(rx * 10) / 10}px`);

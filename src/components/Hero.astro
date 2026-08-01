@@ -44,7 +44,7 @@ const portraitSizes =
 		<figure>
 			<div class="clip">
 				<div class="frame">
-					<div class="pwrap" data-cur="1">
+					<div class="pwrap" data-cur="1" data-portrait>
 						<Image
 							src={portrait}
 							alt={h.portrait.alt}
@@ -134,6 +134,49 @@ const portraitSizes =
 		padding-top: clamp(1.4rem, 3vw, 2.4rem);
 	}
 
+	@media (max-width: 1019.98px) {
+		.grid {
+			display: flex;
+			flex-direction: column;
+			gap: 1.3rem;
+		}
+
+		.grid > div,
+		.grid > aside {
+			display: contents;
+		}
+
+		.kicker-mask {
+			order: 1;
+			margin-bottom: 0;
+		}
+
+		.headline {
+			order: 2;
+			margin-bottom: 0;
+		}
+
+		figure {
+			order: 3;
+		}
+
+		.lead-body {
+			order: 4;
+		}
+
+		.card-index {
+			order: 5;
+		}
+
+		.card-almanac {
+			order: 6;
+		}
+
+		.card-notices {
+			order: 7;
+		}
+	}
+
 	.kicker-mask {
 		margin: 0 0 0.8rem;
 		overflow: hidden;
@@ -153,7 +196,7 @@ const portraitSizes =
 		margin: 0 0 1.2rem;
 		font-family: var(--fHD, 'Bodoni Moda'), Didot, serif;
 		font-weight: 620;
-		font-size: clamp(2.9rem, 8.6vw, 8.2rem);
+		font-size: clamp(2.5rem, 8.6vw, 8.2rem);
 		line-height: 0.95;
 		letter-spacing: 0.002em;
 		text-transform: uppercase;
@@ -301,8 +344,10 @@ const portraitSizes =
 		position: relative;
 	}
 
-	.pwrap:hover {
-		--mo: 1;
+	@media (hover: hover) {
+		.pwrap:hover {
+			--mo: 1;
+		}
 	}
 
 	.pimg {
@@ -434,7 +479,7 @@ const portraitSizes =
 	}
 
 	.val-nowrap {
-		white-space: var(--valWS, nowrap);
+		white-space: normal;
 		letter-spacing: 0.08em;
 	}
 

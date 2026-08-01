@@ -7,7 +7,7 @@ const t = copy.telegrams;
 <section id="telegrams" data-goto="telegrams">
 	<div class="head" data-rv="1">
 		<p class="kicker">{t.kicker}</p>
-		<h3>{t.title}<span class="acc">.</span></h3>
+		<h2>{t.title}<span class="acc">.</span></h2>
 		<p class="sub">{t.sub}</p>
 	</div>
 	<div class="card" data-rv="1">
@@ -60,7 +60,7 @@ const t = copy.telegrams;
 				<button type="submit" data-cur="1">{t.submit}</button>
 			</div>
 		</form>
-		<div class="sent" data-sent-state hidden>
+		<div class="sent" data-sent-state tabindex="-1" hidden>
 			<span class="rubber">
 				{t.sent.stampLines[0]}<br />{t.sent.stampLines[1]}<br />
 				<span class="rubber-mid">{t.sent.stampMid}</span><br />
@@ -114,7 +114,7 @@ const t = copy.telegrams;
 		font-weight: 700;
 	}
 
-	h3 {
+	h2 {
 		margin: 0;
 		font-family: var(--fHD, 'Bodoni Moda'), Didot, serif;
 		font-weight: 620;
@@ -302,6 +302,12 @@ const t = copy.telegrams;
 		font-size: 0.92rem;
 		font-style: italic;
 		max-width: calc(100% - 6.6rem);
+	}
+
+	@media (max-width: 559.98px) {
+		.to-line {
+			max-width: 100%;
+		}
 	}
 
 	.to-line-last {

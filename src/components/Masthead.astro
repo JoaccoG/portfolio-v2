@@ -17,6 +17,24 @@ const [folioPre = '', folioPost = ''] = m.folio[1].split('{date}');
 </div>
 
 <div class="plate-row">
+	<button
+		type="button"
+		class="stamp"
+		data-cur="1"
+		data-stamp
+		aria-label={m.stamp.ariaLabel}
+	>
+		<span class="stamp-inner">
+			{m.stamp.lines[0]}<br />{m.stamp.lines[1]}<br />
+			<span class="stamp-cta">{m.stamp.cta}</span>
+			<span
+				class="stamp-note"
+				data-stamp-note
+				data-notice={m.stamp.notice}
+				role="status"
+				lang="es"></span>
+		</span>
+	</button>
 	<div class="ear weather">
 		<span class="ear-label">{m.weather.label}</span>
 		<span class="weather-report">{m.weather.report}</span>
@@ -32,24 +50,6 @@ const [folioPre = '', folioPost = ''] = m.folio[1].split('{date}');
 			))
 		}
 		<span class="fleuron fleuron-r" aria-hidden="true">✦</span>
-		<button
-			type="button"
-			class="stamp"
-			data-cur="1"
-			data-stamp
-			aria-label={m.stamp.ariaLabel}
-		>
-			<span class="stamp-inner">
-				{m.stamp.lines[0]}<br />{m.stamp.lines[1]}<br />
-				<span class="stamp-cta">{m.stamp.cta}</span>
-				<span
-					class="stamp-note"
-					data-stamp-note
-					data-notice={m.stamp.notice}
-					role="status"
-					lang="es"></span>
-			</span>
-		</button>
 	</h1>
 
 	<div class="ear press">
@@ -279,8 +279,8 @@ const [folioPre = '', folioPost = ''] = m.folio[1].split('{date}');
 	.stamp {
 		display: var(--stampD, flex);
 		position: absolute;
-		right: -0.12em;
-		top: -0.48em;
+		right: 0;
+		top: 0;
 		background: var(--paper, #f2ead8);
 		border: 2px solid var(--stamp-red, #a8352c);
 		padding: 3px;
@@ -297,12 +297,24 @@ const [folioPre = '', folioPost = ''] = m.folio[1].split('{date}');
 		transform: rotate(4deg) scale(1.07);
 	}
 
+	@media (min-width: 1100px) {
+		.stamp {
+			right: 7rem;
+		}
+	}
+
+	@media (max-width: 767.98px) {
+		.stamp {
+			display: none;
+		}
+	}
+
 	.stamp-inner {
 		display: block;
 		border: 1px solid var(--stamp-red, #a8352c);
-		padding: 0.34rem 0.85rem;
+		padding: 0.42rem 1rem;
 		font-family: var(--fBD, 'Old Standard TT'), Georgia, serif;
-		font-size: 0.52rem;
+		font-size: 0.6rem;
 		letter-spacing: 0.2em;
 		font-weight: 700;
 		line-height: 1.6;
@@ -312,9 +324,9 @@ const [folioPre = '', folioPost = ''] = m.folio[1].split('{date}');
 	.stamp-cta {
 		display: block;
 		border-top: 1px solid rgba(168, 53, 44, 0.55);
-		margin-top: 0.22rem;
-		padding-top: 0.22rem;
-		font-size: 0.48rem;
+		margin-top: 0.24rem;
+		padding-top: 0.24rem;
+		font-size: 0.55rem;
 		letter-spacing: 0.24em;
 	}
 

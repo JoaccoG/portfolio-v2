@@ -48,7 +48,10 @@ const siteLd = {
 		<meta name="description" content={description} />
 		<meta name="generator" content={Astro.generator} />
 		<meta name="theme-color" content="#0f0c08" />
+		<link rel="icon" href="/favicon.ico" sizes="any" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+		<link rel="manifest" href="/site.webmanifest" />
 		{canonical && <link rel="canonical" href={canonical} />}
 		<meta property="og:type" content="website" />
 		<meta property="og:site_name" content={copy.meta.siteName} />
@@ -96,11 +99,42 @@ const siteLd = {
 			type="font/woff2"
 			crossorigin
 		/>
+		<link
+			rel="preload"
+			href="/fonts/old-standard-tt-700.woff2"
+			as="font"
+			type="font/woff2"
+			crossorigin
+		/>
 		<title>{title}</title>
 		<script type="application/ld+json" set:html={JSON.stringify(personLd)} />
 		<script type="application/ld+json" set:html={JSON.stringify(siteLd)} />
 	</head>
 	<body>
+		<a class="skip-link" href="#main-content">{copy.meta.skipToContent}</a>
 		<slot />
 	</body>
 </html>
+
+<style>
+	.skip-link {
+		position: fixed;
+		top: 0.5rem;
+		left: 0.5rem;
+		z-index: 200;
+		transform: translateY(-160%);
+		background: var(--ink, #1c1710);
+		color: var(--paper, #f2ead8);
+		padding: 0.7rem 1.1rem;
+		font-family: var(--fBD, 'Old Standard TT'), serif;
+		font-size: 0.7rem;
+		letter-spacing: 0.24em;
+		text-transform: uppercase;
+		text-decoration: none;
+		transition: transform 0.2s ease;
+	}
+
+	.skip-link:focus {
+		transform: translateY(0);
+	}
+</style>
