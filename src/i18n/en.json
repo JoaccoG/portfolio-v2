@@ -220,12 +220,12 @@
 		"dek": "The complete Curriculum Vitae, dispatched to your reading-room by electronic post. State your preferred tongue.",
 		"links": [
 			{
-				"label": "ENGLISH EDITION",
-				"href": "/cv/godoy-cv-en.pdf"
+				"label": "ENGLISH",
+				"href": "/cv/cv-en.pdf"
 			},
 			{
-				"label": "EDICIÓN EN ESPAÑOL",
-				"href": "/cv/godoy-cv-es.pdf"
+				"label": "CASTELLANO",
+				"href": "/cv/cv-es.pdf"
 			}
 		],
 		"footer": "THE COMPLETE RECORD, FOLDED FOR THE POCKET."
