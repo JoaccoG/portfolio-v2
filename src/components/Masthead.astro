@@ -106,10 +106,13 @@ const [folioPre = '', folioPost = ''] = m.folio[1].split('{date}');
 		aria-pressed="false"
 		aria-label={m.press.toggleAria}
 	>
-		<span
-			data-sound-label
-			data-silent={m.press.silent}
-			data-audible={m.press.audible}>{m.press.silent}</span>
+		<span class="sound-slot">
+			<span
+				data-sound-label
+				data-silent={m.press.silent}
+				data-audible={m.press.audible}>{m.press.silent}</span>
+			<span class="sound-ghost" aria-hidden="true">{m.press.audible}</span>
+		</span>
 		<span class="btn-hand" aria-hidden="true">☜</span>
 	</button>
 </div>
@@ -414,6 +417,31 @@ const [folioPre = '', folioPost = ''] = m.folio[1].split('{date}');
 		font-size: 1.1em;
 	}
 
+	.sound-slot {
+		display: inline-grid;
+		text-align: center;
+	}
+
+	.sound-slot > * {
+		grid-area: 1 / 1;
+	}
+
+	.sound-ghost {
+		visibility: hidden;
+		height: 0;
+	}
+
+	@media (max-width: 1239.98px) {
+		.folio-center {
+			flex-direction: column;
+			gap: 0.2rem;
+		}
+
+		.folio-sep {
+			display: none;
+		}
+	}
+
 	@media (max-width: 767.98px) {
 		.folio {
 			justify-content: center;
@@ -424,11 +452,6 @@ const [folioPre = '', folioPost = ''] = m.folio[1].split('{date}');
 			order: -1;
 			flex: none;
 			flex-basis: 100%;
-			gap: 0.3rem 1.2rem;
-		}
-
-		.folio-sep {
-			display: none;
 		}
 	}
 </style>
