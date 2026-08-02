@@ -58,12 +58,6 @@ select {
 	}
 }
 
-@keyframes spin {
-	to {
-		transform: rotate(360deg);
-	}
-}
-
 @keyframes stampin {
 	0% {
 		transform: rotate(-20deg) scale(1.9);
