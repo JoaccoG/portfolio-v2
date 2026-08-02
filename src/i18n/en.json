@@ -40,7 +40,7 @@
 		},
 		"nameplate": ["The", "Daily", "Godoy"],
 		"stamp": {
-			"label": "☞ EDICIÓN EN CASTELLANO",
+			"label": "EDICIÓN EN CASTELLANO",
 			"notice": "THE SPANISH EDITION IS STILL IN THE COMPOSING ROOM — FORTHCOMING",
 			"ariaLabel": "Switch to the Spanish edition"
 		},
@@ -49,8 +49,8 @@
 			"sealTop": "THE DAILY GODOY",
 			"sealBottom": "MORNING EDITION",
 			"sealEst": "EST. 2026",
-			"silent": "MUSIC SILENT ☞",
-			"audible": "MUSIC AUDIBLE ☞",
+			"silent": "MUSIC SILENT",
+			"audible": "MUSIC AUDIBLE",
 			"toggleAria": "Toggle the press sounds"
 		},
 		"folio": ["BUENOS AIRES & THE WIDER WEB", "MORNING EDITION — {date}"],

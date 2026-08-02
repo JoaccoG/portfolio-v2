@@ -79,7 +79,8 @@ const [folioPre = '', folioPost = ''] = m.folio[1].split('{date}');
 		data-stamp
 		aria-label={m.stamp.ariaLabel}
 	>
-		{m.stamp.label}
+		<span class="btn-hand" aria-hidden="true">☞</span>
+		<span>{m.stamp.label}</span>
 		<span
 			class="stamp-tip"
 			data-stamp-note
@@ -102,13 +103,14 @@ const [folioPre = '', folioPost = ''] = m.folio[1].split('{date}');
 		class="folio-btn music-btn"
 		data-cur="1"
 		data-sound-toggle
-		data-sound-label
-		data-silent={m.press.silent}
-		data-audible={m.press.audible}
 		aria-pressed="false"
 		aria-label={m.press.toggleAria}
 	>
-		{m.press.silent}
+		<span
+			data-sound-label
+			data-silent={m.press.silent}
+			data-audible={m.press.audible}>{m.press.silent}</span>
+		<span class="btn-hand" aria-hidden="true">☜</span>
 	</button>
 </div>
 
@@ -388,6 +390,9 @@ const [folioPre = '', folioPost = ''] = m.folio[1].split('{date}');
 	.folio-btn {
 		position: relative;
 		flex: none;
+		display: inline-flex;
+		align-items: center;
+		gap: 0.45em;
 		background: var(--ink, #1c1710);
 		color: var(--paper, #f2ead8);
 		border: none;
@@ -404,6 +409,12 @@ const [folioPre = '', folioPost = ''] = m.folio[1].split('{date}');
 	.folio-btn:hover {
 		box-shadow: inset 0 0 0 1px rgba(242, 234, 216, 0.5);
 		color: #fff;
+	}
+
+	.btn-hand {
+		color: var(--acc, #b4342a);
+		letter-spacing: 0;
+		font-size: 1.1em;
 	}
 
 	@media (max-width: 767.98px) {
