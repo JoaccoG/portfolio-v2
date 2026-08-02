@@ -36,14 +36,7 @@ const [folioPre = '', folioPost = ''] = m.folio[1].split('{date}');
 
 	<div class="ear press">
 		<span class="ear-label">{m.press.label}</span>
-		<button
-			type="button"
-			class="seal-btn"
-			data-cur="1"
-			data-sound-toggle
-			aria-pressed="false"
-			aria-label={m.press.toggleAria}
-		>
+		<div class="seal-btn" aria-hidden="true">
 			<svg viewBox="0 0 100 100" class="seal">
 				<defs>
 					<path id="sealtop" d="M 15,50 A 35,35 0 0 1 85,50"></path>
@@ -74,7 +67,7 @@ const [folioPre = '', folioPost = ''] = m.folio[1].split('{date}');
 				<text x="50" y="52" text-anchor="middle" class="seal-fleuron">❦</text>
 				<text x="50" y="63" text-anchor="middle" class="seal-est">{m.press.sealEst}</text>
 			</svg>
-		</button>
+		</div>
 	</div>
 </div>
 
