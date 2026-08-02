@@ -53,11 +53,7 @@
 			"audible": "MUSIC AUDIBLE ☞",
 			"toggleAria": "Toggle the press sounds"
 		},
-		"folio": [
-			"BUENOS AIRES & THE WIDER WEB",
-			"MORNING EDITION — {date}",
-			"PROPRIETOR: J. GODOY, ENGINEER"
-		],
+		"folio": ["BUENOS AIRES & THE WIDER WEB", "MORNING EDITION — {date}"],
 		"months": [
 			"JANUARY",
 			"FEBRUARY",
