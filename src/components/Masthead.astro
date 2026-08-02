@@ -17,23 +17,6 @@ const [folioPre = '', folioPost = ''] = m.folio[1].split('{date}');
 </div>
 
 <div class="plate-row">
-	<button
-		type="button"
-		class="stamp"
-		data-cur="1"
-		data-stamp
-		aria-label={m.stamp.ariaLabel}
-	>
-		<span class="stamp-inner">
-			{m.stamp.lines[0]}<br />{m.stamp.lines[1]}<br />
-			<span class="stamp-cta">{m.stamp.cta}</span>
-		</span>
-		<span
-			class="stamp-tip"
-			data-stamp-note
-			data-notice={m.stamp.notice}
-			role="status"></span>
-	</button>
 	<div class="ear weather">
 		<span class="ear-label">{m.weather.label}</span>
 		<span class="weather-report">{m.weather.report}</span>
@@ -92,33 +75,50 @@ const [folioPre = '', folioPost = ''] = m.folio[1].split('{date}');
 				<text x="50" y="63" text-anchor="middle" class="seal-est">{m.press.sealEst}</text>
 			</svg>
 		</button>
-		<button
-			type="button"
-			class="sound-toggle"
-			data-cur="1"
-			data-sound-toggle
-			data-sound-label
-			data-silent={m.press.silent}
-			data-audible={m.press.audible}
-			aria-pressed="false"
-		>
-			{m.press.silent}
-		</button>
 	</div>
 </div>
 
 <div class="folio">
-	<span>{m.folio[0]}</span>
-	<span class="folio-sep" aria-hidden="true">✦</span>
-	<span
-		>{folioPre}<span
-			data-live-date
-			data-months={JSON.stringify(m.months)}
-			data-template={m.dateTemplate}>{editionDate}</span
-		>{folioPost}</span
+	<button
+		type="button"
+		class="folio-btn edition-btn"
+		data-cur="1"
+		data-stamp
+		aria-label={m.stamp.ariaLabel}
 	>
-	<span class="folio-sep" aria-hidden="true">✦</span>
-	<span>{m.folio[2]}</span>
+		{m.stamp.label}
+		<span
+			class="stamp-tip"
+			data-stamp-note
+			data-notice={m.stamp.notice}
+			role="status"></span>
+	</button>
+	<div class="folio-center">
+		<span>{m.folio[0]}</span>
+		<span class="folio-sep" aria-hidden="true">✦</span>
+		<span
+			>{folioPre}<span
+				data-live-date
+				data-months={JSON.stringify(m.months)}
+				data-template={m.dateTemplate}>{editionDate}</span
+			>{folioPost}</span
+		>
+		<span class="folio-sep" aria-hidden="true">✦</span>
+		<span>{m.folio[2]}</span>
+	</div>
+	<button
+		type="button"
+		class="folio-btn music-btn"
+		data-cur="1"
+		data-sound-toggle
+		data-sound-label
+		data-silent={m.press.silent}
+		data-audible={m.press.audible}
+		aria-pressed="false"
+		aria-label={m.press.toggleAria}
+	>
+		{m.press.silent}
+	</button>
 </div>
 
 <script>
@@ -275,68 +275,13 @@ const [folioPre = '', folioPost = ''] = m.folio[1].split('{date}');
 		transition: transform 0.95s cubic-bezier(0.19, 1, 0.22, 1) 0.3s;
 	}
 
-	.stamp {
-		display: var(--stampD, flex);
-		position: absolute;
-		right: 0;
-		top: 0;
-		z-index: 40;
-		background: var(--paper, #f2ead8);
-		border: 2px solid var(--stamp-red, #a8352c);
-		padding: 3px;
-		color: var(--stamp-red, #a8352c);
-		cursor: inherit;
-		transform: rotate(4deg);
-		opacity: calc(var(--mh, 1) * 0.85);
-		transition:
-			transform 0.35s ease,
-			opacity 0.9s ease 0.6s;
-	}
-
-	.stamp:hover {
-		transform: rotate(4deg) scale(1.07);
-	}
-
-	@media (min-width: 1100px) {
-		.stamp {
-			right: 7rem;
-		}
-	}
-
-	@media (max-width: 767.98px) {
-		.stamp {
-			display: none;
-		}
-	}
-
-	.stamp-inner {
-		display: block;
-		border: 1px solid var(--stamp-red, #a8352c);
-		padding: 0.42rem 1rem;
-		font-family: var(--fBD, 'Old Standard TT'), Georgia, serif;
-		font-size: 0.6rem;
-		letter-spacing: 0.2em;
-		font-weight: 700;
-		line-height: 1.6;
-		text-align: center;
-	}
-
-	.stamp-cta {
-		display: block;
-		border-top: 1px solid rgba(168, 53, 44, 0.55);
-		margin-top: 0.24rem;
-		padding-top: 0.24rem;
-		font-size: 0.55rem;
-		letter-spacing: 0.24em;
-	}
-
 	.stamp-tip {
 		position: absolute;
-		bottom: calc(100% + 0.6rem);
+		bottom: calc(100% + 0.7rem);
 		left: 50%;
 		width: max-content;
 		max-width: 13rem;
-		transform: translateX(-50%) rotate(-4deg);
+		transform: translateX(-50%);
 		background: var(--ink, #1c1710);
 		color: var(--paper, #f2ead8);
 		padding: 0.5rem 0.75rem;
@@ -420,28 +365,15 @@ const [folioPre = '', folioPost = ''] = m.folio[1].split('{date}');
 		fill: var(--acc, #b4342a);
 	}
 
-	.sound-toggle {
-		background: none;
-		border: none;
-		padding: 0.3rem 0;
-		font-size: 0.6rem;
-		letter-spacing: 0.14em;
-		cursor: inherit;
-		font-style: italic;
-	}
-
-	.sound-toggle:hover {
-		color: var(--acc, #b4342a);
-	}
-
 	.folio {
 		position: relative;
 		border-top: 3px double rgba(28, 23, 16, 0.75);
 		border-bottom: 3px double rgba(28, 23, 16, 0.75);
-		padding: 0.45rem 0;
+		padding: 0.4rem clamp(0.4rem, 1.5vw, 1rem);
 		display: flex;
-		justify-content: center;
-		gap: 1.6rem;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1rem;
 		flex-wrap: wrap;
 		font-size: clamp(0.6rem, 1.1vw, 0.72rem);
 		letter-spacing: 0.2em;
@@ -449,7 +381,55 @@ const [folioPre = '', folioPost = ''] = m.folio[1].split('{date}');
 		transition: opacity 0.9s ease 0.45s;
 	}
 
+	.folio-center {
+		display: flex;
+		flex: 1;
+		min-width: 0;
+		justify-content: center;
+		flex-wrap: wrap;
+		gap: 1.6rem;
+	}
+
 	.folio-sep {
 		color: var(--acc, #b4342a);
+	}
+
+	.folio-btn {
+		position: relative;
+		flex: none;
+		background: var(--ink, #1c1710);
+		color: var(--paper, #f2ead8);
+		border: none;
+		padding: 0.55rem 0.9rem;
+		font-size: clamp(0.55rem, 1vw, 0.66rem);
+		letter-spacing: 0.16em;
+		cursor: inherit;
+		box-shadow: inset 0 0 0 1px transparent;
+		transition:
+			box-shadow 0.25s ease,
+			color 0.25s ease;
+	}
+
+	.folio-btn:hover {
+		box-shadow: inset 0 0 0 1px rgba(242, 234, 216, 0.5);
+		color: #fff;
+	}
+
+	@media (max-width: 767.98px) {
+		.folio {
+			justify-content: center;
+			gap: 0.7rem 0.9rem;
+		}
+
+		.folio-center {
+			order: -1;
+			flex: none;
+			flex-basis: 100%;
+			gap: 0.3rem 1.2rem;
+		}
+
+		.folio-sep {
+			display: none;
+		}
 	}
 </style>

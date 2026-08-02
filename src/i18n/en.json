@@ -40,8 +40,7 @@
 		},
 		"nameplate": ["The", "Daily", "Godoy"],
 		"stamp": {
-			"lines": ["ENGLISH", "EDITION"],
-			"cta": "CHANGE ☞",
+			"label": "☞ EDICIÓN EN CASTELLANO",
 			"notice": "THE SPANISH EDITION IS STILL IN THE COMPOSING ROOM — FORTHCOMING",
 			"ariaLabel": "Switch to the Spanish edition"
 		},
@@ -50,8 +49,8 @@
 			"sealTop": "THE DAILY GODOY",
 			"sealBottom": "MORNING EDITION",
 			"sealEst": "EST. 2026",
-			"silent": "SILENT ☞",
-			"audible": "AUDIBLE ☞",
+			"silent": "MUSIC SILENT ☞",
+			"audible": "MUSIC AUDIBLE ☞",
 			"toggleAria": "Toggle the press sounds"
 		},
 		"folio": [
