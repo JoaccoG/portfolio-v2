@@ -2,13 +2,19 @@
 import { copy } from '../i18n/t';
 
 const f = copy.finale;
+const colophonMain = f.colophon.slice(0, -1).join(' · ');
+const credit = f.colophon[f.colophon.length - 1] ?? '';
+const creditText = credit.replace(/^©\s*/, '');
 ---
 
 <div class="mask" data-sec="finale">
 	<p aria-hidden="true">{f.sign}</p>
 </div>
 <p class="colophon">
-	{f.colophon.join(' · ')} · <span class="acc">❦</span>
+	<span class="colophon-main">{colophonMain}</span>
+	<span class="colophon-credit"
+		><span class="acc">©</span> {creditText} <span class="acc">❦</span></span
+	>
 </p>
 
 <style>
@@ -42,5 +48,14 @@ const f = copy.finale;
 		letter-spacing: 0.24em;
 		border-top: 3px double rgba(28, 23, 16, 0.7);
 		padding-top: 0.9rem;
+	}
+
+	.colophon-main,
+	.colophon-credit {
+		display: block;
+	}
+
+	.colophon-credit {
+		margin-top: 0.55rem;
 	}
 </style>

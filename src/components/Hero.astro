@@ -90,20 +90,8 @@ const portraitSizes =
 			{
 				h.almanac.rows.map((row) => (
 					<div class="alm-row">
-						<span>{row.label}</span>
-						<span class:list={['alm-leader', { 'leader-min': 'nowrap' in row }]} />
-						<span
-							class:list={[
-								'alm-value',
-								{
-									'val-acc': 'accent' in row,
-									'val-nowrap': 'nowrap' in row,
-									'val-right': 'alignRight' in row,
-								},
-							]}
-						>
-							{row.value}
-						</span>
+						<span class="alm-label">{row.label}</span>
+						<span class="alm-value">{row.value}</span>
 					</div>
 				))
 			}
@@ -350,6 +338,12 @@ const portraitSizes =
 		}
 	}
 
+	@media (pointer: coarse) {
+		.pwrap {
+			cursor: pointer;
+		}
+	}
+
 	.pimg {
 		display: block;
 		width: 100%;
@@ -394,6 +388,7 @@ const portraitSizes =
 	}
 
 	.card-almanac {
+		container-type: inline-size;
 		padding: 0.9rem 1rem 0.85rem;
 		transition: opacity 0.9s ease 1.12s;
 	}
@@ -452,39 +447,35 @@ const portraitSizes =
 	}
 
 	.alm-row {
-		display: flex;
+		display: grid;
+		grid-template-columns: auto 1fr;
+		column-gap: 0.9em;
+		row-gap: 0.15rem;
 		align-items: baseline;
-		font-size: 0.64rem;
+		font-size: 0.58rem;
 		letter-spacing: 0.14em;
-		padding: 0.3rem 0;
+		padding: 0.4rem 0;
+		border-bottom: 1px dotted rgba(28, 23, 16, 0.28);
 	}
 
-	.alm-leader {
-		flex: 1;
-		border-bottom: 1px dotted rgba(28, 23, 16, 0.5);
-		margin: 0 0.5em 0.2em;
-		align-self: flex-end;
-	}
-
-	.leader-min {
-		min-width: 10px;
+	.alm-row:last-of-type {
+		border-bottom: none;
 	}
 
 	.alm-value {
 		font-weight: 700;
-	}
-
-	.val-acc {
+		text-align: right;
 		color: var(--acc, #b4342a);
 	}
 
-	.val-nowrap {
-		white-space: normal;
-		letter-spacing: 0.08em;
-	}
+	@container (max-width: 360px) {
+		.alm-row {
+			grid-template-columns: 1fr;
+		}
 
-	.val-right {
-		text-align: right;
+		.alm-value {
+			text-align: left;
+		}
 	}
 
 	.alm-footer {

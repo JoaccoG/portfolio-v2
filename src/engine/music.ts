@@ -6,7 +6,6 @@ const TRACKS = [
 ];
 
 export function initMusic(): void {
-	const doc = document.documentElement;
 	const toggles = document.querySelectorAll<HTMLElement>('[data-sound-toggle]');
 	if (toggles.length === 0) return;
 	const label = document.querySelector<HTMLElement>('[data-sound-label]');
@@ -24,7 +23,6 @@ export function initMusic(): void {
 			label.textContent =
 				(playing ? label.dataset.audible : label.dataset.silent) ?? '';
 		}
-		doc.style.setProperty('--sealPlay', playing ? 'running' : 'paused');
 	};
 	const play = () => {
 		const track = TRACKS[index];

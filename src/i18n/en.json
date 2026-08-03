@@ -40,9 +40,8 @@
 		},
 		"nameplate": ["The", "Daily", "Godoy"],
 		"stamp": {
-			"lines": ["ENGLISH", "EDITION"],
-			"cta": "CHANGE ☞",
-			"notice": "EDICIÓN EN CASTELLANO — EN PRENSA",
+			"label": "EDICIÓN EN CASTELLANO",
+			"notice": "THE SPANISH EDITION IS STILL IN THE COMPOSING ROOM — FORTHCOMING",
 			"ariaLabel": "Switch to the Spanish edition"
 		},
 		"press": {
@@ -50,15 +49,11 @@
 			"sealTop": "THE DAILY GODOY",
 			"sealBottom": "MORNING EDITION",
 			"sealEst": "EST. 2026",
-			"silent": "SILENT ☞",
-			"audible": "AUDIBLE ☞",
+			"silent": "MUSIC SILENT",
+			"audible": "MUSIC AUDIBLE",
 			"toggleAria": "Toggle the press sounds"
 		},
-		"folio": [
-			"BUENOS AIRES & THE WIDER WEB",
-			"MORNING EDITION — {date}",
-			"PROPRIETOR: J. GODOY, ENGINEER"
-		],
+		"folio": ["BUENOS AIRES & THE WIDER WEB", "MORNING EDITION — {date}"],
 		"months": [
 			"JANUARY",
 			"FEBRUARY",
@@ -120,26 +115,22 @@
 			"rows": [
 				{
 					"label": "SUN RISES UPON THE DEPLOY",
-					"value": "6:12",
-					"accent": true
+					"value": "6:12"
 				},
 				{
 					"label": "MOON",
-					"value": "FAVOURABLE FOR REFACTORING",
-					"alignRight": true
+					"value": "FAVOURABLE FOR REFACTORING"
 				},
 				{
 					"label": "MERCURY",
-					"value": "RETROGRADE; COMMIT WITH CAUTION",
-					"accent": true,
-					"nowrap": true
+					"value": "RETROGRADE; COMMIT WITH CAUTION"
 				},
 				{
 					"label": "TIDE OF CORRESPONDENCE",
 					"value": "HIGH AT NOON"
 				}
 			],
-			"footer": "Consult before deploying. The stars accept no tickets."
+			"footer": "The stars accept no tickets."
 		},
 		"notices": {
 			"title": "NOTICES TO CORRESPONDENTS",
@@ -225,12 +216,12 @@
 		"dek": "The complete Curriculum Vitae, dispatched to your reading-room by electronic post. State your preferred tongue.",
 		"links": [
 			{
-				"label": "ENGLISH EDITION",
-				"href": "/cv/godoy-cv-en.pdf"
+				"label": "ENGLISH",
+				"href": "/cv/cv-en.pdf"
 			},
 			{
-				"label": "EDICIÓN EN ESPAÑOL",
-				"href": "/cv/godoy-cv-es.pdf"
+				"label": "SPANISH",
+				"href": "/cv/cv-es.pdf"
 			}
 		],
 		"footer": "THE COMPLETE RECORD, FOLDED FOR THE POCKET."
