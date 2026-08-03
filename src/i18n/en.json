@@ -115,26 +115,22 @@
 			"rows": [
 				{
 					"label": "SUN RISES UPON THE DEPLOY",
-					"value": "6:12",
-					"accent": true
+					"value": "6:12"
 				},
 				{
 					"label": "MOON",
-					"value": "FAVOURABLE FOR REFACTORING",
-					"alignRight": true
+					"value": "FAVOURABLE FOR REFACTORING"
 				},
 				{
 					"label": "MERCURY",
-					"value": "RETROGRADE; COMMIT WITH CAUTION",
-					"accent": true,
-					"nowrap": true
+					"value": "RETROGRADE; COMMIT WITH CAUTION"
 				},
 				{
 					"label": "TIDE OF CORRESPONDENCE",
 					"value": "HIGH AT NOON"
 				}
 			],
-			"footer": "Consult before deploying. The stars accept no tickets."
+			"footer": "The stars accept no tickets."
 		},
 		"notices": {
 			"title": "NOTICES TO CORRESPONDENTS",
