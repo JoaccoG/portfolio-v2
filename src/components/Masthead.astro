@@ -364,11 +364,10 @@ const [folioPre = '', folioPost = ''] = m.folio[1].split('{date}');
 		border-top: 3px double rgba(28, 23, 16, 0.75);
 		border-bottom: 3px double rgba(28, 23, 16, 0.75);
 		padding: 0.4rem clamp(0.4rem, 1.5vw, 1rem);
-		display: flex;
+		display: grid;
+		grid-template-columns: 1fr auto 1fr;
 		align-items: center;
-		justify-content: space-between;
 		gap: 1rem;
-		flex-wrap: wrap;
 		font-size: clamp(0.6rem, 1.1vw, 0.72rem);
 		letter-spacing: 0.2em;
 		opacity: calc(var(--mh, 1));
@@ -377,7 +376,7 @@ const [folioPre = '', folioPost = ''] = m.folio[1].split('{date}');
 
 	.folio-center {
 		display: flex;
-		flex: 1;
+		justify-self: center;
 		min-width: 0;
 		justify-content: center;
 		flex-wrap: wrap;
@@ -386,6 +385,14 @@ const [folioPre = '', folioPost = ''] = m.folio[1].split('{date}');
 
 	.folio-sep {
 		color: var(--acc, #b4342a);
+	}
+
+	.edition-btn {
+		justify-self: start;
+	}
+
+	.music-btn {
+		justify-self: end;
 	}
 
 	.folio-btn {
@@ -436,6 +443,7 @@ const [folioPre = '', folioPost = ''] = m.folio[1].split('{date}');
 	@media (max-width: 1239.98px) {
 		.folio-center {
 			flex-direction: column;
+			align-items: center;
 			gap: 0.2rem;
 		}
 
@@ -446,14 +454,18 @@ const [folioPre = '', folioPost = ''] = m.folio[1].split('{date}');
 
 	@media (max-width: 767.98px) {
 		.folio {
-			justify-content: center;
-			gap: 0.7rem 0.9rem;
+			grid-template-columns: 1fr;
+			justify-items: center;
+			gap: 0.7rem;
 		}
 
 		.folio-center {
 			order: -1;
-			flex: none;
-			flex-basis: 100%;
+		}
+
+		.edition-btn,
+		.music-btn {
+			justify-self: center;
 		}
 	}
 </style>
