@@ -153,6 +153,7 @@ const t = copy.telegrams;
 		background: var(--paper, #f2ead8);
 		transform: rotate(0.4deg) translateY(calc((1 - var(--rv, 1)) * 26px));
 		opacity: var(--rv, 1);
+		will-change: transform;
 		transition:
 			opacity 0.9s ease,
 			transform 0.9s cubic-bezier(0.19, 1, 0.22, 1);
@@ -211,7 +212,6 @@ const t = copy.telegrams;
 			var(--tgLine, rgba(28, 23, 16, 0.3)) 2em calc(2em + 1px)
 		);
 		line-height: 2em;
-		will-change: transform;
 		border: none;
 		padding: 0;
 		font-size: 1.02rem;
