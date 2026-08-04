@@ -29,12 +29,12 @@ const Title = titleTag;
 ---
 
 <div class="running">
-	<span class="flag">{section}</span>
-	<span class="meta">
+	<span class="side">
+		<span class="flag">{section}</span>
 		<span class="paper">{paper}</span>
-		<span class="tagline">{tagline}</span>
-		<span class="page">{page}</span>
 	</span>
+	<span class="tagline">{tagline}</span>
+	<span class="page">{page}</span>
 </div>
 
 <header class="head">
@@ -57,11 +57,26 @@ const Title = titleTag;
 	}
 
 	.running {
-		display: flex;
+		display: grid;
+		grid-template-columns: 1fr auto 1fr;
 		align-items: stretch;
 		border-bottom: 1px solid rgba(28, 23, 16, 0.5);
 		margin: 0 calc(var(--pad-x, clamp(1rem, 3.6vw, 3.6rem)) * -1);
-		padding-right: var(--pad-x, clamp(1rem, 3.6vw, 3.6rem));
+		font-size: clamp(0.5rem, 0.82vw, 0.62rem);
+		letter-spacing: 0.22em;
+	}
+
+	.side {
+		display: flex;
+		align-items: stretch;
+		min-width: 0;
+	}
+
+	.paper {
+		display: flex;
+		align-items: center;
+		padding-left: clamp(1rem, 2.4vw, 2.2rem);
+		white-space: nowrap;
 	}
 
 	.flag {
@@ -76,22 +91,22 @@ const Title = titleTag;
 		white-space: nowrap;
 	}
 
-	.meta {
-		flex: 1;
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		gap: 1rem;
-		padding: 0.5rem 0 0.5rem clamp(1rem, 2.4vw, 2.2rem);
-		font-size: clamp(0.5rem, 0.82vw, 0.62rem);
-		letter-spacing: 0.22em;
-	}
-
 	.tagline {
+		align-self: center;
+		justify-self: center;
+		padding: 0 1rem;
 		font-style: italic;
 		letter-spacing: 0.04em;
 		opacity: 0.72;
 		text-align: center;
+		white-space: nowrap;
+	}
+
+	.page {
+		align-self: center;
+		justify-self: end;
+		padding-right: var(--pad-x, clamp(1rem, 3.6vw, 3.6rem));
+		white-space: nowrap;
 	}
 
 	.head {
@@ -145,20 +160,19 @@ const Title = titleTag;
 	}
 
 	@media (max-width: 719.98px) {
-		.meta {
-			flex-wrap: wrap;
-			justify-content: flex-start;
-			gap: 0.4rem 1rem;
-		}
-
-		.tagline {
-			text-align: left;
+		.paper {
+			display: none;
 		}
 	}
 
 	@media (max-width: 559.98px) {
 		.page {
 			display: none;
+		}
+
+		.tagline {
+			justify-self: end;
+			padding-right: var(--pad-x, clamp(1rem, 3.6vw, 3.6rem));
 		}
 	}
 </style>
