@@ -442,7 +442,7 @@
 		"head": {
 			"section": "SECTION ?",
 			"paper": "THE DAILY GODOY",
-			"tagline": "Edition irregular",
+			"tagline": "Unknown edition",
 			"page": "PAGE 404 — NOT PRINTED",
 			"nameplate": "The Daily Godoy",
 			"headline": "404"
@@ -474,7 +474,7 @@
 				},
 				{
 					"label": "LAST SEEN",
-					"value": "an earlier edition"
+					"value": "an earlier edition?"
 				},
 				{
 					"label": "MARKS",
