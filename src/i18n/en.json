@@ -425,5 +425,89 @@
 	"preloader": {
 		"title": "THE DAILY GODOY",
 		"caption": "SETTING THE TYPE — MORNING EDITION"
+	},
+	"notFound": {
+		"title": "Page 404 is missing — The Daily Godoy",
+		"description": "The page you sought has not been printed in this edition. Return to the front page of The Daily Godoy.",
+		"ticker": {
+			"items": [
+				"THE COMPOSING ROOM REGRETS THE OMISSION",
+				"PAGE MISLAID BETWEEN THE FORME AND THE PRESS",
+				"NO SUCH ADDRESS IN THE MORNING’S LEDGER",
+				"THE ARCHIVE HAS BEEN SEARCHED TWICE AND ONCE MORE FOR GOOD MEASURE",
+				"A REWARD IS OFFERED, PAYABLE IN GRATITUDE",
+				"ALL OTHER PAGES ACCOUNTED FOR"
+			]
+		},
+		"head": {
+			"section": "SECTION ?",
+			"paper": "THE DAILY GODOY",
+			"tagline": "Edition irregular",
+			"page": "PAGE 404 — NOT PRINTED",
+			"nameplate": "The Daily Godoy",
+			"headline": "404"
+		},
+		"article": {
+			"kicker": "STOP PRESS — AN IRREGULARITY",
+			"headline": ["PAGE", "MISSING"],
+			"dek": "The page you sought has not been printed in this edition. The compositor has been questioned, the pressroom searched, and the ledger consulted twice. Enquiries continue.",
+			"byline": "FROM THE COMPOSING ROOM — AUGUST 25, 1926, LATE",
+			"body": [
+				"Readers are reminded that this paper is set by hand, and that hands, unlike machines, occasionally wander. The address may have been mistyped, the page retired to the archive, or the link forwarded by a correspondent working from an older edition.",
+				"The proprietor wishes it known that no page has ever been deliberately withheld from a reader, and that the one instance to the contrary concerned an advertisement of which the office is still ashamed.",
+				"Whatever the cause, the remedy is the same: return to the front page, where every account still in circulation is listed in full and in order."
+			],
+			"signoff": "— ED."
+		},
+		"actions": {
+			"home": "RETURN TO THE FRONT PAGE",
+			"back": "THE PAGE PREVIOUSLY READ"
+		},
+		"lostFound": {
+			"kicker": "LOST & FOUND",
+			"title": "MISSING.",
+			"caption": "NO LIKENESS AVAILABLE",
+			"rows": [
+				{
+					"label": "ANSWERS TO",
+					"value": "/the-address-you-typed"
+				},
+				{
+					"label": "LAST SEEN",
+					"value": "an earlier edition"
+				},
+				{
+					"label": "MARKS",
+					"value": "none; never set in type"
+				},
+				{
+					"label": "REWARD",
+					"value": "the editor’s gratitude"
+				}
+			],
+			"footer": "Any reader with information is urged to wire the desk at once."
+		},
+		"stamp": {
+			"text": "NOT FOUND",
+			"sub": "COMPOSING ROOM · 404"
+		},
+		"classifieds": {
+			"heading": "— CLASSIFIED ADVERTISEMENTS —",
+			"items": [
+				{
+					"lead": "LOST —",
+					"body": "One page, No. 404. Of no sentimental value. Return it anyway."
+				},
+				{
+					"lead": "FOUND —",
+					"body": "A great many pages nobody asked for. Enquire within, at your peril."
+				},
+				{
+					"lead": "NOTICE —",
+					"body": "The proprietor accepts no responsibility for addresses typed in haste."
+				}
+			]
+		},
+		"pencil": "not my fault — ed."
 	}
 }
