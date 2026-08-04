@@ -11,7 +11,7 @@ const { torn = false, mottleSeed = 7 } = Astro.props;
 
 <div class="viewport">
 	<div class="frame" data-engine="content">
-		<div class="stack">
+		<div class:list={['stack', { torn }]}>
 			<div class="shadow-wide" aria-hidden="true"></div>
 			<div class="blob blob-bl" aria-hidden="true"></div>
 			<div class="blob blob-br" aria-hidden="true"></div>
@@ -228,6 +228,33 @@ const { torn = false, mottleSeed = 7 } = Astro.props;
 			left bottom / 820px 34px repeat-x,
 			linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)) 0 26px / 100%
 			calc(100% - 54px) no-repeat;
+	}
+
+	.stack.torn .under,
+	.stack.torn .shadow-tight {
+		display: none;
+	}
+
+	.stack.torn .shadow-wide {
+		inset: 6px 2px 30px 2px;
+	}
+
+	.stack.torn .blob-bl {
+		left: 7%;
+		width: 34%;
+		bottom: 4px;
+		height: 40px;
+		filter: blur(14px);
+		opacity: 0.34;
+	}
+
+	.stack.torn .blob-br {
+		right: 5%;
+		width: 28%;
+		bottom: 8px;
+		height: 34px;
+		filter: blur(12px);
+		opacity: 0.26;
 	}
 
 	.sheet.torn {
