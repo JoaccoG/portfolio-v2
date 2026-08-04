@@ -1,10 +1,15 @@
 ---
 import { copy } from '../i18n/t';
 
-const items = copy.ticker.items;
+interface Props {
+	items?: string[];
+	duration?: string;
+}
+
+const { items = copy.ticker.items, duration = '106s' } = Astro.props;
 ---
 
-<div class="ticker" data-ticker>
+<div class="ticker" data-ticker style={`--tk-dur: ${duration}`}>
 	<div class="row" aria-hidden="true">
 		{
 			[0, 1].map(() => (
@@ -35,7 +40,7 @@ const items = copy.ticker.items;
 		display: flex;
 		width: max-content;
 		white-space: nowrap;
-		animation: tickmove 106s linear infinite;
+		animation: tickmove var(--tk-dur, 106s) linear infinite;
 		animation-play-state: var(--tk, running);
 		font-size: 0.64rem;
 		letter-spacing: 0.26em;
