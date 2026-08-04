@@ -1,0 +1,425 @@
+---
+import { copy } from '../../i18n/t';
+
+const nf = copy.notFound;
+const a = nf.article;
+const [lead = '', ...restBody] = a.body;
+const dropCap = lead.charAt(0);
+const leadRest = lead.slice(1);
+---
+
+<div class="lead">
+	<div class="article">
+		<p class="kicker">{a.kicker}</p>
+		<h1 class="headline">
+			<span class="mask"><span class="line line-1">{a.headline[0]}</span></span>{' '}
+			<span class="mask"
+				><span class="line line-2"
+					>{a.headline[1]}<span class="acc">.</span></span
+				></span
+			>
+		</h1>
+		<div class="copy">
+			<p class="dek">{a.dek}</p>
+			<p class="byline">{a.byline}</p>
+			<div class="body">
+				<p><span class="drop">{dropCap}</span>{leadRest}</p>
+				{
+					restBody.map((par, i) => (
+						<p class:list={{ last: i === restBody.length - 1 }}>
+							{par}
+							{i === restBody.length - 1 && (
+								<span class="signoff"> {a.signoff}</span>
+							)}
+						</p>
+					))
+				}
+			</div>
+		</div>
+		<div class="actions">
+			<a href="/" class="act">
+				<span class="hand">☜</span><span>{nf.actions.home}</span>
+			</a>
+			<button type="button" class="act" data-back>
+				<span>{nf.actions.back}</span><span class="hand">☞</span>
+			</button>
+		</div>
+	</div>
+
+	<aside class="aside">
+		<span class="rule" aria-hidden="true"></span>
+		<div class="card">
+			<p class="lf-kicker">{nf.lostFound.kicker}</p>
+			<p class="lf-title">{nf.lostFound.title}</p>
+			<div class="portrait"><span aria-hidden="true">?</span></div>
+			<p class="lf-caption">{nf.lostFound.caption}</p>
+			<div class="rows">
+				{
+					nf.lostFound.rows.map((row, i) => (
+						<span class:list={['row', { reward: i === 3 }]}>
+							<span class="row-label">{row.label}</span>
+							<span class="row-value" data-path={i === 0 ? '' : undefined}>
+								{row.value}
+							</span>
+						</span>
+					))
+				}
+			</div>
+		</div>
+		<p class="lf-footer">{nf.lostFound.footer}</p>
+	</aside>
+
+	<span class="stamp" aria-hidden="true">
+		<span class="stamp-word">{nf.stamp.text}</span>
+		<span class="stamp-sub">{nf.stamp.sub}</span>
+	</span>
+</div>
+
+<style>
+	@keyframes riseIn {
+		from {
+			transform: translateY(26px);
+			opacity: 0;
+		}
+		to {
+			transform: translateY(0);
+			opacity: 1;
+		}
+	}
+
+	@keyframes slam404 {
+		0% {
+			transform: rotate(26deg) scale(1.55);
+			opacity: 0;
+		}
+		60% {
+			opacity: 0.9;
+		}
+		100% {
+			transform: rotate(11deg) scale(1);
+			opacity: 0.88;
+		}
+	}
+
+	.lead {
+		position: relative;
+		display: grid;
+		grid-template-columns: 1.9fr 1fr;
+		gap: clamp(1.4rem, 3.4vw, 3rem);
+		border-top: 1px solid rgba(28, 23, 16, 0.5);
+		padding-top: clamp(1.4rem, 3vw, 2.2rem);
+	}
+
+	.article {
+		min-width: 0;
+	}
+
+	.kicker {
+		margin: 0 0 0.8rem;
+		font-size: 0.66rem;
+		letter-spacing: 0.3em;
+		color: var(--acc, #b4342a);
+		font-weight: 700;
+		animation: riseIn 0.7s cubic-bezier(0.19, 1, 0.22, 1) 0.1s both;
+	}
+
+	.headline {
+		margin: 0 0 1.1rem;
+		font-family: var(--fHD, "Abril Fatface"), Didot, serif;
+		font-weight: 400;
+		font-size: clamp(2.6rem, 10vw, 9rem);
+		line-height: 0.88;
+		text-transform: uppercase;
+		letter-spacing: -0.005em;
+	}
+
+	.mask {
+		display: block;
+		overflow: hidden;
+	}
+
+	.line {
+		display: block;
+	}
+
+	.line-1 {
+		animation: riseIn 0.9s cubic-bezier(0.19, 1, 0.22, 1) 0.2s both;
+	}
+
+	.line-2 {
+		animation: riseIn 0.9s cubic-bezier(0.19, 1, 0.22, 1) 0.32s both;
+	}
+
+	.acc {
+		color: var(--acc, #b4342a);
+	}
+
+	.copy {
+		animation: riseIn 0.9s cubic-bezier(0.19, 1, 0.22, 1) 0.5s both;
+	}
+
+	.dek {
+		margin: 0 0 1rem;
+		font-style: italic;
+		font-size: clamp(1rem, 1.9vw, 1.28rem);
+		line-height: 1.5;
+		color: var(--ink-soft, #3a3222);
+		max-width: 42rem;
+		text-wrap: pretty;
+	}
+
+	.byline {
+		margin: 0 0 1.2rem;
+		font-size: 0.64rem;
+		letter-spacing: 0.22em;
+		border-top: 1px solid rgba(28, 23, 16, 0.4);
+		border-bottom: 1px solid rgba(28, 23, 16, 0.4);
+		padding: 0.4rem 0;
+		max-width: 42rem;
+	}
+
+	.body {
+		columns: 2;
+		column-gap: 2.2rem;
+		column-rule: 1px solid rgba(28, 23, 16, 0.2);
+		font-size: 0.95rem;
+		line-height: 1.62;
+		text-align: justify;
+		hyphens: auto;
+		max-width: 42rem;
+	}
+
+	.body p {
+		margin: 0 0 0.9rem;
+	}
+
+	.body p.last {
+		margin: 0;
+	}
+
+	.drop {
+		float: left;
+		font-family: var(--fHD, "Abril Fatface"), Didot, serif;
+		font-size: 3.4em;
+		line-height: 0.76;
+		padding: 0.05em 0.12em 0 0;
+	}
+
+	.signoff {
+		letter-spacing: 0.12em;
+	}
+
+	.actions {
+		display: flex;
+		gap: clamp(0.7rem, 1.8vw, 1.2rem);
+		flex-wrap: wrap;
+		padding-top: clamp(1.4rem, 3vw, 2.2rem);
+		animation: riseIn 0.9s cubic-bezier(0.19, 1, 0.22, 1) 0.75s both;
+	}
+
+	.act {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.8rem;
+		background: none;
+		border: 1px solid rgba(28, 23, 16, 0.6);
+		padding: 0.6rem 1.1rem;
+		font-size: 0.64rem;
+		letter-spacing: 0.24em;
+		cursor: pointer;
+		transition:
+			background 0.3s ease,
+			color 0.3s ease;
+	}
+
+	.act:hover {
+		background: var(--ink, #1c1710);
+		color: var(--paper, #f2ead8);
+	}
+
+	.hand {
+		color: var(--acc, #b4342a);
+	}
+
+	.aside {
+		position: relative;
+		padding-left: clamp(1.2rem, 2.4vw, 2.2rem);
+		min-width: 0;
+		box-sizing: border-box;
+	}
+
+	.rule {
+		position: absolute;
+		left: 0;
+		top: 0;
+		bottom: 0;
+		width: 1px;
+		background: rgba(28, 23, 16, 0.25);
+	}
+
+	.card {
+		border: 3px double rgba(28, 23, 16, 0.6);
+		background: var(--paper, #f2ead8);
+		padding: 1rem 1.1rem 1.2rem;
+		animation: riseIn 0.9s cubic-bezier(0.19, 1, 0.22, 1) 0.6s both;
+	}
+
+	.lf-kicker {
+		margin: 0 0 0.2rem;
+		text-align: center;
+		font-size: 0.56rem;
+		letter-spacing: 0.3em;
+		color: var(--acc, #b4342a);
+		font-weight: 700;
+	}
+
+	.lf-title {
+		margin: 0 0 0.8rem;
+		text-align: center;
+		font-family: var(--fHD, "Abril Fatface"), Didot, serif;
+		font-size: clamp(1.6rem, 3.4vw, 2.2rem);
+		line-height: 1;
+		border-bottom: 3px double rgba(28, 23, 16, 0.65);
+		padding-bottom: 0.7rem;
+	}
+
+	.portrait {
+		aspect-ratio: 4 / 5;
+		border: 1px solid rgba(28, 23, 16, 0.55);
+		box-shadow:
+			inset 0 0 0 3px var(--paper, #f2ead8),
+			inset 0 0 0 4px rgba(28, 23, 16, 0.5);
+		background-color: var(--paper-plate, #e4d8be);
+		background-image: radial-gradient(
+			rgba(28, 23, 16, 0.45) 1px,
+			transparent 1.15px
+		);
+		background-size: 5px 5px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.portrait span {
+		font-family: var(--fHD, "Abril Fatface"), Didot, serif;
+		font-size: clamp(3.4rem, 8vw, 5.4rem);
+		line-height: 1;
+		color: rgba(28, 23, 16, 0.34);
+	}
+
+	.lf-caption {
+		margin: 0.5rem 0 0.9rem;
+		text-align: center;
+		font-size: 0.58rem;
+		letter-spacing: 0.16em;
+		opacity: 0.7;
+	}
+
+	.rows {
+		display: flex;
+		flex-direction: column;
+		font-size: 0.74rem;
+	}
+
+	.row {
+		display: flex;
+		justify-content: space-between;
+		gap: 0.8rem;
+		padding: 0.4rem 0;
+		border-top: 1px dotted rgba(28, 23, 16, 0.45);
+	}
+
+	.row-label {
+		letter-spacing: 0.14em;
+		font-size: 0.58rem;
+		padding-top: 0.12rem;
+	}
+
+	.row-value {
+		font-style: italic;
+		text-align: right;
+	}
+
+	.row:first-child .row-value {
+		word-break: break-all;
+		opacity: 0.85;
+	}
+
+	.row.reward .row-label,
+	.row.reward .row-value {
+		color: var(--acc, #b4342a);
+	}
+
+	.lf-footer {
+		margin: 1rem 0 0;
+		text-align: center;
+		font-style: italic;
+		font-size: 0.78rem;
+		opacity: 0.7;
+		animation: riseIn 0.9s cubic-bezier(0.19, 1, 0.22, 1) 0.8s both;
+	}
+
+	.stamp {
+		position: absolute;
+		right: 31%;
+		top: 13%;
+		z-index: 5;
+		pointer-events: none;
+		border: 3px solid var(--stamp-red, #a8352c);
+		color: var(--stamp-red, #a8352c);
+		padding: 0.5rem 1.1rem;
+		text-align: center;
+		opacity: 0.88;
+		box-shadow: inset 0 0 0 1.5px rgba(168, 53, 44, 0.35);
+		transform-origin: 50% 50%;
+		scale: 1;
+		animation: slam404 0.55s cubic-bezier(0.2, 0.8, 0.2, 1) 1.15s both;
+	}
+
+	.stamp-word {
+		display: block;
+		font-family: var(--fHD, "Abril Fatface"), Didot, serif;
+		font-size: clamp(1.15rem, 3.6vw, 2.6rem);
+		letter-spacing: 0.1em;
+		line-height: 1;
+	}
+
+	.stamp-sub {
+		display: block;
+		border-top: 1px solid rgba(168, 53, 44, 0.6);
+		margin-top: 0.3rem;
+		padding-top: 0.25rem;
+		font-size: 0.5rem;
+		letter-spacing: 0.2em;
+	}
+
+	@media (max-width: 1019.98px) {
+		.lead {
+			grid-template-columns: 1fr;
+		}
+
+		.aside {
+			display: none;
+		}
+
+		.stamp {
+			right: 3%;
+			top: 7.5rem;
+			transform-origin: 100% 50%;
+			scale: 0.78;
+		}
+	}
+
+	@media (max-width: 719.98px) {
+		.body {
+			columns: 1;
+		}
+	}
+
+	@media (max-width: 619.98px) {
+		.stamp {
+			top: 7rem;
+			scale: 0.6;
+		}
+	}
+</style>
