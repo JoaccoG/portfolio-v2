@@ -1,0 +1,164 @@
+---
+interface Props {
+	section: string;
+	paper: string;
+	tagline: string;
+	page: string;
+	nameplate: string;
+	kicker?: string;
+	headline: string;
+	dek?: string;
+	home?: string;
+	titleTag?: 'h1' | 'p';
+}
+
+const {
+	section,
+	paper,
+	tagline,
+	page,
+	nameplate,
+	kicker,
+	headline,
+	dek,
+	home = '/',
+	titleTag = 'h1',
+} = Astro.props;
+
+const Title = titleTag;
+---
+
+<div class="running">
+	<span class="flag">{section}</span>
+	<span class="meta">
+		<span class="paper">{paper}</span>
+		<span class="tagline">{tagline}</span>
+		<span class="page">{page}</span>
+	</span>
+</div>
+
+<header class="head">
+	<a href={home} class="nameplate">{nameplate}</a>
+	{kicker && <p class="kicker">{kicker}</p>}
+	<Title class="headline">{headline}<span class="acc">.</span></Title>
+	{dek && <p class="dek">{dek}</p>}
+</header>
+
+<style>
+	@keyframes riseIn {
+		from {
+			transform: translateY(26px);
+			opacity: 0;
+		}
+		to {
+			transform: translateY(0);
+			opacity: 1;
+		}
+	}
+
+	.running {
+		display: flex;
+		align-items: stretch;
+		border-bottom: 1px solid rgba(28, 23, 16, 0.5);
+		margin: 0 calc(var(--pad-x, clamp(1rem, 3.6vw, 3.6rem)) * -1);
+		padding-right: var(--pad-x, clamp(1rem, 3.6vw, 3.6rem));
+	}
+
+	.flag {
+		background: var(--ink, #1c1710);
+		color: var(--paper, #f2ead8);
+		font-family: var(--fHD, "Abril Fatface"), Didot, serif;
+		font-size: clamp(0.85rem, 1.5vw, 1.15rem);
+		letter-spacing: 0.04em;
+		padding: 0.5rem var(--pad-x, clamp(1rem, 3.6vw, 3.6rem));
+		display: flex;
+		align-items: center;
+		white-space: nowrap;
+	}
+
+	.meta {
+		flex: 1;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1rem;
+		padding: 0.5rem 0 0.5rem clamp(1rem, 2.4vw, 2.2rem);
+		font-size: clamp(0.5rem, 0.82vw, 0.62rem);
+		letter-spacing: 0.22em;
+	}
+
+	.tagline {
+		font-style: italic;
+		letter-spacing: 0.04em;
+		opacity: 0.72;
+		text-align: center;
+	}
+
+	.head {
+		text-align: center;
+		padding: clamp(1.4rem, 3.2vw, 2.6rem) 0 clamp(1rem, 2.4vw, 1.8rem);
+		border-bottom: 1px solid rgba(28, 23, 16, 0.5);
+	}
+
+	.nameplate {
+		display: inline-block;
+		animation: riseIn 0.7s cubic-bezier(0.19, 1, 0.22, 1) 0.05s both;
+		font-family: var(--fNP, "UnifrakturMaguntia"), "Bodoni MT", Didot, serif;
+		font-size: clamp(1.25rem, 2.2vw, 1.95rem);
+		line-height: 1;
+		letter-spacing: 0.01em;
+	}
+
+	.kicker {
+		margin: 0.9rem 0 0;
+		animation: riseIn 0.7s cubic-bezier(0.19, 1, 0.22, 1) 0.14s both;
+		font-size: 0.62rem;
+		letter-spacing: 0.3em;
+		color: var(--acc, #b4342a);
+		font-weight: 700;
+	}
+
+	.headline {
+		margin: 0.35rem 0 0;
+		animation: riseIn 0.9s cubic-bezier(0.19, 1, 0.22, 1) 0.24s both;
+		font-family: var(--fHD, "Abril Fatface"), Didot, serif;
+		font-weight: 400;
+		font-size: clamp(2.1rem, 4.8vw, 4.4rem);
+		line-height: 0.95;
+		text-transform: uppercase;
+		letter-spacing: -0.005em;
+	}
+
+	.acc {
+		color: var(--acc, #b4342a);
+	}
+
+	.dek {
+		margin: 0.9rem auto 0;
+		animation: riseIn 0.9s cubic-bezier(0.19, 1, 0.22, 1) 0.42s both;
+		max-width: 46rem;
+		font-style: italic;
+		font-size: clamp(0.95rem, 1.5vw, 1.14rem);
+		line-height: 1.5;
+		color: var(--ink-soft, #3a3222);
+		text-wrap: pretty;
+	}
+
+	@media (max-width: 719.98px) {
+		.meta {
+			flex-wrap: wrap;
+			justify-content: flex-start;
+			gap: 0.4rem 1rem;
+		}
+
+		.tagline {
+			text-align: left;
+		}
+	}
+
+	@media (max-width: 559.98px) {
+		.page {
+			display: none;
+		}
+	}
+</style>
