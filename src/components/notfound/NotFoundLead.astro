@@ -332,16 +332,20 @@ const leadRest = lead.slice(1);
 		letter-spacing: 0.14em;
 		font-size: 0.58rem;
 		padding-top: 0.12rem;
+		flex: none;
 	}
 
 	.row-value {
 		font-style: italic;
 		text-align: right;
+		min-width: 0;
 	}
 
 	.row:first-child .row-value {
-		word-break: break-all;
 		opacity: 0.85;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
 	}
 
 	.row.reward .row-label,
