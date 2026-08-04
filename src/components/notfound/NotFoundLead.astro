@@ -37,10 +37,10 @@ const leadRest = lead.slice(1);
 			</div>
 		</div>
 		<div class="actions">
-			<a href="/" class="act">
+			<a href="/" class="act" data-cur="1">
 				<span class="hand">☜</span><span>{nf.actions.home}</span>
 			</a>
-			<button type="button" class="act" data-back>
+			<button type="button" class="act" data-cur="1" data-back>
 				<span>{nf.actions.back}</span><span class="hand">☞</span>
 			</button>
 		</div>
@@ -226,7 +226,6 @@ const leadRest = lead.slice(1);
 		padding: 0.6rem 1.1rem;
 		font-size: 0.64rem;
 		letter-spacing: 0.24em;
-		cursor: pointer;
 		transition:
 			background 0.3s ease,
 			color 0.3s ease;
