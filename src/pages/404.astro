@@ -17,7 +17,6 @@ const h = nf.head;
 	<CustomCursor />
 	<main id="main-content">
 		<Sheet torn mottleSeed={11}>
-			<Ticker items={nf.ticker.items} duration="42s" />
 			<PageHead
 				section={h.section}
 				paper={h.paper}
@@ -26,7 +25,9 @@ const h = nf.head;
 				nameplate={h.nameplate}
 				headline={h.headline}
 				titleTag="p"
-			/>
+			>
+				<Ticker items={nf.ticker.items} duration="42s" />
+			</PageHead>
 			<NotFoundLead />
 			<footer>
 				<NotFoundClassifieds />
