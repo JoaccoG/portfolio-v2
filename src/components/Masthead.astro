@@ -39,6 +39,8 @@ const [folioPre = '', folioPost = ''] = m.folio[1].split('{date}');
 					<path id="sealtop" d="M 15,50 A 35,35 0 0 1 85,50"></path>
 					<path id="sealbot" d="M 9.5,50 A 40.5,40.5 0 0 0 90.5,50"></path>
 				</defs>
+				<circle cx="50" cy="50" r="47.5" fill="var(--paper, #f2ead8)"
+				></circle>
 				<circle
 					cx="50"
 					cy="50"
@@ -318,9 +320,7 @@ const [folioPre = '', folioPost = ''] = m.folio[1].split('{date}');
 
 	.seal-btn {
 		width: clamp(64px, 6.4vw, 92px);
-		background: var(--paper, #f2ead8);
 		border: none;
-		border-radius: 50%;
 		padding: 0;
 		cursor: inherit;
 	}
