@@ -1,8 +1,10 @@
 ---
+import { editionDate } from '../../i18n/edition';
 import { copy } from '../../i18n/t';
 
 const nf = copy.notFound;
 const a = nf.article;
+const byline = a.byline.replace('{date}', editionDate());
 const [lead = '', ...restBody] = a.body;
 const dropCap = lead.charAt(0);
 const leadRest = lead.slice(1);
@@ -21,7 +23,7 @@ const leadRest = lead.slice(1);
 		</h1>
 		<div class="copy">
 			<p class="dek">{a.dek}</p>
-			<p class="byline">{a.byline}</p>
+			<p class="byline">{byline}</p>
 			<div class="body">
 				<p><span class="drop">{dropCap}</span>{leadRest}</p>
 				{

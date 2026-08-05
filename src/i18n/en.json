@@ -451,7 +451,7 @@
 			"kicker": "STOP PRESS — AN IRREGULARITY",
 			"headline": ["PAGE", "MISSING"],
 			"dek": "The page you sought has not been printed in this edition. The compositor has been questioned, the pressroom searched, and the ledger consulted twice. Enquiries continue.",
-			"byline": "FROM THE COMPOSING ROOM — AUGUST 25, 1926, LATE",
+			"byline": "FROM THE COMPOSING ROOM — {date}, LATE",
 			"body": [
 				"Readers are reminded that this paper is set by hand, and that hands, unlike machines, occasionally wander. The address may have been mistyped, the page retired to the archive, or the link forwarded by a correspondent working from an older edition.",
 				"The proprietor wishes it known that no page has ever been deliberately withheld from a reader, and that the one instance to the contrary concerned an advertisement of which the office is still ashamed.",

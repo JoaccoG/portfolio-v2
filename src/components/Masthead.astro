@@ -1,12 +1,9 @@
 ---
+import { editionDate } from '../i18n/edition';
 import { copy } from '../i18n/t';
 
 const m = copy.masthead;
-const now = new Date();
-const editionDate = m.dateTemplate
-	.replace('{month}', m.months[now.getMonth()] ?? '')
-	.replace('{day}', String(now.getDate()))
-	.replace('{year}', String(now.getFullYear() - 100));
+const date = editionDate();
 const [folioPre = '', folioPost = ''] = m.folio[1].split('{date}');
 ---
 
@@ -94,7 +91,7 @@ const [folioPre = '', folioPost = ''] = m.folio[1].split('{date}');
 			>{folioPre}<span
 				data-live-date
 				data-months={JSON.stringify(m.months)}
-				data-template={m.dateTemplate}>{editionDate}</span
+				data-template={m.dateTemplate}>{date}</span
 			>{folioPost}</span
 		>
 	</div>
