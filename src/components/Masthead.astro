@@ -144,11 +144,15 @@ const [folioPre = '', folioPost = ''] = m.folio[1].split('{date}');
 
 <style>
 	.top {
-		display: flex;
-		justify-content: space-between;
+		display: grid;
+		grid-template-columns: 1fr auto 1fr;
 		align-items: baseline;
 		font-size: clamp(0.58rem, 1vw, 0.7rem);
 		letter-spacing: 0.2em;
+	}
+
+	.top > :last-child {
+		justify-self: end;
 	}
 
 	.mask {
@@ -437,6 +441,35 @@ const [folioPre = '', folioPost = ''] = m.folio[1].split('{date}');
 	.sound-ghost {
 		visibility: hidden;
 		height: 0;
+	}
+
+	@media (min-width: 1240px) {
+		.folio-center {
+			grid-column: 1 / -1;
+			grid-row: 1;
+			justify-self: stretch;
+			display: grid;
+			grid-template-columns: 1fr auto 1fr;
+			align-items: center;
+		}
+
+		.folio-center > :first-child {
+			justify-self: end;
+		}
+
+		.folio-center > :last-child {
+			justify-self: start;
+		}
+
+		.edition-btn {
+			grid-column: 1;
+			grid-row: 1;
+		}
+
+		.music-btn {
+			grid-column: 3;
+			grid-row: 1;
+		}
 	}
 
 	@media (max-width: 1239.98px) {
