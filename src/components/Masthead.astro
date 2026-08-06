@@ -117,15 +117,9 @@ const [folioPre = '', folioPost = ''] = m.folio[1].split('{date}');
 </div>
 
 <script>
-	const el = document.querySelector('[data-live-date]');
-	if (el instanceof HTMLElement && el.dataset.months && el.dataset.template) {
-		const months: string[] = JSON.parse(el.dataset.months);
-		const now = new Date();
-		el.textContent = el.dataset.template
-			.replace('{month}', months[now.getMonth()] ?? '')
-			.replace('{day}', String(now.getDate()))
-			.replace('{year}', String(now.getFullYear() - 100));
-	}
+	import { initLiveDate } from '../engine/livedate';
+
+	initLiveDate();
 
 	const stamp = document.querySelector('[data-stamp]');
 	const note = document.querySelector('[data-stamp-note]');

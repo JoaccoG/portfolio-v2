@@ -2,9 +2,10 @@
 import { editionDate } from '../../i18n/edition';
 import { copy } from '../../i18n/t';
 
+const m = copy.masthead;
 const nf = copy.notFound;
 const a = nf.article;
-const byline = a.byline.replace('{date}', editionDate());
+const [bylinePre = '', bylinePost = ''] = a.byline.split('{date}');
 const [lead = '', ...restBody] = a.body;
 const dropCap = lead.charAt(0);
 const leadRest = lead.slice(1);
@@ -23,7 +24,13 @@ const leadRest = lead.slice(1);
 		</h1>
 		<div class="copy">
 			<p class="dek">{a.dek}</p>
-			<p class="byline">{byline}</p>
+			<p class="byline">
+				{bylinePre}<span
+					data-live-date
+					data-months={JSON.stringify(m.months)}
+					data-template={m.dateTemplate}>{editionDate()}</span
+				>{bylinePost}
+			</p>
 			<div class="body">
 				<p><span class="drop">{dropCap}</span>{leadRest}</p>
 				{
@@ -57,10 +64,10 @@ const leadRest = lead.slice(1);
 			<p class="lf-caption">{nf.lostFound.caption}</p>
 			<div class="rows">
 				{
-					nf.lostFound.rows.map((row, i) => (
-						<span class:list={['row', { reward: i === 3 }]}>
+					nf.lostFound.rows.map((row) => (
+						<span class:list={['row', { reward: 'accent' in row }]}>
 							<span class="row-label">{row.label}</span>
-							<span class="row-value" data-path={i === 0 ? '' : undefined}>
+							<span class="row-value" data-path={'path' in row ? '' : undefined}>
 								{row.value}
 							</span>
 						</span>
@@ -342,7 +349,7 @@ const leadRest = lead.slice(1);
 		min-width: 0;
 	}
 
-	.row:first-child .row-value {
+	.row:has([data-path]) .row-value {
 		opacity: 0.85;
 		overflow: hidden;
 		text-overflow: ellipsis;
