@@ -82,7 +82,7 @@ export function initEngine(): { measure: () => void } | undefined {
 		}
 		if (fin) measures.finTop = docTop(fin);
 	};
-	let s = 0;
+	let s = Math.max(0, window.scrollY || doc.scrollTop || 0);
 	let vk = 0;
 	const loop = () => {
 		requestAnimationFrame(loop);
