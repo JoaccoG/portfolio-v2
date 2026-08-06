@@ -11,6 +11,7 @@ const projects = defineCollection({
 		titleLines: z.array(z.string()).min(1).max(2),
 		dek: z.string(),
 		composedWith: z.string(),
+		stamp: z.object({ line: z.string(), sub: z.string() }).optional(),
 		pageTwo: z
 			.object({
 				name: z.string(),
