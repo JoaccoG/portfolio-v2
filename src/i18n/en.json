@@ -470,7 +470,8 @@
 			"rows": [
 				{
 					"label": "ANSWERS TO",
-					"value": "/the-address-you-typed"
+					"value": "/the-address-you-typed",
+					"path": true
 				},
 				{
 					"label": "LAST SEEN",
@@ -482,7 +483,8 @@
 				},
 				{
 					"label": "REWARD",
-					"value": "the editor’s gratitude"
+					"value": "the editor’s gratitude",
+					"accent": true
 				}
 			],
 			"footer": "Any reader with information is urged to wire the desk at once."
