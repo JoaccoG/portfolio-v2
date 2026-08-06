@@ -8,7 +8,7 @@ const projects = defineCollection({
 		order: z.number(),
 		kickerLabel: z.string(),
 		year: z.number(),
-		titleLines: z.array(z.string()).length(2),
+		titleLines: z.array(z.string()).min(1).max(2),
 		dek: z.string(),
 		composedWith: z.string(),
 		pageTwo: z

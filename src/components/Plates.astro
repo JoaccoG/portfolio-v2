@@ -61,12 +61,11 @@ const plateLabel = (i: number) => m.plateLabel.replace('{roman}', romans[i]);
 						{plateKicker(i, project.data.kickerLabel, project.data.year)}
 					</p>
 					<h3>
-						<span class="tmask tm-1">
-							<span class="tline tl-1">{project.data.titleLines[0]}</span>
-						</span>
-						<span class="tmask tm-2">
-							<span class="tline tl-2">{project.data.titleLines[1]}</span>
-						</span>
+						{project.data.titleLines.map((line, li) => (
+							<span class:list={['tmask', `tm-${li + 1}`]}>
+								<span class:list={['tline', `tl-${li + 1}`]}>{line}</span>
+							</span>
+						))}
 					</h3>
 					<p class="dek">{project.data.dek}</p>
 					<p class="composed">{project.data.composedWith}</p>
