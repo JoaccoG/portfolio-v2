@@ -257,6 +257,10 @@ const { torn = false, mottleSeed = 7 } = Astro.props;
 		opacity: 0.26;
 	}
 
+	.sheet.torn :global(.tex) {
+		bottom: 11px;
+	}
+
 	.sheet.torn {
 		background-repeat: no-repeat;
 		background-size: 100% calc(100% - 11px);
