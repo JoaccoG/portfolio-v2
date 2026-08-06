@@ -1,0 +1,122 @@
+---
+import { copy } from '../../i18n/t';
+
+const nf = copy.notFound;
+---
+
+<div class="classifieds">
+	<p class="heading">{nf.classifieds.heading}</p>
+	<div class="grid">
+		{
+			nf.classifieds.items.map((item) => (
+				<p class="ad">
+					<span class="ad-lead">{item.lead}</span>{' '}
+					<span class="ad-body">{item.body}</span>
+				</p>
+			))
+		}
+	</div>
+	<span class="pencil" aria-hidden="true">{nf.pencil}</span>
+	<span class="coffee" aria-hidden="true"></span>
+</div>
+
+<style>
+	@keyframes penIn {
+		from {
+			clip-path: inset(0 100% 0 0);
+		}
+		to {
+			clip-path: inset(0 0 0 0);
+		}
+	}
+
+	.classifieds {
+		position: relative;
+		border-top: 3px double rgba(28, 23, 16, 0.7);
+		margin-top: clamp(1.8rem, 4vw, 3rem);
+		padding: clamp(1rem, 2.2vw, 1.6rem) 0 clamp(2.8rem, 5vw, 3.8rem);
+	}
+
+	.heading {
+		margin: 0 0 1rem;
+		text-align: center;
+		font-size: 0.58rem;
+		letter-spacing: 0.32em;
+	}
+
+	.grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: clamp(1rem, 2.4vw, 2rem);
+		font-size: 0.78rem;
+		line-height: 1.6;
+	}
+
+	.ad {
+		margin: 0;
+		padding-left: clamp(0rem, 1.4vw, 1.2rem);
+	}
+
+	.ad + .ad {
+		border-left: 1px solid rgba(28, 23, 16, 0.35);
+	}
+
+	.ad-lead {
+		font-weight: 700;
+		color: var(--acc, #b4342a);
+		letter-spacing: 0.1em;
+	}
+
+	.ad-body {
+		font-style: italic;
+	}
+
+	.pencil {
+		position: absolute;
+		right: clamp(0.5rem, 3vw, 3rem);
+		bottom: 0.2rem;
+		font-family: var(--fPen, "Caveat"), cursive;
+		font-size: clamp(1.3rem, 2.6vw, 1.9rem);
+		color: var(--pencil, #2f4f7a);
+		opacity: 0.76;
+		transform: rotate(-5deg);
+		animation: penIn 0.8s ease 1.6s both;
+	}
+
+	.coffee {
+		position: absolute;
+		left: 4%;
+		bottom: -0.6rem;
+		width: 104px;
+		height: 92px;
+		border-radius: 49% 51% 47% 53% / 52% 48% 52% 48%;
+		mix-blend-mode: multiply;
+		opacity: 0.38;
+		transform: rotate(-8deg);
+		background:
+			radial-gradient(
+				closest-side,
+				rgba(122, 78, 32, 0) 62%,
+				rgba(122, 78, 32, 0.5) 74%,
+				rgba(96, 58, 20, 0.62) 84%,
+				rgba(122, 78, 32, 0.22) 92%,
+				rgba(122, 78, 32, 0) 100%
+			),
+			radial-gradient(
+				closest-side,
+				rgba(122, 78, 32, 0.13),
+				rgba(122, 78, 32, 0.05) 70%,
+				transparent
+			);
+	}
+
+	@media (max-width: 779.98px) {
+		.grid {
+			grid-template-columns: 1fr;
+		}
+
+		.ad + .ad {
+			border-left: none;
+		}
+	}
+</style>

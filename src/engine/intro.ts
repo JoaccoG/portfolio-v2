@@ -21,7 +21,7 @@ export function initIntro(hooks: IntroHooks = {}): void {
 		restoreCursorInk();
 		hooks.onSettled?.();
 	};
-	if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
+	if (doc.dataset.intro !== 'play') {
 		settle();
 		return;
 	}

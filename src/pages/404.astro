@@ -1,0 +1,55 @@
+---
+import CustomCursor from '../components/CustomCursor.astro';
+import NotFoundClassifieds from '../components/notfound/NotFoundClassifieds.astro';
+import NotFoundLead from '../components/notfound/NotFoundLead.astro';
+import PageHead from '../components/PageHead.astro';
+import Sheet from '../components/paper/Sheet.astro';
+import Ticker from '../components/Ticker.astro';
+import { copy } from '../i18n/t';
+import Base from '../layouts/Base.astro';
+
+const nf = copy.notFound;
+const h = nf.head;
+---
+
+<Base title={nf.title} description={nf.description}>
+	<span class="progress" data-progress aria-hidden="true"></span>
+	<CustomCursor />
+	<main id="main-content">
+		<Sheet torn mottleSeed={11}>
+			<PageHead
+				section={h.section}
+				paper={h.paper}
+				tagline={h.tagline}
+				page={h.page}
+				nameplate={h.nameplate}
+				headline={h.headline}
+				titleTag="p"
+			>
+				<Ticker items={nf.ticker.items} duration="42s" />
+			</PageHead>
+			<NotFoundLead />
+			<footer>
+				<NotFoundClassifieds />
+			</footer>
+		</Sheet>
+	</main>
+</Base>
+
+<script>
+	import { initCursor } from '../engine/cursor';
+	import { initEngine } from '../engine/engine';
+	import { initLiveDate } from '../engine/livedate';
+	import { initNativeEngine } from '../engine/native';
+	import { initNotFound } from '../engine/notfound';
+	import { initReveals } from '../engine/reveal';
+	import { initTicker } from '../engine/ticker';
+
+	if (matchMedia('(pointer: coarse)').matches) initNativeEngine();
+	else initEngine();
+	initReveals();
+	initCursor();
+	initTicker();
+	initLiveDate();
+	initNotFound();
+</script>

@@ -18,14 +18,26 @@ import Base from '../layouts/Base.astro';
 
 <Base>
 	<script is:inline>
-		if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
-			const style = document.documentElement.style;
+		(() => {
+			const doc = document.documentElement;
+			let seen = false;
+			try {
+				seen = sessionStorage.getItem('hasSeenIntro') === '1';
+			} catch (e) {
+				seen = false;
+			}
+			if (seen || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+			doc.dataset.intro = 'play';
+			const style = doc.style;
 			style.setProperty('--preO', '1');
 			style.setProperty('--prePE', 'auto');
 			style.setProperty('--intro', '0');
 			style.setProperty('--mh', '0');
 			style.overflow = 'hidden';
-		}
+			try {
+				sessionStorage.setItem('hasSeenIntro', '1');
+			} catch (e) {}
+		})();
 	</script>
 	<span class="progress" data-progress aria-hidden="true"></span>
 	<Preloader />
