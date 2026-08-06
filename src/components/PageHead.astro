@@ -5,10 +5,7 @@ interface Props {
 	tagline: string;
 	page: string;
 	nameplate: string;
-	kicker?: string;
 	headline: string;
-	dek?: string;
-	home?: string;
 	titleTag?: 'h1' | 'p';
 }
 
@@ -18,10 +15,7 @@ const {
 	tagline,
 	page,
 	nameplate,
-	kicker,
 	headline,
-	dek,
-	home = '/',
 	titleTag = 'h1',
 } = Astro.props;
 
@@ -42,14 +36,12 @@ const Title = titleTag;
 <header class="head">
 	<p class="plate">
 		<span class="fleuron" aria-hidden="true">✦</span><a
-			href={home}
+			href="/"
 			class="nameplate"
 			data-cur="1">{nameplate}</a
 		><span class="fleuron" aria-hidden="true">✦</span>
 	</p>
-	{kicker && <p class="kicker">{kicker}</p>}
 	<Title class="headline">{headline}<span class="acc">.</span></Title>
-	{dek && <p class="dek">{dek}</p>}
 </header>
 
 <style>
@@ -155,14 +147,6 @@ const Title = titleTag;
 		letter-spacing: 0.01em;
 	}
 
-	.kicker {
-		margin: 0.9rem 0 0;
-		animation: riseIn 0.7s cubic-bezier(0.19, 1, 0.22, 1) 0.14s both;
-		font-size: 0.62rem;
-		letter-spacing: 0.3em;
-		color: var(--acc, #b4342a);
-		font-weight: 700;
-	}
 
 	.headline {
 		margin: 0.35rem 0 0;
@@ -179,16 +163,6 @@ const Title = titleTag;
 		color: var(--acc, #b4342a);
 	}
 
-	.dek {
-		margin: 0.9rem auto 0;
-		animation: riseIn 0.9s cubic-bezier(0.19, 1, 0.22, 1) 0.42s both;
-		max-width: 46rem;
-		font-style: italic;
-		font-size: clamp(0.95rem, 1.5vw, 1.14rem);
-		line-height: 1.5;
-		color: var(--ink-soft, #3a3222);
-		text-wrap: pretty;
-	}
 
 	@media (max-width: 719.98px) {
 		.paper {
@@ -199,11 +173,6 @@ const Title = titleTag;
 	@media (max-width: 559.98px) {
 		.page {
 			display: none;
-		}
-
-		.tagline {
-			justify-self: end;
-			padding-right: var(--pad-x, clamp(1rem, 3.6vw, 3.6rem));
 		}
 	}
 </style>
