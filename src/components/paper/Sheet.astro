@@ -258,6 +258,8 @@ const { torn = false, mottleSeed = 7 } = Astro.props;
 	}
 
 	.sheet.torn {
+		background-repeat: no-repeat;
+		background-size: 100% calc(100% - 11px);
 		box-shadow:
 			inset 0 1px 0 rgba(255, 251, 240, 0.4),
 			inset 1px 0 0 rgba(255, 251, 240, 0.25),
