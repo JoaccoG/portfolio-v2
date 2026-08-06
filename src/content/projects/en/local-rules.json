@@ -1,0 +1,40 @@
+{
+	"order": 1,
+	"kickerLabel": "CELLULAR AUTOMATA",
+	"year": 1926,
+	"titleLines": ["LOCAL RULES."],
+	"dek": "Six universes built from a single rule, ending in a neural network of 8,336 numbers that was never told what a butterfly is, yet heals one when you cut it in half.",
+	"composedWith": "COMPOSED WITH TYPESCRIPT, WEBGPU, WGSL & PYTORCH",
+	"stamp": {
+		"line": "IN DAILY SERVICE",
+		"sub": "WORKS INSPECTOR"
+	},
+	"pageTwo": {
+		"name": "Local Rules",
+		"headline": "CUT IT AND IT GROWS BACK.",
+		"dek": "An interactive essay on cellular automata: six simulations, all computed on your own GPU, from Conway’s Game of Life to a neural network that was never told what shape to become.",
+		"figCaption": "LOCAL RULES, AS IT RUNS — ",
+		"figCaptionItalic": "engraving awaited",
+		"story": [
+			"Every simulation in this essay runs on one idea: each cell on the grid looks only at its immediate neighbours, applies a single rule, and knows nothing about the picture it belongs to. Nobody tells the grid what to draw. The structure that appears — gliders, spots, stripes, whole organisms — is what falls out of that rule, applied everywhere at once.",
+			"There are six of them, ordered by how alive they get: Conway’s Game of Life, the wider rule space around it, Larger than Life, Lenia, reaction–diffusion, and finally a neural cellular automaton. All six are computed on the reader’s own graphics card through WebGPU compute shaders — nothing here is a recorded video. Conway sustains 5.8 billion cell updates per second on a 2048×2048 grid. Lenia’s much larger neighbourhood is convolved with an FFT instead, which overtakes direct convolution past a radius of about nine and runs roughly 2.4× faster at the radius actually used.",
+			"The last one was never programmed. It is a network of 8,336 numbers — 33 kilobytes, smaller than a screenshot of its own output — trained offline in PyTorch until a single lit pixel reliably grows into one specific creature. Drag the cursor through it and it does not restore a saved copy, because it doesn’t have one. Each surviving cell renegotiates with its neighbours, and the shape closes over the wound.",
+			"Every figure quoted above was measured on real hardware rather than estimated, and where a measurement was not taken the page prints a dash instead of a guess — a policy this newspaper warmly recommends to its competitors. — "
+		],
+		"note": "MIT-LICENSED — TAKE IT APART AS YOU LIKE.",
+		"particulars": {
+			"role": "Sole hand — engine, shaders, training, prose",
+			"year": 1926,
+			"composed": "TypeScript · WGSL · WebGPU · Vite · PyTorch",
+			"status": "In service"
+		},
+		"quote": {
+			"text": "“No sprite, no video, no repair routine. The shape comes back, every time, out of local negotiation.”",
+			"cite": "THE ENGINEER, ON HOW IT HEALS"
+		},
+		"links": {
+			"repo": "https://github.com/JoaccoG/local-rules",
+			"live": "https://local-rules-production.up.railway.app/"
+		}
+	}
+}
