@@ -1,6 +1,9 @@
 export function initNotFound(): void {
 	const back = document.querySelector<HTMLElement>('[data-back]');
-	back?.addEventListener('click', () => history.back());
+	back?.addEventListener('click', () => {
+		if (history.length > 1) history.back();
+		else location.href = '/';
+	});
 
 	const target = document.querySelector<HTMLElement>('[data-path]');
 	if (!target) return;
@@ -17,7 +20,7 @@ export function initNotFound(): void {
 		clean !== '' &&
 		clean !== '/' &&
 		clean.length <= 48 &&
-		!/\.(dc\.)?html?$/i.test(clean) &&
+		!/\.html?$/i.test(clean) &&
 		!/[?&=%\s]/.test(clean);
 
 	if (ok) target.textContent = clean;
