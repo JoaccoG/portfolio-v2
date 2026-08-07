@@ -12,8 +12,12 @@ import Postcard from '../components/Postcard.astro';
 import Preloader from '../components/Preloader.astro';
 import ProfilePiece from '../components/ProfilePiece.astro';
 import Sheet from '../components/paper/Sheet.astro';
+import RunningHead from '../components/RunningHead.astro';
 import Ticker from '../components/Ticker.astro';
+import { copy } from '../i18n/t';
 import Base from '../layouts/Base.astro';
+
+const sec = copy.sections;
 ---
 
 <Base>
@@ -49,10 +53,34 @@ import Base from '../layouts/Base.astro';
 				<Masthead />
 				<Hero />
 			</header>
+			<RunningHead
+				section={sec.profile.section}
+				name={sec.profile.name}
+				tagline={sec.profile.tagline}
+				page={sec.profile.page}
+			/>
 			<ProfilePiece />
 			<CvAd />
+			<RunningHead
+				section={sec.works.section}
+				name={sec.works.name}
+				tagline={sec.works.tagline}
+				page={sec.works.page}
+			/>
 			<Plates />
+			<RunningHead
+				section={sec.appointments.section}
+				name={sec.appointments.name}
+				tagline={sec.appointments.tagline}
+				page={sec.appointments.page}
+			/>
 			<Appointments />
+			<RunningHead
+				section={sec.correspondence.section}
+				name={sec.correspondence.name}
+				tagline={sec.correspondence.tagline}
+				page={sec.correspondence.page}
+			/>
 			<Postcard />
 			<footer>
 				<Classifieds />
