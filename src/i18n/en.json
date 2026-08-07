@@ -38,11 +38,7 @@
 			"label": "THE WEATHER.",
 			"report": "Sixty frames per second; no jank expected. Light hydration before noon."
 		},
-		"nameplate": [
-			"The",
-			"Daily",
-			"Godoy"
-		],
+		"nameplate": ["The", "Daily", "Godoy"],
 		"stamp": {
 			"label": "EDICIÓN EN CASTELLANO",
 			"notice": "THE SPANISH EDITION IS STILL IN THE COMPOSING ROOM — FORTHCOMING",
@@ -57,10 +53,7 @@
 			"audible": "MUSIC AUDIBLE",
 			"toggleAria": "Toggle the press sounds"
 		},
-		"folio": [
-			"BUENOS AIRES & THE WIDER WEB",
-			"MORNING EDITION — {date}"
-		],
+		"folio": ["BUENOS AIRES & THE WIDER WEB", "MORNING EDITION — {date}"],
 		"months": [
 			"JANUARY",
 			"FEBRUARY",
@@ -79,10 +72,7 @@
 	},
 	"hero": {
 		"kicker": "LATE INTELLIGENCE — TECHNOLOGY",
-		"headline": [
-			"SOFTWARE",
-			"WITH A SPINE"
-		],
+		"headline": ["SOFTWARE", "WITH A SPINE"],
 		"dek": "Local engineer Joaquín Godoy observed wiring machines to speak plainly. Witnesses report entire systems “explaining themselves” without supervision. The engineer insists the feat owes much to a peculiar contrivance he calls “Artificial Intelligence” — whatever that may be.",
 		"byline": "BY OUR TECHNOLOGY CORRESPONDENT — WIRED FROM THE SCENE",
 		"paragraphs": [
@@ -326,16 +316,9 @@
 		"postcardSub": "THE ADDRESS ONLY TO BE WRITTEN ON THIS SIDE — INLAND RATE, 2¢",
 		"messageLabel": "THE MESSAGE — ECONOMY OF WORDS APPRECIATED",
 		"messagePlaceholder": "Dear Sir, I have seen the machinery and wish to discuss it.",
-		"stampLines": [
-			"2¢",
-			"ELECTRONIC",
-			"POST"
-		],
+		"stampLines": ["2¢", "ELECTRONIC", "POST"],
 		"toLabel": "TO —",
-		"toLines": [
-			"Mr. J. Godoy, Engineer",
-			"The Daily Godoy, Bs. As."
-		],
+		"toLines": ["Mr. J. Godoy, Engineer", "The Daily Godoy, Bs. As."],
 		"fromLabel": "FROM — YOUR ELECTRONIC ADDRESS",
 		"emailPlaceholder": "name@domain.com",
 		"responseWindow": "RESPONSE WINDOW — 48 HOURS",
@@ -349,10 +332,7 @@
 			"wireDown": "THE WIRE IS DOWN — TRY AGAIN PRESENTLY"
 		},
 		"sent": {
-			"stampLines": [
-				"THE DAILY",
-				"GODOY"
-			],
+			"stampLines": ["THE DAILY", "GODOY"],
 			"stampMid": "DISPATCHED",
 			"stampDate": "AUG 25 · 1901",
 			"stampDateTemplate": "{month} {day} · {year}",
@@ -436,12 +416,7 @@
 		"byline": "FROM OUR ENGINEERING DESK — CONTINUED FROM PAGE ONE",
 		"chip": "ENGRAVING FORTHCOMING — DROP A SCREENSHOT OF THE MACHINERY",
 		"particularsTitle": "PARTICULARS.",
-		"particularsLabels": [
-			"ROLE",
-			"YEAR",
-			"COMPOSED",
-			"STATUS"
-		],
+		"particularsLabels": ["ROLE", "YEAR", "COMPOSED", "STATUS"],
 		"repoLink": "☞ INSPECT THE REPOSITORY",
 		"liveLink": "☞ VISIT THE MACHINERY",
 		"signature": "ED.",
@@ -474,10 +449,7 @@
 		},
 		"article": {
 			"kicker": "STOP PRESS — AN IRREGULARITY",
-			"headline": [
-				"PAGE",
-				"MISSING"
-			],
+			"headline": ["PAGE", "MISSING"],
 			"dek": "The page you sought has not been printed in this edition. The compositor has been questioned, the pressroom searched, and the ledger consulted twice. Enquiries continue.",
 			"byline": "FROM THE COMPOSING ROOM — {date}, LATE",
 			"body": [
@@ -571,5 +543,10 @@
 			"tagline": "Inland rate, two cents; replies at the editor’s expense",
 			"page": "BACK PAGE"
 		}
+	},
+	"columns": {
+		"reserved": "— THIS SPACE RESERVED —",
+		"title": "WATCH THIS SPACE",
+		"dek": "The columns are being set. First issue forthcoming."
 	}
 }

@@ -1,6 +1,7 @@
 ---
 import Appointments from '../components/Appointments.astro';
 import Classifieds from '../components/Classifieds.astro';
+import Columns from '../components/Columns.astro';
 import CustomCursor from '../components/CustomCursor.astro';
 import CvAd from '../components/CvAd.astro';
 import Finale from '../components/Finale.astro';
@@ -68,6 +69,13 @@ const sec = copy.sections;
 				page={sec.works.page}
 			/>
 			<Plates />
+			<RunningHead
+				section={sec.columns.section}
+				name={sec.columns.name}
+				tagline={sec.columns.tagline}
+				page={sec.columns.page}
+			/>
+			<Columns />
 			<RunningHead
 				section={sec.appointments.section}
 				name={sec.appointments.name}
