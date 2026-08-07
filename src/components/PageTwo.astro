@@ -1,10 +1,13 @@
 ---
+import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
 import { copy } from '../i18n/t';
 import PaperTextures from './paper/PaperTextures.astro';
 
 const p = copy.pageTwo;
 const series = copy.machinery.title;
+const figWidths = [560, 800, 1060, 1220];
+const figSizes = '(max-width: 1059.98px) 92vw, 1000px';
 const projects = (await getCollection('projects'))
 	.filter((project) => project.data.pageTwo)
 	.sort((a, b) => a.data.order - b.data.order);
@@ -14,6 +17,7 @@ const projects = (await getCollection('projects'))
 	projects.map((project) => {
 		const d = project.data;
 		const pt = d.pageTwo;
+		const cover = d.cover;
 		if (!pt) return null;
 		const kicker = p.seriesKicker
 			.replace('{n}', String(d.order))
@@ -60,8 +64,21 @@ const projects = (await getCollection('projects'))
 						<p class="dek">{pt.dek}</p>
 						<p class="byline">{p.byline}</p>
 						<figure>
-							<div class="fig">
-								<span class="chip">{p.chip}</span>
+							<div
+								class="fig"
+								style={cover && `--figAR:${cover.src.width}/${cover.src.height}`}
+							>
+								{cover ? (
+									<Image
+										class="cover"
+										src={cover.src}
+										alt={cover.alt}
+										widths={figWidths}
+										sizes={figSizes}
+									/>
+								) : (
+									<span class="chip">{p.chip}</span>
+								)}
 							</div>
 							<figcaption>
 								{pt.figCaption}
@@ -267,7 +284,7 @@ const projects = (await getCollection('projects'))
 	}
 
 	.fig {
-		aspect-ratio: 21 / 9;
+		aspect-ratio: var(--figAR, 21 / 9);
 		border: 1px solid rgba(28, 23, 16, 0.55);
 		box-shadow:
 			inset 0 0 0 3px var(--paper, #f2ead8),
@@ -280,6 +297,14 @@ const projects = (await getCollection('projects'))
 		background-size: 5px 5px;
 		display: grid;
 		place-items: center;
+	}
+
+	.cover {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		filter: sepia(0.08) contrast(1.02);
 	}
 
 	.chip {

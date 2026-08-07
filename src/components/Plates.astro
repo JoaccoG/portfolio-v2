@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
 import { copy } from '../i18n/t';
 
@@ -30,6 +31,8 @@ const plateKicker = (i: number, label: string, year: number) =>
 		.replace('{label}', label)
 		.replace('{year}', String(year));
 const plateLabel = (i: number) => m.plateLabel.replace('{roman}', romans[i]);
+const coverWidths = [420, 640, 780, 1120];
+const coverSizes = '(max-width: 767.98px) 92vw, 44vw';
 ---
 
 <section id="works" data-goto="works">
@@ -41,12 +44,26 @@ const plateLabel = (i: number) => m.plateLabel.replace('{roman}', romans[i]);
 	{
 		projects.map((project, i) => {
 			const imageLeft = i % 2 === 0;
+			const cover = project.data.cover;
 			const image = (
 				<div class="plate-img">
 					<div class="clip">
-						<div class="pframe">
+						<div
+							class="pframe"
+							style={cover && `--plateAR:${cover.src.width}/${cover.src.height}`}
+						>
 							<div class:list={['halftone', imageLeft ? 'zoom-r' : 'zoom-l']}>
-								<span class="chip">{m.chip}</span>
+								{cover ? (
+									<Image
+										class="cover"
+										src={cover.src}
+										alt={cover.alt}
+										widths={coverWidths}
+										sizes={coverSizes}
+									/>
+								) : (
+									<span class="chip">{m.chip}</span>
+								)}
 							</div>
 							{project.data.stamp && (
 								<span class="stamp" aria-hidden="true">
@@ -204,7 +221,7 @@ const plateLabel = (i: number) => m.plateLabel.replace('{roman}', romans[i]);
 
 	.pframe {
 		position: relative;
-		aspect-ratio: 16 / 10;
+		aspect-ratio: var(--plateAR, 16 / 10);
 		border: 1px solid rgba(28, 23, 16, 0.55);
 		box-shadow:
 			inset 0 0 0 3px var(--paper, #f2ead8),
@@ -237,6 +254,14 @@ const plateLabel = (i: number) => m.plateLabel.replace('{roman}', romans[i]);
 	article:hover,
 	article:focus-within {
 		--u: 1;
+	}
+
+	.cover {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		filter: sepia(0.08) contrast(1.02);
 	}
 
 	.chip {

@@ -9,6 +9,10 @@
 		"line": "IN DAILY SERVICE",
 		"sub": "WORKS INSPECTOR"
 	},
+	"cover": {
+		"src": "../../../assets/local-rules-cover.webp",
+		"alt": "The neural automaton mid-growth: a lit core spreading into a dense ring of cells against dark ground"
+	},
 	"pageTwo": {
 		"name": "Local Rules",
 		"headline": "CUT IT AND IT GROWS BACK.",
