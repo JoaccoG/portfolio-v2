@@ -25,7 +25,6 @@
 			"The last one was never programmed. It is a network of 8,336 numbers — 33 kilobytes, smaller than a screenshot of its own output — trained offline in PyTorch until a single lit pixel reliably grows into a butterfly. Drag the cursor through it and it does not restore a saved copy, because it doesn’t have one. Each surviving cell renegotiates with its neighbours, and the wing closes over the wound.",
 			"Every figure quoted above was measured on real hardware rather than estimated, and where the project’s own tables have no measurement they print a dash instead of a guess — a policy this newspaper warmly recommends to its competitors. — "
 		],
-		"note": "MIT-LICENSED — TAKE IT APART AS YOU LIKE.",
 		"particulars": {
 			"role": "Sole hand — engine, shaders, training, prose",
 			"year": 1926,
