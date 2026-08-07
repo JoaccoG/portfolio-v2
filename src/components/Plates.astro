@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
 import { copy } from '../i18n/t';
 
@@ -30,6 +31,8 @@ const plateKicker = (i: number, label: string, year: number) =>
 		.replace('{label}', label)
 		.replace('{year}', String(year));
 const plateLabel = (i: number) => m.plateLabel.replace('{roman}', romans[i]);
+const coverWidths = [420, 640, 780, 1120];
+const coverSizes = '(max-width: 767.98px) 92vw, 44vw';
 ---
 
 <section id="works" data-goto="works">
@@ -41,13 +44,33 @@ const plateLabel = (i: number) => m.plateLabel.replace('{roman}', romans[i]);
 	{
 		projects.map((project, i) => {
 			const imageLeft = i % 2 === 0;
+			const cover = project.data.cover;
 			const image = (
 				<div class="plate-img">
 					<div class="clip">
-						<div class="pframe">
-							<div class:list={['halftone', imageLeft ? 'zoom-r' : 'zoom-l']}>
-								<span class="chip">{m.chip}</span>
+						<div
+							class="pframe"
+							style={cover && `--plateAR:${cover.src.width}/${cover.src.height}`}
+						>
+							<div class="halftone">
+								{cover ? (
+									<Image
+										class="cover"
+										src={cover.src}
+										alt={cover.alt}
+										widths={coverWidths}
+										sizes={coverSizes}
+									/>
+								) : (
+									<span class="chip">{m.chip}</span>
+								)}
 							</div>
+							{project.data.stamp && (
+								<span class="stamp" aria-hidden="true">
+									<span class="stamp-line">{project.data.stamp.line}</span>
+									<span class="stamp-sub">{project.data.stamp.sub}</span>
+								</span>
+							)}
 						</div>
 					</div>
 					<span class:list={['label', imageLeft ? 'label-l' : 'label-r']}>
@@ -61,12 +84,11 @@ const plateLabel = (i: number) => m.plateLabel.replace('{roman}', romans[i]);
 						{plateKicker(i, project.data.kickerLabel, project.data.year)}
 					</p>
 					<h3>
-						<span class="tmask tm-1">
-							<span class="tline tl-1">{project.data.titleLines[0]}</span>
-						</span>
-						<span class="tmask tm-2">
-							<span class="tline tl-2">{project.data.titleLines[1]}</span>
-						</span>
+						{project.data.titleLines.map((line, li) => (
+							<span class:list={['tmask', `tm-${li + 1}`]}>
+								<span class:list={['tline', `tl-${li + 1}`]}>{line}</span>
+							</span>
+						))}
 					</h3>
 					<p class="dek">{project.data.dek}</p>
 					<p class="composed">{project.data.composedWith}</p>
@@ -198,7 +220,8 @@ const plateLabel = (i: number) => m.plateLabel.replace('{roman}', romans[i]);
 	}
 
 	.pframe {
-		aspect-ratio: 16 / 10;
+		position: relative;
+		aspect-ratio: var(--plateAR, 16 / 10);
 		border: 1px solid rgba(28, 23, 16, 0.55);
 		box-shadow:
 			inset 0 0 0 3px var(--paper, #f2ead8),
@@ -217,20 +240,19 @@ const plateLabel = (i: number) => m.plateLabel.replace('{roman}', romans[i]);
 		background-size: 5px 5px;
 		display: grid;
 		place-items: center;
-		transition: transform 0.9s cubic-bezier(0.19, 1, 0.22, 1);
-	}
-
-	article:hover .zoom-r {
-		transform: scale(1.04) rotate(0.4deg);
-	}
-
-	article:hover .zoom-l {
-		transform: scale(1.04) rotate(-0.4deg);
 	}
 
 	article:hover,
 	article:focus-within {
 		--u: 1;
+	}
+
+	.cover {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		filter: sepia(0.08) contrast(1.02);
 	}
 
 	.chip {
@@ -239,6 +261,48 @@ const plateLabel = (i: number) => m.plateLabel.replace('{roman}', romans[i]);
 		background: var(--paper, #f2ead8);
 		border: 1px solid rgba(28, 23, 16, 0.5);
 		padding: 0.5rem 0.8rem;
+	}
+
+	.stamp {
+		position: absolute;
+		right: 6%;
+		bottom: 8%;
+		z-index: 2;
+		pointer-events: none;
+		border: 3px solid var(--paper, #f2ead8);
+		color: var(--paper, #f2ead8);
+		padding: 0.6rem 1.15rem 0.5rem;
+		text-align: center;
+		opacity: 0.88;
+		transform: rotate(-6deg);
+		backdrop-filter: blur(8px);
+		-webkit-backdrop-filter: blur(8px);
+	}
+
+	.stamp::before {
+		content: '';
+		position: absolute;
+		inset: 4px;
+		border: 1px solid rgba(242, 234, 216, 0.55);
+	}
+
+	.stamp-line {
+		display: block;
+		font-family: var(--fHD, 'Abril Fatface'), Didot, serif;
+		font-size: clamp(0.78rem, 1.7vw, 1.2rem);
+		letter-spacing: 0.07em;
+		line-height: 1;
+		white-space: nowrap;
+	}
+
+	.stamp-sub {
+		display: block;
+		border-top: 1px solid rgba(242, 234, 216, 0.6);
+		margin-top: 0.34rem;
+		padding-top: 0.28rem;
+		font-size: clamp(0.44rem, 0.85vw, 0.54rem);
+		letter-spacing: 0.22em;
+		white-space: nowrap;
 	}
 
 	.label {
