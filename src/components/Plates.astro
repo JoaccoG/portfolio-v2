@@ -52,7 +52,7 @@ const coverSizes = '(max-width: 767.98px) 92vw, 44vw';
 							class="pframe"
 							style={cover && `--plateAR:${cover.src.width}/${cover.src.height}`}
 						>
-							<div class:list={['halftone', imageLeft ? 'zoom-r' : 'zoom-l']}>
+							<div class="halftone">
 								{cover ? (
 									<Image
 										class="cover"
@@ -240,15 +240,6 @@ const coverSizes = '(max-width: 767.98px) 92vw, 44vw';
 		background-size: 5px 5px;
 		display: grid;
 		place-items: center;
-		transition: transform 0.9s cubic-bezier(0.19, 1, 0.22, 1);
-	}
-
-	article:hover .zoom-r {
-		transform: scale(1.04) rotate(0.4deg);
-	}
-
-	article:hover .zoom-l {
-		transform: scale(1.04) rotate(-0.4deg);
 	}
 
 	article:hover,
