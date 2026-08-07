@@ -103,7 +103,7 @@ const coverSizes = '(max-width: 767.98px) 92vw, 44vw';
 								project.data.titleLines.join(' '),
 							)}
 						>
-							{m.fullAccount}
+							<span class="acc" aria-hidden="true">☞</span> {m.fullAccount}
 						</button>
 					) : (
 						<p class="follow">{m.accountFollow}</p>
@@ -400,15 +400,31 @@ const coverSizes = '(max-width: 767.98px) 92vw, 44vw';
 
 	.full-account {
 		margin: 0;
+		display: inline-block;
 		background: none;
-		border: none;
-		padding: 0;
-		text-align: left;
+		border: 1px solid var(--ink, #1c1710);
+		padding: 0.75rem 1.2rem;
+		text-align: center;
 		cursor: inherit;
-		font-size: 0.74rem;
-		letter-spacing: 0.2em;
-		color: var(--acc, #b4342a);
-		font-weight: 700;
+		color: var(--ink, #1c1710);
+		font-size: 0.64rem;
+		letter-spacing: 0.24em;
+		transition:
+			background 0.25s ease,
+			color 0.25s ease;
+	}
+
+	.full-account:hover {
+		background: var(--ink, #1c1710);
+		color: var(--paper, #f2ead8);
+	}
+
+	.full-account .acc {
+		transition: color 0.25s ease;
+	}
+
+	.full-account:hover .acc {
+		color: inherit;
 	}
 
 	.full-account::after {
