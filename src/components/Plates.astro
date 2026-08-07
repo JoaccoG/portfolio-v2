@@ -278,19 +278,21 @@ const coverSizes = '(max-width: 767.98px) 92vw, 44vw';
 		bottom: 8%;
 		z-index: 2;
 		pointer-events: none;
-		border: 3px solid var(--stamp-red, #a8352c);
-		color: var(--stamp-red, #a8352c);
+		border: 3px solid var(--paper, #f2ead8);
+		color: var(--paper, #f2ead8);
 		padding: 0.6rem 1.15rem 0.5rem;
 		text-align: center;
 		opacity: 0.88;
 		transform: rotate(-6deg);
+		backdrop-filter: blur(8px);
+		-webkit-backdrop-filter: blur(8px);
 	}
 
 	.stamp::before {
 		content: '';
 		position: absolute;
 		inset: 4px;
-		border: 1px solid rgba(168, 53, 44, 0.55);
+		border: 1px solid rgba(242, 234, 216, 0.55);
 	}
 
 	.stamp-line {
@@ -304,7 +306,7 @@ const coverSizes = '(max-width: 767.98px) 92vw, 44vw';
 
 	.stamp-sub {
 		display: block;
-		border-top: 1px solid rgba(168, 53, 44, 0.6);
+		border-top: 1px solid rgba(242, 234, 216, 0.6);
 		margin-top: 0.34rem;
 		padding-top: 0.28rem;
 		font-size: clamp(0.44rem, 0.85vw, 0.54rem);
