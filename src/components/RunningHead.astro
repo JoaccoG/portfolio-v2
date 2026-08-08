@@ -4,10 +4,11 @@ interface Props {
 	name: string;
 	tagline: string;
 	page: string;
+	pageNote?: string;
 	flush?: boolean;
 }
 
-const { section, name, tagline, page, flush = false } = Astro.props;
+const { section, name, tagline, page, pageNote, flush = false } = Astro.props;
 ---
 
 <div class:list={['running', { flush }]}>
@@ -16,7 +17,7 @@ const { section, name, tagline, page, flush = false } = Astro.props;
 		<span class="name">{name}</span>
 	</span>
 	<span class="tagline">{tagline}</span>
-	<span class="page">{page}</span>
+	<span class="page">{page}{pageNote && <span class="page-note">{pageNote}</span>}</span>
 </div>
 
 <style>
@@ -38,16 +39,19 @@ const { section, name, tagline, page, flush = false } = Astro.props;
 	}
 
 	.side {
+		grid-column: 1;
 		display: flex;
 		align-items: stretch;
 		min-width: 0;
 	}
 
 	.name {
-		display: flex;
-		align-items: center;
+		align-self: center;
+		min-width: 0;
 		padding-left: clamp(1rem, 2.4vw, 2.2rem);
 		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
 	}
 
 	.flag {
@@ -63,6 +67,7 @@ const { section, name, tagline, page, flush = false } = Astro.props;
 	}
 
 	.tagline {
+		grid-column: 2;
 		align-self: center;
 		justify-self: center;
 		padding: 0 1rem;
@@ -74,9 +79,21 @@ const { section, name, tagline, page, flush = false } = Astro.props;
 	}
 
 	.page {
+		grid-column: 3;
 		align-self: center;
 		justify-self: end;
 		padding-right: var(--pad-x, clamp(1rem, 3.6vw, 3.6rem));
 		white-space: nowrap;
+	}
+
+	@media (max-width: 767.98px) {
+		.running {
+			grid-template-columns: minmax(0, auto) 0 1fr;
+		}
+
+		.tagline,
+		.page-note {
+			display: none;
+		}
 	}
 </style>

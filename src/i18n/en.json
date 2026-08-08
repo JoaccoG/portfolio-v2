@@ -523,7 +523,8 @@
 			"section": "SECTION C",
 			"name": "THE WORKS",
 			"tagline": "Assembled on the premises",
-			"page": "PAGE 3, CONTINUED OVERLEAF"
+			"page": "PAGE 3",
+			"pageNote": ", CONTINUED OVERLEAF"
 		},
 		"columns": {
 			"section": "SECTION D",
