@@ -4,12 +4,13 @@ interface Props {
 	name: string;
 	tagline: string;
 	page: string;
+	flush?: boolean;
 }
 
-const { section, name, tagline, page } = Astro.props;
+const { section, name, tagline, page, flush = false } = Astro.props;
 ---
 
-<div class="running">
+<div class:list={['running', { flush }]}>
 	<span class="side">
 		<span class="flag">{section}</span>
 		<span class="name">{name}</span>
@@ -30,6 +31,10 @@ const { section, name, tagline, page } = Astro.props;
 			calc(var(--pad-x, clamp(1rem, 3.6vw, 3.6rem)) * -1) 0;
 		font-size: clamp(0.5rem, 0.82vw, 0.62rem);
 		letter-spacing: 0.22em;
+	}
+
+	.flush {
+		margin: 0;
 	}
 
 	.side {
