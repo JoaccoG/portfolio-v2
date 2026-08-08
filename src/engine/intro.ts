@@ -16,6 +16,7 @@ export function initIntro(hooks: IntroHooks = {}): void {
 		sv('--preO', '0');
 		sv('--prePE', 'none');
 		sv('--intro', '1');
+		delete doc.dataset.intro;
 		sv('--mh', '1');
 		doc.style.overflow = '';
 		restoreCursorInk();

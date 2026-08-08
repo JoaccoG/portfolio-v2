@@ -1,34 +1,45 @@
 ---
 import { copy } from '../i18n/t';
+import RunningHead from './RunningHead.astro';
 
 const p = copy.profile;
+const r = copy.sections.profile;
 const numerals = ['I', 'II', 'III', 'IV'];
 ---
 
 <section id="profile" data-sec="profile" data-goto="profile">
 	<div class="board" data-board>
-		<div class="head">
-			<p class="head-kicker">{p.kicker}</p>
-			<h2 class="head-title">{p.title}</h2>
-		</div>
-		<div class="ghosts" aria-hidden="true">
-			{numerals.map((n, i) => <span class:list={['ghost', `ghost-${i}`]}>{n}</span>)}
-		</div>
-		<div class="text-block">
-			{
-				p.parts.map((part, i) => (
-					<article class:list={[`part-${i}`]}>
-						<p class="part-kicker">{part.kicker}</p>
-						<h3>{part.title}</h3>
-						<p class="part-body">{part.body}</p>
-						{'tight' in part && <p class="part-tight">{part.tight}</p>}
-						<p class="part-footer">{part.footer}</p>
-					</article>
-				))
-			}
-		</div>
-		<div class="ticks" aria-hidden="true">
-			{numerals.map((_, i) => <span class:list={['tick', `tick-${i}`]} />)}
+		<RunningHead
+			section={r.section}
+			name={r.name}
+			tagline={r.tagline}
+			page={r.page}
+			flush
+		/>
+		<div class="stage">
+			<div class="head">
+				<p class="head-kicker">{p.kicker}</p>
+				<h2 class="head-title">{p.title}</h2>
+			</div>
+			<div class="ghosts" aria-hidden="true">
+				{numerals.map((n, i) => <span class:list={['ghost', `ghost-${i}`]}>{n}</span>)}
+			</div>
+			<div class="text-block">
+				{
+					p.parts.map((part, i) => (
+						<article class:list={[`part-${i}`]}>
+							<p class="part-kicker">{part.kicker}</p>
+							<h3>{part.title}</h3>
+							<p class="part-body">{part.body}</p>
+							{'tight' in part && <p class="part-tight">{part.tight}</p>}
+							<p class="part-footer">{part.footer}</p>
+						</article>
+					))
+				}
+			</div>
+			<div class="ticks" aria-hidden="true">
+				{numerals.map((_, i) => <span class:list={['tick', `tick-${i}`]} />)}
+			</div>
 		</div>
 	</div>
 </section>
@@ -37,17 +48,23 @@ const numerals = ['I', 'II', 'III', 'IV'];
 	section {
 		height: 380vh;
 		position: relative;
-		margin: clamp(1rem, 3vw, 2rem)
+		margin: 0
 			calc(var(--pad-x, clamp(1rem, 3.6vw, 3.6rem)) * -1) 0;
-		border-top: 1px solid rgba(28, 23, 16, 0.45);
 	}
 
 	.board {
-		position: relative;
+		display: flex;
+		flex-direction: column;
 		height: 100vh;
 		overflow: hidden;
 		transform: translateY(calc(var(--pin, 0) * 1px));
 		will-change: transform;
+	}
+
+	.stage {
+		position: relative;
+		flex: 1;
+		min-height: 0;
 	}
 
 	.head {

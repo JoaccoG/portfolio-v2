@@ -1,0 +1,55 @@
+---
+import { copy } from '../i18n/t';
+
+const c = copy.columns;
+---
+
+<section id="columns" data-goto="columns">
+	<div class="reserve" data-rv="1">
+		<p class="kicker">{c.reserved}</p>
+		<p class="title">{c.title}<span class="acc">.</span></p>
+		<p class="dek">{c.dek}</p>
+	</div>
+</section>
+
+<style>
+	section {
+		padding: clamp(1rem, 2.4vw, 1.6rem) 0 clamp(2.4rem, 6vw, 4rem);
+	}
+
+	.reserve {
+		border: 3px double rgba(28, 23, 16, 0.55);
+		padding: clamp(2.6rem, 8vw, 5.4rem) clamp(1.2rem, 4vw, 3rem);
+		text-align: center;
+		opacity: var(--rv, 1);
+		transition: opacity 0.9s ease;
+	}
+
+	.kicker {
+		margin: 0 0 0.9rem;
+		font-size: 0.64rem;
+		letter-spacing: 0.3em;
+		color: var(--acc, #b4342a);
+		font-weight: 700;
+	}
+
+	.title {
+		margin: 0;
+		font-family: var(--fHD, 'Abril Fatface'), Didot, serif;
+		font-weight: 620;
+		font-size: clamp(2rem, 8vw, 5.6rem);
+		line-height: 1;
+		text-transform: uppercase;
+	}
+
+	.acc {
+		color: var(--acc, #b4342a);
+	}
+
+	.dek {
+		margin: 1.1rem 0 0;
+		font-size: 0.66rem;
+		letter-spacing: 0.24em;
+		font-style: italic;
+	}
+</style>

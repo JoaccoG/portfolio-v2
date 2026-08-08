@@ -1,0 +1,99 @@
+---
+interface Props {
+	section: string;
+	name: string;
+	tagline: string;
+	page: string;
+	pageNote?: string;
+	flush?: boolean;
+}
+
+const { section, name, tagline, page, pageNote, flush = false } = Astro.props;
+---
+
+<div class:list={['running', { flush }]}>
+	<span class="side">
+		<span class="flag">{section}</span>
+		<span class="name">{name}</span>
+	</span>
+	<span class="tagline">{tagline}</span>
+	<span class="page">{page}{pageNote && <span class="page-note">{pageNote}</span>}</span>
+</div>
+
+<style>
+	.running {
+		display: grid;
+		grid-template-columns: 1fr auto 1fr;
+		align-items: stretch;
+		background: rgba(241, 231, 209, 0.8);
+		border-top: 1px solid rgba(28, 23, 16, 0.75);
+		border-bottom: 3px double rgba(28, 23, 16, 0.75);
+		margin: clamp(2.4rem, 6vw, 4rem)
+			calc(var(--pad-x, clamp(1rem, 3.6vw, 3.6rem)) * -1) 0;
+		font-size: clamp(0.5rem, 0.82vw, 0.62rem);
+		letter-spacing: 0.22em;
+	}
+
+	.flush {
+		margin: 0;
+	}
+
+	.side {
+		grid-column: 1;
+		display: flex;
+		align-items: stretch;
+		min-width: 0;
+	}
+
+	.name {
+		align-self: center;
+		min-width: 0;
+		padding-left: clamp(1rem, 2.4vw, 2.2rem);
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+
+	.flag {
+		background: var(--ink, #1c1710);
+		color: var(--paper, #f2ead8);
+		font-family: var(--fHD, 'Abril Fatface'), Didot, serif;
+		font-size: clamp(0.85rem, 1.5vw, 1.15rem);
+		letter-spacing: 0.04em;
+		padding: 0.5rem var(--pad-x, clamp(1rem, 3.6vw, 3.6rem));
+		display: flex;
+		align-items: center;
+		white-space: nowrap;
+	}
+
+	.tagline {
+		grid-column: 2;
+		align-self: center;
+		justify-self: center;
+		padding: 0 1rem;
+		font-style: italic;
+		letter-spacing: 0.04em;
+		opacity: 0.72;
+		text-align: center;
+		white-space: nowrap;
+	}
+
+	.page {
+		grid-column: 3;
+		align-self: center;
+		justify-self: end;
+		padding-right: var(--pad-x, clamp(1rem, 3.6vw, 3.6rem));
+		white-space: nowrap;
+	}
+
+	@media (max-width: 767.98px) {
+		.running {
+			grid-template-columns: minmax(0, auto) 0 1fr;
+		}
+
+		.tagline,
+		.page-note {
+			display: none;
+		}
+	}
+</style>
