@@ -87,7 +87,7 @@ export function initEngine(): { measure: () => void } | undefined {
 		requestAnimationFrame(loop);
 		const max = Math.max(1, doc.scrollHeight - innerHeight);
 		const target = Math.min(max, Math.max(0, window.scrollY || doc.scrollTop));
-		s += (target - s) * (rm ? 1 : 0.095);
+		s += (target - s) * (rm ? 1 : 0.25);
 		if (Math.abs(target - s) < 0.05) s = target;
 		sv('--pg', String(Math.round((target / max) * 1000) / 1000));
 		const vars = frameVars(s, measures);
