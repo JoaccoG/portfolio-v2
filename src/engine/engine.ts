@@ -83,18 +83,12 @@ export function initEngine(): { measure: () => void } | undefined {
 		if (fin) measures.finTop = docTop(fin);
 	};
 	let s = Math.max(0, window.scrollY || doc.scrollTop || 0);
-	let vk = 0;
 	const loop = () => {
 		requestAnimationFrame(loop);
 		const max = Math.max(1, doc.scrollHeight - innerHeight);
 		const target = Math.min(max, Math.max(0, window.scrollY || doc.scrollTop));
-		const prev = s;
 		s += (target - s) * (rm ? 1 : 0.095);
 		if (Math.abs(target - s) < 0.05) s = target;
-		const vkTarget = rm ? 0 : Math.max(-1.2, Math.min(1.2, (s - prev) * 0.012));
-		vk += (vkTarget - vk) * 0.12;
-		if (Math.abs(vk) < 0.002) vk = 0;
-		sv('--vk', String(Math.round(vk * 100) / 100));
 		sv('--pg', String(Math.round((target / max) * 1000) / 1000));
 		const vars = frameVars(s, measures);
 		for (const k in vars) {
