@@ -44,8 +44,8 @@ const projects = (await getCollection('projects'))
 				inert
 				data-page-two={project.id}
 			>
-				<div class="p2sheet" lang="en">
-					<PaperTextures />
+				<div class="p2sheet papered" lang="en">
+					<PaperTextures vignetteOnly />
 					<div class="content">
 						<p class="ghost" aria-hidden="true">
 							{p.ghost}
@@ -161,13 +161,6 @@ const projects = (await getCollection('projects'))
 	.p2sheet {
 		max-width: 1060px;
 		margin: clamp(1rem, 4vh, 3rem) auto;
-		background: linear-gradient(
-			165deg,
-			#f3ecda 0%,
-			#f0e6d0 38%,
-			#f2ead8 62%,
-			#eee3cc 100%
-		);
 		color: var(--ink, #1c1710);
 		position: relative;
 		box-shadow: 0 34px 90px rgba(0, 0, 0, 0.65);
