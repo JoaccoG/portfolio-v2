@@ -65,6 +65,9 @@ const { torn = false, mottleSeed = 7 } = Astro.props;
 			rotate(calc((1 - var(--intro, 1)) * -6.5deg))
 			scale(calc(0.64 + var(--intro, 1) * 0.36));
 		transform-origin: 50% 14%;
+	}
+
+	:global(html[data-intro='play']) .stack {
 		will-change: transform;
 	}
 
