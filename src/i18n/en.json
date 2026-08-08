@@ -205,7 +205,7 @@
 		"plateKicker": "No. {n} — {label} · {year}",
 		"plateLabel": "PLATE No. {roman}",
 		"chip": "ENGRAVING FORTHCOMING — DROP SCREENSHOT",
-		"fullAccount": "FULL ACCOUNT ON PAGE TWO",
+		"fullAccount": "FULL ACCOUNT ON PAGE THREE",
 		"fullAccountAria": "Open the full account of {title}",
 		"accountFollow": "Account to follow in a future edition.",
 		"subtitleSingular": "{count} ACCOUNT, CONTINUED OVERLEAF"
@@ -407,10 +407,10 @@
 		]
 	},
 	"pageTwo": {
-		"ariaLabel": "Page two: {name}",
-		"header": "THE DAILY GODOY — PAGE TWO",
+		"ariaLabel": "Page three: {name}",
+		"header": "THE DAILY GODOY — PAGE THREE",
 		"return": "☜ RETURN TO FRONT PAGE",
-		"ghost": "Page Two",
+		"ghost": "Page Three",
 		"seriesKicker": "No. {n} IN THE SERIES — {series} · {year} ",
 		"readAs": "(read: {real})",
 		"byline": "FROM OUR ENGINEERING DESK — CONTINUED FROM PAGE ONE",
