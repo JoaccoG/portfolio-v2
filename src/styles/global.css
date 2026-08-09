@@ -103,3 +103,103 @@ select {
 	background-repeat: repeat, repeat, repeat, no-repeat;
 	background-blend-mode: multiply, multiply, multiply, normal;
 }
+
+@media print {
+	.pre,
+	.cur-dot,
+	.cur-ring,
+	.ticker,
+	.progress,
+	.music-btn,
+	.full-account,
+	[data-page-two],
+	.spacer,
+	.under,
+	.shadow-wide,
+	.shadow-tight,
+	.blob,
+	.ghosts,
+	.ticks {
+		display: none !important;
+	}
+
+	body {
+		background: #fff !important;
+	}
+
+	.viewport {
+		position: static !important;
+		overflow: visible !important;
+	}
+
+	.frame {
+		transform: none !important;
+		padding: 0 !important;
+	}
+
+	.stack {
+		width: 100% !important;
+		transform: none !important;
+	}
+
+	.sheet,
+	.deckle {
+		mask: none !important;
+		-webkit-mask: none !important;
+		box-shadow: none !important;
+	}
+
+	.sheet {
+		background: #fff !important;
+	}
+
+	[data-sec="profile"] {
+		height: auto !important;
+		margin: 0 !important;
+	}
+
+	[data-sec="profile"] .board {
+		display: block !important;
+		height: auto !important;
+		overflow: visible !important;
+		transform: none !important;
+	}
+
+	[data-sec="profile"] .stage,
+	[data-sec="profile"] .head,
+	[data-sec="profile"] .text-block,
+	[data-sec="profile"] .text-block article {
+		position: static !important;
+		opacity: 1 !important;
+		transform: none !important;
+	}
+
+	[data-sec="profile"] .text-block {
+		height: auto !important;
+	}
+
+	[data-sec="profile"] .text-block article {
+		margin: 1.6rem auto;
+		max-width: 34rem;
+		break-inside: avoid;
+	}
+
+	.running {
+		break-after: avoid;
+	}
+
+	#works article,
+	.card,
+	.plate-img {
+		break-inside: avoid;
+	}
+
+	[data-sec="finale"] * {
+		opacity: 1 !important;
+		transform: none !important;
+	}
+
+	a {
+		color: inherit;
+	}
+}
