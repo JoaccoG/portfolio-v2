@@ -11,10 +11,10 @@
 	--acc: #b4342a;
 	--stamp-red: #a8352c;
 	--pencil: #2f4f7a;
-	--fNP: "UnifrakturMaguntia", "Bodoni MT", Didot, serif;
-	--fHD: "Abril Fatface", Didot, serif;
-	--fBD: "Old Standard TT", Georgia, serif;
-	--fPen: "Caveat", cursive;
+	--fNP: "TDG Ornaments", "UnifrakturMaguntia", "Bodoni MT", Didot, serif;
+	--fHD: "TDG Ornaments", "Abril Fatface", Didot, serif;
+	--fBD: "TDG Ornaments", "Old Standard TT", Georgia, serif;
+	--fPen: "TDG Ornaments", "Caveat", cursive;
 	--sheet-w: min(96.5vw, 1560px);
 	--pad-x: clamp(1rem, 3.6vw, 3.6rem);
 }
