@@ -1,4 +1,4 @@
-import { RESEND_API_KEY } from 'astro:env/server';
+import { RESEND_API_KEY, RESEND_FROM } from 'astro:env/server';
 import type { APIRoute } from 'astro';
 import { buildTelegramHtml } from '../../server/telegram-template';
 
@@ -76,7 +76,7 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
 			'Content-Type': 'application/json',
 		},
 		body: JSON.stringify({
-			from: 'The Daily Godoy <onboarding@resend.dev>',
+			from: RESEND_FROM,
 			to: [EDITOR],
 			reply_to: email,
 			subject: 'Telegram to the Editor — The Daily Godoy',

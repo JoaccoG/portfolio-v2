@@ -13,6 +13,11 @@ export default defineConfig({
 				context: 'server',
 				access: 'secret',
 			}),
+			RESEND_FROM: envField.string({
+				context: 'server',
+				access: 'secret',
+				default: 'The Daily Godoy <onboarding@resend.dev>',
+			}),
 		},
 	},
 });
