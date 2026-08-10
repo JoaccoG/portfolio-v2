@@ -105,6 +105,30 @@ select {
 }
 
 @media print {
+	* {
+		-webkit-print-color-adjust: exact !important;
+		print-color-adjust: exact !important;
+	}
+
+	:root {
+		--mh: 1 !important;
+		--intro: 1 !important;
+		--hp: 0 !important;
+		--fp: 1 !important;
+		--pc0: 1 !important;
+		--pc1: 1 !important;
+		--pc2: 1 !important;
+		--pc3: 1 !important;
+	}
+
+	[data-rv] {
+		--rv: 1 !important;
+	}
+
+	.skip-link {
+		display: none !important;
+	}
+
 	.pre,
 	.cur-dot,
 	.cur-ring,
@@ -123,6 +147,7 @@ select {
 		display: none !important;
 	}
 
+	html,
 	body {
 		background: #fff !important;
 	}
