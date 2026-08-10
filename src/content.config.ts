@@ -1,6 +1,7 @@
 import { defineCollection } from 'astro:content';
 import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
+import en from './i18n/en.json';
 
 const projects = defineCollection({
 	loader: glob({ pattern: '*.json', base: './src/content/projects/en' }),
@@ -36,4 +37,18 @@ const projects = defineCollection({
 		}),
 });
 
-export const collections = { projects };
+const headings = Object.keys(en.columns.headings) as [string, ...string[]];
+
+const columns = defineCollection({
+	loader: glob({ pattern: '*.mdx', base: './src/content/columns/en' }),
+	schema: z.object({
+		title: z.string(),
+		dek: z.string(),
+		heading: z.enum(headings),
+		pubDate: z.coerce.date(),
+		signoff: z.string(),
+		draft: z.boolean().default(false),
+	}),
+});
+
+export const collections = { projects, columns };

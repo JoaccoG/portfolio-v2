@@ -548,6 +548,26 @@
 	"columns": {
 		"reserved": "— THIS SPACE RESERVED —",
 		"title": "WATCH THIS SPACE",
-		"dek": "The columns are being set. First issue forthcoming."
+		"dek": "The columns are being set. First issue forthcoming.",
+		"headings": {
+			"thinking-machine": "THE THINKING MACHINE",
+			"software": "SOFTWARE",
+			"books": "BOOKS",
+			"off-the-clock": "OFF THE CLOCK"
+		},
+		"count": {
+			"one": "{n} COLUMN",
+			"many": "{n} COLUMNS"
+		},
+		"reading": {
+			"one": "{n} MINUTE’S READING",
+			"many": "{n} MINUTES’ READING"
+		},
+		"words": "{n} WORDS",
+		"figure": {
+			"engraving": "ENGRAVING FORTHCOMING",
+			"photograph": "PHOTOGRAPH FORTHCOMING",
+			"expand": "Expand the plate: {caption}"
+		}
 	}
 }
