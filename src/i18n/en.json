@@ -563,11 +563,31 @@
 			"one": "{n} MINUTE’S READING",
 			"many": "{n} MINUTES’ READING"
 		},
+		"readingShort": {
+			"one": "{n} MINUTE",
+			"many": "{n} MINUTES"
+		},
 		"words": "{n} WORDS",
 		"figure": {
 			"engraving": "ENGRAVING FORTHCOMING",
 			"photograph": "PHOTOGRAPH FORTHCOMING",
 			"expand": "Expand the plate: {caption}"
-		}
+		},
+		"head": {
+			"paper": "THE DAILY GODOY",
+			"nameplate": "The Daily Godoy"
+		},
+		"feed": {
+			"docTitle": "The Columns — The Daily Godoy",
+			"description": "The Columns of The Daily Godoy: a standing column by Joaquín Godoy on the trade, the thinking machine, the reading room, and whatever else the week produced.",
+			"headline": "THE COLUMNS",
+			"dek": "A standing column on the trade, the thinking machine, the reading room, and whatever else the week produced.",
+			"filterLabel": "SET UNDER THESE HEADINGS",
+			"filterAria": "Set the columns under a heading",
+			"all": "ALL COLUMNS",
+			"tally": "{count} TO DATE",
+			"empty": "Nothing has been set under that heading yet."
+		},
+		"footer": "THE COLUMNS APPEAR WHEN THEY APPEAR"
 	}
 }
