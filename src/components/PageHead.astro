@@ -8,6 +8,7 @@ interface Props {
 	page: string;
 	nameplate: string;
 	headline: string;
+	dek?: string;
 	titleTag?: 'h1' | 'p';
 }
 
@@ -18,6 +19,7 @@ const {
 	page,
 	nameplate,
 	headline,
+	dek,
 	titleTag = 'h1',
 } = Astro.props;
 
@@ -37,6 +39,7 @@ const Title = titleTag;
 		><span class="fleuron" aria-hidden="true">✦</span>
 	</p>
 	<Title class="headline">{headline}<span class="acc">.</span></Title>
+	{dek && <p class="dek">{dek}</p>}
 </header>
 
 <style>
@@ -102,6 +105,17 @@ const Title = titleTag;
 
 	.acc {
 		color: var(--acc, #b4342a);
+	}
+
+	.dek {
+		margin: 0.7rem auto 0;
+		max-width: 40rem;
+		font-style: italic;
+		font-size: clamp(0.92rem, 1.6vw, 1.1rem);
+		line-height: 1.5;
+		color: var(--ink-soft, #3a3222);
+		text-wrap: pretty;
+		animation: riseIn 0.9s cubic-bezier(0.19, 1, 0.22, 1) 0.4s both;
 	}
 
 
