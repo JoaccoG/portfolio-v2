@@ -36,9 +36,20 @@ export const numberWord = (n: number): string =>
 export const countLabel = (n: number): string =>
 	(n === 1 ? c.count.one : c.count.many).replace('{n}', numberWord(n));
 
+const minutesOf = (words: number): number =>
+	Math.max(1, Math.round(words / WPM));
+
 export const readingLabel = (words: number): string => {
-	const minutes = Math.max(1, Math.round(words / WPM));
+	const minutes = minutesOf(words);
 	return (minutes === 1 ? c.reading.one : c.reading.many).replace(
+		'{n}',
+		numberWord(minutes),
+	);
+};
+
+export const readingShortLabel = (words: number): string => {
+	const minutes = minutesOf(words);
+	return (minutes === 1 ? c.readingShort.one : c.readingShort.many).replace(
 		'{n}',
 		numberWord(minutes),
 	);
