@@ -1,0 +1,155 @@
+---
+import { copy } from '../../i18n/t';
+
+const w = copy.columns.wire;
+const t = copy.telegrams;
+---
+
+<div class="wrap">
+	<div class="wire" data-rv="1">
+		<p class="kicker">{w.kicker}</p>
+		<p class="title">{w.title}</p>
+		<form novalidate data-wire>
+			<input
+				name="email"
+				type="email"
+				autocomplete="email"
+				maxlength="200"
+				aria-label={w.emailAria}
+				placeholder={t.emailPlaceholder}
+			/>
+			<input
+				class="trap"
+				type="text"
+				name="wire"
+				tabindex="-1"
+				autocomplete="off"
+				aria-hidden="true"
+			/>
+			<button type="submit" data-cur="1" data-wire-submit>{w.submit}</button>
+		</form>
+		<p class="postmaster" role="alert" data-wire-error hidden></p>
+		<p class="note" data-wire-note>{w.note}</p>
+	</div>
+</div>
+
+<style>
+	.wrap {
+		display: flex;
+		justify-content: center;
+		padding: clamp(2rem, 4vw, 3rem) 0 0;
+	}
+
+	.wire {
+		width: min(100%, 30rem);
+		border: 1px solid rgba(28, 23, 16, 0.6);
+		box-shadow:
+			inset 0 0 0 3px var(--paper, #f2ead8),
+			inset 0 0 0 4px rgba(28, 23, 16, 0.5);
+		background: var(--paper, #f2ead8);
+		padding: 1.1rem 1.3rem 1.2rem;
+		opacity: var(--rv, 1);
+		transition: opacity 0.9s ease;
+	}
+
+	.kicker {
+		margin: 0 0 0.2rem;
+		text-align: center;
+		font-size: 0.54rem;
+		letter-spacing: 0.28em;
+		color: var(--acc, #b4342a);
+		font-weight: 700;
+	}
+
+	.title {
+		margin: 0 0 0.9rem;
+		text-align: center;
+		font-family: var(--fHD, 'Abril Fatface'), Didot, serif;
+		font-size: 1.25rem;
+		line-height: 1.2;
+	}
+
+	form {
+		display: flex;
+		gap: 0.7rem;
+		flex-wrap: wrap;
+		align-items: flex-end;
+	}
+
+	input[type='email'] {
+		flex: 1;
+		min-width: 11rem;
+		background: none;
+		border: none;
+		border-bottom: 1px dotted rgba(28, 23, 16, 0.6);
+		outline: none;
+		border-radius: 0;
+		padding: 0.25rem 0;
+		font-style: italic;
+		font-size: 0.95rem;
+		cursor: text;
+		transition: border-color 0.18s ease;
+	}
+
+	input[type='email']:hover {
+		border-bottom-color: var(--acc, #b4342a);
+	}
+
+	input[type='email']:focus {
+		border-bottom: 1px solid var(--acc, #b4342a);
+	}
+
+	input:-webkit-autofill,
+	input:-webkit-autofill:hover,
+	input:-webkit-autofill:focus {
+		-webkit-box-shadow: inset 0 0 0 1000px var(--paper, #f2ead8);
+		-webkit-text-fill-color: var(--ink, #1c1710);
+		caret-color: var(--ink, #1c1710);
+	}
+
+	.trap {
+		position: absolute;
+		left: -9999px;
+		width: 1px;
+		height: 1px;
+		opacity: 0;
+		pointer-events: none;
+	}
+
+	button {
+		background: none;
+		border: 1px solid rgba(28, 23, 16, 0.6);
+		padding: 0.48rem 0.9rem;
+		font-size: 0.58rem;
+		letter-spacing: 0.22em;
+		transition:
+			background 0.3s ease,
+			color 0.3s ease;
+	}
+
+	button:hover {
+		background: var(--ink, #1c1710);
+		color: var(--paper, #f2ead8);
+	}
+
+	button:disabled {
+		opacity: 0.7;
+	}
+
+	.postmaster {
+		margin: 0.7rem 0 0;
+		text-align: center;
+		font-size: 0.6rem;
+		letter-spacing: 0.22em;
+		color: var(--acc, #b4342a);
+		font-weight: 700;
+	}
+
+	.note {
+		margin: 0.7rem 0 0;
+		text-align: center;
+		font-style: italic;
+		font-size: 0.78rem;
+		opacity: 0.7;
+	}
+</style>
