@@ -1,0 +1,46 @@
+---
+import CustomCursor from '../../components/CustomCursor.astro';
+import Feed from '../../components/columns/Feed.astro';
+import Footer from '../../components/columns/Footer.astro';
+import PageHead from '../../components/PageHead.astro';
+import Sheet from '../../components/paper/Sheet.astro';
+import { copy } from '../../i18n/t';
+import Base from '../../layouts/Base.astro';
+
+const f = copy.columns.feed;
+const h = copy.columns.head;
+const s = copy.sections.columns;
+---
+
+<Base title={f.docTitle} description={f.description}>
+	<CustomCursor />
+	<main id="main-content">
+		<Sheet>
+			<PageHead
+				section={s.section}
+				paper={h.paper}
+				tagline={s.tagline}
+				page={s.page}
+				nameplate={h.nameplate}
+				headline={f.headline}
+				dek={f.dek}
+			/>
+			<Feed />
+			<Footer />
+		</Sheet>
+	</main>
+</Base>
+
+<script>
+	import { initCursor } from '../../engine/cursor';
+	import { initEngine } from '../../engine/engine';
+	import { initFeed } from '../../engine/feed';
+	import { initNativeEngine } from '../../engine/native';
+	import { initReveals } from '../../engine/reveal';
+
+	if (matchMedia('(pointer: coarse)').matches) initNativeEngine();
+	else initEngine();
+	initReveals();
+	initCursor();
+	initFeed();
+</script>
