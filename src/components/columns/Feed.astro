@@ -1,0 +1,289 @@
+---
+import { copy } from '../../i18n/t';
+import {
+	countLabel,
+	editionYear,
+	getColumns,
+	headingLabel,
+	numeralOf,
+	readingShortLabel,
+	shortDate,
+	wordCount,
+} from '../../lib/columns';
+
+const f = copy.columns.feed;
+const columns = await getColumns();
+const total = columns.length;
+const headings = [...new Set(columns.map((column) => column.data.heading))];
+const rows = columns.map((column, i) => ({
+	id: column.id,
+	numeral: numeralOf(i, total),
+	title: column.data.title,
+	dek: column.data.dek,
+	date: shortDate(column.data.pubDate),
+	reading: readingShortLabel(wordCount(column)),
+	heading: column.data.heading,
+	headingLabel: headingLabel(column.data.heading),
+	year: editionYear(column.data.pubDate),
+}));
+const years = [...new Set(rows.map((row) => row.year))];
+const inYear = (year: string) => rows.filter((row) => row.year === year);
+---
+
+<section class="feed">
+	<div class="filters">
+		<div class="filters-row">
+			<p class="filters-label">{f.filterLabel}</p>
+			<p class="tally">{f.tally.replace('{count}', countLabel(total))}</p>
+		</div>
+		<div class="chips" role="group" aria-label={f.filterAria} data-chips>
+			<button
+				type="button"
+				class="chip"
+				aria-pressed="true"
+				data-heading=""
+				data-cur="1">{f.all}</button
+			>
+			{
+				headings.map((heading) => (
+					<button
+						type="button"
+						class="chip"
+						aria-pressed="false"
+						data-heading={heading}
+						data-cur="1"
+					>
+						{headingLabel(heading)}
+					</button>
+				))
+			}
+		</div>
+	</div>
+	<div
+		class="list"
+		data-list
+		data-count-one={copy.columns.count.one}
+		data-count-many={copy.columns.count.many}
+		data-words={JSON.stringify(copy.machinery.numberWords)}
+	>
+		{
+			years.map((year) => (
+				<>
+					<div class="year" data-year-head={year} data-rv="1">
+						<span class="year-num">{year}</span>
+						<span class="year-rule" aria-hidden="true" />
+						<span class="year-count" data-year-count>
+							{countLabel(inYear(year).length)}
+						</span>
+					</div>
+					{inYear(year).map((row) => (
+						<a
+							class="row"
+							href={`/columns/${row.id}`}
+							data-row
+							data-year={year}
+							data-heading={row.heading}
+							data-cur="1"
+							data-rv="1"
+						>
+							<span class="num">{row.numeral}</span>
+							<span class="text">
+								<span class="title">{row.title}</span>
+								<span class="dek">{row.dek}</span>
+							</span>
+							<span class="meta">
+								<span>{row.date}</span>
+								<span>{row.reading}</span>
+								<span class="topic">{row.headingLabel}</span>
+							</span>
+						</a>
+					))}
+				</>
+			))
+		}
+		<p class="empty" data-empty hidden>{f.empty}</p>
+	</div>
+</section>
+
+<style>
+	.feed {
+		--rowG: 3.6rem minmax(0, 1fr) 10rem;
+		--metaAlign: right;
+	}
+
+	.filters {
+		padding-top: clamp(0.9rem, 2vw, 1.3rem);
+	}
+
+	.filters-row {
+		display: flex;
+		align-items: baseline;
+		justify-content: space-between;
+		gap: 0.8rem 1.4rem;
+		flex-wrap: wrap;
+	}
+
+	.filters-label {
+		margin: 0;
+		font-size: 0.56rem;
+		letter-spacing: 0.28em;
+		font-weight: 700;
+	}
+
+	.tally {
+		margin: 0;
+		font-size: 0.56rem;
+		letter-spacing: 0.2em;
+		opacity: 0.7;
+	}
+
+	.chips {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.4rem;
+		padding-top: 0.7rem;
+	}
+
+	.chip {
+		background: transparent;
+		border: 1px solid rgba(28, 23, 16, 0.45);
+		padding: 0.34rem 0.7rem;
+		font-size: 0.56rem;
+		letter-spacing: 0.18em;
+		transition:
+			background 0.25s ease,
+			color 0.25s ease,
+			border-color 0.25s ease;
+	}
+
+	.chip:hover {
+		border-color: var(--acc, #b4342a);
+	}
+
+	.chip[aria-pressed='true'] {
+		background: var(--ink, #1c1710);
+		color: var(--paper, #f2ead8);
+	}
+
+	.list {
+		padding-top: 0.4rem;
+	}
+
+	.year {
+		display: flex;
+		align-items: baseline;
+		gap: 1rem;
+		padding: clamp(1.8rem, 3.4vw, 2.6rem) 0 0.1rem;
+		opacity: var(--rv, 1);
+		transition: opacity 0.9s ease;
+	}
+
+	.year-num {
+		font-family: var(--fHD, 'Abril Fatface'), Didot, serif;
+		font-size: clamp(1.7rem, 3.6vw, 2.7rem);
+		line-height: 0.9;
+	}
+
+	.year-rule {
+		flex: 1;
+		border-bottom: 1px solid rgba(28, 23, 16, 0.45);
+		transform: translateY(-0.45rem);
+	}
+
+	.year-count {
+		font-size: 0.56rem;
+		letter-spacing: 0.22em;
+		opacity: 0.7;
+		white-space: nowrap;
+	}
+
+	.row {
+		display: grid;
+		grid-template-columns: var(--rowG);
+		gap: 0.4rem clamp(1rem, 2.4vw, 2rem);
+		width: 100%;
+		text-align: left;
+		border-bottom: 1px dotted rgba(28, 23, 16, 0.45);
+		padding: 1.5rem 0.3rem 1.6rem;
+		color: inherit;
+		opacity: var(--rv, 1);
+		transition:
+			background 0.25s ease,
+			opacity 0.9s ease;
+	}
+
+	.row:hover {
+		background: rgba(28, 23, 16, 0.05);
+		color: inherit;
+	}
+
+	.num {
+		font-size: 0.62rem;
+		letter-spacing: 0.1em;
+		opacity: 0.55;
+		padding-top: 0.5rem;
+	}
+
+	.text {
+		min-width: 0;
+	}
+
+	.title {
+		display: block;
+		font-family: var(--fHD, 'Abril Fatface'), Didot, serif;
+		font-size: clamp(1.25rem, 2.4vw, 1.75rem);
+		line-height: 1.12;
+		margin-bottom: 0.4rem;
+		text-wrap: pretty;
+	}
+
+	.dek {
+		display: block;
+		font-style: italic;
+		font-size: clamp(0.9rem, 1.5vw, 1.02rem);
+		line-height: 1.55;
+		color: var(--ink-soft, #3a3222);
+		max-width: 46rem;
+		text-wrap: pretty;
+	}
+
+	.meta {
+		display: flex;
+		flex-direction: column;
+		gap: 0.28rem;
+		text-align: var(--metaAlign);
+		font-size: 0.55rem;
+		letter-spacing: 0.16em;
+		opacity: 0.72;
+		padding-top: 0.55rem;
+	}
+
+	.topic {
+		color: var(--acc, #b4342a);
+	}
+
+	.row[hidden],
+	.year[hidden] {
+		display: none;
+	}
+
+	.empty {
+		margin: 1.4rem 0 0;
+		font-style: italic;
+		font-size: 1rem;
+		opacity: 0.72;
+	}
+
+	@media (max-width: 1099.98px) {
+		.feed {
+			--rowG: 3rem minmax(0, 1fr) 8.5rem;
+		}
+	}
+
+	@media (max-width: 719.98px) {
+		.feed {
+			--rowG: minmax(0, 1fr);
+			--metaAlign: left;
+		}
+	}
+</style>

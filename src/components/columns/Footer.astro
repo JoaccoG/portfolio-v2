@@ -1,0 +1,26 @@
+---
+import { copy } from '../../i18n/t';
+
+const line = copy.columns.footer;
+const proprietor = copy.finale.colophon[3] ?? '';
+---
+
+<p class="foot">
+	{line} <span class="acc">·</span> {proprietor} <span class="acc">❦</span>
+</p>
+
+<style>
+	.foot {
+		border-top: 1px solid rgba(28, 23, 16, 0.45);
+		margin: clamp(1.8rem, 4vw, 3rem) 0 0;
+		padding-top: 1rem;
+		text-align: center;
+		font-size: 0.56rem;
+		letter-spacing: 0.24em;
+		opacity: 0.8;
+	}
+
+	.acc {
+		color: var(--acc, #b4342a);
+	}
+</style>
