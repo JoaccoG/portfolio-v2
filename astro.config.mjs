@@ -19,6 +19,11 @@ export default defineConfig({
 				access: 'secret',
 				default: 'The Daily Godoy <onboarding@resend.dev>',
 			}),
+			RESEND_SEGMENT_ID: envField.string({
+				context: 'server',
+				access: 'secret',
+				optional: true,
+			}),
 		},
 	},
 });
