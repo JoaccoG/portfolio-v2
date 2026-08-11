@@ -588,6 +588,26 @@
 			"tally": "{count} TO DATE",
 			"empty": "Nothing has been set under that heading yet."
 		},
+		"article": {
+			"docTitle": "{title} — The Columns",
+			"flag": "{section} — {roman}",
+			"breadcrumb": "THE COLUMNS",
+			"columnNo": "COLUMN No. {roman}",
+			"setByHand": "Set by hand — J. G.",
+			"goBack": "GO BACK",
+			"next": "NEXT ARTICLE",
+			"later": "LATER COLUMN",
+			"earlier": "EARLIER COLUMN",
+			"all": "ALL THE COLUMNS",
+			"back": "BACK",
+			"index": "INDEX",
+			"close": "CLOSE",
+			"indexTitle": "THE INDEX",
+			"indexAria": "The index of the columns",
+			"navAria": "Between the columns",
+			"plateClose": "CLOSE THE PLATE",
+			"plateAria": "The plate, enlarged"
+		},
 		"footer": "THE COLUMNS APPEAR WHEN THEY APPEAR"
 	}
 }

@@ -14,7 +14,7 @@ interface Props {
 const { src, alt, caption, credit, kind = 'engraving' } = Astro.props;
 const f = copy.columns.figure;
 const chip = kind === 'photograph' ? f.photograph : f.engraving;
-const widths = [560, 800, 1060, 1280];
+const widths = [560, 800, 1060, 1280, 1600];
 const sizes = '(max-width: 767.98px) 92vw, 40rem';
 ---
 

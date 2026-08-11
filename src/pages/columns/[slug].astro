@@ -1,0 +1,632 @@
+---
+import { render } from 'astro:content';
+import type { InferGetStaticPropsType } from 'astro';
+import CustomCursor from '../../components/CustomCursor.astro';
+import Footer from '../../components/columns/Footer.astro';
+import Sheet from '../../components/paper/Sheet.astro';
+import RunningHead from '../../components/RunningHead.astro';
+import { copy } from '../../i18n/t';
+import Base from '../../layouts/Base.astro';
+import {
+	countLabel,
+	getColumns,
+	headingLabel,
+	longDate,
+	numeralOf,
+	readingLabel,
+	wordCount,
+	wordsLabel,
+} from '../../lib/columns';
+
+export async function getStaticPaths() {
+	const columns = await getColumns();
+	return columns.map((column, index) => ({
+		params: { slug: column.id },
+		props: { column, index, columns },
+	}));
+}
+
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+
+const { column, index, columns } = Astro.props;
+const a = copy.columns.article;
+const h = copy.columns.head;
+const s = copy.sections.columns;
+const total = columns.length;
+const numeral = numeralOf(index, total);
+const later = columns[index - 1];
+const earlier = columns[index + 1];
+const words = wordCount(column);
+const { Content } = await render(column);
+const flag = a.flag.replace('{section}', s.section).replace('{roman}', numeral);
+const tally = copy.columns.feed.tally.replace('{count}', countLabel(total));
+const entries = columns.map((entry, i) => ({
+	id: entry.id,
+	title: entry.data.title,
+	numeral: numeralOf(i, total),
+	current: i === index,
+}));
+---
+
+<Base
+	title={a.docTitle.replace('{title}', column.data.title)}
+	description={column.data.dek}
+>
+	<CustomCursor />
+	<main id="main-content">
+		<Sheet>
+			<RunningHead
+				section={flag}
+				name={h.paper}
+				tagline={s.tagline}
+				page={s.page}
+				flush
+			/>
+			<div class="page">
+				<nav class="nav-pair" aria-label={a.navAria} data-article-chrome>
+					<button type="button" class="btn" data-back-columns data-cur="1">
+						<span class="hand">☜</span><span>{a.goBack}</span>
+					</button>
+					{
+						earlier ? (
+							<a class="btn" href={`/columns/${earlier.id}`} data-cur="1">
+								<span>{a.next}</span>
+								<span class="hand">☞</span>
+							</a>
+						) : (
+							<span class="btn is-off" aria-disabled="true">
+								<span>{a.next}</span>
+								<span class="hand">☞</span>
+							</span>
+						)
+					}
+				</nav>
+				<article class="article">
+					<div class="measure">
+						<p class="crumb">
+							<a href="/columns" data-cur="1">{a.breadcrumb}</a>
+							<span class="crumb-sep" aria-hidden="true">›</span>
+							<span class="crumb-no">{a.columnNo.replace('{roman}', numeral)}</span>
+						</p>
+						<p class="kicker">{headingLabel(column.data.heading)}</p>
+						<h1 class="title">{column.data.title}</h1>
+						<p class="dek">{column.data.dek}</p>
+						<p class="meta">
+							<span>{longDate(column.data.pubDate)}</span>
+							<span class="dot" aria-hidden="true">·</span>
+							<span>{readingLabel(words)}</span>
+							<span class="dot" aria-hidden="true">·</span>
+							<span>{wordsLabel(words)}</span>
+							<span class="dot" aria-hidden="true">·</span>
+							<span class="hand-set">{a.setByHand}</span>
+						</p>
+						<div class="body">
+							<Content />
+						</div>
+						<div class="foot">
+							<p class="signoff">{column.data.signoff}</p>
+							<div class="foot-nav">
+								{
+									later ? (
+										<a class="btn" href={`/columns/${later.id}`} data-cur="1">
+											<span class="hand">☜</span>
+											<span>{a.later}</span>
+										</a>
+									) : (
+										<span class="btn is-off" aria-disabled="true">
+											<span class="hand">☜</span>
+											<span>{a.later}</span>
+										</span>
+									)
+								}
+								<a class="btn" href="/columns" data-cur="1">{a.all}</a>
+								{
+									earlier ? (
+										<a class="btn" href={`/columns/${earlier.id}`} data-cur="1">
+											<span>{a.earlier}</span>
+											<span class="hand">☞</span>
+										</a>
+									) : (
+										<span class="btn is-off" aria-disabled="true">
+											<span>{a.earlier}</span>
+											<span class="hand">☞</span>
+										</span>
+									)
+								}
+							</div>
+						</div>
+					</div>
+				</article>
+			</div>
+			<Footer />
+		</Sheet>
+		<div
+			class="index"
+			id="column-index"
+			role="dialog"
+			aria-label={a.indexAria}
+			aria-hidden="true"
+			inert
+			data-index-sheet
+			data-article-chrome
+		>
+			<div class="index-inner">
+				<p class="index-head">
+					<span>{a.indexTitle}</span>
+					<span class="index-tally">{tally}</span>
+				</p>
+				<div class="index-grid">
+					{
+						entries.map((entry) => (
+							<a
+								class:list={['index-item', { current: entry.current }]}
+								href={`/columns/${entry.id}`}
+								aria-current={entry.current ? 'page' : undefined}
+								data-cur="1"
+							>
+								<span class="index-num">{entry.numeral}</span>
+								<span class="index-title">{entry.title}</span>
+							</a>
+						))
+					}
+				</div>
+			</div>
+		</div>
+		<div class="floating" data-floating data-article-chrome>
+			<button type="button" class="float-btn" data-back-columns data-cur="1">
+				<span class="hand">☜</span><span>{a.back}</span>
+			</button>
+			<button
+				type="button"
+				class="float-btn"
+				aria-expanded="false"
+				aria-controls="column-index"
+				data-index-toggle
+				data-cur="1"
+			>
+				<span class="hand">☰</span><span
+					data-index-label
+					data-open={a.close}
+					data-closed={a.index}>{a.index}</span
+				>
+			</button>
+		</div>
+		<div
+			class="plate-box"
+			role="dialog"
+			aria-modal="true"
+			aria-label={a.plateAria}
+			aria-hidden="true"
+			inert
+			data-plate-box
+			data-article-chrome
+		>
+			<figure class="plate-fig">
+				<div class="plate-frame"><img data-plate-img alt="" /></div>
+				<figcaption class="plate-cap" data-plate-cap></figcaption>
+			</figure>
+			<button
+				type="button"
+				class="btn plate-close"
+				data-plate-close
+				data-plate-focus
+				data-cur="1"
+			>
+				<span class="hand">☜</span><span>{a.plateClose}</span>
+			</button>
+		</div>
+	</main>
+</Base>
+
+<script>
+	import { initArticle } from '../../engine/article';
+	import { initCursor } from '../../engine/cursor';
+	import { initEngine } from '../../engine/engine';
+	import { initNativeEngine } from '../../engine/native';
+
+	if (matchMedia('(pointer: coarse)').matches) initNativeEngine();
+	else initEngine();
+	initCursor();
+	initArticle();
+</script>
+
+<style>
+	@keyframes inkClip {
+		from {
+			clip-path: inset(0 0 100% 0);
+		}
+		to {
+			clip-path: inset(0 0 0 0);
+		}
+	}
+
+	@keyframes inkFade {
+		from {
+			opacity: 0.45;
+		}
+		to {
+			opacity: 1;
+		}
+	}
+
+	.page {
+		position: relative;
+	}
+
+	.nav-pair {
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-start;
+		gap: 1rem;
+		padding-top: 24px;
+	}
+
+	.btn {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+		background: none;
+		border: 1px solid rgba(28, 23, 16, 0.6);
+		padding: 0.5rem 0.9rem;
+		font-size: 0.58rem;
+		letter-spacing: 0.2em;
+		color: inherit;
+		transition:
+			background 0.3s ease,
+			color 0.3s ease;
+	}
+
+	.btn:hover {
+		background: var(--ink, #1c1710);
+		color: var(--paper, #f2ead8);
+	}
+
+	.is-off {
+		opacity: 0.35;
+		pointer-events: none;
+	}
+
+	.hand {
+		color: var(--acc, #b4342a);
+	}
+
+	.article {
+		padding-top: clamp(1.2rem, 2.6vw, 2rem);
+		animation:
+			inkClip 0.5s cubic-bezier(0.32, 0.72, 0.25, 1) both,
+			inkFade 0.32s ease both;
+	}
+
+	.measure {
+		width: min(100%, 40rem);
+		margin: 0 auto;
+	}
+
+	.crumb {
+		margin: 0 0 1.1rem;
+		display: flex;
+		gap: 0.5rem;
+		flex-wrap: wrap;
+		font-size: 0.55rem;
+		letter-spacing: 0.18em;
+		opacity: 0.8;
+	}
+
+	.crumb-sep {
+		opacity: 0.5;
+	}
+
+	.crumb-no {
+		opacity: 0.6;
+	}
+
+	.kicker {
+		margin: 0 0 0.8rem;
+		font-size: 0.62rem;
+		letter-spacing: 0.26em;
+		color: var(--acc, #b4342a);
+		font-weight: 700;
+	}
+
+	.title {
+		margin: 0 0 1rem;
+		font-family: var(--fHD, 'Abril Fatface'), Didot, serif;
+		font-weight: 400;
+		font-size: clamp(2rem, 4.6vw, 3.3rem);
+		line-height: 1.04;
+		text-wrap: pretty;
+	}
+
+	.dek {
+		margin: 0 0 1.2rem;
+		font-style: italic;
+		font-size: clamp(1.05rem, 1.9vw, 1.28rem);
+		line-height: 1.5;
+		color: var(--ink-soft, #3a3222);
+		text-wrap: pretty;
+	}
+
+	.meta {
+		display: flex;
+		gap: 0.5rem 1rem;
+		flex-wrap: wrap;
+		border-top: 1px solid rgba(28, 23, 16, 0.4);
+		border-bottom: 1px solid rgba(28, 23, 16, 0.4);
+		padding: 0.5rem 0;
+		margin: 0 0 clamp(1.6rem, 3vw, 2.4rem);
+		font-size: 0.58rem;
+		letter-spacing: 0.18em;
+	}
+
+	.dot {
+		color: var(--acc, #b4342a);
+	}
+
+	.hand-set {
+		font-style: italic;
+		letter-spacing: 0.06em;
+		opacity: 0.8;
+	}
+
+	.body {
+		font-size: clamp(1.02rem, 1.7vw, 1.12rem);
+		line-height: 1.78;
+	}
+
+	.body :global(p) {
+		margin: 0 0 1.3rem;
+	}
+
+	.body :global(p:first-of-type::first-letter) {
+		float: left;
+		font-family: var(--fHD, 'Abril Fatface'), Didot, serif;
+		font-size: 3.3em;
+		line-height: 0.78;
+		padding: 0.06em 0.12em 0 0;
+	}
+
+	.body :global(h2) {
+		margin: 2rem 0 0.9rem;
+		font-family: var(--fHD, 'Abril Fatface'), Didot, serif;
+		font-weight: 400;
+		font-size: clamp(1.25rem, 2.2vw, 1.5rem);
+		line-height: 1.22;
+	}
+
+	.body :global(blockquote) {
+		margin: 1.8rem 0;
+		border-top: 3px double rgba(28, 23, 16, 0.6);
+		border-bottom: 3px double rgba(28, 23, 16, 0.6);
+		padding: 1.2rem 0;
+		font-family: var(--fHD, 'Abril Fatface'), Didot, serif;
+		font-size: clamp(1.3rem, 2.6vw, 1.75rem);
+		line-height: 1.3;
+		text-align: center;
+		text-wrap: pretty;
+	}
+
+	.body :global(blockquote p) {
+		margin: 0;
+	}
+
+	.body :global(a) {
+		border-bottom: 1px dotted currentColor;
+	}
+
+	.foot {
+		border-top: 3px double rgba(28, 23, 16, 0.7);
+		margin-top: clamp(1.6rem, 3vw, 2.4rem);
+		padding-top: 1.1rem;
+	}
+
+	.signoff {
+		margin: 0 0 1.1rem;
+		font-style: italic;
+		font-size: 0.9rem;
+		opacity: 0.75;
+	}
+
+	.foot-nav {
+		display: flex;
+		justify-content: space-between;
+		gap: 0.7rem;
+		flex-wrap: wrap;
+	}
+
+	.index {
+		position: fixed;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		z-index: 60;
+		transform: translateY(100%);
+		transition: transform 0.45s cubic-bezier(0.19, 1, 0.22, 1);
+		background: var(--ink, #1c1710);
+		color: var(--paper, #f2ead8);
+		box-shadow: 0 -12px 30px -10px rgba(8, 5, 2, 0.65);
+		cursor: var(--curCur, auto);
+	}
+
+	.index.open {
+		transform: translateY(0);
+	}
+
+	.index-inner {
+		width: var(--sheet-w, min(96.5vw, 1560px));
+		margin: 0 auto;
+		padding: 1rem var(--pad-x, clamp(1rem, 3.6vw, 3.6rem))
+			calc(2.2rem + clamp(0.8rem, 2vw, 1.6rem));
+	}
+
+	.index-head {
+		margin: 0 0 0.7rem;
+		display: flex;
+		justify-content: space-between;
+		gap: 1rem;
+		flex-wrap: wrap;
+		font-size: 0.54rem;
+		letter-spacing: 0.24em;
+		color: #e0c9a0;
+		border-bottom: 1px solid rgba(242, 234, 216, 0.3);
+		padding-bottom: 0.5rem;
+	}
+
+	.index-tally {
+		opacity: 0.7;
+	}
+
+	.index-grid {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 0 clamp(1.4rem, 3vw, 3rem);
+	}
+
+	.index-item {
+		display: grid;
+		grid-template-columns: 2.2rem minmax(0, 1fr);
+		gap: 0.5rem;
+		width: 100%;
+		text-align: left;
+		border-top: 1px dotted rgba(242, 234, 216, 0.25);
+		padding: 0.5rem 0;
+		color: var(--paper, #f2ead8);
+		transition: opacity 0.25s ease;
+	}
+
+	.index-item:hover {
+		opacity: 0.72;
+		color: var(--paper, #f2ead8);
+	}
+
+	.index-item.current,
+	.index-item.current:hover {
+		color: #e8b4ae;
+	}
+
+	.index-num {
+		font-size: 0.54rem;
+		letter-spacing: 0.1em;
+		opacity: 0.6;
+		padding-top: 0.2rem;
+	}
+
+	.index-title {
+		font-family: var(--fHD, 'Abril Fatface'), Didot, serif;
+		font-size: 0.98rem;
+		line-height: 1.18;
+	}
+
+	.floating {
+		position: fixed;
+		right: clamp(0.8rem, 2vw, 1.6rem);
+		bottom: clamp(0.8rem, 2vw, 1.6rem);
+		z-index: 61;
+		display: flex;
+		gap: 0.5rem;
+	}
+
+	.float-btn {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+		border: 1px solid rgba(28, 23, 16, 0.6);
+		background: var(--paper, #f2ead8);
+		padding: 0.58rem 0.85rem;
+		font-size: 0.56rem;
+		letter-spacing: 0.2em;
+		box-shadow: 0 4px 14px -4px rgba(8, 5, 2, 0.5);
+		transition:
+			background 0.25s ease,
+			color 0.25s ease;
+	}
+
+	.float-btn:hover {
+		background: var(--ink, #1c1710);
+		color: var(--paper, #f2ead8);
+	}
+
+	.plate-box {
+		position: fixed;
+		inset: 0;
+		z-index: 80;
+		background: rgba(15, 12, 8, 0.78);
+		display: grid;
+		place-content: center;
+		gap: 1rem;
+		padding: clamp(1rem, 4vw, 3rem);
+		opacity: 0;
+		pointer-events: none;
+		transition: opacity 0.35s ease;
+		cursor: var(--curCur, auto);
+	}
+
+	.plate-box.open {
+		opacity: 1;
+		pointer-events: auto;
+	}
+
+	.plate-fig {
+		margin: 0;
+		max-width: min(92vw, 1400px);
+		transform: scale(0.96);
+		transition: transform 0.45s cubic-bezier(0.19, 1, 0.22, 1);
+	}
+
+	.plate-box.open .plate-fig {
+		transform: scale(1);
+	}
+
+	.plate-frame {
+		border: 1px solid rgba(28, 23, 16, 0.55);
+		box-shadow:
+			inset 0 0 0 3px var(--paper, #f2ead8),
+			inset 0 0 0 4px rgba(28, 23, 16, 0.5),
+			0 34px 90px rgba(0, 0, 0, 0.65);
+		background: var(--paper-plate, #e4d8be);
+	}
+
+	.plate-frame img {
+		display: block;
+		max-width: 100%;
+		max-height: 78vh;
+		width: auto;
+		height: auto;
+		filter: sepia(0.08) contrast(1.02);
+	}
+
+	.plate-cap {
+		color: var(--paper, #f2ead8);
+		text-align: center;
+		font-style: italic;
+		font-size: 0.62rem;
+		letter-spacing: 0.14em;
+		padding-top: 0.6rem;
+		opacity: 0.85;
+	}
+
+	.plate-close {
+		justify-self: center;
+		background: var(--paper, #f2ead8);
+		color: var(--ink, #1c1710);
+	}
+
+	@media (min-width: 1120px) {
+		.nav-pair {
+			position: absolute;
+			top: 24px;
+			left: 0;
+			right: 0;
+			padding-top: 0;
+		}
+
+		.article {
+			padding-top: 36px;
+		}
+	}
+
+	@media (max-width: 719.98px) {
+		.index-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>
