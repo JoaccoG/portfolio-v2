@@ -2,6 +2,7 @@
 import CustomCursor from '../../components/CustomCursor.astro';
 import Feed from '../../components/columns/Feed.astro';
 import Footer from '../../components/columns/Footer.astro';
+import Wire from '../../components/columns/Wire.astro';
 import PageHead from '../../components/PageHead.astro';
 import Sheet from '../../components/paper/Sheet.astro';
 import { copy } from '../../i18n/t';
@@ -26,6 +27,7 @@ const s = copy.sections.columns;
 				dek={f.dek}
 			/>
 			<Feed />
+			<Wire />
 			<Footer />
 		</Sheet>
 	</main>
@@ -37,10 +39,12 @@ const s = copy.sections.columns;
 	import { initFeed } from '../../engine/feed';
 	import { initNativeEngine } from '../../engine/native';
 	import { initReveals } from '../../engine/reveal';
+	import { initWire } from '../../engine/wire';
 
 	if (matchMedia('(pointer: coarse)').matches) initNativeEngine();
 	else initEngine();
 	initReveals();
 	initCursor();
 	initFeed();
+	initWire();
 </script>
