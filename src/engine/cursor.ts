@@ -7,6 +7,11 @@ export function initCursor(): void {
 	if (!dot || !ring) return;
 	doc.style.setProperty('--curCur', 'none');
 	doc.style.setProperty('--curO', '1');
+	addEventListener('pageshow', (e) => {
+		if (!e.persisted) return;
+		doc.style.setProperty('--curCur', 'auto');
+		setTimeout(() => doc.style.setProperty('--curCur', 'none'), 60);
+	});
 	let mx = -60;
 	let my = -60;
 	let dx = -60;
