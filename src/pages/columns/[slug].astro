@@ -8,7 +8,6 @@ import RunningHead from '../../components/RunningHead.astro';
 import { copy } from '../../i18n/t';
 import Base from '../../layouts/Base.astro';
 import {
-	countLabel,
 	getColumns,
 	headingLabel,
 	longDate,
@@ -39,13 +38,6 @@ const earlier = columns[index + 1];
 const words = wordCount(column);
 const { Content } = await render(column);
 const flag = a.flag.replace('{section}', s.section).replace('{roman}', numeral);
-const tally = copy.columns.feed.tally.replace('{count}', countLabel(total));
-const entries = columns.map((entry, i) => ({
-	id: entry.id,
-	title: entry.data.title,
-	numeral: numeralOf(i, total),
-	current: i === index,
-}));
 ---
 
 <Base
@@ -140,57 +132,6 @@ const entries = columns.map((entry, i) => ({
 			</div>
 			<Footer />
 		</Sheet>
-		<div
-			class="index"
-			id="column-index"
-			role="dialog"
-			aria-label={a.indexAria}
-			aria-hidden="true"
-			inert
-			data-index-sheet
-			data-article-chrome
-		>
-			<div class="index-inner">
-				<p class="index-head">
-					<span>{a.indexTitle}</span>
-					<span class="index-tally">{tally}</span>
-				</p>
-				<div class="index-grid">
-					{
-						entries.map((entry) => (
-							<a
-								class:list={['index-item', { current: entry.current }]}
-								href={`/columns/${entry.id}`}
-								aria-current={entry.current ? 'page' : undefined}
-								data-cur="1"
-							>
-								<span class="index-num">{entry.numeral}</span>
-								<span class="index-title">{entry.title}</span>
-							</a>
-						))
-					}
-				</div>
-			</div>
-		</div>
-		<div class="floating" data-floating data-article-chrome>
-			<button type="button" class="float-btn" data-back-columns data-cur="1">
-				<span class="hand">☜</span><span>{a.back}</span>
-			</button>
-			<button
-				type="button"
-				class="float-btn"
-				aria-expanded="false"
-				aria-controls="column-index"
-				data-index-toggle
-				data-cur="1"
-			>
-				<span class="hand">☰</span><span
-					data-index-label
-					data-open={a.close}
-					data-closed={a.index}>{a.index}</span
-				>
-			</button>
-		</div>
 		<div
 			class="plate-box"
 			role="dialog"
@@ -435,118 +376,6 @@ const entries = columns.map((entry, i) => ({
 		flex-wrap: wrap;
 	}
 
-	.index {
-		position: fixed;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		z-index: 60;
-		transform: translateY(100%);
-		transition: transform 0.45s cubic-bezier(0.19, 1, 0.22, 1);
-		background: var(--ink, #1c1710);
-		color: var(--paper, #f2ead8);
-		box-shadow: 0 -12px 30px -10px rgba(8, 5, 2, 0.65);
-		cursor: var(--curCur, auto);
-	}
-
-	.index.open {
-		transform: translateY(0);
-	}
-
-	.index-inner {
-		width: var(--sheet-w, min(96.5vw, 1560px));
-		margin: 0 auto;
-		padding: 1rem var(--pad-x, clamp(1rem, 3.6vw, 3.6rem))
-			calc(2.2rem + clamp(0.8rem, 2vw, 1.6rem));
-	}
-
-	.index-head {
-		margin: 0 0 0.7rem;
-		display: flex;
-		justify-content: space-between;
-		gap: 1rem;
-		flex-wrap: wrap;
-		font-size: 0.54rem;
-		letter-spacing: 0.24em;
-		color: #e0c9a0;
-		border-bottom: 1px solid rgba(242, 234, 216, 0.3);
-		padding-bottom: 0.5rem;
-	}
-
-	.index-tally {
-		opacity: 0.7;
-	}
-
-	.index-grid {
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-		gap: 0 clamp(1.4rem, 3vw, 3rem);
-	}
-
-	.index-item {
-		display: grid;
-		grid-template-columns: 2.2rem minmax(0, 1fr);
-		gap: 0.5rem;
-		width: 100%;
-		text-align: left;
-		border-top: 1px dotted rgba(242, 234, 216, 0.25);
-		padding: 0.5rem 0;
-		color: var(--paper, #f2ead8);
-		transition: opacity 0.25s ease;
-	}
-
-	.index-item:hover {
-		opacity: 0.72;
-		color: var(--paper, #f2ead8);
-	}
-
-	.index-item.current,
-	.index-item.current:hover {
-		color: #e8b4ae;
-	}
-
-	.index-num {
-		font-size: 0.54rem;
-		letter-spacing: 0.1em;
-		opacity: 0.6;
-		padding-top: 0.2rem;
-	}
-
-	.index-title {
-		font-family: var(--fHD, 'Abril Fatface'), Didot, serif;
-		font-size: 0.98rem;
-		line-height: 1.18;
-	}
-
-	.floating {
-		position: fixed;
-		right: clamp(0.8rem, 2vw, 1.6rem);
-		bottom: clamp(0.8rem, 2vw, 1.6rem);
-		z-index: 61;
-		display: flex;
-		gap: 0.5rem;
-	}
-
-	.float-btn {
-		display: inline-flex;
-		align-items: center;
-		gap: 0.5rem;
-		border: 1px solid rgba(28, 23, 16, 0.6);
-		background: var(--paper, #f2ead8);
-		padding: 0.58rem 0.85rem;
-		font-size: 0.56rem;
-		letter-spacing: 0.2em;
-		box-shadow: 0 4px 14px -4px rgba(8, 5, 2, 0.5);
-		transition:
-			background 0.25s ease,
-			color 0.25s ease;
-	}
-
-	.float-btn:hover {
-		background: var(--ink, #1c1710);
-		color: var(--paper, #f2ead8);
-	}
-
 	.plate-box {
 		position: fixed;
 		inset: 0;
@@ -626,9 +455,4 @@ const entries = columns.map((entry, i) => ({
 		}
 	}
 
-	@media (max-width: 719.98px) {
-		.index-grid {
-			grid-template-columns: 1fr;
-		}
-	}
 </style>
