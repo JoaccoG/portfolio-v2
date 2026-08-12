@@ -599,11 +599,6 @@
 			"later": "LATER COLUMN",
 			"earlier": "EARLIER COLUMN",
 			"all": "ALL THE COLUMNS",
-			"back": "BACK",
-			"index": "INDEX",
-			"close": "CLOSE",
-			"indexTitle": "THE INDEX",
-			"indexAria": "The index of the columns",
 			"navAria": "Between the columns",
 			"plateClose": "CLOSE THE PLATE",
 			"plateAria": "The plate, enlarged"

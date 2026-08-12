@@ -27,38 +27,6 @@ export function initArticle(): void {
 		});
 	}
 
-	const sheet = document.querySelector<HTMLElement>('[data-index-sheet]');
-	const toggle = document.querySelector<HTMLButtonElement>(
-		'[data-index-toggle]',
-	);
-	const label = toggle?.querySelector<HTMLElement>('[data-index-label]');
-	const floating = document.querySelector<HTMLElement>('[data-floating]');
-	let sheetOpen = false;
-	const setSheet = (open: boolean) => {
-		if (!sheet || !toggle) return;
-		sheetOpen = open;
-		sheet.classList.toggle('open', open);
-		sheet.inert = !open;
-		sheet.setAttribute('aria-hidden', String(!open));
-		toggle.setAttribute('aria-expanded', String(open));
-		if (label) {
-			label.textContent = open
-				? (label.dataset.open ?? '')
-				: (label.dataset.closed ?? '');
-		}
-		if (open) {
-			setTimeout(
-				() => {
-					sheet.querySelector<HTMLElement>('a')?.focus({ preventScroll: true });
-				},
-				rm ? 30 : 450,
-			);
-		} else {
-			toggle.focus({ preventScroll: true });
-		}
-	};
-	toggle?.addEventListener('click', () => setSheet(!sheetOpen));
-
 	const box = document.querySelector<HTMLElement>('[data-plate-box]');
 	const img = box?.querySelector<HTMLImageElement>('[data-plate-img]');
 	const cap = box?.querySelector<HTMLElement>('[data-plate-cap]');
@@ -71,8 +39,6 @@ export function initArticle(): void {
 		box.inert = true;
 		box.setAttribute('aria-hidden', 'true');
 		if (content) content.inert = false;
-		if (floating) floating.inert = false;
-		if (sheet) sheet.inert = !sheetOpen;
 		document.documentElement.style.overflow = '';
 		if (lastFocus instanceof HTMLElement) {
 			lastFocus.focus({ preventScroll: true });
@@ -97,8 +63,6 @@ export function initArticle(): void {
 		box.setAttribute('aria-hidden', 'false');
 		box.classList.add('open');
 		if (content) content.inert = true;
-		if (floating) floating.inert = true;
-		if (sheet) sheet.inert = true;
 		document.documentElement.style.overflow = 'hidden';
 		setTimeout(
 			() => {
@@ -123,8 +87,6 @@ export function initArticle(): void {
 		if (e.target === box) closeBox();
 	});
 	addEventListener('keydown', (e) => {
-		if (e.key !== 'Escape') return;
-		if (boxOpen) closeBox();
-		else if (sheetOpen) setSheet(false);
+		if (e.key === 'Escape' && boxOpen) closeBox();
 	});
 }
