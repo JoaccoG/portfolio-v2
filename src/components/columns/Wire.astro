@@ -9,7 +9,17 @@ const t = copy.telegrams;
 	<div class="wire" data-rv="1">
 		<p class="kicker">{w.kicker}</p>
 		<p class="title">{w.title}</p>
-		<form novalidate data-wire>
+		<form
+			novalidate
+			data-wire
+			data-prefix={t.postmaster.prefix}
+			data-email={t.postmaster.email}
+			data-rate={t.postmaster.rate}
+			data-wire-down={t.postmaster.wireDown}
+			data-sending={w.sending}
+			data-done={w.done}
+			data-done-note={w.doneNote}
+		>
 			<input
 				name="email"
 				type="email"

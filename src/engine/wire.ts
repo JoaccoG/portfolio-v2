@@ -1,5 +1,3 @@
-import { copy } from '../i18n/t';
-
 const EMAIL_RE = /^\S+@\S+\.\S+$/;
 
 export function initWire(): void {
@@ -9,28 +7,27 @@ export function initWire(): void {
 	const note = document.querySelector<HTMLElement>('[data-wire-note]');
 	const button = form.querySelector<HTMLButtonElement>('[data-wire-submit]');
 	const input = form.querySelector<HTMLInputElement>('input[name="email"]');
-	const postmaster = copy.telegrams.postmaster;
-	const w = copy.columns.wire;
+	const say = form.dataset;
 	const submitLabel = button?.textContent ?? '';
 	const idleNote = note?.textContent ?? '';
 	let done = false;
-	const showError = (text: string) => {
+	const showError = (text: string | undefined) => {
 		if (!error) return;
-		error.textContent = postmaster.prefix + text;
+		error.textContent = (say.prefix ?? '') + (text ?? '');
 		error.hidden = false;
 	};
 	const setBusy = (busy: boolean) => {
 		if (!button) return;
 		button.disabled = busy;
-		button.textContent = busy ? w.sending : submitLabel;
+		button.textContent = busy ? (say.sending ?? '') : submitLabel;
 	};
 	const setDone = () => {
 		done = true;
 		if (button) {
 			button.disabled = true;
-			button.textContent = w.done;
+			button.textContent = say.done ?? '';
 		}
-		if (note) note.textContent = w.doneNote;
+		if (note) note.textContent = say.doneNote ?? '';
 		if (error) error.hidden = true;
 	};
 	input?.addEventListener('input', () => {
@@ -46,7 +43,7 @@ export function initWire(): void {
 		const email = String(data.get('email') ?? '').trim();
 		const wire = String(data.get('wire') ?? '').trim();
 		if (!EMAIL_RE.test(email)) {
-			showError(postmaster.email);
+			showError(say.email);
 			return;
 		}
 		if (error) error.hidden = true;
@@ -63,15 +60,15 @@ export function initWire(): void {
 			} | null;
 			if (!res.ok) {
 				const code = payload?.error;
-				if (code === 'rate') showError(postmaster.rate);
-				else if (code === 'email') showError(postmaster.email);
-				else showError(postmaster.wireDown);
+				if (code === 'rate') showError(say.rate);
+				else if (code === 'email') showError(say.email);
+				else showError(say.wireDown);
 				setBusy(false);
 				return;
 			}
 			setDone();
 		} catch {
-			showError(postmaster.wireDown);
+			showError(say.wireDown);
 			setBusy(false);
 		}
 	});
