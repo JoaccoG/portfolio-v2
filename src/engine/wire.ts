@@ -24,13 +24,13 @@ export function initWire(): void {
 		button.disabled = busy;
 		button.textContent = busy ? w.sending : submitLabel;
 	};
-	const setDone = (already: boolean) => {
+	const setDone = () => {
 		done = true;
 		if (button) {
 			button.disabled = true;
 			button.textContent = w.done;
 		}
-		if (note) note.textContent = already ? w.already : w.doneNote;
+		if (note) note.textContent = w.doneNote;
 		if (error) error.hidden = true;
 	};
 	input?.addEventListener('input', () => {
@@ -60,7 +60,6 @@ export function initWire(): void {
 			const payload = (await res.json().catch(() => null)) as {
 				ok?: boolean;
 				error?: string;
-				already?: boolean;
 			} | null;
 			if (!res.ok) {
 				const code = payload?.error;
@@ -70,7 +69,7 @@ export function initWire(): void {
 				setBusy(false);
 				return;
 			}
-			setDone(payload?.already === true);
+			setDone();
 		} catch {
 			showError(postmaster.wireDown);
 			setBusy(false);

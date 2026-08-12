@@ -36,7 +36,7 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
 		return respond({ ok: false, error: 'email' }, 422);
 	}
 	const contact: Record<string, unknown> = { email, unsubscribed: false };
-	if (RESEND_SEGMENT_ID) contact.segments = [RESEND_SEGMENT_ID];
+	if (RESEND_SEGMENT_ID) contact.segments = [{ id: RESEND_SEGMENT_ID }];
 	const entered = await fetch('https://api.resend.com/contacts', {
 		method: 'POST',
 		headers: {
