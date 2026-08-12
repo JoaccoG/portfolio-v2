@@ -24,7 +24,7 @@
 
 **The Daily Godoy** is the personal site of Joaquín Godoy, laid out as the front page of a newspaper that went to press in 1926 — nameplate in blackletter, a weather box, a running ticker, an engraved portrait of the correspondent. Every story underneath is about software written in 2026. The furniture is period; the chronicle is current; the gap between the two is the whole joke.
 
-It is one long broadsheet you scroll: a masthead that assembles itself on load, a pinned *Profile Piece* told in four parts, a hall of machinery where each project opens into its own inside page, a postmaster you can wire a telegram to, and a torn back page for anything that 404s. No framework runs the motion — the intro, the reveal, the custom cursor, the pinned scroll and the project drawers are a small hand-written engine. What React would carry, this carries itself.
+It is one long broadsheet you scroll: a masthead that assembles itself on load, a pinned *Profile Piece* told in four parts, a hall of machinery where each project opens into its own inside page, a standing column with its own archive and index, a postmaster you can wire a telegram to, and a torn back page for anything that 404s. No framework runs the motion — the intro, the reveal, the custom cursor, the pinned scroll and the project drawers are a small hand-written engine. What React would carry, this carries itself.
 
 ## The type
 
@@ -44,9 +44,13 @@ Taken on an Apple M1 Pro at DPR 2 in Chrome — wall-clock per frame from an inl
 
 ## The postmaster
 
-The site is static except for one door. The *Full Account* form wires a telegram to the editor through a single on-demand route, [`/api/telegram`](src/pages/api/telegram.ts); everything else is prerendered. There is no third-party form widget and no key in the browser.
+The site is static except for two doors. The *Telegrams to the Editor* postcard wires a telegram through an on-demand route, [`/api/telegram`](src/pages/api/telegram.ts), and *Have the column wired to you* enters a subscriber in the Resend contact book through [`/api/subscribe`](src/pages/api/subscribe.ts); everything else is prerendered. There is no third-party form widget and no key in the browser.
 
-The route rate-limits **before** it parses a body. It keys on the last hop of `X-Forwarded-For` — the one Railway's proxy appends, which a client can't spoof, unlike the entries in front of it — with a per-IP window, a global ceiling that protects the Resend quota against IP rotation, and a bounded in-memory map that sweeps expired keys and evicts the oldest. The message goes out via [Resend](https://resend.com/) from a verified subdomain, and the API key lives only in the server environment, validated through `astro:env`. The counter is per-instance memory, so it is a courtesy bouncer, not a distributed one — named as such rather than oversold.
+Both routes rate-limit **before** they parse a body, each with its own counter. It keys on the last hop of `X-Forwarded-For` — the one Railway's proxy appends, which a client can't spoof, unlike the entries in front of it — with a per-IP window, a global ceiling that protects the Resend quota against IP rotation, and a bounded in-memory map that sweeps expired keys and evicts the oldest. The message goes out via [Resend](https://resend.com/) from a verified subdomain, and the API key lives only in the server environment, validated through `astro:env`. The counter is per-instance memory, so it is a courtesy bouncer, not a distributed one — named as such rather than oversold.
+
+## The columns
+
+Section D of the front page is *The Columns*, the paper's standing column, and it keeps its own archive at [`/columns`](https://joaquingodoy.com/columns). Each column is an MDX file in a typed collection — title, dek, heading, date and sign-off in the frontmatter, the prose underneath — with two pieces of period furniture for the body: an `<Aside>` for the notes ruled into the margin and a `<Figure>` for the plates, which open enlarged when pressed. Nothing else is written by hand. The roman numeral comes from the column's place in the archive, the year block from its date (shown a century behind, like every date on the paper), the reading time and the word count from the body itself. The feed filters by heading and keeps the filter in the address, the article carries an index of the whole archive in a drawer, and the archive is set on a third sheet of paper, mottled with its own seed so it never reads as the front page reprinted.
 
 ## Reads on paper
 
@@ -70,14 +74,15 @@ The postmaster needs a Resend key to actually send; everything else runs without
 
 ## Environment
 
-Two variables, in `.env` locally and in the host's dashboard in production. See [`.env.example`](.env.example):
+Three variables, in `.env` locally and in the host's dashboard in production. See [`.env.example`](.env.example):
 
 ```bash
 RESEND_API_KEY=re_your_api_key_here
 RESEND_FROM=The Daily Godoy <telegrams@mail.yourdomain.com>
+RESEND_SEGMENT_ID=
 ```
 
-Both are declared in the `astro:env` schema and validated at build. `RESEND_FROM` carries a safe default (`onboarding@resend.dev`), so the site builds and runs without either — it just can't post a telegram until the key is set.
+All three are declared in the `astro:env` schema and validated at build. `RESEND_FROM` carries a safe default (`onboarding@resend.dev`) and `RESEND_SEGMENT_ID` is optional — set it to file subscribers under a Resend segment, leave it empty and they go in the book unfiled — so the site builds and runs without any of them; it just can't post a telegram or enter a subscriber until the key is set.
 
 ## Deploy
 
@@ -90,7 +95,7 @@ docker run -p 8080:8080 daily-godoy   # → http://localhost:8080
 
 ## Built with
 
-**[Astro 7](https://astro.build/)** with the Node standalone adapter and `@astrojs/sitemap`, **TypeScript** in strict mode and **Biome** for lint and format. Images run through Astro's `<Image>` and `sharp`; the projects are a typed content collection (Zod-validated JSON) with the copy in an i18n bundle — a Spanish edition is on the way. All the motion is the hand-written engine under [`src/engine/`](src/engine); the mail is Resend. CI runs Biome, `astro check` and the build on every push.
+**[Astro 7](https://astro.build/)** with the Node standalone adapter and `@astrojs/sitemap`, **TypeScript** in strict mode and **Biome** for lint and format. Images run through Astro's `<Image>` and `sharp`; the projects are a typed content collection (Zod-validated JSON) and the columns another (MDX under a Zod frontmatter), with the copy in an i18n bundle — a Spanish edition is on the way. All the motion is the hand-written engine under [`src/engine/`](src/engine); the mail is Resend. CI runs Biome, `astro check` and the build on every push.
 
 ## License
 

@@ -7,6 +7,11 @@ interface Props {
 }
 
 const { torn = false, mottleSeed = 7 } = Astro.props;
+const bakedMul = [7, 19];
+const mul =
+	!torn && mottleSeed !== 7 && bakedMul.includes(mottleSeed)
+		? `--mottle-mul: url('/tex/mul-mottle-${mottleSeed}.webp')`
+		: undefined;
 ---
 
 <div class="viewport">
@@ -22,7 +27,7 @@ const { torn = false, mottleSeed = 7 } = Astro.props;
 			<div class="under under-1" aria-hidden="true"></div>
 			<div class="shadow-tight" aria-hidden="true"></div>
 			<div class="deckle">
-				<div class:list={['sheet', { torn, papered: !torn }]}>
+				<div class:list={['sheet', { torn, papered: !torn }]} style={mul}>
 					<PaperTextures mottleSeed={mottleSeed} vignetteOnly={!torn} />
 					<div class="tex tex-sheen" aria-hidden="true"></div>
 					<div class="tex tex-bands" aria-hidden="true"></div>
