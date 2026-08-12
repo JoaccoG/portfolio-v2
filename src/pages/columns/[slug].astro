@@ -259,6 +259,8 @@ const entries = columns.map((entry, i) => ({
 		align-items: flex-start;
 		gap: 1rem;
 		padding-top: 24px;
+		position: relative;
+		z-index: 1;
 	}
 
 	.btn {
@@ -293,8 +295,8 @@ const entries = columns.map((entry, i) => ({
 	.article {
 		padding-top: clamp(1.2rem, 2.6vw, 2rem);
 		animation:
-			inkClip 0.5s cubic-bezier(0.32, 0.72, 0.25, 1) both,
-			inkFade 0.32s ease both;
+			inkClip 0.5s cubic-bezier(0.32, 0.72, 0.25, 1) backwards,
+			inkFade 0.32s ease backwards;
 	}
 
 	.measure {
