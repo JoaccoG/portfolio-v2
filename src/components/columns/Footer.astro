@@ -2,22 +2,34 @@
 import { copy } from '../../i18n/t';
 
 const line = copy.columns.footer;
-const proprietor = copy.finale.colophon[3] ?? '';
+const credit = copy.finale.colophon[copy.finale.colophon.length - 1] ?? '';
+const creditText = credit.replace(/^©\s*/, '');
 ---
 
-<p class="foot">
-	{line} <span class="acc">·</span> {proprietor} <span class="acc">❦</span>
+<p class="colophon">
+	<span class="colophon-main">{line}</span>
+	<span class="colophon-credit"
+		><span class="acc">©</span> {creditText} <span class="acc">❦</span></span
+	>
 </p>
 
 <style>
-	.foot {
-		border-top: 1px solid rgba(28, 23, 16, 0.45);
+	.colophon {
 		margin: clamp(1.8rem, 4vw, 3rem) 0 0;
-		padding-top: 1rem;
 		text-align: center;
-		font-size: 0.56rem;
+		font-size: 0.58rem;
 		letter-spacing: 0.24em;
-		opacity: 0.8;
+		border-top: 3px double rgba(28, 23, 16, 0.7);
+		padding-top: 0.9rem;
+	}
+
+	.colophon-main,
+	.colophon-credit {
+		display: block;
+	}
+
+	.colophon-credit {
+		margin-top: 0.55rem;
 	}
 
 	.acc {
