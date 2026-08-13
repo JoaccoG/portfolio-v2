@@ -13,17 +13,17 @@
 		"format": "biome format --write ."
 	},
 	"dependencies": {
-		"@astrojs/mdx": "^8.0.0",
 		"@astrojs/node": "^11.1.4",
-		"@astrojs/sitemap": "^3.7.3",
-		"astro": "^7.2.10",
-		"sharp": "^0.35.4"
+		"astro": "^7.2.10"
 	},
 	"devDependencies": {
 		"@astrojs/check": "^0.9.10",
+		"@astrojs/mdx": "^8.0.0",
+		"@astrojs/sitemap": "^3.7.4",
 		"@biomejs/biome": "^2.5.10",
 		"pixelmatch": "^7.2.0",
 		"pngjs": "^7.0.0",
+		"sharp": "^0.35.4",
 		"typescript": "^6.0.3"
 	}
 }
