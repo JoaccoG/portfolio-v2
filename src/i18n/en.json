@@ -42,7 +42,7 @@
 		"stamp": {
 			"label": "EDICIÓN EN CASTELLANO",
 			"notice": "THE SPANISH EDITION IS STILL IN THE COMPOSING ROOM — FORTHCOMING",
-			"ariaLabel": "Switch to the Spanish edition"
+			"ariaLabel": "Edición en castellano — switch to the Spanish edition"
 		},
 		"press": {
 			"label": "THE PRESS.",
@@ -50,8 +50,7 @@
 			"sealBottom": "MORNING EDITION",
 			"sealEst": "EST. 2026",
 			"silent": "MUSIC SILENT",
-			"audible": "MUSIC AUDIBLE",
-			"toggleAria": "Toggle the press sounds"
+			"audible": "MUSIC AUDIBLE"
 		},
 		"folio": ["BUENOS AIRES & THE WIDER WEB", "MORNING EDITION — {date}"],
 		"months": [
