@@ -13,7 +13,16 @@ const t = copy.telegrams;
 	<div class="card" data-rv="1">
 		<p class="pc-title">{t.postcard}</p>
 		<p class="pc-sub">{t.postcardSub}</p>
-		<form novalidate data-telegram>
+		<form
+			novalidate
+			data-telegram
+			data-prefix={t.postmaster.prefix}
+			data-email={t.postmaster.email}
+			data-blank={t.postmaster.blank}
+			data-rate={t.postmaster.rate}
+			data-wire-down={t.postmaster.wireDown}
+			data-sending={t.sending}
+		>
 			<div class="grid">
 				<div class="message">
 					<label for="tg-msg">{t.messageLabel}</label>

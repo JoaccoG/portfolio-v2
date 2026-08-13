@@ -79,7 +79,7 @@ const inYear = (year: string) => rows.filter((row) => row.year === year);
 					{inYear(year).map((row) => (
 						<a
 							class="row"
-							href={`/columns/${row.id}`}
+							href={`/columns/${row.id}/`}
 							data-row
 							data-year={year}
 							data-heading={row.heading}

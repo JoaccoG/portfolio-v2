@@ -3,6 +3,12 @@ import '../styles/fonts.css';
 import '../styles/tokens.css';
 import '../styles/breakpoints.css';
 import '../styles/global.css';
+import abril from '../assets/fonts/abril-fatface-400.woff2?url';
+import oldStandard from '../assets/fonts/old-standard-tt-400.woff2?url';
+import oldStandardItalic from '../assets/fonts/old-standard-tt-400-italic.woff2?url';
+import oldStandardBold from '../assets/fonts/old-standard-tt-700.woff2?url';
+import ornaments from '../assets/fonts/tdg-ornaments-400.woff2?url';
+import unifraktur from '../assets/fonts/unifrakturmaguntia-400.woff2?url';
 import { copy } from '../i18n/t';
 
 interface Props {
@@ -73,42 +79,42 @@ const siteLd = {
 		{ogImage && <meta name="twitter:image:alt" content={title} />}
 		<link
 			rel="preload"
-			href="/fonts/tdg-ornaments-400.woff2"
+			href={ornaments}
 			as="font"
 			type="font/woff2"
 			crossorigin
 		/>
 		<link
 			rel="preload"
-			href="/fonts/unifrakturmaguntia-400.woff2"
+			href={unifraktur}
 			as="font"
 			type="font/woff2"
 			crossorigin
 		/>
 		<link
 			rel="preload"
-			href="/fonts/abril-fatface-400.woff2"
+			href={abril}
 			as="font"
 			type="font/woff2"
 			crossorigin
 		/>
 		<link
 			rel="preload"
-			href="/fonts/old-standard-tt-400.woff2"
+			href={oldStandard}
 			as="font"
 			type="font/woff2"
 			crossorigin
 		/>
 		<link
 			rel="preload"
-			href="/fonts/old-standard-tt-400-italic.woff2"
+			href={oldStandardItalic}
 			as="font"
 			type="font/woff2"
 			crossorigin
 		/>
 		<link
 			rel="preload"
-			href="/fonts/old-standard-tt-700.woff2"
+			href={oldStandardBold}
 			as="font"
 			type="font/woff2"
 			crossorigin

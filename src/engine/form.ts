@@ -1,5 +1,3 @@
-import { copy } from '../i18n/t';
-
 const EMAIL_RE = /^\S+@\S+\.\S+$/;
 
 export function initForm(): void {
@@ -8,12 +6,12 @@ export function initForm(): void {
 	const error = document.querySelector<HTMLElement>('[data-form-error]');
 	const sent = document.querySelector<HTMLElement>('[data-sent-state]');
 	const button = form.querySelector<HTMLButtonElement>('button[type="submit"]');
-	const postmaster = copy.telegrams.postmaster;
+	const say = form.dataset;
 	const submitLabel = button?.textContent ?? '';
-	const sendingLabel = copy.telegrams.sending;
-	const showError = (text: string) => {
+	const sendingLabel = say.sending ?? '';
+	const showError = (text: string | undefined) => {
 		if (!error) return;
-		error.textContent = postmaster.prefix + text;
+		error.textContent = (say.prefix ?? '') + (text ?? '');
 		error.hidden = false;
 	};
 	const restore = () => {
@@ -28,11 +26,11 @@ export function initForm(): void {
 		const message = String(data.get('message') ?? '').trim();
 		const wire = String(data.get('wire') ?? '').trim();
 		if (!EMAIL_RE.test(email)) {
-			showError(postmaster.email);
+			showError(say.email);
 			return;
 		}
 		if (!message) {
-			showError(postmaster.blank);
+			showError(say.blank);
 			return;
 		}
 		if (error) error.hidden = true;
@@ -51,10 +49,10 @@ export function initForm(): void {
 					error?: string;
 				} | null;
 				const code = payload?.error;
-				if (code === 'rate') showError(postmaster.rate);
-				else if (code === 'email') showError(postmaster.email);
-				else if (code === 'blank') showError(postmaster.blank);
-				else showError(postmaster.wireDown);
+				if (code === 'rate') showError(say.rate);
+				else if (code === 'email') showError(say.email);
+				else if (code === 'blank') showError(say.blank);
+				else showError(say.wireDown);
 				restore();
 				return;
 			}
@@ -76,7 +74,7 @@ export function initForm(): void {
 				restore();
 			}, 8000);
 		} catch {
-			showError(postmaster.wireDown);
+			showError(say.wireDown);
 			restore();
 		}
 	});

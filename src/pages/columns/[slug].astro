@@ -61,7 +61,7 @@ const flag = a.flag.replace('{section}', s.section).replace('{roman}', numeral);
 					</button>
 					{
 						earlier ? (
-							<a class="btn" href={`/columns/${earlier.id}`} data-cur="1">
+							<a class="btn" href={`/columns/${earlier.id}/`} data-cur="1">
 								<span>{a.next}</span>
 								<span class="hand">☞</span>
 							</a>
@@ -76,7 +76,7 @@ const flag = a.flag.replace('{section}', s.section).replace('{roman}', numeral);
 				<article class="article">
 					<div class="measure">
 						<p class="crumb">
-							<a href="/columns" data-cur="1">{a.breadcrumb}</a>
+							<a href="/columns/" data-cur="1">{a.breadcrumb}</a>
 							<span class="crumb-sep" aria-hidden="true">›</span>
 							<span class="crumb-no">{a.columnNo.replace('{roman}', numeral)}</span>
 						</p>
@@ -100,7 +100,7 @@ const flag = a.flag.replace('{section}', s.section).replace('{roman}', numeral);
 							<div class="foot-nav">
 								{
 									later ? (
-										<a class="btn" href={`/columns/${later.id}`} data-cur="1">
+										<a class="btn" href={`/columns/${later.id}/`} data-cur="1">
 											<span class="hand">☜</span>
 											<span>{a.later}</span>
 										</a>
@@ -111,10 +111,10 @@ const flag = a.flag.replace('{section}', s.section).replace('{roman}', numeral);
 										</span>
 									)
 								}
-								<a class="btn" href="/columns" data-cur="1">{a.all}</a>
+								<a class="btn" href="/columns/" data-cur="1">{a.all}</a>
 								{
 									earlier ? (
-										<a class="btn" href={`/columns/${earlier.id}`} data-cur="1">
+										<a class="btn" href={`/columns/${earlier.id}/`} data-cur="1">
 											<span>{a.earlier}</span>
 											<span class="hand">☞</span>
 										</a>

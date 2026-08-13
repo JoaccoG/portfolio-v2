@@ -1,4 +1,6 @@
 ---
+import mottle11 from '../../assets/tex/mottle-11.webp';
+
 interface Props {
 	mottleSeed?: number;
 	vignetteOnly?: boolean;
@@ -6,9 +8,10 @@ interface Props {
 
 const { mottleSeed = 7, vignetteOnly = false } = Astro.props;
 
-const bakedMottles = [7, 11, 19];
-const mottle = bakedMottles.includes(mottleSeed)
-	? `url('/tex/mottle-${mottleSeed}.webp')`
+const baked: Record<number, string> = { 11: mottle11.src };
+const bakedSrc = baked[mottleSeed];
+const mottle = bakedSrc
+	? `url('${bakedSrc}')`
 	: `url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22400%22><filter id=%22m%22 x=%220%22 y=%220%22 width=%22100%25%22 height=%22100%25%22><feTurbulence type=%22fractalNoise%22 baseFrequency=%220.006%22 numOctaves=%223%22 seed=%22${mottleSeed}%22 stitchTiles=%22stitch%22/><feColorMatrix type=%22matrix%22 values=%220 0 0 0 0.42 0 0 0 0 0.31 0 0 0 0 0.15 0.8 0.8 0.8 0 -0.85%22/></filter><rect width=%22400%22 height=%22400%22 filter=%22url(%23m)%22/></svg>')`;
 ---
 
@@ -38,7 +41,7 @@ const mottle = bakedMottles.includes(mottleSeed)
 	.tex-dots {
 		z-index: 1;
 		opacity: 0.22;
-		background-image: url('/tex/dots.webp');
+		background-image: url('../../assets/tex/dots.webp');
 		background-size: 130px 130px;
 	}
 
@@ -46,7 +49,7 @@ const mottle = bakedMottles.includes(mottleSeed)
 		z-index: 1;
 		opacity: 0.38;
 		background-size: 150px 150px;
-		background-image: url('/tex/grain.webp');
+		background-image: url('../../assets/tex/grain.webp');
 	}
 
 	.tex-mottle {
