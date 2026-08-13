@@ -1,4 +1,5 @@
 ---
+import mul19 from '../../assets/tex/mul-mottle-19.webp';
 import PaperTextures from './PaperTextures.astro';
 
 interface Props {
@@ -7,11 +8,9 @@ interface Props {
 }
 
 const { torn = false, mottleSeed = 7 } = Astro.props;
-const bakedMul = [7, 19];
-const mul =
-	!torn && mottleSeed !== 7 && bakedMul.includes(mottleSeed)
-		? `--mottle-mul: url('/tex/mul-mottle-${mottleSeed}.webp')`
-		: undefined;
+const bakedMul: Record<number, string> = { 19: mul19.src };
+const mulSrc = torn ? undefined : bakedMul[mottleSeed];
+const mul = mulSrc ? `--mottle-mul: url('${mulSrc}')` : undefined;
 ---
 
 <div class="viewport">

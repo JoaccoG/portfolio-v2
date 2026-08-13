@@ -92,8 +92,8 @@ select {
 
 .papered {
 	background-image:
-		var(--mottle-mul, url("/tex/mul-mottle-7.webp")),
-		url("/tex/mul-grain.webp"), url("/tex/mul-dots.webp"),
+		var(--mottle-mul, url("../assets/tex/mul-mottle-7.webp")),
+		url("../assets/tex/mul-grain.webp"), url("../assets/tex/mul-dots.webp"),
 		linear-gradient(165deg, #f3ecda 0%, #f0e6d0 38%, #f2ead8 62%, #eee3cc 100%);
 	background-size:
 		1200px 1200px,
