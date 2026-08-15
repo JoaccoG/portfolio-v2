@@ -1,0 +1,69 @@
+---
+title: Cool demo. Now show me the product.
+dek: Every morning a man on LinkedIn has built something.
+heading: thinking-machine
+pubDate: 2026-08-15
+signoff: Written after clicking the link, again.
+---
+
+import Figure from '../../../components/columns/Figure.astro';
+import bicycle from '../../../assets/columns/square-wheels.webp';
+import coal from '../../../assets/columns/coal-question.webp';
+
+A full CRM over the weekend. An entire SaaS in one prompt. A “billion-dollar idea” he shipped between his kid’s football game and dinner, with a screenshot of a dashboard, a purple gradient button, and four hundred comments saying this is the future of work. He is usually a VP of something. He is always very excited.
+
+I click the link. I always click the link. And within ten seconds I know four things: the whole app is one file, the “database” is the browser’s local storage, moving my mouse across the page downloads a megabyte because every link preloads its target and nobody thought to cache anything, and the test suite is being served to me, the user, as part of the production bundle. It has the default look every AI produces when nobody has an opinion: dark background, one neon accent, cards with rounded corners floating in nothing. Also, the login doesn’t work. It’s fine. Nothing behind it works either.
+
+It runs, though. So does a bicycle with square wheels, for a bit.
+
+<Figure src={bicycle} alt="Engraving: a delighted gentleman in a red suit rides a bicycle with square wheels down a cobbled street while two onlookers frown" caption="It runs, though — for a bit." credit="BLOCK No. 1001" />
+
+## Three years in, where are they?
+
+This is the question I keep asking and nobody in the comments wants to answer. If one prompt builds a company, where are the companies? Where is the solo founder who never wrote a line of code and now runs a real business with real users and real revenue on a codebase he vibed into existence? Not a landing page. Not a waitlist. A thing people pay for and that doesn’t fall over on Tuesday.
+
+I don’t mean it rhetorically. I have been looking. The best I can find is the CEO of a very famous startup accelerator posting his daily line count like it’s a step counter, tens of thousands of lines a day, across five projects, while his own homepage ships its unit tests to my browser. Bragging about lines of code is bragging about how many pages your novel has. Everyone who has ever written one knows the number goes down when the book gets good.
+
+The loudest builders are shipping the least. Sit with that for a second, because it’s the whole story.
+
+## Why they can’t stop
+
+I’m not angry at these people. I understand the anxiety, and it’s specific to one layer of the org chart.
+
+For twenty years the manager’s job was to describe what should exist and then find someone who could make it exist. Then a tool arrived and everyone told him it makes a builder of anybody. Read that from his side of the table. If anyone can build now, and he isn’t building, what exactly is he for? So he builds. Every weekend. A prototype, a feature, a whole product. And on Monday he hands it to us.
+
+This is where a Victorian economist explains my calendar.
+
+In 1865 William Stanley Jevons published a book called *The Coal Question*, arguing that Britain would soon run out of coal. Steam engines had been getting more efficient for a century by then: a lot more power for far less coal. Surely a country that needed less coal per engine would need less coal… right? Wrong.
+
+Jevons looked at the numbers and found the opposite. Every time the engine got more efficient, Britain burned more coal, and by A LOT. His explanation was the part everyone had skipped: a more efficient engine is a cheaper engine to run, and a cheaper engine gets used for things nobody would have bothered running an expensive one for. Jevons put it bluntly:
+
+> “It is wholly a confusion of ideas to suppose that the economical use of fuel is equivalent to a diminished consumption. The very contrary is the truth.”
+
+<Figure src={coal} alt="Engraving: a locomotive on a plinth before a skyline of smoking chimneys, coal wagons in the foreground" caption="Britain, after the engines got efficient." credit="BLOCK No. 1002" />
+
+Cheap code works the same way. Prototypes are nearly free now, so there are a hundred times more of them, and every single one needs a developer to turn it into something that can meet a customer. A friend of mine rewrote one of these guru prototypes last quarter. 200,000 lines went in. 60,000 came out. The manager who made it still thinks he wrote a product. He didn’t. He wrote a very long letter.
+
+## It’s a Figma file that runs
+
+Here’s the reframe that made me stop being annoyed, and it’s the most useful thing I can offer anyone on either side of this.
+
+A vibe-coded prototype is a spec. It’s the richest, most detailed description of what a manager wants that a manager has ever produced, and read that way, it’s a gift. For years we got a paragraph in a Jira ticket and a sketch on a whiteboard. Now we get a thing you can click. If you’ve ever opened the Figma files at a company that “moves fast,” you know they’re the same mess: forty artboards, six of them called Final, nobody sure which is current. The prototype is that mess, except it executes, and someone put customers in it.
+
+Nobody was ever hurt by a prototype. People get hurt when the prototype is called done.
+
+## Why the man with the screenshot can’t tell
+
+A developer knows the demo is broken in ten seconds because he has watched a thousand things break. That’s the entire skill. Ten years of it buys you a very expensive second opinion that lives in your head and says “that will fall over” before it does.
+
+The manager doesn’t have that voice. He has the model. And the model works for him. Ask it whether preloading every page on hover is a good idea and it will tell you that’s a spectacular intuition and get right to it. It never once says “you’ve built a text editor into your landing page, are you sure.” There is no one in the room who has seen the thing break, so the thing gets shipped, and a screenshot gets posted, and the cycle continues.
+
+## Your coding job is safe
+
+Let me be clear about what I’m not saying. I use these tools all day. I ship faster than I ever have. Coding is more accessible than it has ever been and I think that’s great, in the same way I think it’s great that anyone can buy a nice camera.
+
+And if you’re the manager reading this: keep building. I mean it. The prototype you made on Saturday is the best spec I’ve ever received from someone in your role, and I’d take it over a Jira ticket every single time. Just call it what it is. Hand it over as a spec, brag about it as a spec, and let someone who has watched a thousand things break turn it into the thing your customers actually touch. Nobody will think less of you. We’ll think you finally learned to write requirements.
+
+But the code that reaches production, the code with someone’s money and someone’s data behind it, is still written, or at least judged, by developers. The machine can type. Someone in the room still has to know when it’s wrong, and the only tool for that is a human who has been wrong a great many times before.
+
+The guy posting the screenshot hasn’t been. That’s exactly why he’s posting the screenshot.
