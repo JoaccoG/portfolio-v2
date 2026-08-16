@@ -73,6 +73,9 @@ export const editionYear = (date: Date): string =>
 export const headingLabel = (key: string): string =>
 	(c.headings as Record<string, string>)[key] ?? key;
 
+export const headingLabels = (keys: string[]): string =>
+	keys.map(headingLabel).join(' · ');
+
 export const numeralOf = (index: number, total: number): string =>
 	roman(total - index);
 

@@ -549,10 +549,11 @@
 		"title": "WATCH THIS SPACE",
 		"dek": "The columns are being set. First issue forthcoming.",
 		"headings": {
-			"thinking-machine": "THE THINKING MACHINE",
 			"software": "SOFTWARE",
-			"books": "BOOKS",
-			"off-the-clock": "OFF THE CLOCK"
+			"ai": "AI",
+			"society": "SOCIETY",
+			"politics": "POLITICS",
+			"entertainment": "ENTERTAINMENT"
 		},
 		"count": {
 			"one": "{n} COLUMN",

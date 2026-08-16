@@ -9,7 +9,7 @@ import { copy } from '../../i18n/t';
 import Base from '../../layouts/Base.astro';
 import {
 	getColumns,
-	headingLabel,
+	headingLabels,
 	longDate,
 	numeralOf,
 	readingLabel,
@@ -80,7 +80,7 @@ const flag = a.flag.replace('{section}', s.section).replace('{roman}', numeral);
 							<span class="crumb-sep" aria-hidden="true">›</span>
 							<span class="crumb-no">{a.columnNo.replace('{roman}', numeral)}</span>
 						</p>
-						<p class="kicker">{headingLabel(column.data.heading)}</p>
+						<p class="kicker">{headingLabels(column.data.headings)}</p>
 						<h1 class="title">{column.data.title}</h1>
 						<p class="dek">{column.data.dek}</p>
 						<p class="meta">

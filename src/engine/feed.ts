@@ -18,7 +18,8 @@ export function initFeed(): void {
 		let shown = 0;
 		const perYear = new Map<string, number>();
 		for (const row of rows) {
-			const on = !heading || row.dataset.heading === heading;
+			const on =
+				!heading || (row.dataset.headings ?? '').split(' ').includes(heading);
 			row.hidden = !on;
 			if (!on) continue;
 			shown++;

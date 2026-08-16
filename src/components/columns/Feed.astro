@@ -5,6 +5,7 @@ import {
 	editionYear,
 	getColumns,
 	headingLabel,
+	headingLabels,
 	numeralOf,
 	readingShortLabel,
 	shortDate,
@@ -14,7 +15,9 @@ import {
 const f = copy.columns.feed;
 const columns = await getColumns();
 const total = columns.length;
-const headings = [...new Set(columns.map((column) => column.data.heading))];
+const headings = [
+	...new Set(columns.flatMap((column) => column.data.headings)),
+];
 const rows = columns.map((column, i) => ({
 	id: column.id,
 	numeral: numeralOf(i, total),
@@ -22,8 +25,8 @@ const rows = columns.map((column, i) => ({
 	dek: column.data.dek,
 	date: shortDate(column.data.pubDate),
 	reading: readingShortLabel(wordCount(column)),
-	heading: column.data.heading,
-	headingLabel: headingLabel(column.data.heading),
+	headings: column.data.headings,
+	headingLabel: headingLabels(column.data.headings),
 	year: editionYear(column.data.pubDate),
 }));
 const years = [...new Set(rows.map((row) => row.year))];
@@ -82,7 +85,7 @@ const inYear = (year: string) => rows.filter((row) => row.year === year);
 							href={`/columns/${row.id}/`}
 							data-row
 							data-year={year}
-							data-heading={row.heading}
+							data-headings={row.headings.join(' ')}
 							data-cur="1"
 							data-rv="1"
 						>

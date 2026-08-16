@@ -44,7 +44,7 @@ const columns = defineCollection({
 	schema: z.object({
 		title: z.string(),
 		dek: z.string(),
-		heading: z.enum(headings),
+		headings: z.array(z.enum(headings)).min(1),
 		pubDate: z.coerce.date(),
 		signoff: z.string(),
 		draft: z.boolean().default(false),
