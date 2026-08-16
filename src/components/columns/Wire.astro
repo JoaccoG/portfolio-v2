@@ -1,7 +1,9 @@
 ---
 import { copy } from '../../i18n/t';
+import RubberStamp from '../RubberStamp.astro';
 
 const w = copy.columns.wire;
+const s = w.sent;
 const t = copy.telegrams;
 ---
 
@@ -9,6 +11,7 @@ const t = copy.telegrams;
 	<div class="wire" data-rv="1">
 		<p class="kicker">{w.kicker}</p>
 		<p class="title">{w.title}</p>
+		<div class="desk" data-wire-desk>
 		<form
 			novalidate
 			data-wire
@@ -17,8 +20,6 @@ const t = copy.telegrams;
 			data-rate={t.postmaster.rate}
 			data-wire-down={t.postmaster.wireDown}
 			data-sending={w.sending}
-			data-done={w.done}
-			data-done-note={w.doneNote}
 		>
 			<input
 				name="email"
@@ -43,6 +44,11 @@ const t = copy.telegrams;
 		</form>
 		<p class="postmaster" role="alert" data-wire-error hidden></p>
 		<p class="note" data-wire-note>{w.note}</p>
+		</div>
+		<div class="sent" data-wire-sent tabindex="-1" hidden>
+			<RubberStamp lines={s.stampLines} mid={s.stampMid} date={s.stampDate} template={s.stampDateTemplate} />
+			<p class="sent-text">{s.text}</p>
+		</div>
 	</div>
 </div>
 
@@ -163,6 +169,29 @@ const t = copy.telegrams;
 		letter-spacing: 0.22em;
 		color: var(--acc, #b4342a);
 		font-weight: 700;
+	}
+
+	.sent {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 0.9rem;
+		padding: 0.3rem 0 0.2rem;
+	}
+
+	.sent:focus {
+		outline: none;
+	}
+
+	.sent[hidden] {
+		display: none;
+	}
+
+	.sent-text {
+		margin: 0;
+		font-style: italic;
+		font-size: 0.95rem;
+		text-align: center;
 	}
 
 	.note {

@@ -609,9 +609,14 @@
 			"emailAria": "Your electronic address",
 			"submit": "SUBSCRIBE",
 			"sending": "ON THE WIRE …",
-			"done": "ENTERED IN THE BOOK",
 			"note": "Delivered the morning it is set. No advertisements.",
-			"doneNote": "Your address is entered in the book. The next column will find you."
+			"sent": {
+				"stampLines": ["THE DAILY", "GODOY"],
+				"stampMid": "ENTERED",
+				"stampDate": "AUG 25 · 1901",
+				"stampDateTemplate": "{month} {day} · {year}",
+				"text": "Your address is entered in the book. The next column will find you."
+			}
 		},
 		"footer": "THE COLUMNS APPEAR WHEN THEY APPEAR"
 	}
