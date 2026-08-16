@@ -35,6 +35,18 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
 	if (!EMAIL_RE.test(email) || email.length > 200) {
 		return respond({ ok: false, error: 'email' }, 422);
 	}
+	const known = await fetch(
+		`https://api.resend.com/contacts/${encodeURIComponent(email)}`,
+		{ headers: { Authorization: `Bearer ${RESEND_API_KEY}` } },
+	);
+	if (known.ok) {
+		const found = (await known.json().catch(() => null)) as {
+			unsubscribed?: boolean;
+		} | null;
+		if (found && !found.unsubscribed) {
+			return respond({ ok: false, error: 'already' }, 409);
+		}
+	}
 	const contact: Record<string, unknown> = { email, unsubscribed: false };
 	if (RESEND_SEGMENT_ID) contact.segments = [{ id: RESEND_SEGMENT_ID }];
 	const entered = await fetch('https://api.resend.com/contacts', {

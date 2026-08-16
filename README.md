@@ -44,7 +44,7 @@ Taken on an Apple M1 Pro at DPR 2 in Chrome — wall-clock per frame from an inl
 
 ## The postmaster
 
-The site is static except for two doors. The *Telegrams to the Editor* postcard wires a telegram through an on-demand route, [`/api/telegram`](src/pages/api/telegram.ts), and *Have the column wired to you* enters a subscriber in the Resend contact book through [`/api/subscribe`](src/pages/api/subscribe.ts); everything else is prerendered. There is no third-party form widget and no key in the browser.
+The site is static except for two doors. The *Telegrams to the Editor* postcard wires a telegram through an on-demand route, [`/api/telegram`](src/pages/api/telegram.ts), and *Have the columns wired to you* enters a subscriber in the Resend contact book through [`/api/subscribe`](src/pages/api/subscribe.ts); everything else is prerendered. There is no third-party form widget and no key in the browser.
 
 Both routes rate-limit **before** they parse a body, each with its own counter. It keys on the last hop of `X-Forwarded-For` — the one Railway's proxy appends, which a client can't spoof, unlike the entries in front of it — with a per-IP window, a global ceiling that protects the Resend quota against IP rotation, and a bounded in-memory map that sweeps expired keys and evicts the oldest. The message goes out via [Resend](https://resend.com/) from a verified subdomain, and the API key lives only in the server environment, validated through `astro:env`. The counter is per-instance memory, so it is a courtesy bouncer, not a distributed one — named as such rather than oversold.
 

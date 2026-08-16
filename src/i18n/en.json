@@ -605,13 +605,19 @@
 		},
 		"wire": {
 			"kicker": "BY TELEGRAPH",
-			"title": "Have the column wired to you.",
+			"title": "Have the columns wired to you.",
 			"emailAria": "Your electronic address",
-			"submit": "SUBSCRIBE ☞",
+			"submit": "SUBSCRIBE",
 			"sending": "ON THE WIRE …",
-			"done": "ENTERED IN THE BOOK",
 			"note": "Delivered the morning it is set. No advertisements.",
-			"doneNote": "Your address is entered in the book. The next column will find you."
+			"already": "THAT ADDRESS IS ALREADY IN THE BOOK",
+			"sent": {
+				"stampLines": ["THE DAILY", "GODOY"],
+				"stampMid": "ENTERED",
+				"stampDate": "AUG 25 · 1901",
+				"stampDateTemplate": "{month} {day} · {year}",
+				"text": "Your address is entered in the book. The next column will find you."
+			}
 		},
 		"footer": "THE COLUMNS APPEAR WHEN THEY APPEAR"
 	}
