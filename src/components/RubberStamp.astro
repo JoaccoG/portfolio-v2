@@ -1,0 +1,61 @@
+---
+import { copy } from '../i18n/t';
+
+interface Props {
+	lines: string[];
+	mid: string;
+	date: string;
+	template: string;
+}
+
+const { lines, mid, date, template } = Astro.props;
+---
+
+<svg class="rubber" viewBox="0 0 100 100" aria-hidden="true">
+	<defs>
+		<path id="disp-top" d="M 16,50 A 34,34 0 0 1 84,50" />
+		<path id="disp-bot" d="M 14,50 A 36,36 0 0 0 86,50" />
+	</defs>
+	<circle cx="50" cy="50" r="47" fill="none" stroke="var(--acc, #b4342a)" stroke-width="1.8" />
+	<text text-anchor="middle" class="rubber-arc"><textPath href="#disp-top" startOffset="50%">{lines[0]} {lines[1]}</textPath></text>
+	<text x="50" y="54.5" text-anchor="middle" class="rubber-mid">{mid}</text>
+	<text text-anchor="middle" class="rubber-arc"><textPath href="#disp-bot" startOffset="50%" data-stamp-date data-months={JSON.stringify(copy.masthead.months)} data-template={template}>{date}</textPath></text>
+</svg>
+
+<script>
+	for (const el of document.querySelectorAll('[data-stamp-date]')) {
+		if (!(el instanceof HTMLElement || el instanceof SVGElement)) continue;
+		const { months, template } = el.dataset;
+		if (!months || !template) continue;
+		const names: string[] = JSON.parse(months);
+		const now = new Date();
+		el.textContent = template
+			.replace('{month}', (names[now.getMonth()] ?? '').slice(0, 3))
+			.replace('{day}', String(now.getDate()))
+			.replace('{year}', String(now.getFullYear() - 100));
+	}
+</script>
+
+<style>
+	.rubber {
+		width: 150px;
+		height: 150px;
+		overflow: visible;
+		transform: rotate(-8deg);
+		animation: stampin 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+	}
+
+	.rubber-arc {
+		font-family: var(--fBD, 'Old Standard TT'), serif;
+		font-size: 8px;
+		letter-spacing: 0.14em;
+		fill: var(--acc, #b4342a);
+	}
+
+	.rubber-mid {
+		font-family: var(--fHD, 'Bodoni Moda'), Didot, serif;
+		font-size: 11.5px;
+		letter-spacing: 0.04em;
+		fill: var(--acc, #b4342a);
+	}
+</style>
