@@ -60,6 +60,7 @@ export function initWire(): void {
 				const code = payload?.error;
 				if (code === 'rate') showError(say.rate);
 				else if (code === 'email') showError(say.email);
+				else if (code === 'already') showError(say.already);
 				else showError(say.wireDown);
 				setBusy(false);
 				return;

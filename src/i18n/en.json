@@ -610,6 +610,7 @@
 			"submit": "SUBSCRIBE",
 			"sending": "ON THE WIRE …",
 			"note": "Delivered the morning it is set. No advertisements.",
+			"already": "THAT ADDRESS IS ALREADY IN THE BOOK",
 			"sent": {
 				"stampLines": ["THE DAILY", "GODOY"],
 				"stampMid": "ENTERED",
