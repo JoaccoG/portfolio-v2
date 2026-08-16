@@ -36,7 +36,10 @@ const t = copy.telegrams;
 				autocomplete="off"
 				aria-hidden="true"
 			/>
-			<button type="submit" data-cur="1" data-wire-submit>{w.submit}</button>
+			<button type="submit" data-cur="1" data-wire-submit>
+				<span data-wire-label>{w.submit}</span>
+				<span class="hand" aria-hidden="true" data-wire-hand>☞</span>
+			</button>
 		</form>
 		<p class="postmaster" role="alert" data-wire-error hidden></p>
 		<p class="note" data-wire-note>{w.note}</p>
@@ -127,6 +130,9 @@ const t = copy.telegrams;
 	}
 
 	button {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
 		background: none;
 		border: 1px solid rgba(28, 23, 16, 0.6);
 		padding: 0.48rem 0.9rem;
@@ -144,6 +150,10 @@ const t = copy.telegrams;
 
 	button:disabled {
 		opacity: 0.7;
+	}
+
+	.hand {
+		color: var(--acc, #b4342a);
 	}
 
 	.postmaster {

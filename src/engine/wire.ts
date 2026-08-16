@@ -6,9 +6,11 @@ export function initWire(): void {
 	const error = document.querySelector<HTMLElement>('[data-wire-error]');
 	const note = document.querySelector<HTMLElement>('[data-wire-note]');
 	const button = form.querySelector<HTMLButtonElement>('[data-wire-submit]');
+	const label = form.querySelector<HTMLElement>('[data-wire-label]');
+	const hand = form.querySelector<HTMLElement>('[data-wire-hand]');
 	const input = form.querySelector<HTMLInputElement>('input[name="email"]');
 	const say = form.dataset;
-	const submitLabel = button?.textContent ?? '';
+	const submitLabel = label?.textContent ?? '';
 	const idleNote = note?.textContent ?? '';
 	let done = false;
 	const showError = (text: string | undefined) => {
@@ -19,13 +21,15 @@ export function initWire(): void {
 	const setBusy = (busy: boolean) => {
 		if (!button) return;
 		button.disabled = busy;
-		button.textContent = busy ? (say.sending ?? '') : submitLabel;
+		if (label) label.textContent = busy ? (say.sending ?? '') : submitLabel;
+		if (hand) hand.hidden = busy;
 	};
 	const setDone = () => {
 		done = true;
 		if (button) {
 			button.disabled = true;
-			button.textContent = say.done ?? '';
+			if (label) label.textContent = say.done ?? '';
+			if (hand) hand.hidden = true;
 		}
 		if (note) note.textContent = say.doneNote ?? '';
 		if (error) error.hidden = true;
