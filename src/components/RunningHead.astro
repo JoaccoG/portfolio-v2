@@ -6,12 +6,21 @@ interface Props {
 	page: string;
 	pageNote?: string;
 	flush?: boolean;
+	bleed?: boolean;
 }
 
-const { section, name, tagline, page, pageNote, flush = false } = Astro.props;
+const {
+	section,
+	name,
+	tagline,
+	page,
+	pageNote,
+	flush = false,
+	bleed = true,
+} = Astro.props;
 ---
 
-<div class:list={['running', { flush }]}>
+<div class:list={['running', { flush, 'no-bleed': !bleed }]}>
 	<span class="side">
 		<span class="flag">{section}</span>
 		<span class="name">{name}</span>
@@ -36,6 +45,11 @@ const { section, name, tagline, page, pageNote, flush = false } = Astro.props;
 
 	.flush {
 		margin-top: 0;
+	}
+
+	.no-bleed {
+		margin-left: 0;
+		margin-right: 0;
 	}
 
 	.side {
