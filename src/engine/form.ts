@@ -6,8 +6,10 @@ export function initForm(): void {
 	const error = document.querySelector<HTMLElement>('[data-form-error]');
 	const sent = document.querySelector<HTMLElement>('[data-sent-state]');
 	const button = form.querySelector<HTMLButtonElement>('button[type="submit"]');
+	const label = form.querySelector<HTMLElement>('[data-form-label]');
+	const hand = form.querySelector<HTMLElement>('[data-form-hand]');
 	const say = form.dataset;
-	const submitLabel = button?.textContent ?? '';
+	const submitLabel = label?.textContent ?? '';
 	const sendingLabel = say.sending ?? '';
 	const showError = (text: string | undefined) => {
 		if (!error) return;
@@ -17,7 +19,8 @@ export function initForm(): void {
 	const restore = () => {
 		if (!button) return;
 		button.disabled = false;
-		button.textContent = submitLabel;
+		if (label) label.textContent = submitLabel;
+		if (hand) hand.hidden = false;
 	};
 	form.addEventListener('submit', async (event) => {
 		event.preventDefault();
@@ -36,7 +39,8 @@ export function initForm(): void {
 		if (error) error.hidden = true;
 		if (button) {
 			button.disabled = true;
-			button.textContent = sendingLabel;
+			if (label) label.textContent = sendingLabel;
+			if (hand) hand.hidden = true;
 		}
 		try {
 			const res = await fetch('/api/telegram', {

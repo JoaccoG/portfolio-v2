@@ -22,6 +22,11 @@ const c = copy.classifieds;
 								data-cur="1"
 							>
 								{seg.t}
+								{external && (
+									<span class="hand" aria-hidden="true">
+										{' '}☞
+									</span>
+								)}
 							</a>
 						) : (
 							seg.t
@@ -77,6 +82,10 @@ const c = copy.classifieds;
 	}
 
 	a:hover {
+		color: var(--acc, #b4342a);
+	}
+
+	.hand {
 		color: var(--acc, #b4342a);
 	}
 </style>

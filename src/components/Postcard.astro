@@ -67,7 +67,10 @@ const t = copy.telegrams;
 			<p class="postmaster" role="alert" data-form-error hidden></p>
 			<div class="footer">
 				<span class="window">{t.responseWindow}</span>
-				<button type="submit" data-cur="1">{t.submit}</button>
+				<button type="submit" data-cur="1">
+					<span data-form-label>{t.submit}</span>
+					<span class="hand" aria-hidden="true" data-form-hand>☞</span>
+				</button>
 			</div>
 		</form>
 		<div class="sent" data-sent-state tabindex="-1" hidden>
@@ -398,6 +401,9 @@ const t = copy.telegrams;
 	}
 
 	button {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
 		background: none;
 		border: 1px solid var(--ink, #1c1710);
 		padding: 0.9rem 1.7rem;
@@ -412,5 +418,9 @@ const t = copy.telegrams;
 	button:hover {
 		background: var(--ink, #1c1710);
 		color: var(--paper, #f2ead8);
+	}
+
+	.hand {
+		color: var(--acc, #b4342a);
 	}
 </style>

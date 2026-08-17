@@ -79,7 +79,7 @@ const portraitSizes =
 					h.inThisEdition.rows.map((row) => (
 						<button type="button" data-cur="1" data-target={row.target} class="index-row">
 							<span class="index-label">{row.label}</span>
-							<span>☞</span>
+							<span class="hand" aria-hidden="true">☞</span>
 						</button>
 					))
 				}
@@ -436,6 +436,10 @@ const portraitSizes =
 	.index-row:hover {
 		color: var(--acc, #b4342a);
 		transform: translateX(5px);
+	}
+
+	.hand {
+		color: var(--acc, #b4342a);
 	}
 
 	.index-row + .index-row {

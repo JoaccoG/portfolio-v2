@@ -53,7 +53,8 @@ const projects = (await getCollection('projects'))
 						<div class="bar">
 							<span class="bar-label">{p.header}</span>
 							<button type="button" class="return" data-cur="1" data-p2-close>
-								{p.return}
+								<span class="hand" aria-hidden="true">☜</span>
+								<span>{p.return}</span>
 							</button>
 						</div>
 						<p class="kicker">
@@ -122,10 +123,12 @@ const projects = (await getCollection('projects'))
 								</blockquote>
 								<div class="links">
 									<a href={pt.links.repo} data-cur="1">
-										{p.repoLink}
+										<span class="hand" aria-hidden="true">☞</span>
+										<span>{p.repoLink}</span>
 									</a>
 									<a href={pt.links.live} data-cur="1">
-										{p.liveLink}
+										<span class="hand" aria-hidden="true">☞</span>
+										<span>{p.liveLink}</span>
 									</a>
 								</div>
 								{pt.note && <p class="note">{pt.note}</p>}
@@ -134,7 +137,8 @@ const projects = (await getCollection('projects'))
 						<div class="foot">
 							<span class="foot-label">{p.footer}</span>
 							<button type="button" class="return" data-cur="1" data-p2-close>
-								{p.return}
+								<span class="hand" aria-hidden="true">☜</span>
+								<span>{p.return}</span>
 							</button>
 						</div>
 					</div>
@@ -210,6 +214,9 @@ const projects = (await getCollection('projects'))
 	}
 
 	.return {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
 		background: none;
 		border: 1px solid var(--ink, #1c1710);
 		padding: 0.6rem 1.1rem;
@@ -224,6 +231,10 @@ const projects = (await getCollection('projects'))
 	.return:hover {
 		background: var(--ink, #1c1710);
 		color: var(--paper, #f2ead8);
+	}
+
+	.hand {
+		color: var(--acc, #b4342a);
 	}
 
 	.kicker {
@@ -427,6 +438,10 @@ const projects = (await getCollection('projects'))
 	}
 
 	.links a {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		gap: 0.5rem;
 		border: 1px solid var(--ink, #1c1710);
 		padding: 0.75rem 1rem;
 		font-size: 0.64rem;
