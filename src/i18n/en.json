@@ -408,7 +408,7 @@
 	"pageTwo": {
 		"ariaLabel": "Page three: {name}",
 		"header": "THE DAILY GODOY — PAGE THREE",
-		"return": "☜ RETURN TO FRONT PAGE",
+		"return": "RETURN TO FRONT PAGE",
 		"ghost": "Page Three",
 		"seriesKicker": "No. {n} IN THE SERIES — {series} · {year} ",
 		"readAs": "(read: {real})",
@@ -416,8 +416,8 @@
 		"chip": "ENGRAVING FORTHCOMING — DROP A SCREENSHOT OF THE MACHINERY",
 		"particularsTitle": "PARTICULARS.",
 		"particularsLabels": ["ROLE", "YEAR", "COMPOSED", "STATUS"],
-		"repoLink": "☞ INSPECT THE REPOSITORY",
-		"liveLink": "☞ VISIT THE MACHINERY",
+		"repoLink": "INSPECT THE REPOSITORY",
+		"liveLink": "VISIT THE MACHINERY",
 		"signature": "ED.",
 		"footer": "FURTHER ACCOUNTS TO APPEAR IN SUBSEQUENT EDITIONS."
 	},
