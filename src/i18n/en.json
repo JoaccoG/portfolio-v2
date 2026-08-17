@@ -321,7 +321,7 @@
 		"fromLabel": "FROM — YOUR ELECTRONIC ADDRESS",
 		"emailPlaceholder": "name@domain.com",
 		"responseWindow": "RESPONSE WINDOW — 48 HOURS",
-		"submit": "POST IT ☞",
+		"submit": "POST IT",
 		"sending": "ON THE WIRE …",
 		"postmaster": {
 			"prefix": "☞ THE POSTMASTER OBJECTS: ",
