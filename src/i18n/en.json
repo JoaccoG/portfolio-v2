@@ -545,9 +545,11 @@
 		}
 	},
 	"columns": {
-		"reserved": "— THIS SPACE RESERVED —",
-		"title": "WATCH THIS SPACE",
-		"dek": "The columns are being set. First issue forthcoming.",
+		"home": {
+			"tally": "{n} to date; no schedule promised.",
+			"lately": "LATELY SET IN TYPE",
+			"turn": "TURN TO THE COLUMNS"
+		},
 		"headings": {
 			"software": "SOFTWARE",
 			"ai": "AI",
