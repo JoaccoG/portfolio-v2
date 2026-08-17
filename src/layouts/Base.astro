@@ -9,13 +9,14 @@ import oldStandardItalic from '../assets/fonts/old-standard-tt-400-italic.woff2?
 import oldStandardBold from '../assets/fonts/old-standard-tt-700.woff2?url';
 import ornaments from '../assets/fonts/tdg-ornaments-400.woff2?url';
 import unifraktur from '../assets/fonts/unifrakturmaguntia-400.woff2?url';
-import { copy } from '../i18n/t';
+import { copyFor } from '../i18n/t';
 
 interface Props {
 	title?: string;
 	description?: string;
 }
 
+const copy = copyFor(Astro.currentLocale);
 const { title = copy.meta.title, description = copy.meta.description } =
 	Astro.props;
 const site = Astro.site;

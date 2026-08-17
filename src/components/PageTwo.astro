@@ -1,14 +1,18 @@
 ---
 import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
-import { copy } from '../i18n/t';
+import { copyFor, localeOf } from '../i18n/t';
 import PaperTextures from './paper/PaperTextures.astro';
 
+const copy = copyFor(Astro.currentLocale);
 const p = copy.pageTwo;
 const series = copy.machinery.title;
 const figWidths = [560, 800, 1060, 1220];
 const figSizes = '(max-width: 1059.98px) 92vw, 1000px';
 const projects = (await getCollection('projects'))
+	.filter((project) =>
+		project.id.startsWith(`${localeOf(Astro.currentLocale)}/`),
+	)
 	.filter((project) => project.data.pageTwo)
 	.sort((a, b) => a.data.order - b.data.order);
 ---

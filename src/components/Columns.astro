@@ -1,6 +1,7 @@
 ---
-import { copy } from '../i18n/t';
+import { copyFor } from '../i18n/t';
 import {
+	columnSlug,
 	getColumns,
 	headingLabels,
 	numberWord,
@@ -8,20 +9,22 @@ import {
 	shortDate,
 } from '../lib/columns';
 
+const locale = Astro.currentLocale;
+const copy = copyFor(locale);
 const f = copy.columns.feed;
 const h = copy.columns.home;
-const columns = await getColumns();
+const columns = await getColumns(locale);
 const total = columns.length;
-const word = numberWord(total);
+const word = numberWord(total, locale);
 const tally = h.tally.replace(
 	'{n}',
 	word.charAt(0) + word.slice(1).toLowerCase(),
 );
 const lately = columns.slice(0, 3).map((column, i) => ({
-	id: column.id,
+	id: columnSlug(column),
 	numeral: numeralOf(i, total),
 	title: column.data.title,
-	meta: `${shortDate(column.data.pubDate)} · ${headingLabels(column.data.headings)}`,
+	meta: `${shortDate(column.data.pubDate, locale)} · ${headingLabels(column.data.headings, locale)}`,
 }));
 ---
 

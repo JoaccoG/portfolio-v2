@@ -15,9 +15,10 @@ import ProfilePiece from '../components/ProfilePiece.astro';
 import Sheet from '../components/paper/Sheet.astro';
 import RunningHead from '../components/RunningHead.astro';
 import Ticker from '../components/Ticker.astro';
-import { copy } from '../i18n/t';
+import { copyFor } from '../i18n/t';
 import Base from '../layouts/Base.astro';
 
+const copy = copyFor(Astro.currentLocale);
 const sec = copy.sections;
 ---
 

@@ -5,9 +5,10 @@ import Footer from '../../components/columns/Footer.astro';
 import Wire from '../../components/columns/Wire.astro';
 import PageHead from '../../components/PageHead.astro';
 import Sheet from '../../components/paper/Sheet.astro';
-import { copy } from '../../i18n/t';
+import { copyFor } from '../../i18n/t';
 import Base from '../../layouts/Base.astro';
 
+const copy = copyFor(Astro.currentLocale);
 const f = copy.columns.feed;
 const h = copy.columns.head;
 const s = copy.sections.columns;

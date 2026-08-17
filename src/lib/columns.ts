@@ -1,11 +1,10 @@
 import { type CollectionEntry, getCollection } from 'astro:content';
-import { copy } from '../i18n/t';
+import { copyFor, localeOf } from '../i18n/t';
 
 export type Column = CollectionEntry<'columns'>;
+type Locale = string | undefined;
 
 const WPM = 230;
-const m = copy.masthead;
-const c = copy.columns;
 const ROMAN: [number, string][] = [
 	[100, 'C'],
 	[90, 'XC'],
@@ -30,57 +29,75 @@ export function roman(n: number): string {
 	return out;
 }
 
-export const numberWord = (n: number): string =>
-	copy.machinery.numberWords[n] ?? String(n);
+export const numberWord = (n: number, locale: Locale): string =>
+	copyFor(locale).machinery.numberWords[n] ?? String(n);
 
-export const countLabel = (n: number): string =>
-	(n === 1 ? c.count.one : c.count.many).replace('{n}', numberWord(n));
+export const countLabel = (n: number, locale: Locale): string => {
+	const c = copyFor(locale).columns.count;
+	return (n === 1 ? c.one : c.many).replace('{n}', numberWord(n, locale));
+};
 
 const minutesOf = (words: number): number =>
 	Math.max(1, Math.round(words / WPM));
 
-export const readingLabel = (words: number): string => {
+export const readingLabel = (words: number, locale: Locale): string => {
+	const c = copyFor(locale).columns.reading;
 	const minutes = minutesOf(words);
-	return (minutes === 1 ? c.reading.one : c.reading.many).replace(
+	return (minutes === 1 ? c.one : c.many).replace(
 		'{n}',
-		numberWord(minutes),
+		numberWord(minutes, locale),
 	);
 };
 
-export const readingShortLabel = (words: number): string => {
+export const readingShortLabel = (words: number, locale: Locale): string => {
+	const c = copyFor(locale).columns.readingShort;
 	const minutes = minutesOf(words);
-	return (minutes === 1 ? c.readingShort.one : c.readingShort.many).replace(
+	return (minutes === 1 ? c.one : c.many).replace(
 		'{n}',
-		numberWord(minutes),
+		numberWord(minutes, locale),
 	);
 };
 
-export const wordsLabel = (words: number): string =>
-	c.words.replace('{n}', words.toLocaleString('en-US'));
+export const wordsLabel = (words: number, locale: Locale): string =>
+	copyFor(locale).columns.words.replace(
+		'{n}',
+		words.toLocaleString(localeOf(locale) === 'es' ? 'es-AR' : 'en-US'),
+	);
 
-export const longDate = (date: Date): string =>
-	m.dateTemplate
+export const longDate = (date: Date, locale: Locale): string => {
+	const m = copyFor(locale).masthead;
+	return m.dateTemplate
 		.replace('{month}', m.months[date.getUTCMonth()] ?? '')
 		.replace('{day}', String(date.getUTCDate()))
 		.replace('{year}', String(date.getUTCFullYear() - 100));
+};
 
-export const shortDate = (date: Date): string =>
-	`${date.getUTCDate()} ${(m.months[date.getUTCMonth()] ?? '').slice(0, 3)} ${date.getUTCFullYear() - 100}`;
+export const shortDate = (date: Date, locale: Locale): string => {
+	const m = copyFor(locale).masthead;
+	return `${date.getUTCDate()} ${(m.months[date.getUTCMonth()] ?? '').slice(0, 3)} ${date.getUTCFullYear() - 100}`;
+};
 
 export const editionYear = (date: Date): string =>
 	String(date.getUTCFullYear() - 100);
 
-export const headingLabel = (key: string): string =>
-	(c.headings as Record<string, string>)[key] ?? key;
+export const headingLabel = (key: string, locale: Locale): string =>
+	(copyFor(locale).columns.headings as Record<string, string>)[key] ?? key;
 
-export const headingLabels = (keys: string[]): string =>
-	keys.map(headingLabel).join(' · ');
+export const headingLabels = (keys: string[], locale: Locale): string =>
+	keys.map((key) => headingLabel(key, locale)).join(' · ');
 
 export const numeralOf = (index: number, total: number): string =>
 	roman(total - index);
 
-export async function getColumns(): Promise<Column[]> {
-	const all = await getCollection('columns', ({ data }) => !data.draft);
+export const columnSlug = (column: Column): string =>
+	column.id.slice(column.id.indexOf('/') + 1);
+
+export async function getColumns(locale: Locale): Promise<Column[]> {
+	const prefix = `${localeOf(locale)}/`;
+	const all = await getCollection(
+		'columns',
+		({ id, data }) => !data.draft && id.startsWith(prefix),
+	);
 	return all.sort(
 		(a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime(),
 	);

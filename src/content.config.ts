@@ -4,7 +4,7 @@ import { z } from 'astro/zod';
 import en from './i18n/en.json';
 
 const projects = defineCollection({
-	loader: glob({ pattern: '*.json', base: './src/content/projects/en' }),
+	loader: glob({ pattern: '*/*.json', base: './src/content/projects' }),
 	schema: ({ image }) =>
 		z.object({
 			order: z.number(),
@@ -40,7 +40,7 @@ const projects = defineCollection({
 const headings = Object.keys(en.columns.headings) as [string, ...string[]];
 
 const columns = defineCollection({
-	loader: glob({ pattern: '*.mdx', base: './src/content/columns/en' }),
+	loader: glob({ pattern: '*/*.mdx', base: './src/content/columns' }),
 	schema: z.object({
 		title: z.string(),
 		dek: z.string(),

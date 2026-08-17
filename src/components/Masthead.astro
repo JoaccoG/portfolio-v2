@@ -1,9 +1,10 @@
 ---
 import { editionDate } from '../i18n/edition';
-import { copy } from '../i18n/t';
+import { copyFor } from '../i18n/t';
 
+const copy = copyFor(Astro.currentLocale);
 const m = copy.masthead;
-const date = editionDate();
+const date = editionDate(Astro.currentLocale);
 const [folioPre = '', folioPost = ''] = m.folio[1].split('{date}');
 ---
 

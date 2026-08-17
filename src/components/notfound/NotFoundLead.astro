@@ -1,7 +1,8 @@
 ---
 import { editionDate } from '../../i18n/edition';
-import { copy } from '../../i18n/t';
+import { copyFor } from '../../i18n/t';
 
+const copy = copyFor(Astro.currentLocale);
 const m = copy.masthead;
 const nf = copy.notFound;
 const a = nf.article;
@@ -28,7 +29,7 @@ const leadRest = lead.slice(1);
 				{bylinePre}<span
 					data-live-date
 					data-months={JSON.stringify(m.months)}
-					data-template={m.dateTemplate}>{editionDate()}</span
+					data-template={m.dateTemplate}>{editionDate(Astro.currentLocale)}</span
 				>{bylinePost}
 			</p>
 			<div class="body">

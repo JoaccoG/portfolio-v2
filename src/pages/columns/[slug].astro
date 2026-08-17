@@ -5,9 +5,10 @@ import CustomCursor from '../../components/CustomCursor.astro';
 import Footer from '../../components/columns/Footer.astro';
 import Sheet from '../../components/paper/Sheet.astro';
 import RunningHead from '../../components/RunningHead.astro';
-import { copy } from '../../i18n/t';
+import { copyFor } from '../../i18n/t';
 import Base from '../../layouts/Base.astro';
 import {
+	columnSlug,
 	getColumns,
 	headingLabels,
 	longDate,
@@ -18,9 +19,9 @@ import {
 } from '../../lib/columns';
 
 export async function getStaticPaths() {
-	const columns = await getColumns();
+	const columns = await getColumns('en');
 	return columns.map((column, index) => ({
-		params: { slug: column.id },
+		params: { slug: columnSlug(column) },
 		props: { column, index, columns },
 	}));
 }
@@ -28,6 +29,8 @@ export async function getStaticPaths() {
 type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 
 const { column, index, columns } = Astro.props;
+const locale = Astro.currentLocale;
+const copy = copyFor(locale);
 const a = copy.columns.article;
 const h = copy.columns.head;
 const s = copy.sections.columns;
@@ -61,7 +64,7 @@ const flag = a.flag.replace('{section}', s.section).replace('{roman}', numeral);
 					</button>
 					{
 						earlier ? (
-							<a class="btn" href={`/columns/${earlier.id}/`} data-cur="1">
+							<a class="btn" href={`/columns/${columnSlug(earlier)}/`} data-cur="1">
 								<span>{a.next}</span>
 								<span class="hand">☞</span>
 							</a>
@@ -80,15 +83,15 @@ const flag = a.flag.replace('{section}', s.section).replace('{roman}', numeral);
 							<span class="crumb-sep" aria-hidden="true">›</span>
 							<span class="crumb-no">{a.columnNo.replace('{roman}', numeral)}</span>
 						</p>
-						<p class="kicker">{headingLabels(column.data.headings)}</p>
+						<p class="kicker">{headingLabels(column.data.headings, locale)}</p>
 						<h1 class="title">{column.data.title}</h1>
 						<p class="dek">{column.data.dek}</p>
 						<p class="meta">
-							<span>{longDate(column.data.pubDate)}</span>
+							<span>{longDate(column.data.pubDate, locale)}</span>
 							<span class="dot" aria-hidden="true">·</span>
-							<span>{readingLabel(words)}</span>
+							<span>{readingLabel(words, locale)}</span>
 							<span class="dot" aria-hidden="true">·</span>
-							<span>{wordsLabel(words)}</span>
+							<span>{wordsLabel(words, locale)}</span>
 							<span class="dot" aria-hidden="true">·</span>
 							<span class="hand-set">{a.setByHand}</span>
 						</p>
@@ -100,7 +103,7 @@ const flag = a.flag.replace('{section}', s.section).replace('{roman}', numeral);
 							<div class="foot-nav">
 								{
 									later ? (
-										<a class="btn" href={`/columns/${later.id}/`} data-cur="1">
+										<a class="btn" href={`/columns/${columnSlug(later)}/`} data-cur="1">
 											<span class="hand">☜</span>
 											<span>{a.later}</span>
 										</a>
@@ -114,7 +117,7 @@ const flag = a.flag.replace('{section}', s.section).replace('{roman}', numeral);
 								<a class="btn" href="/columns/" data-cur="1">{a.all}</a>
 								{
 									earlier ? (
-										<a class="btn" href={`/columns/${earlier.id}/`} data-cur="1">
+										<a class="btn" href={`/columns/${columnSlug(earlier)}/`} data-cur="1">
 											<span>{a.earlier}</span>
 											<span class="hand">☞</span>
 										</a>

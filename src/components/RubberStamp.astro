@@ -1,5 +1,5 @@
 ---
-import { copy } from '../i18n/t';
+import { copyFor } from '../i18n/t';
 
 interface Props {
 	lines: string[];
@@ -9,6 +9,7 @@ interface Props {
 }
 
 const { lines, mid, date, template } = Astro.props;
+const copy = copyFor(Astro.currentLocale);
 ---
 
 <svg class="rubber" viewBox="0 0 100 100" aria-hidden="true">

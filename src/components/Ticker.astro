@@ -1,11 +1,12 @@
 ---
-import { copy } from '../i18n/t';
+import { copyFor } from '../i18n/t';
 
 interface Props {
 	items?: string[];
 	duration?: string;
 }
 
+const copy = copyFor(Astro.currentLocale);
 const { items = copy.ticker.items, duration = '148s' } = Astro.props;
 ---
 

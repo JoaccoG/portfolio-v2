@@ -5,9 +5,10 @@ import NotFoundLead from '../components/notfound/NotFoundLead.astro';
 import PageHead from '../components/PageHead.astro';
 import Sheet from '../components/paper/Sheet.astro';
 import Ticker from '../components/Ticker.astro';
-import { copy } from '../i18n/t';
+import { copyFor } from '../i18n/t';
 import Base from '../layouts/Base.astro';
 
+const copy = copyFor(Astro.currentLocale);
 const nf = copy.notFound;
 const h = nf.head;
 ---
