@@ -1,44 +1,81 @@
 ---
 import { copy } from '../i18n/t';
+import {
+	getColumns,
+	headingLabels,
+	numberWord,
+	numeralOf,
+	shortDate,
+} from '../lib/columns';
 
-const c = copy.columns;
+const f = copy.columns.feed;
+const h = copy.columns.home;
+const columns = await getColumns();
+const total = columns.length;
+const word = numberWord(total);
+const tally = h.tally.replace(
+	'{n}',
+	word.charAt(0) + word.slice(1).toLowerCase(),
+);
+const lately = columns.slice(0, 3).map((column, i) => ({
+	id: column.id,
+	numeral: numeralOf(i, total),
+	title: column.data.title,
+	meta: `${shortDate(column.data.pubDate)} · ${headingLabels(column.data.headings)}`,
+}));
 ---
 
 <section id="columns" data-goto="columns">
-	<div class="reserve" data-rv="1">
-		<p class="kicker">{c.reserved}</p>
-		<p class="title">{c.title}<span class="acc">.</span></p>
-		<p class="dek">{c.dek}</p>
+	<div class="teaser">
+		<div class="lead" data-rv="1">
+			<h2>{f.headline}<span class="acc">.</span></h2>
+			<p class="dek">{f.dek} {tally}</p>
+			<a class="btn" href="/columns/" data-cur="1">
+				<span class="hand" aria-hidden="true">☞</span>
+				<span>{h.turn}</span>
+			</a>
+		</div>
+		<div class="lately" data-rv="1">
+			<p class="lately-label">{h.lately}</p>
+			{
+				lately.map((row) => (
+					<a class="row" href={`/columns/${row.id}/`} data-cur="1">
+						<span class="num">{row.numeral}</span>
+						<span class="text">
+							<span class="title">{row.title}</span>
+							<span class="meta">{row.meta}</span>
+						</span>
+					</a>
+				))
+			}
+		</div>
 	</div>
 </section>
 
 <style>
 	section {
-		padding: clamp(1rem, 2.4vw, 1.6rem) 0 clamp(2.4rem, 6vw, 4rem);
+		padding: clamp(1.4rem, 3vw, 2.4rem) 0 0;
 	}
 
-	.reserve {
-		border: 3px double rgba(28, 23, 16, 0.55);
-		padding: clamp(2.6rem, 8vw, 5.4rem) clamp(1.2rem, 4vw, 3rem);
-		text-align: center;
+	.teaser {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) minmax(17rem, 36%);
+		gap: clamp(1.6rem, 4vw, 3.2rem);
+		align-items: start;
+	}
+
+	.lead,
+	.lately {
 		opacity: var(--rv, 1);
 		transition: opacity 0.9s ease;
 	}
 
-	.kicker {
-		margin: 0 0 0.9rem;
-		font-size: 0.64rem;
-		letter-spacing: 0.3em;
-		color: var(--acc, #b4342a);
-		font-weight: 700;
-	}
-
-	.title {
+	h2 {
 		margin: 0;
 		font-family: var(--fHD, 'Abril Fatface'), Didot, serif;
 		font-weight: 620;
-		font-size: clamp(2rem, 8vw, 5.6rem);
-		line-height: 1;
+		font-size: clamp(2.1rem, 4.8vw, 4.4rem);
+		line-height: 0.95;
 		text-transform: uppercase;
 	}
 
@@ -47,9 +84,100 @@ const c = copy.columns;
 	}
 
 	.dek {
-		margin: 1.1rem 0 0;
-		font-size: 0.66rem;
-		letter-spacing: 0.24em;
+		margin: clamp(0.8rem, 1.6vw, 1.1rem) 0 0;
+		max-width: 34rem;
 		font-style: italic;
+		font-size: clamp(0.98rem, 1.7vw, 1.2rem);
+		line-height: 1.5;
+		text-wrap: pretty;
+	}
+
+	.btn {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+		margin-top: clamp(1.2rem, 2.4vw, 1.8rem);
+		border: 1px solid rgba(28, 23, 16, 0.6);
+		padding: 0.6rem 1.1rem;
+		font-size: 0.6rem;
+		letter-spacing: 0.22em;
+		color: inherit;
+		transition:
+			background 0.3s ease,
+			color 0.3s ease;
+	}
+
+	.btn:hover {
+		background: var(--ink, #1c1710);
+		color: var(--paper, #f2ead8);
+	}
+
+	.hand {
+		color: var(--acc, #b4342a);
+	}
+
+	.lately {
+		border-left: 1px solid rgba(28, 23, 16, 0.35);
+		padding-left: clamp(1.2rem, 2.6vw, 2.2rem);
+	}
+
+	.lately-label {
+		margin: 0;
+		padding-bottom: 0.6rem;
+		border-bottom: 1px solid rgba(28, 23, 16, 0.7);
+		font-size: 0.56rem;
+		letter-spacing: 0.28em;
+		font-weight: 700;
+	}
+
+	.row {
+		display: grid;
+		grid-template-columns: 2.2rem minmax(0, 1fr);
+		gap: 0 0.6rem;
+		padding: 0.95rem 0 0.9rem;
+		border-bottom: 1px dotted rgba(28, 23, 16, 0.45);
+		color: inherit;
+	}
+
+	.num {
+		padding-top: 0.35rem;
+		font-size: 0.56rem;
+		letter-spacing: 0.1em;
+		opacity: 0.55;
+	}
+
+	.title {
+		display: block;
+		font-family: var(--fHD, 'Abril Fatface'), Didot, serif;
+		font-size: clamp(1.05rem, 1.6vw, 1.25rem);
+		line-height: 1.15;
+		text-wrap: pretty;
+		transition: color 0.25s ease;
+	}
+
+	.row:hover .title {
+		color: var(--acc, #b4342a);
+	}
+
+	.meta {
+		display: block;
+		margin-top: 0.35rem;
+		font-size: 0.52rem;
+		letter-spacing: 0.2em;
+		text-transform: uppercase;
+		opacity: 0.7;
+	}
+
+	@media (max-width: 899.98px) {
+		.teaser {
+			grid-template-columns: minmax(0, 1fr);
+		}
+
+		.lately {
+			border-left: 0;
+			padding-left: 0;
+			border-top: 1px solid rgba(28, 23, 16, 0.35);
+			padding-top: clamp(1.2rem, 3vw, 1.8rem);
+		}
 	}
 </style>
