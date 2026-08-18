@@ -32,8 +32,8 @@
 	},
 	"masthead": {
 		"issueNo": "N.º 001",
-		"motto": "Todo el Código Digno de Salir a la Calle.",
-		"price": "2 ctvs.",
+		"motto": "Se publica cuanto código compile.",
+		"price": "2¢",
 		"weather": {
 			"label": "EL TIEMPO.",
 			"report": "Sesenta cuadros por segundo; no se esperan tirones. Hidratación ligera antes del mediodía."
@@ -48,10 +48,10 @@
 			"sealTop": "THE DAILY GODOY",
 			"sealBottom": "EDICIÓN MATUTINA",
 			"sealEst": "FUND. 2026",
-			"silent": "LA MÚSICA CALLA",
-			"audible": "LA MÚSICA SUENA"
+			"silent": "MÚSICA ON",
+			"audible": "MÚSICA OFF"
 		},
-		"folio": ["BUENOS AIRES Y LA RED TODA", "EDICIÓN MATUTINA — {date}"],
+		"folio": ["BUENOS AIRES Y LA RED", "EDICIÓN MATUTINA — {date}"],
 		"months": [
 			"ENERO",
 			"FEBRERO",
@@ -69,10 +69,10 @@
 		"dateTemplate": "{day} DE {month} DE {year}"
 	},
 	"hero": {
-		"kicker": "ÚLTIMAS INFORMACIONES — TECNOLOGÍA",
-		"headline": ["SOFTWARE", "CON ESPINAZO"],
-		"dek": "El ingeniero local Joaquín Godoy fue visto cableando máquinas para que hablen claro. Testigos refieren sistemas enteros que “se explican solos” sin supervisión alguna. El ingeniero insiste en que la hazaña debe mucho a un artilugio peculiar que llama “Inteligencia Artificial”, sea eso lo que fuere.",
-		"byline": "POR NUESTRO CORRESPONSAL DE TECNOLOGÍA — CABLEGRAFIADO DESDE EL LUGAR DE LOS HECHOS",
+		"kicker": "ÚLTIMA HORA — TECNOLOGÍA",
+		"headline": ["SOFTWARE", "DE VERDAD"],
+		"dek": "El ingeniero local Joaquín Godoy fue visto cableando máquinas para que hablen claro. Testigos refieren sistemas enteros que “se explican solos” sin supervisión alguna. El ingeniero insiste en que la hazaña se debe en buena parte a un curioso artilugio al que llama “Inteligencia Artificial” — sea lo que sea eso.",
+		"byline": "DE NUESTRO CORRESPONSAL DE TECNOLOGÍA — DESDE EL LUGAR DE LOS HECHOS",
 		"paragraphs": [
 			"El señor Godoy no hace secreto de su entusiasmo. La máquina pensante, declara, es la mayor alteración de su oficio en una generación, y lo dirá con extensión a quien pase a visitarlo. Nuestro corresponsal, que había llegado preparado para las negativas de costumbre, lo encontró en cambio en un banco lateral del taller, con las mangas arremangadas, discutiendo con el aparato.",
 			"Concede sus defectos sin reparos. Es capaz de producir cien páginas antes del desayuno y no responder por ninguna; no lleva su nombre en la obra ni tiene motivo alguno para volver. No parece considerar esto razón para dejarla de lado, sino apenas razón para permanecer en la sala. La responsabilidad, sostiene, todavía no ha sido mecanizada, y hasta que lo sea, la firma del ingeniero es la única que figura en el plano. (Consultado sobre el punto, el aparato ofreció varias opiniones y no se decidió por ninguna.)",
