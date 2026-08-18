@@ -15,6 +15,8 @@ export const clientKey = (
 	request: Request,
 	clientAddress: string | undefined,
 ): string => {
+	const edge = request.headers.get('cf-connecting-ip')?.trim();
+	if (edge) return edge;
 	const forwarded = request.headers.get('x-forwarded-for');
 	const last = forwarded?.split(',').at(-1)?.trim();
 	return last || clientAddress || 'unknown';
