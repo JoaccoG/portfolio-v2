@@ -69,6 +69,8 @@ export const longDate = (date: Date, locale: Locale): string => {
 	return m.dateTemplate
 		.replace('{month}', m.months[date.getUTCMonth()] ?? '')
 		.replace('{day}', String(date.getUTCDate()))
+		.replace('{dd}', String(date.getUTCDate()).padStart(2, '0'))
+		.replace('{mm}', String(date.getUTCMonth() + 1).padStart(2, '0'))
 		.replace('{year}', String(date.getUTCFullYear() - 100));
 };
 
