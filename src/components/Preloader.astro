@@ -5,7 +5,7 @@ const copy = copyFor(Astro.currentLocale);
 const p = copy.preloader;
 ---
 
-<div class="pre" aria-hidden="true">
+<div class="pre" data-preloader aria-hidden="true">
 	<span class="pre-title">{p.title}</span>
 	<span class="pre-fleuron">❦</span>
 	<span class="pre-count" data-precnt>00</span>

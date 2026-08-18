@@ -55,5 +55,6 @@ export function initMusic(): void {
 		render();
 	};
 	for (const el of toggles) el.addEventListener('click', toggle);
+	document.addEventListener('edition:swapped', render);
 	render();
 }

@@ -24,6 +24,7 @@ const copy = copyFor(Astro.currentLocale);
 </svg>
 
 <script>
+	const stampDates = () => {
 	for (const el of document.querySelectorAll('[data-stamp-date]')) {
 		if (!(el instanceof HTMLElement || el instanceof SVGElement)) continue;
 		const { months, template } = el.dataset;
@@ -35,6 +36,9 @@ const copy = copyFor(Astro.currentLocale);
 			.replace('{day}', String(now.getDate()))
 			.replace('{year}', String(now.getFullYear() - 100));
 	}
+	};
+	stampDates();
+	document.addEventListener('edition:swapped', stampDates);
 </script>
 
 <style>

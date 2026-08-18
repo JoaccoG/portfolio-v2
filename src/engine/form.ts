@@ -9,8 +9,10 @@ export function initForm(): void {
 	const label = form.querySelector<HTMLElement>('[data-form-label]');
 	const hand = form.querySelector<HTMLElement>('[data-form-hand]');
 	const say = form.dataset;
-	const submitLabel = label?.textContent ?? '';
-	const sendingLabel = say.sending ?? '';
+	let submitLabel = label?.textContent ?? '';
+	document.addEventListener('edition:swapped', () => {
+		if (!button?.disabled) submitLabel = label?.textContent ?? '';
+	});
 	const showError = (text: string | undefined) => {
 		if (!error) return;
 		error.textContent = (say.prefix ?? '') + (text ?? '');
@@ -39,7 +41,7 @@ export function initForm(): void {
 		if (error) error.hidden = true;
 		if (button) {
 			button.disabled = true;
-			if (label) label.textContent = sendingLabel;
+			if (label) label.textContent = say.sending ?? '';
 			if (hand) hand.hidden = true;
 		}
 		try {

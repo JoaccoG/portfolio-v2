@@ -1,4 +1,4 @@
-export function initLiveDate(): void {
+const setLiveDates = () => {
 	for (const el of document.querySelectorAll<HTMLElement>('[data-live-date]')) {
 		const { months, template } = el.dataset;
 		if (!months || !template) continue;
@@ -9,4 +9,9 @@ export function initLiveDate(): void {
 			.replace('{day}', String(now.getDate()))
 			.replace('{year}', String(now.getFullYear() - 100));
 	}
+};
+
+export function initLiveDate(): void {
+	setLiveDates();
+	document.addEventListener('edition:swapped', setLiveDates);
 }
