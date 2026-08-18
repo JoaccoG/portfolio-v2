@@ -97,6 +97,7 @@ const sec = copy.sections;
 
 <script>
 	import { initCursor } from '../../engine/cursor';
+	import { initEdition } from '../../engine/edition';
 	import { initEngine } from '../../engine/engine';
 	import { initForm } from '../../engine/form';
 	import { initIntro } from '../../engine/intro';
@@ -112,6 +113,7 @@ const sec = copy.sections;
 	initIntro({ onSettled: () => engine?.measure() });
 	initReveals();
 	initCursor();
+	initEdition();
 	initMusic();
 	initOverlay();
 	initForm();

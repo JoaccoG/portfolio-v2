@@ -1,10 +1,12 @@
 ---
 import { editionDate } from '../i18n/edition';
-import { copyFor } from '../i18n/t';
+import { copyFor, localePath } from '../i18n/t';
 
 const copy = copyFor(Astro.currentLocale);
 const m = copy.masthead;
-const switchHref = Astro.currentLocale === 'es' ? '?lang=en' : '?lang=es';
+const other = Astro.currentLocale === 'es' ? 'en' : 'es';
+const bare = Astro.url.pathname.replace(/^\/es(?=\/|$)/, '') || '/';
+const switchHref = `${localePath(other, bare)}?lang=${other}`;
 const date = editionDate(Astro.currentLocale);
 const [folioPre = '', folioPost = ''] = m.folio[1].split('{date}');
 ---
@@ -77,6 +79,7 @@ const [folioPre = '', folioPost = ''] = m.folio[1].split('{date}');
 		class="folio-btn edition-btn"
 		href={switchHref}
 		data-cur="1"
+		data-edition-switch
 		aria-label={m.stamp.ariaLabel}
 	>
 		<span class="btn-hand" aria-hidden="true">☞</span>

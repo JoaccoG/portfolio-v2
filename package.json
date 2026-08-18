@@ -21,6 +21,7 @@
 		"@astrojs/mdx": "^8.0.0",
 		"@astrojs/sitemap": "^3.7.4",
 		"@biomejs/biome": "^2.5.10",
+		"idiomorph": "^0.7.4",
 		"pixelmatch": "^7.2.0",
 		"pngjs": "^7.0.0",
 		"sharp": "^0.35.4",
