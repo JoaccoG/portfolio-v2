@@ -232,3 +232,41 @@ select {
 		color: inherit;
 	}
 }
+
+.copy-swap {
+	view-transition-name: match-element;
+	view-transition-class: copy;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+	animation: none;
+	mix-blend-mode: normal;
+}
+
+::view-transition-group(.copy) {
+	animation-duration: 0.42s;
+	animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+::view-transition-old(.copy) {
+	animation: copy-out 0.26s cubic-bezier(0.4, 0, 1, 1) both;
+}
+
+::view-transition-new(.copy) {
+	animation: copy-in 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) 0.12s both;
+}
+
+@keyframes copy-out {
+	to {
+		opacity: 0;
+		transform: translateY(-0.55em);
+	}
+}
+
+@keyframes copy-in {
+	from {
+		opacity: 0;
+		transform: translateY(0.55em);
+	}
+}
