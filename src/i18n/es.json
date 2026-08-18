@@ -51,7 +51,7 @@
 			"silent": "MÚSICA ON",
 			"audible": "MÚSICA OFF"
 		},
-		"folio": ["BUENOS AIRES Y LA RED", "EDICIÓN MATUTINA — {date}"],
+		"folio": ["BUENOS AIRES Y LA VASTA RED", "EDICIÓN MATUTINA — {date}"],
 		"months": [
 			"ENERO",
 			"FEBRERO",
@@ -66,7 +66,7 @@
 			"NOVIEMBRE",
 			"DICIEMBRE"
 		],
-		"dateTemplate": "{day} DE {month} DE {year}"
+		"dateTemplate": "{dd}/{mm}/{year}"
 	},
 	"hero": {
 		"kicker": "ÚLTIMA HORA — TECNOLOGÍA",
