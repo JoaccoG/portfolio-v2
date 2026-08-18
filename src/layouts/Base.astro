@@ -9,19 +9,27 @@ import oldStandardItalic from '../assets/fonts/old-standard-tt-400-italic.woff2?
 import oldStandardBold from '../assets/fonts/old-standard-tt-700.woff2?url';
 import ornaments from '../assets/fonts/tdg-ornaments-400.woff2?url';
 import unifraktur from '../assets/fonts/unifrakturmaguntia-400.woff2?url';
-import { copyFor } from '../i18n/t';
+import { copyFor, localeOf } from '../i18n/t';
 
 interface Props {
 	title?: string;
 	description?: string;
+	alternates?: boolean;
 }
 
-const copy = copyFor(Astro.currentLocale);
-const { title = copy.meta.title, description = copy.meta.description } =
-	Astro.props;
+const locale = localeOf(Astro.currentLocale);
+const copy = copyFor(locale);
+const {
+	title = copy.meta.title,
+	description = copy.meta.description,
+	alternates = true,
+} = Astro.props;
 const site = Astro.site;
 const canonical = site ? new URL(Astro.url.pathname, site).href : undefined;
 const ogImage = site ? new URL('/og.jpg?v=2', site).href : undefined;
+const bare = Astro.url.pathname.replace(/^\/es(?=\/|$)/, '') || '/';
+const enHref = site ? new URL(bare, site).href : undefined;
+const esHref = site ? new URL(`/es${bare}`, site).href : undefined;
 const person = copy.meta.person;
 const personLd = {
 	'@context': 'https://schema.org',
@@ -48,7 +56,7 @@ const siteLd = {
 };
 ---
 
-<html lang="en">
+<html lang={locale}>
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -60,11 +68,14 @@ const siteLd = {
 		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 		<link rel="manifest" href="/site.webmanifest" />
 		{canonical && <link rel="canonical" href={canonical} />}
+		{alternates && enHref && <link rel="alternate" hreflang="en" href={enHref} />}
+		{alternates && esHref && <link rel="alternate" hreflang="es" href={esHref} />}
+		{alternates && enHref && <link rel="alternate" hreflang="x-default" href={enHref} />}
 		<meta property="og:type" content="website" />
 		<meta property="og:site_name" content={copy.meta.siteName} />
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
-		<meta property="og:locale" content="en_US" />
+		<meta property="og:locale" content={locale === 'es' ? 'es_AR' : 'en_US'} />
 		{canonical && <meta property="og:url" content={canonical} />}
 		{ogImage && <meta property="og:image" content={ogImage} />}
 		{ogImage && <meta property="og:image:width" content="1200" />}

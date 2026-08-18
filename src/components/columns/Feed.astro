@@ -1,5 +1,5 @@
 ---
-import { copyFor } from '../../i18n/t';
+import { copyFor, localePath } from '../../i18n/t';
 import {
 	columnSlug,
 	countLabel,
@@ -85,7 +85,7 @@ const inYear = (year: string) => rows.filter((row) => row.year === year);
 					{inYear(year).map((row) => (
 						<a
 							class="row"
-							href={`/columns/${row.id}/`}
+							href={localePath(locale, `/columns/${row.id}/`)}
 							data-row
 							data-year={year}
 							data-headings={row.headings.join(' ')}

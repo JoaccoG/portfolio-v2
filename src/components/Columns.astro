@@ -1,5 +1,5 @@
 ---
-import { copyFor } from '../i18n/t';
+import { copyFor, localePath } from '../i18n/t';
 import {
 	columnSlug,
 	getColumns,
@@ -33,16 +33,18 @@ const lately = columns.slice(0, 3).map((column, i) => ({
 		<div class="lead" data-rv="1">
 			<h2>{f.headline}<span class="acc">.</span></h2>
 			<p class="dek">{f.dek} {tally}</p>
-			<a class="btn" href="/columns/" data-cur="1">
+			<a class="btn" href={localePath(locale, '/columns/')} data-cur="1">
 				<span class="hand" aria-hidden="true">☞</span>
 				<span>{h.turn}</span>
 			</a>
 		</div>
-		<div class="lately" data-rv="1">
+		{
+			lately.length > 0 && (
+				<div class="lately" data-rv="1">
 			<p class="lately-label">{h.lately}</p>
 			{
 				lately.map((row) => (
-					<a class="row" href={`/columns/${row.id}/`} data-cur="1">
+					<a class="row" href={localePath(locale, `/columns/${row.id}/`)} data-cur="1">
 						<span class="num">{row.numeral}</span>
 						<span class="text">
 							<span class="title">{row.title}</span>
@@ -51,7 +53,9 @@ const lately = columns.slice(0, 3).map((column, i) => ({
 					</a>
 				))
 			}
-		</div>
+				</div>
+			)
+		}
 	</div>
 </section>
 
