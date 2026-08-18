@@ -134,10 +134,21 @@ export async function swapEdition(link: HTMLAnchorElement): Promise<void> {
 		}
 		const next = new DOMParser().parseFromString(await res.text(), 'text/html');
 		const anchor = anchorOf();
+		const refocus =
+			document.activeElement instanceof HTMLElement &&
+			document.activeElement.hasAttribute('data-edition-switch');
 		const apply = () => {
+			if (document.activeElement instanceof HTMLElement) {
+				document.activeElement.blur();
+			}
 			syncHead(next);
 			morph(next);
 			keepAnchor(anchor);
+			if (refocus) {
+				document
+					.querySelector<HTMLElement>('[data-edition-switch]')
+					?.focus({ preventScroll: true });
+			}
 		};
 		const animate =
 			typeof document.startViewTransition === 'function' &&
