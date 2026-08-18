@@ -4,6 +4,7 @@ import { copyFor } from '../i18n/t';
 
 const copy = copyFor(Astro.currentLocale);
 const m = copy.masthead;
+const switchHref = Astro.currentLocale === 'es' ? '?lang=en' : '?lang=es';
 const date = editionDate(Astro.currentLocale);
 const [folioPre = '', folioPost = ''] = m.folio[1].split('{date}');
 ---
@@ -72,21 +73,15 @@ const [folioPre = '', folioPost = ''] = m.folio[1].split('{date}');
 </div>
 
 <div class="folio">
-	<button
-		type="button"
+	<a
 		class="folio-btn edition-btn"
+		href={switchHref}
 		data-cur="1"
-		data-stamp
 		aria-label={m.stamp.ariaLabel}
 	>
 		<span class="btn-hand" aria-hidden="true">☞</span>
 		<span>{m.stamp.label}</span>
-		<span
-			class="stamp-tip"
-			data-stamp-note
-			data-notice={m.stamp.notice}
-			role="status"></span>
-	</button>
+	</a>
 	<div class="folio-center">
 		<span>{m.folio[0]}</span>
 		<span class="folio-sep" aria-hidden="true">✦</span>
@@ -121,19 +116,6 @@ const [folioPre = '', folioPost = ''] = m.folio[1].split('{date}');
 
 	initLiveDate();
 
-	const stamp = document.querySelector('[data-stamp]');
-	const note = document.querySelector('[data-stamp-note]');
-	let noteTimer: number | undefined;
-	stamp?.addEventListener('click', () => {
-		if (!(note instanceof HTMLElement)) return;
-		note.textContent = note.dataset.notice ?? '';
-		note.classList.add('on');
-		clearTimeout(noteTimer);
-		noteTimer = window.setTimeout(() => {
-			note.classList.remove('on');
-			note.textContent = '';
-		}, 4000);
-	});
 </script>
 
 <style>
@@ -270,43 +252,8 @@ const [folioPre = '', folioPost = ''] = m.folio[1].split('{date}');
 		transition: transform 0.95s cubic-bezier(0.19, 1, 0.22, 1) 0.3s;
 	}
 
-	.stamp-tip {
-		position: absolute;
-		bottom: calc(100% + 0.7rem);
-		left: 50%;
-		width: max-content;
-		max-width: 13rem;
-		transform: translateX(-50%);
-		background: var(--ink, #1c1710);
-		color: var(--paper, #f2ead8);
-		padding: 0.5rem 0.75rem;
-		font-size: 0.5rem;
-		letter-spacing: 0.14em;
-		line-height: 1.5;
-		text-align: center;
-		opacity: 0;
-		visibility: hidden;
-		pointer-events: none;
-		transition:
-			opacity 0.3s ease,
-			visibility 0.3s;
-		z-index: 20;
-	}
 
-	.stamp-tip::before {
-		content: '';
-		position: absolute;
-		top: 100%;
-		left: 50%;
-		transform: translateX(-50%);
-		border: 5px solid transparent;
-		border-top-color: var(--ink, #1c1710);
-	}
 
-	.stamp-tip.on {
-		opacity: 1;
-		visibility: visible;
-	}
 
 	.press {
 		align-items: center;
@@ -394,6 +341,7 @@ const [folioPre = '', folioPost = ''] = m.folio[1].split('{date}');
 
 	.folio-btn {
 		position: relative;
+		text-decoration: none;
 		flex: none;
 		display: inline-flex;
 		align-items: center;

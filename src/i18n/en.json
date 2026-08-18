@@ -41,7 +41,6 @@
 		"nameplate": ["The", "Daily", "Godoy"],
 		"stamp": {
 			"label": "EDICIÓN EN CASTELLANO",
-			"notice": "THE SPANISH EDITION IS STILL IN THE COMPOSING ROOM — FORTHCOMING",
 			"ariaLabel": "Edición en castellano — switch to the Spanish edition"
 		},
 		"press": {
