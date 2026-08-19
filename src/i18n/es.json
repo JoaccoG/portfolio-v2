@@ -310,33 +310,33 @@
 	},
 	"telegrams": {
 		"kicker": "LA MESA DE CABLES",
-		"title": "Telegramas al Director",
-		"sub": "TODOS LOS CABLES SE RESPONDEN EN DOS DÍAS",
+		"title": "Telegramas al director",
+		"sub": "LOS TELEGRAMAS SE RESPONDEN EN UN PLAZO DE DOS DÍAS",
 		"postcard": "TARJETA POSTAL",
-		"postcardSub": "DE ESTE LADO ESCRÍBASE ÚNICAMENTE LA DIRECCIÓN — TARIFA INTERIOR, 2 CTVS.",
-		"messageLabel": "EL MENSAJE — SE AGRADECE ECONOMÍA DE PALABRAS",
-		"messagePlaceholder": "Estimado señor: he visto la maquinaria y deseo conversar al respecto.",
-		"stampLines": ["2 ctvs.", "CORREO", "ELECTRÓNICO"],
+		"postcardSub": "DE ESTE LADO ESCRÍBASE ÚNICAMENTE LA DIRECCIÓN — TARIFA INTERIOR, 2¢",
+		"messageLabel": "EL MENSAJE — SE AGRADECE LA BREVEDAD",
+		"messagePlaceholder": "Estimado señor: he visto su maquinaria y deseo conversar al respecto.",
+		"stampLines": ["2¢", "CORREO", "ELECTRÓNICO"],
 		"toLabel": "PARA —",
 		"toLines": ["Sr. J. Godoy, Ingeniero", "The Daily Godoy, Bs. As."],
 		"fromLabel": "DE — SU DIRECCIÓN ELECTRÓNICA",
 		"emailPlaceholder": "nombre@dominio.com",
 		"responseWindow": "PLAZO DE RESPUESTA — 48 HORAS",
 		"submit": "DESPACHAR",
-		"sending": "EN EL CABLE …",
+		"sending": "EN CAMINO …",
 		"postmaster": {
 			"prefix": "☞ EL JEFE DE CORREOS OBJETA: ",
 			"email": "SE REQUIERE UNA DIRECCIÓN EN REGLA",
-			"blank": "NO PUEDE ENVIARSE UN CABLE EN BLANCO",
-			"rate": "LA LÍNEA ESTÁ CONGESTIONADA — TENGA LA BONDAD DE AGUARDAR UN MINUTO",
-			"wireDown": "EL CABLE ESTÁ CAÍDO — INTÉNTELO EN UN MOMENTO"
+			"blank": "NO SE PUEDE ENVIAR UN TELEGRAMA EN BLANCO",
+			"rate": "LA LÍNEA ESTÁ SATURADA — AGUARDE UN MINUTO",
+			"wireDown": "EL CABLE ESTÁ CAÍDO — VUELVA A INTENTARLO MÁS TARDE"
 		},
 		"sent": {
 			"stampLines": ["THE DAILY", "GODOY"],
 			"stampMid": "DESPACHADO",
 			"stampDate": "25 AGO · 1901",
 			"stampDateTemplate": "{day} {month} · {year}",
-			"text": "Su tarjeta ya está en el correo; el director responderá."
+			"text": "Su tarjeta ya está en el buzón; el director responderá."
 		}
 	},
 	"classifieds": {
