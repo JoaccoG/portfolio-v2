@@ -581,18 +581,18 @@
 			"nameplate": "The Daily Godoy"
 		},
 		"feed": {
-			"docTitle": "Las Columnas — The Daily Godoy",
-			"description": "Las Columnas de The Daily Godoy: una columna fija de Joaquín Godoy sobre el oficio, la máquina pensante, la sala de lectura y lo que sea que haya producido la semana.",
+			"docTitle": "Las columnas — The Daily Godoy",
+			"description": "Las columnas de The Daily Godoy: una columna fija de Joaquín Godoy sobre el oficio, la máquina pensante, la sala de lectura y lo que sea que haya ocurrido en la semana.",
 			"headline": "LAS COLUMNAS",
 			"dek": "Una columna fija sobre el oficio, la máquina pensante, la sala de lectura y lo que sea que haya ocurrido en la semana.",
-			"filterLabel": "COMPUESTAS BAJO ESTOS RUBROS",
-			"filterAria": "Ordenar las columnas por rubro",
+			"filterLabel": "COMPUESTAS BAJO ESTOS TEMAS",
+			"filterAria": "Filtrar las columnas por tema",
 			"all": "TODAS LAS COLUMNAS",
 			"tally": "{count} A LA FECHA",
-			"empty": "Todavía no se compuso nada bajo ese rubro."
+			"empty": "Todavía no se compuso nada sobre ese tema."
 		},
 		"article": {
-			"docTitle": "{title} — Las Columnas",
+			"docTitle": "{title} — Las columnas",
 			"flag": "{section} — {roman}",
 			"breadcrumb": "LAS COLUMNAS",
 			"columnNo": "COLUMNA N.º {roman}",
@@ -611,15 +611,15 @@
 			"title": "Reciba las columnas por cable.",
 			"emailAria": "Su dirección electrónica",
 			"submit": "SUSCRIBIRSE",
-			"sending": "EN EL CABLE …",
-			"note": "Entregada la mañana en que se compone. Sin avisos.",
+			"sending": "EN CAMINO …",
+			"note": "Llega la misma mañana en que se compone. Sin publicidad.",
 			"already": "ESA DIRECCIÓN YA FIGURA EN EL LIBRO",
 			"sent": {
 				"stampLines": ["THE DAILY", "GODOY"],
 				"stampMid": "ASENTADA",
 				"stampDate": "25 AGO · 1901",
 				"stampDateTemplate": "{day} {month} · {year}",
-				"text": "Su dirección quedó asentada en el libro. La próxima columna lo encontrará."
+				"text": "Su dirección quedó asentada en el libro. La próxima columna le llegará."
 			}
 		},
 		"footer": "LAS COLUMNAS APARECEN CUANDO APARECEN"
