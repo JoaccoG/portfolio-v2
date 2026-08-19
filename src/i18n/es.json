@@ -150,31 +150,31 @@
 	},
 	"profile": {
 		"kicker": "LA SEMBLANZA",
-		"title": "Relación del Retratado, en Cuatro Partes",
+		"title": "Una descripción del sujeto, en cuatro partes",
 		"parts": [
 			{
-				"kicker": "PARTE I — DE LOS ORÍGENES",
+				"kicker": "PARTE I — DE ORIGEN",
 				"title": "Cimientos.",
-				"body": "Su oficio empezó, como suele ocurrir con estas cosas, por curiosidad. Desarmar sistemas, seguir el rastro de su funcionamiento y preguntarse por qué algunas máquinas perduraban mientras otras se derrumbaban bajo el peso de su propia astucia.",
-				"tight": "La costumbre, se dice, nunca lo abandonó del todo.",
-				"footer": "LA COSTUMBRE DE PREGUNTAR POR QUÉ."
+				"body": "Su oficio empezó, como suele ocurrir con estas cosas, por curiosidad. Desarmar sistemas, averiguar cómo funcionaban por dentro y preguntarse por qué algunas máquinas perduraban mientras otras se derrumbaban bajo el peso de su propio ingenio.",
+				"tight": "La costumbre, se dice, nunca lo abandonó.",
+				"footer": "LA COSTUMBRE DE PREGUNTARSE POR QUÉ."
 			},
 			{
-				"kicker": "PARTE II — DEL MÉTODO",
+				"kicker": "PARTE II — DE MÉTODO",
 				"title": "Práctica.",
-				"body": "Godoy trabaja sobre todo por sustracción. Prefiere las estructuras llanas, el código legible y las herramientas que se ganan su lugar. La maquinaria nueva es bienvenida cuando acorta el camino, pero nunca cuando oscurece adónde conduce.",
+				"body": "Godoy trabaja sobre todo por sustracción. Prefiere las estructuras simples, el código legible y las herramientas que se ganan su lugar. La maquinaria nueva es bienvenida cuando acorta el camino, pero nunca cuando esconde adónde lleva.",
 				"footer": "HERRAMIENTAS. MÉTODOS. INSTINTOS."
 			},
 			{
-				"kicker": "PARTE III — DE LAS CONVICCIONES",
+				"kicker": "PARTE III — DE CONVICCIÓN",
 				"title": "Principios.",
-				"body": "Tiene poca paciencia para la complejidad sin causa, el ornamento sin propósito o los artefactos que su autor no sabe explicar. El software, sostiene, debe ser útil, comprensible y estar hecho para sobrevivir a las manos que vengan después de las suyas.",
-				"footer": "LO QUE SE NIEGA A DESPACHAR."
+				"body": "Tiene poca paciencia con la complejidad sin motivo, el ornamento sin propósito y los artefactos que ni su autor sabe explicar. El software, sostiene, debe ser útil, comprensible y estar hecho para sobrevivir a las manos que vengan después de las suyas.",
+				"footer": "LO QUE SE NIEGA A ENTREGAR."
 			},
 			{
 				"kicker": "PARTE IV — DEL HOMBRE EN SÍ",
 				"title": "Extramuros.",
-				"body": "Lejos del taller, las curiosidades del retratado se extienden bastante más allá. Se lo puede hallar recorriendo mundos inventados, siguiendo los asuntos públicos con acaso demasiada atención, perdiendo una velada con la música o con un libro, o persiguiendo alguna cuestión enteramente innecesaria solo porque le llamó la atención.",
+				"body": "Lejos del taller, las curiosidades del sujeto se extienden bastante más allá. Se lo puede encontrar recorriendo mundos inventados, siguiendo la actualidad con una atención quizás excesiva, perdiendo una tarde con la música o con un libro, o persiguiendo alguna pregunta completamente innecesaria solo porque le picó la curiosidad.",
 				"tight": "Según todos los testimonios, la maquinaria es apenas una parte del hombre.",
 				"footer": "LA VIDA MÁS ALLÁ DE LA MAQUINARIA."
 			}
@@ -513,7 +513,7 @@
 		"profile": {
 			"section": "SECCIÓN B",
 			"name": "EL RETRATADO",
-			"tagline": "Relacionado con esta mesa, con cierta extensión",
+			"tagline": "Relacionado a la editorial, en cierto punto",
 			"page": "PÁGINA 2"
 		},
 		"works": {
