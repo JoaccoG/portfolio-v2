@@ -1,12 +1,12 @@
 {
 	"meta": {
-		"title": "The Daily Godoy — Joaquín Godoy, Ingeniero de Software",
-		"description": "The Daily Godoy, edición matutina. Relación de las obras, nombramientos y telegramas de Joaquín Godoy, ingeniero de software de Buenos Aires.",
+		"title": "The Daily Godoy — Joaquín Godoy, Software Engineer",
+		"description": "The Daily Godoy, edición matutina. Relación de las obras, nombramientos y telegramas de Joaquín Godoy, software engineer de Buenos Aires.",
 		"siteName": "The Daily Godoy",
 		"skipToContent": "Saltar a las noticias",
 		"person": {
 			"name": "Joaquín Godoy",
-			"jobTitle": "Ingeniero de Software",
+			"jobTitle": "Software Engineer",
 			"locality": "Buenos Aires",
 			"country": "AR"
 		}
