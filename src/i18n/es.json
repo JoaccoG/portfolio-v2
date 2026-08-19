@@ -407,17 +407,17 @@
 		"ariaLabel": "Página tres: {name}",
 		"header": "THE DAILY GODOY — PÁGINA TRES",
 		"return": "VOLVER A LA PORTADA",
-		"ghost": "Página Tres",
+		"ghost": "Página tres",
 		"seriesKicker": "N.º {n} DE LA SERIE — {series} · {year} ",
 		"readAs": "(léase: {real})",
-		"byline": "DESDE NUESTRA MESA DE INGENIERÍA — VIENE DE LA PÁGINA UNO",
+		"byline": "DE NUESTRA MESA DE INGENIERÍA — VIENE DE LA PÁGINA UNO",
 		"chip": "GRABADO EN PREPARACIÓN — FALTA UNA CAPTURA DE LA MAQUINARIA",
-		"particularsTitle": "PORMENORES.",
-		"particularsLabels": ["FUNCIÓN", "AÑO", "COMPUESTO", "ESTADO"],
+		"particularsTitle": "FICHA TÉCNICA.",
+		"particularsLabels": ["ROL", "AÑO", "STACK", "ESTADO"],
 		"repoLink": "INSPECCIONAR EL REPOSITORIO",
 		"liveLink": "VISITAR LA MAQUINARIA",
 		"signature": "LA REDACCIÓN.",
-		"footer": "NUEVAS CRÓNICAS APARECERÁN EN EDICIONES SUCESIVAS."
+		"footer": "NUEVAS CRÓNICAS APARECERÁN EN PRÓXIMAS EDICIONES."
 	},
 	"preloader": {
 		"title": "THE DAILY GODOY",
