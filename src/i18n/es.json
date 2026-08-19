@@ -224,28 +224,28 @@
 		"footer": "EL EXPEDIENTE COMPLETO, DOBLADO PARA EL BOLSILLO."
 	},
 	"appointments": {
-		"kicker": "LA COLUMNA DE SERVICIOS",
+		"kicker": "LA HOJA DE SERVICIOS",
 		"title": "Nombramientos",
-		"sub": "DESTINOS PROFESIONALES — SE ATIENDEN CONSULTAS.",
+		"sub": "CARGOS PROFESIONALES — SE ATIENDEN CONSULTAS.",
 		"rows": [
 			{
-				"dates": "1925 — AL DÍA DE HOY",
+				"dates": "1925 — ACTUALIDAD",
 				"current": true,
-				"role": "Ingeniero de Software Semi-Senior, ",
+				"role": "Semi-Senior Software Engineer, ",
 				"company": "MarketFully",
-				"note": "Hoy a cargo de sistemas más amplios, con mayor responsabilidad y maquinaria de la que se espera que perdure."
+				"note": "Hoy a cargo de sistemas más amplios, con más ownership y maquinaria hecha para durar."
 			},
 			{
 				"dates": "1924 — 1925",
-				"role": "Ingeniero de Software, ",
+				"role": "Software Engineer, ",
 				"company": "Vodafone",
-				"note": "Con mayor cargo sobre las obras, llevando las ideas del primer bosquejo a la forma terminada."
+				"note": "Con más responsabilidad sobre las obras, llevando las ideas del primer boceto a la forma final."
 			},
 			{
 				"dates": "1923 — 1924",
-				"role": "Desarrollador Full Stack Junior, ",
+				"role": "Full Stack Junior Developer, ",
 				"company": "Vodafone",
-				"note": "Entró al oficio construyendo, cuidando y aprendiendo la maquinaria por ambos extremos."
+				"note": "Entró al oficio construyendo, manteniendo y aprendiendo la maquinaria de punta a punta."
 			}
 		]
 	},
@@ -266,8 +266,8 @@
 					}
 				],
 				"lines": [
-					"¡Fortalece los tipos débiles! Cura lo indefinido a cualquier hora.",
-					"Garantizado a prueba de nulos o le devolvemos su centavo."
+					"¡Fortalece los tipos débiles! Cura los undefined a cualquier hora.",
+					"Garantizado null-safe o le devolvemos su centavo."
 				]
 			},
 			{
@@ -285,21 +285,24 @@
 				],
 				"lines": [
 					"Automatiza lo tedioso y simplifica lo oscuro.",
-					"Pilas incluidas."
+					"Baterías incluidas."
 				]
 			},
 			{
 				"title": [
 					{
-						"t": "HERRERÍA A PRUEBA DE "
+						"t": "HERRERÍA "
 					},
 					{
 						"t": "RUST",
 						"acc": true
+					},
+					{
+						"t": "ICA"
 					}
 				],
 				"lines": [
-					"Maquinaria con memoria segura, forjada sin recolector de basura.",
+					"Maquinaria memory-safe, forjada sin garbage collector.",
 					"Si compila, aguanta."
 				]
 			}
@@ -532,7 +535,7 @@
 		"appointments": {
 			"section": "SECCIÓN E",
 			"name": "NOMBRAMIENTOS",
-			"tagline": "Asentados en orden inverso de ocurrencia",
+			"tagline": "Asentados del más reciente al más antiguo",
 			"page": "PÁGINA 5"
 		},
 		"correspondence": {
@@ -544,8 +547,8 @@
 	},
 	"columns": {
 		"home": {
-			"tally": "{n} a la fecha; sin calendario prometido.",
-			"lately": "RECIÉN COMPUESTAS",
+			"tally": "{n} a la fecha; sin fechas prometidas.",
+			"lately": "RECIÉN SALIDAS DE IMPRENTA",
 			"turn": "PASAR A LAS COLUMNAS"
 		},
 		"headings": {
@@ -581,7 +584,7 @@
 			"docTitle": "Las Columnas — The Daily Godoy",
 			"description": "Las Columnas de The Daily Godoy: una columna fija de Joaquín Godoy sobre el oficio, la máquina pensante, la sala de lectura y lo que sea que haya producido la semana.",
 			"headline": "LAS COLUMNAS",
-			"dek": "Una columna fija sobre el oficio, la máquina pensante, la sala de lectura y lo que sea que haya producido la semana.",
+			"dek": "Una columna fija sobre el oficio, la máquina pensante, la sala de lectura y lo que sea que haya ocurrido en la semana.",
 			"filterLabel": "COMPUESTAS BAJO ESTOS RUBROS",
 			"filterAria": "Ordenar las columnas por rubro",
 			"all": "TODAS LAS COLUMNAS",
