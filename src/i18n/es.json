@@ -181,7 +181,7 @@
 		]
 	},
 	"machinery": {
-		"kicker": "DESDE EL PISO DEL TALLER",
+		"kicker": "DESDE EL TALLER",
 		"title": "MAQUINARIA RECIENTEMENTE CONSTRUIDA",
 		"subtitle": "{count} CRÓNICAS, TODAS CONTINÚAN AL DORSO",
 		"numberWords": [
@@ -209,19 +209,19 @@
 	},
 	"cvAd": {
 		"kicker": "— AVISO —",
-		"title": "OBTENGA LOS PAPELES DEL RETRATADO",
-		"dek": "El Curriculum Vitae completo, despachado a su sala de lectura por correo electrónico. Indique su lengua de preferencia.",
+		"title": "OBTENGA LOS PAPELES DEL SUJETO",
+		"dek": "El currículum completo, enviado a su sala de lectura por correo electrónico. Elija el idioma de su preferencia.",
 		"links": [
 			{
 				"label": "INGLÉS",
 				"href": "/cv/cv-en.pdf"
 			},
 			{
-				"label": "CASTELLANO",
+				"label": "ESPAÑOL",
 				"href": "/cv/cv-es.pdf"
 			}
 		],
-		"footer": "EL EXPEDIENTE COMPLETO, PLEGADO PARA EL BOLSILLO."
+		"footer": "EL EXPEDIENTE COMPLETO, DOBLADO PARA EL BOLSILLO."
 	},
 	"appointments": {
 		"kicker": "LA COLUMNA DE SERVICIOS",
@@ -519,7 +519,7 @@
 		"works": {
 			"section": "SECCIÓN C",
 			"name": "LAS OBRAS",
-			"tagline": "Ensambladas en el establecimiento",
+			"tagline": "Hechas en casa",
 			"page": "PÁGINA 3",
 			"pageNote": ", CONTINÚA AL DORSO"
 		},
