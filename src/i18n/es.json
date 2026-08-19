@@ -354,7 +354,7 @@
 				"lead": "SE VENDE —",
 				"segments": [
 					{
-						"t": "Una lista de pendientes, apenas abierta. Su dueño emigra a un nuevo sprint."
+						"t": "Una lista de TODOs, casi sin uso. Su dueño empezó un nuevo sprint."
 					}
 				]
 			},
@@ -362,7 +362,7 @@
 				"lead": "PERDIDO —",
 				"segments": [
 					{
-						"t": "Tres horas, en las inmediaciones de un punto y coma faltante. Valor sentimental únicamente."
+						"t": "Tres horas, en las inmediaciones de un semicolon faltante. Solo de valor sentimental."
 					}
 				]
 			},
@@ -402,7 +402,7 @@
 		"colophon": [
 			"ASÍ CONCLUYE LA EDICIÓN MATUTINA",
 			"COMPUESTA EN FRAKTUR Y OLD STANDARD",
-			"IMPRESA SOBRE ELECTRONES RECICLADOS",
+			"IMPRESA EN ELECTRONES RECICLADOS",
 			"© 2026 J. GODOY, PROPIETARIO"
 		]
 	},
