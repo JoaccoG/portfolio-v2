@@ -6,6 +6,10 @@ pubDate: 2026-08-15
 signoff: Written after clicking the link, again.
 ---
 
+import Figure from '../../../components/columns/Figure.astro';
+import linesPerDay from '../../../assets/columns/lines-per-day.webp';
+import homepageTests from '../../../assets/columns/homepage-tests.webp';
+
 A full CRM over the weekend. An entire SaaS in one prompt. A “billion-dollar idea” he shipped between his kid’s football game and dinner, with a screenshot of a dashboard, a purple gradient button, and four hundred comments saying this is the future of work. He is usually a VP of something. He is always very excited.
 
 I click the link (because I always click the link), and within ten seconds I know four things: the whole app is one file, the “database” is the browser’s local storage, moving my mouse across the page downloads a megabyte because every link preloads its target and nobody thought to cache anything, and the test suite is being served to me, the user, as part of the production bundle. It has the default look every AI produces when nobody has a valid opinion: dark background, one neon accent, cards with rounded corners floating in nothing. Also, the login doesn’t work. It’s fine. Nothing behind it works either.
@@ -16,7 +20,15 @@ It runs, though. So does a bicycle with square wheels, for a bit.
 
 This is the question I keep asking myself… if one prompt builds a company, where are the companies? Where is the solo founder who never wrote a line of code and now runs a real business with real users and real revenue on a codebase he vibed into existence? Not a landing page. Not a waitlist. A thing people pay for and that doesn’t fall over every Tuesday for the exact same error.
 
-I don’t mean it rhetorically, I have been looking and the best I could find is the CEO of a very famous startup accelerator posting his daily line count on X like it’s a step counter, tens of thousands of lines a day, across five projects, while his own homepage ships its unit tests to my browser. Bragging about lines of code is bragging about how many pages your novel has. Everyone who has ever written one knows the number goes down when the book gets good. The loudest builders are shipping the least.
+I don’t mean it rhetorically, I have been looking and the best I could find is the CEO of a very famous startup accelerator posting his daily line count on X like it’s a step counter, tens of thousands of lines a day, across five projects.
+
+<Figure src={linesPerDay} alt="Post on X by Garry Tan: “Absolutely insane week for agentic engineering. 37K LOC per day across 5 projects. Still speeding up,” above a terminal summary of 126 commits and 261,600 lines added in one week" caption="Thirty-seven thousand lines a day, and still speeding up." credit="FROM X, MARCH 2026" />
+
+Meanwhile, his own homepage ships its unit tests to my browser.
+
+<Figure src={homepageTests} alt="Post on X by @Gregorein: “the homepage ships 28 TEST FILES to every visitor. not test results - actual test harnesses,” above the Chrome DevTools network panel listing the .test.js files downloaded by garryslist.org" caption="The next day, someone looked at the homepage." credit="FROM X, MARCH 2026" />
+
+Bragging about lines of code is bragging about how many pages your novel has. Everyone who has ever written one knows the number goes down when the book gets good. The loudest builders are shipping the least.
 
 ## They just can’t stop
 

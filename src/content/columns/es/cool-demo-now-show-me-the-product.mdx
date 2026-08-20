@@ -6,6 +6,10 @@ pubDate: 2026-08-15
 signoff: Escrita después de hacer click en el link, otra vez.
 ---
 
+import Figure from '../../../components/columns/Figure.astro';
+import linesPerDay from '../../../assets/columns/lines-per-day.webp';
+import homepageTests from '../../../assets/columns/homepage-tests.webp';
+
 Un CRM entero en un fin de semana. Un SaaS completo de un solo prompt. Una “idea millonaria” que lanzó entre el partido de fútbol de su hijo y la cena, con una screenshot de un dashboard, un botón violeta en degradé y cuatrocientos comentarios que dicen que esto es el futuro del trabajo. Por lo general es el VP de algo. Siempre está muy entusiasmado.
 
 Le doy click al link (porque siempre hago click en esos links) y en diez segundos ya veo cuatro cosas: toda la app es un solo archivo, la “database” es el local storage del browser, pasar el mouse por la página descarga un megabyte de data porque cada link hace preload de su destino y a nadie se le ocurrió cachear nada, y la test suite me la están sirviendo a mí, el usuario, dentro del bundle de producción. Tiene el look por defecto que arma cualquier IA cuando nadie tiene una opinión válida: fondo oscuro, un único acento neón, cards con bordes redondeados flotando en la nada. Ah, y el login no funciona, pero no pasa nada… del resto tampoco funciona nada.
@@ -16,7 +20,15 @@ Eso sí, anda. Una bicicleta con ruedas cuadradas también anda, un rato.
 
 La pregunta que me sigo haciendo es… si un prompt construye una empresa, ¿dónde están las empresas? ¿Dónde está el founder que empezó solo, sin haber escrito nunca una línea de código, y hoy maneja un negocio real, con usuarios reales e ingresos reales, sobre un codebase que levantó a fuerza de vibe coding? No me refiero a una landing page o una lista de espera, me refiero a algo por lo que la gente pague y que no se caiga todos los martes a la misma hora por exactamente el mismo error.
 
-No es una pregunta retórica: estuve buscando, y lo mejor que encontré fue el CEO de una aceleradora de startups muy famosa, que publica en X su conteo diario de líneas como si fuera un podómetro: decenas de miles de líneas por día, repartidas en cinco proyectos, mientras su propia homepage le manda sus unit tests a mi browser. Jactarse de las líneas de código es jactarse de cuántas páginas tiene la novela. Cualquiera que haya escrito una sabe que el número baja cuando el libro mejora. Los builders que más ruido hacen son los que menos entregan.
+No es una pregunta retórica: estuve buscando, y lo mejor que encontré fue el CEO de una aceleradora de startups muy famosa, que publica en X su conteo diario de líneas como si fuera un podómetro: decenas de miles de líneas por día, repartidas en cinco proyectos.
+
+<Figure src={linesPerDay} alt="Post de Garry Tan en X: “Absolutely insane week for agentic engineering. 37K LOC per day across 5 projects. Still speeding up”, sobre un resumen de terminal con 126 commits y 261.600 líneas agregadas en una semana" caption="Treinta y siete mil líneas por día, y todavía acelerando." credit="DE X, MARZO DE 2026" />
+
+Mientras tanto, su propia homepage le manda sus unit tests a mi browser.
+
+<Figure src={homepageTests} alt="Post de @Gregorein en X: “the homepage ships 28 TEST FILES to every visitor. not test results - actual test harnesses”, sobre el panel de red de Chrome DevTools con los archivos .test.js que descarga garryslist.org" caption="Al día siguiente, alguien miró la homepage." credit="DE X, MARZO DE 2026" />
+
+Jactarse de las líneas de código es jactarse de cuántas páginas tiene la novela. Cualquiera que haya escrito una sabe que el número baja cuando el libro mejora. Los builders que más ruido hacen son los que menos entregan.
 
 ## No pueden parar
 
