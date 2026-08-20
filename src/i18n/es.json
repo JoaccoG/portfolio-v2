@@ -435,7 +435,7 @@
 				"PÁGINA TRASPAPELADA ENTRE LA FORMA Y LA PRENSA",
 				"NO EXISTE TAL DIRECCIÓN EN EL LIBRO DE LA MAÑANA",
 				"EL ARCHIVO FUE REVISADO DOS VECES Y UNA MÁS POR LAS DUDAS",
-				"SE OFRECE RECOMPENSA, PAGADERA EN GRATITUD",
+				"SE OFRECE RECOMPENSA, PAGADA CON GRATITUD",
 				"TODAS LAS DEMÁS PÁGINAS ESTÁN EN SU SITIO"
 			]
 		},
@@ -445,16 +445,16 @@
 			"tagline": "Edición desconocida",
 			"page": "PÁGINA 404 — NO IMPRESA",
 			"nameplate": "The Daily Godoy",
-			"headline": "FUERA DE IMPRENTA"
+			"headline": "TINTA AGOTADA"
 		},
 		"article": {
-			"kicker": "ÚLTIMO MOMENTO — UNA IRREGULARIDAD",
+			"kicker": "ÚLTIMA HORA — UNA IRREGULARIDAD",
 			"headline": ["PÁGINA", "EXTRAVIADA"],
-			"dek": "La página que buscaba no se imprimió en esta edición. El cajista fue interrogado, la sala de prensas revisada y el libro consultado dos veces. Las averiguaciones continúan.",
-			"byline": "DESDE LA SALA DE COMPOSICIÓN — {date}, TARDE",
+			"dek": "La página que buscaba no se imprimió en esta edición. El cajista fue interrogado, la sala de prensas revisada y el libro consultado dos veces. La investigación continúa.",
+			"byline": "DE LA SALA DE COMPOSICIÓN — {date}, DE MADRUGADA",
 			"body": [
-				"Se recuerda a los lectores que este diario se compone a mano, y que las manos, a diferencia de las máquinas, a veces se extravían. Puede que la dirección se haya tipeado mal, que la página se haya retirado al archivo, o que el enlace lo haya reenviado un corresponsal que trabajaba con una edición anterior.",
-				"El propietario desea hacer saber que jamás se le negó deliberadamente una página a un lector, y que el único caso en contrario concernía a un aviso del que esta casa todavía se avergüenza.",
+				"Se recuerda a los lectores que este diario se compone a mano, y que las manos, a diferencia de las máquinas, a veces se distraen. Puede que la dirección se haya tipeado mal, que la página se haya retirado al archivo, o que el link lo haya reenviado un corresponsal que trabajaba con una edición anterior.",
+				"El propietario desea hacer saber que jamás se le negó deliberadamente una página a un lector, y que la única excepción fue un aviso del que esta casa todavía se avergüenza.",
 				"Sea cual fuere la causa, el remedio es el mismo: vuelva a la portada, donde todas las crónicas aún en circulación figuran completas y en orden."
 			],
 			"signoff": "— LA REDACCIÓN."
@@ -479,7 +479,7 @@
 				},
 				{
 					"label": "SEÑAS",
-					"value": "ninguna; nunca compuesta en tipos"
+					"value": "ninguna; nunca pasó por imprenta"
 				},
 				{
 					"label": "RECOMPENSA",
@@ -487,10 +487,10 @@
 					"accent": true
 				}
 			],
-			"footer": "Se insta a todo lector con información a cablegrafiar a la mesa de inmediato."
+			"footer": "Se ruega a todo lector con información que avise a la redacción de inmediato."
 		},
 		"stamp": {
-			"text": "NO HALLADA",
+			"text": "NOT FOUND",
 			"sub": "SALA DE COMPOSICIÓN · 404"
 		},
 		"classifieds": {
@@ -502,7 +502,7 @@
 				},
 				{
 					"lead": "HALLADAS —",
-					"body": "Una gran cantidad de páginas que nadie pidió. Consulte adentro, bajo su propio riesgo."
+					"body": "Una gran cantidad de páginas que nadie pidió. Consulte en el interior, bajo su propio riesgo."
 				},
 				{
 					"lead": "AVISO —",
