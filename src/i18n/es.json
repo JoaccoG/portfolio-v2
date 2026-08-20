@@ -621,8 +621,8 @@
 			}
 		},
 		"otherEdition": {
-			"kicker": "SUPPLEMENT",
-			"title": "The Columns, in English."
+			"kicker": "OTRAS EDICIONES",
+			"title": ["Switch to", "English"]
 		},
 		"footer": "LAS COLUMNAS APARECEN CUANDO APARECEN"
 	}

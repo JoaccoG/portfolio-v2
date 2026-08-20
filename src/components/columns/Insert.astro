@@ -17,7 +17,9 @@ const href = `${localePath(other, bare)}?lang=${other}`;
 	aria-label={copy.masthead.stamp.ariaLabel}
 >
 	<span class="kicker" data-swap-text>{o.kicker}</span>
-	<span class="title" data-swap-text>{o.title}</span>
+	<span class="title" data-swap-text>
+		{o.title.map((line) => <span class="line">{line}</span>)}
+	</span>
 	<span class="hand" aria-hidden="true">☞</span>
 </a>
 
@@ -65,6 +67,10 @@ const href = `${localePath(other, bare)}?lang=${other}`;
 		font-size: clamp(1rem, 1.4vw, 1.2rem);
 		line-height: 1.15;
 		text-wrap: balance;
+	}
+
+	.line {
+		display: block;
 	}
 
 	.hand {

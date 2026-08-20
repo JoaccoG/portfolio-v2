@@ -618,8 +618,8 @@
 			}
 		},
 		"otherEdition": {
-			"kicker": "SUPLEMENTO",
-			"title": "Las columnas, en castellano."
+			"kicker": "OTHER EDITIONS",
+			"title": ["Cambiar al", "Español"]
 		},
 		"footer": "THE COLUMNS APPEAR WHEN THEY APPEAR"
 	}
