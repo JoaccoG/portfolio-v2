@@ -26,7 +26,7 @@ const HEAD_SYNC = [
 	'link[rel="canonical"]',
 ];
 const BLOCKS =
-	'h1, h2, h3, h4, p, li, figcaption, blockquote, cite, button, a, dt, dd';
+	'h1, h2, h3, h4, p, li, figcaption, blockquote, cite, button, a, dt, dd, [data-swap-text]';
 const STILL = '[data-page-two], [data-ticker], [data-preloader]';
 const SWAP_CLASS = 'copy-swap';
 const MARGIN = 120;
@@ -63,7 +63,7 @@ const markVisibleBlocks = (): HTMLElement[] => {
 	const top = -MARGIN;
 	const bottom = innerHeight + MARGIN;
 	for (const el of document.querySelectorAll<HTMLElement>(`main ${BLOCKS}`)) {
-		if (el.closest(STILL)) continue;
+		if (el.closest(STILL) || el.hasAttribute('data-swap-shell')) continue;
 		if (el.parentElement?.closest(`.${SWAP_CLASS}`)) continue;
 		const r = el.getBoundingClientRect();
 		if (r.bottom < top || r.top > bottom || r.width === 0) continue;
