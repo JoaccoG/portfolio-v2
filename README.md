@@ -24,7 +24,7 @@
 
 **The Daily Godoy** is the personal site of Joaquín Godoy, laid out as the front page of a newspaper that went to press in 1926 — nameplate in blackletter, a weather box, a running ticker, an engraved portrait of the correspondent. Every story underneath is about software written in 2026. The furniture is period; the chronicle is current; the gap between the two is the whole joke.
 
-It is one long broadsheet you scroll: a masthead that assembles itself on load, a pinned *Profile Piece* told in four parts, a hall of machinery where each project opens into its own inside page, a standing column with its own archive and index, a postmaster you can wire a telegram to, and a torn back page for anything that 404s. No framework runs the motion — the intro, the reveal, the custom cursor, the pinned scroll and the project drawers are a small hand-written engine. What React would carry, this carries itself.
+It is one long broadsheet you scroll, in English or in Spanish: a masthead that assembles itself on load, a pinned *Profile Piece* told in four parts, a hall of machinery where each project opens into its own inside page, a standing column with its own archive and index, a postmaster you can wire a telegram to, and a torn back page for anything that 404s. No framework runs the motion — the intro, the reveal, the custom cursor, the pinned scroll and the project drawers are a small hand-written engine. What React would carry, this carries itself.
 
 ## The type
 
@@ -51,6 +51,12 @@ Both routes rate-limit **before** they parse a body, each with its own counter. 
 ## The columns
 
 Section D of the front page is *The Columns*, the paper's standing column, and it keeps its own archive at [`/columns`](https://joaquingodoy.com/columns). Each column is an MDX file in a typed collection — title, dek, headings, date and sign-off in the frontmatter, the prose underneath — with two pieces of period furniture for the body: an `<Aside>` for the notes ruled into the margin and a `<Figure>` for the plates, which open enlarged when pressed. Nothing else is written by hand. The roman numeral comes from the column's place in the archive, the year block from its date (shown a century behind, like every date on the paper), the reading time and the word count from the body itself. The feed filters by heading and keeps the filter in the address, and the archive is set on a third sheet of paper, mottled with its own seed so it never reads as the front page reprinted.
+
+## Two editions
+
+The paper also runs in Spanish, at [`/es`](https://joaquingodoy.com/es/). The Spanish copy is rewritten, not translated: the furniture keeps its 1926 register in the Spanish of a Buenos Aires newsroom, the puns are rebuilt rather than carried over, and the trade's own vocabulary — deploy, merge, OUTAGE — stays in English, the way it does on any Spanish-speaking engineering team. The columns are written again for the edition, captions and all, and each edition carries its own social card.
+
+Switching editions doesn't reload the page. The button fetches the other edition's twin, morphs its copy into the live document with [idiomorph](https://github.com/bigskysoftware/idiomorph) — so the scroll position, a half-typed telegram and the engine's state all survive — and slides the visible text out and back in under a View Transition. The choice is kept in a cookie. Readers from Spanish-speaking South America and Spain are sent to `/es` by a Cloudflare redirect rule, decided by country at the edge before any HTML is served, and the cookie overrides it the moment they pick English. Every page but the 404 declares its `hreflang` alternates, and the 404 renders on demand in the edition of the address that missed.
 
 ## Reads on paper
 
@@ -86,7 +92,7 @@ All three are declared in the `astro:env` schema and validated at build. `RESEND
 
 ## Deploy
 
-A multi-stage [`Dockerfile`](Dockerfile) (node:22-alpine) builds the site and runs the Node standalone server, serving on `$PORT`. It ships to [Railway](https://railway.app/), or any Docker host:
+A multi-stage [`Dockerfile`](Dockerfile) (node:22-alpine) builds the site and runs the Node standalone server, serving on `$PORT`. It ships to [Railway](https://railway.app/) behind [Cloudflare](https://www.cloudflare.com/), or to any Docker host:
 
 ```bash
 docker build -t daily-godoy .
@@ -95,7 +101,7 @@ docker run -p 8080:8080 daily-godoy   # → http://localhost:8080
 
 ## Built with
 
-**[Astro 7](https://astro.build/)** with the Node standalone adapter and `@astrojs/sitemap`, **TypeScript** in strict mode and **Biome** for lint and format. Images run through Astro's `<Image>` and `sharp`; the projects are a typed content collection (Zod-validated JSON) and the columns another (MDX under a Zod frontmatter), with the copy in an i18n bundle — a Spanish edition is on the way. All the motion is the hand-written engine under [`src/engine/`](src/engine); the mail is Resend. CI runs Biome, `astro check` and the build on every push.
+**[Astro 7](https://astro.build/)** with the Node standalone adapter and `@astrojs/sitemap`, **TypeScript** in strict mode and **Biome** for lint and format. Images run through Astro's `<Image>` and `sharp`; the projects are a typed content collection (Zod-validated JSON) and the columns another (MDX under a Zod frontmatter), with the copy in one i18n bundle per edition. All the motion is the hand-written engine under [`src/engine/`](src/engine), and idiomorph swaps the editions in place; the mail is Resend, and Cloudflare sits in front for DNS and the edition redirect. CI runs Biome, `astro check` and the build on every push.
 
 ## License
 
