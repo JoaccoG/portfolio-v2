@@ -2,8 +2,9 @@
 import { Image } from 'astro:assets';
 import portrait from '../assets/portrait.webp';
 import portraitMoustache from '../assets/portrait-moustache.webp';
-import { copy } from '../i18n/t';
+import { copyFor } from '../i18n/t';
 
+const copy = copyFor(Astro.currentLocale);
 const h = copy.hero;
 const [p1, ...rest] = h.paragraphs;
 const dropCap = p1.charAt(0);

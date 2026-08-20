@@ -23,7 +23,6 @@
 			"A QUERY CROSSED THREE MILLION ROWS AND RETURNED BEFORE THE INK DRIED",
 			"THE OLD MONOLITH RETIRED WITH HONOURS; ITS DUTIES ASSUMED BY LESSER ENGINES",
 			"THE CLOCKS WERE TURNED BACK ONE VERSION AND ALL WAS FORGIVEN",
-			"CROWD AT THE GATES DIVIDED EVENLY AMONG TWELVE DOORMEN",
 			"CONTRAPTIONS EXAMINED HOURLY BY A THOUSAND TIRELESS INSPECTORS",
 			"TWO GENTLEMEN AMENDED THE SAME PARAGRAPH; PISTOLS AT DAWN AVERTED BY A CAREFUL MERGE",
 			"AN INQUEST INTO THE FAULTY LEDGER NAMED THE INSPECTOR’S OWN HAND",
@@ -41,7 +40,6 @@
 		"nameplate": ["The", "Daily", "Godoy"],
 		"stamp": {
 			"label": "EDICIÓN EN CASTELLANO",
-			"notice": "THE SPANISH EDITION IS STILL IN THE COMPOSING ROOM — FORTHCOMING",
 			"ariaLabel": "Edición en castellano — switch to the Spanish edition"
 		},
 		"press": {
@@ -136,7 +134,7 @@
 			"items": [
 				{
 					"lead": "TO ANXIOUS RECRUITER —",
-					"body": "The engineer is aware of your seventeen messages; a reply is being composed by hand."
+					"body": "The engineer is aware of your seventeen messages; a reply is being drafted by hand."
 				},
 				{
 					"lead": "TO J.S. OF PALERMO —",

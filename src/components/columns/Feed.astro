@@ -1,6 +1,7 @@
 ---
-import { copy } from '../../i18n/t';
+import { copyFor, localePath } from '../../i18n/t';
 import {
+	columnSlug,
 	countLabel,
 	editionYear,
 	getColumns,
@@ -12,21 +13,23 @@ import {
 	wordCount,
 } from '../../lib/columns';
 
+const locale = Astro.currentLocale;
+const copy = copyFor(locale);
 const f = copy.columns.feed;
-const columns = await getColumns();
+const columns = await getColumns(locale);
 const total = columns.length;
 const headings = [
 	...new Set(columns.flatMap((column) => column.data.headings)),
 ];
 const rows = columns.map((column, i) => ({
-	id: column.id,
+	id: columnSlug(column),
 	numeral: numeralOf(i, total),
 	title: column.data.title,
 	dek: column.data.dek,
-	date: shortDate(column.data.pubDate),
-	reading: readingShortLabel(wordCount(column)),
+	date: shortDate(column.data.pubDate, locale),
+	reading: readingShortLabel(wordCount(column), locale),
 	headings: column.data.headings,
-	headingLabel: headingLabels(column.data.headings),
+	headingLabel: headingLabels(column.data.headings, locale),
 	year: editionYear(column.data.pubDate),
 }));
 const years = [...new Set(rows.map((row) => row.year))];
@@ -37,7 +40,7 @@ const inYear = (year: string) => rows.filter((row) => row.year === year);
 	<div class="filters">
 		<div class="filters-row">
 			<p class="filters-label">{f.filterLabel}</p>
-			<p class="tally">{f.tally.replace('{count}', countLabel(total))}</p>
+			<p class="tally">{f.tally.replace('{count}', countLabel(total, locale))}</p>
 		</div>
 		<div class="chips" role="group" aria-label={f.filterAria} data-chips>
 			<button
@@ -56,7 +59,7 @@ const inYear = (year: string) => rows.filter((row) => row.year === year);
 						data-heading={heading}
 						data-cur="1"
 					>
-						{headingLabel(heading)}
+						{headingLabel(heading, locale)}
 					</button>
 				))
 			}
@@ -76,13 +79,13 @@ const inYear = (year: string) => rows.filter((row) => row.year === year);
 						<span class="year-num">{year}</span>
 						<span class="year-rule" aria-hidden="true" />
 						<span class="year-count" data-year-count>
-							{countLabel(inYear(year).length)}
+							{countLabel(inYear(year).length, locale)}
 						</span>
 					</div>
 					{inYear(year).map((row) => (
 						<a
 							class="row"
-							href={`/columns/${row.id}/`}
+							href={localePath(locale, `/columns/${row.id}/`)}
 							data-row
 							data-year={year}
 							data-headings={row.headings.join(' ')}

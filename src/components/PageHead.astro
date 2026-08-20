@@ -1,4 +1,5 @@
 ---
+import { localePath } from '../i18n/t';
 import RunningHead from './RunningHead.astro';
 
 interface Props {
@@ -33,7 +34,7 @@ const Title = titleTag;
 <header class="head">
 	<p class="plate">
 		<span class="fleuron" aria-hidden="true">✦</span><a
-			href="/"
+			href={localePath(Astro.currentLocale, '/')}
 			class="nameplate"
 			data-cur="1">{nameplate}</a
 		><span class="fleuron" aria-hidden="true">✦</span>

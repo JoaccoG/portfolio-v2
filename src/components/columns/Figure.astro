@@ -1,7 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
-import { copy } from '../../i18n/t';
+import { copyFor } from '../../i18n/t';
 
 interface Props {
 	src?: ImageMetadata;
@@ -12,6 +12,7 @@ interface Props {
 }
 
 const { src, alt, caption, credit, kind = 'engraving' } = Astro.props;
+const copy = copyFor(Astro.currentLocale);
 const f = copy.columns.figure;
 const chip = kind === 'photograph' ? f.photograph : f.engraving;
 const widths = [560, 800, 1060, 1280, 1600];

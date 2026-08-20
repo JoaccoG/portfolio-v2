@@ -1,8 +1,9 @@
 ---
 import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
-import { copy } from '../i18n/t';
+import { copyFor, localeOf } from '../i18n/t';
 
+const copy = copyFor(Astro.currentLocale);
 const m = copy.machinery;
 const romans = [
 	'I',
@@ -18,9 +19,11 @@ const romans = [
 	'XI',
 	'XII',
 ];
-const projects = (await getCollection('projects')).sort(
-	(a, b) => a.data.order - b.data.order,
-);
+const projects = (await getCollection('projects'))
+	.filter((project) =>
+		project.id.startsWith(`${localeOf(Astro.currentLocale)}/`),
+	)
+	.sort((a, b) => a.data.order - b.data.order);
 const countWord = m.numberWords[projects.length] ?? String(projects.length);
 const subtitle = (
 	projects.length === 1 ? m.subtitleSingular : m.subtitle

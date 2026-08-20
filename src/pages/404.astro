@@ -5,14 +5,17 @@ import NotFoundLead from '../components/notfound/NotFoundLead.astro';
 import PageHead from '../components/PageHead.astro';
 import Sheet from '../components/paper/Sheet.astro';
 import Ticker from '../components/Ticker.astro';
-import { copy } from '../i18n/t';
+import { copyFor } from '../i18n/t';
 import Base from '../layouts/Base.astro';
 
+export const prerender = false;
+
+const copy = copyFor(Astro.currentLocale);
 const nf = copy.notFound;
 const h = nf.head;
 ---
 
-<Base title={nf.title} description={nf.description}>
+<Base title={nf.title} description={nf.description} alternates={false}>
 	<span class="progress" data-progress aria-hidden="true"></span>
 	<CustomCursor />
 	<main id="main-content">

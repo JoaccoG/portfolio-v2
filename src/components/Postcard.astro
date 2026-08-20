@@ -1,7 +1,8 @@
 ---
-import { copy } from '../i18n/t';
+import { copyFor } from '../i18n/t';
 import RubberStamp from './RubberStamp.astro';
 
+const copy = copyFor(Astro.currentLocale);
 const t = copy.telegrams;
 ---
 

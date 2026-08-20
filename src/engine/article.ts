@@ -15,7 +15,9 @@ export function initArticle(): void {
 	const content = document.querySelector<HTMLElement>(
 		'[data-engine="content"]',
 	);
-	const feedPath = '/columns/';
+	const feedPath = location.pathname.startsWith('/es/')
+		? '/es/columns/'
+		: '/columns/';
 
 	for (const btn of document.querySelectorAll<HTMLElement>(
 		'[data-back-columns]',

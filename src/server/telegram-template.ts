@@ -1,4 +1,4 @@
-import { copy } from '../i18n/t';
+import { copyFor } from '../i18n/t';
 
 const escapeHtml = (value: string): string =>
 	value
@@ -9,7 +9,7 @@ const escapeHtml = (value: string): string =>
 		.replaceAll("'", '&#39;');
 
 const periodDate = (): string => {
-	const m = copy.masthead;
+	const m = copyFor('en').masthead;
 	const now = new Date();
 	return m.dateTemplate
 		.replace('{month}', m.months[now.getMonth()] ?? '')

@@ -1,6 +1,7 @@
 ---
-import { copy } from '../../i18n/t';
+import { copyFor } from '../../i18n/t';
 
+const copy = copyFor(Astro.currentLocale);
 const line = copy.columns.footer;
 const credit = copy.finale.colophon[copy.finale.colophon.length - 1] ?? '';
 const creditText = credit.replace(/^©\s*/, '');

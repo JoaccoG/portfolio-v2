@@ -12,7 +12,10 @@ export function initWire(): void {
 	const hand = form.querySelector<HTMLElement>('[data-wire-hand]');
 	const input = form.querySelector<HTMLInputElement>('input[name="email"]');
 	const say = form.dataset;
-	const submitLabel = label?.textContent ?? '';
+	let submitLabel = label?.textContent ?? '';
+	document.addEventListener('edition:swapped', () => {
+		if (!button?.disabled) submitLabel = label?.textContent ?? '';
+	});
 	const showError = (text: string | undefined) => {
 		if (!error) return;
 		error.textContent = (say.prefix ?? '') + (text ?? '');

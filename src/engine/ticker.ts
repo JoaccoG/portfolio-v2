@@ -18,6 +18,7 @@ export function initTicker(): void {
 	tune();
 	if (document.fonts) document.fonts.ready.then(tune);
 	addEventListener('resize', tune);
+	document.addEventListener('edition:swapped', tune);
 
 	const io = new IntersectionObserver((entries) => {
 		for (const entry of entries) {

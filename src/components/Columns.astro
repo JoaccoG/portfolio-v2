@@ -1,6 +1,7 @@
 ---
-import { copy } from '../i18n/t';
+import { copyFor, localePath } from '../i18n/t';
 import {
+	columnSlug,
 	getColumns,
 	headingLabels,
 	numberWord,
@@ -8,20 +9,22 @@ import {
 	shortDate,
 } from '../lib/columns';
 
+const locale = Astro.currentLocale;
+const copy = copyFor(locale);
 const f = copy.columns.feed;
 const h = copy.columns.home;
-const columns = await getColumns();
+const columns = await getColumns(locale);
 const total = columns.length;
-const word = numberWord(total);
+const word = numberWord(total, locale);
 const tally = h.tally.replace(
 	'{n}',
 	word.charAt(0) + word.slice(1).toLowerCase(),
 );
 const lately = columns.slice(0, 3).map((column, i) => ({
-	id: column.id,
+	id: columnSlug(column),
 	numeral: numeralOf(i, total),
 	title: column.data.title,
-	meta: `${shortDate(column.data.pubDate)} · ${headingLabels(column.data.headings)}`,
+	meta: `${shortDate(column.data.pubDate, locale)} · ${headingLabels(column.data.headings, locale)}`,
 }));
 ---
 
@@ -30,16 +33,18 @@ const lately = columns.slice(0, 3).map((column, i) => ({
 		<div class="lead" data-rv="1">
 			<h2>{f.headline}<span class="acc">.</span></h2>
 			<p class="dek">{f.dek} {tally}</p>
-			<a class="btn" href="/columns/" data-cur="1">
+			<a class="btn" href={localePath(locale, '/columns/')} data-cur="1">
 				<span class="hand" aria-hidden="true">☞</span>
 				<span>{h.turn}</span>
 			</a>
 		</div>
-		<div class="lately" data-rv="1">
+		{
+			lately.length > 0 && (
+				<div class="lately" data-rv="1">
 			<p class="lately-label">{h.lately}</p>
 			{
 				lately.map((row) => (
-					<a class="row" href={`/columns/${row.id}/`} data-cur="1">
+					<a class="row" href={localePath(locale, `/columns/${row.id}/`)} data-cur="1">
 						<span class="num">{row.numeral}</span>
 						<span class="text">
 							<span class="title">{row.title}</span>
@@ -48,7 +53,9 @@ const lately = columns.slice(0, 3).map((column, i) => ({
 					</a>
 				))
 			}
-		</div>
+				</div>
+			)
+		}
 	</div>
 </section>
 

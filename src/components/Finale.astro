@@ -1,6 +1,7 @@
 ---
-import { copy } from '../i18n/t';
+import { copyFor } from '../i18n/t';
 
+const copy = copyFor(Astro.currentLocale);
 const f = copy.finale;
 const colophonMain = f.colophon.slice(0, -1).join(' · ');
 const credit = f.colophon[f.colophon.length - 1] ?? '';

@@ -1,7 +1,8 @@
 ---
-import { copy } from '../i18n/t';
+import { copyFor } from '../i18n/t';
 import RunningHead from './RunningHead.astro';
 
+const copy = copyFor(Astro.currentLocale);
 const p = copy.profile;
 const r = copy.sections.profile;
 const numerals = ['I', 'II', 'III', 'IV'];

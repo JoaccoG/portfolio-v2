@@ -1,10 +1,10 @@
 ---
 import type { InferGetStaticPropsType } from 'astro';
-import ArticlePage from '../../components/pages/ArticlePage.astro';
-import { columnSlug, getColumns } from '../../lib/columns';
+import ArticlePage from '../../../components/pages/ArticlePage.astro';
+import { columnSlug, getColumns } from '../../../lib/columns';
 
 export async function getStaticPaths() {
-	const columns = await getColumns('en');
+	const columns = await getColumns('es');
 	return columns.map((column, index) => ({
 		params: { slug: columnSlug(column) },
 		props: { column, index, columns },

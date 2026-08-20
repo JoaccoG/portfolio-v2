@@ -7,9 +7,19 @@ const dev = process.argv.includes('dev');
 
 export default defineConfig({
 	site: 'https://joaquingodoy.com',
+	i18n: {
+		defaultLocale: 'en',
+		locales: ['en', 'es'],
+		routing: { prefixDefaultLocale: false },
+	},
 	output: 'static',
 	adapter: node({ mode: 'standalone' }),
-	integrations: [mdx(), sitemap()],
+	integrations: [
+		mdx(),
+		sitemap({
+			i18n: { defaultLocale: 'en', locales: { en: 'en-US', es: 'es-AR' } },
+		}),
+	],
 	image: dev
 		? {}
 		: {

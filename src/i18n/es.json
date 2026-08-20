@@ -1,0 +1,627 @@
+{
+	"meta": {
+		"title": "The Daily Godoy — Joaquín Godoy, Software Engineer",
+		"description": "The Daily Godoy, edición matutina. Relación de las obras, nombramientos y telegramas de Joaquín Godoy, software engineer de Buenos Aires.",
+		"siteName": "The Daily Godoy",
+		"skipToContent": "Saltar a las noticias",
+		"person": {
+			"name": "Joaquín Godoy",
+			"jobTitle": "Software Engineer",
+			"locality": "Buenos Aires",
+			"country": "AR"
+		}
+	},
+	"ticker": {
+		"items": [
+			"UN MILLÓN DE ENTRIES CONCILIADAS ANTES DE QUE SE ENFRIARA EL CAFÉ",
+			"EL NIGHTLY BUILD TERMINÓ ANTES DE QUE EL FAROLERO ENCENDIERA EL PRIMER FAROL",
+			"MEMORY LEAK ACORRALADO Y SELLADO ANTES DE QUE INUNDARA EL SÓTANO",
+			"EL ÚLTIMO DEPLOY FUE UN VIERNES Y NO SE DESPERTÓ NI UN ALMA",
+			"LOS SERVERS RESISTIERON LA AVALANCHA DE MEDIANOCHE SIN PERDER LA COMPOSTURA",
+			"EL PIPELINE CORRIÓ TODO EL INVIERNO SIN UN DÍA DE CONVALECENCIA",
+			"OUTAGE PRONOSTICADO POR LA MAQUINARIA Y CORREGIDO DE ANTEMANO",
+			"UNA QUERY DEVOLVIÓ TRES MILLONES DE FILAS Y RETORNÓ ANTES DE QUE SE SECARA LA TINTA",
+			"EL VIEJO MONOLITO SE JUBILÓ CON HONORES; LO REEMPLAZARÁ UNA CUADRILLA DE MICROSERVICIOS",
+			"SE ATRASARON LOS RELOJES UNA VERSIÓN Y TODO QUEDÓ PERDONADO",
+			"MIL INSPECTORES INCANSABLES REVISAN LOS ARTEFACTOS CADA HORA; NINGUNO PIDE HORAS EXTRA",
+			"DOS CABALLEROS ENMENDARON EL MISMO PÁRRAFO; UN MERGE PRUDENTE EVITÓ EL DUELO AL ALBA",
+			"EL POSTMORTEM DEL LIBRO MAYOR DEFECTUOSO DIO CON LA LETRA DEL PROPIO INSPECTOR",
+			"LA CACHE RECORDÓ LO QUE LA DATABASE HABÍA JURADO OLVIDAR"
+		]
+	},
+	"masthead": {
+		"issueNo": "N.º 001",
+		"motto": "Se publica cuanto código compile.",
+		"price": "2¢",
+		"weather": {
+			"label": "EL TIEMPO.",
+			"report": "Sesenta frames por segundo; no se espera jank. Hidratación leve antes del mediodía."
+		},
+		"nameplate": ["The", "Daily", "Godoy"],
+		"stamp": {
+			"label": "ENGLISH EDITION",
+			"ariaLabel": "English edition — pasar a la edición en inglés"
+		},
+		"press": {
+			"label": "LA PRENSA.",
+			"sealTop": "THE DAILY GODOY",
+			"sealBottom": "EDICIÓN MATUTINA",
+			"sealEst": "DESDE 2026",
+			"silent": "MÚSICA ON",
+			"audible": "MÚSICA OFF"
+		},
+		"folio": ["BUENOS AIRES Y LA VASTA RED", "EDICIÓN MATUTINA — {date}"],
+		"months": [
+			"ENERO",
+			"FEBRERO",
+			"MARZO",
+			"ABRIL",
+			"MAYO",
+			"JUNIO",
+			"JULIO",
+			"AGOSTO",
+			"SEPTIEMBRE",
+			"OCTUBRE",
+			"NOVIEMBRE",
+			"DICIEMBRE"
+		],
+		"dateTemplate": "{dd}/{mm}/{year}"
+	},
+	"hero": {
+		"kicker": "ÚLTIMA HORA — TECNOLOGÍA",
+		"headline": ["SOFTWARE", "DE VERDAD"],
+		"dek": "El ingeniero local Joaquín Godoy fue visto cableando máquinas para que hablen claro. Testigos refieren sistemas enteros que “se explican solos” sin supervisión alguna. El ingeniero insiste en que la hazaña se debe en buena parte a un curioso artilugio al que llama “Inteligencia Artificial” — sea lo que sea eso.",
+		"byline": "DE NUESTRO CORRESPONSAL DE TECNOLOGÍA — DESDE EL LUGAR DE LOS HECHOS",
+		"paragraphs": [
+			"El señor Godoy no oculta su entusiasmo. La máquina pensante, asegura, es el mayor cambio que ha conocido su oficio en una generación, y se lo explicará largo y tendido a quien pase a saludar. Quien esto escribe, que había llegado preparado para el escepticismo de siempre, lo encontró en cambio en un banco del fondo del taller, arremangado, discutiendo con el aparato.",
+			"Le reconoce los defectos sin reparos. Es capaz de producir cien archivos antes del desayuno y no responder por ninguno: no firma el proyecto ni tiene por qué volver a dar la cara. Él no ve en eso un motivo para no usar el aparato, sino para no irse de la sala. La responsabilidad, sostiene, todavía no ha sido mecanizada, y hasta que lo sea, la firma del ingeniero es la única que figura en el proyecto. (Consultada al respecto, la máquina pensante ofreció varias opiniones y no se decidió por ninguna.)",
+			"Lo demás depende de qué se le dé de comer al artilugio. Él prefiere la maquinaria que se mantiene erguida: legible a primera hora, honesta bajo carga y sin arrodillarse ante el framework de la temporada. Con una máquina de buena postura, observa, el nuevo aparato es de fiar. A una de mala postura, simplemente la construirá mal, y más rápido.",
+			"La belleza, sostiene, sirve de poco si la maquinaria no se porta bien cuando nadie la mira.",
+			"Los visitantes describen libros mayores que se concilian solos, queries que confiesan su costo antes de ejecutarse y sistemas enteros que informan sus dolencias en lenguaje llano. El resultado es maquinaria hecha no solo para funcionar, sino para soportar la inspección, las reformas y la ocasional indignidad de ser heredada por otro hombre."
+		],
+		"closer": "Los pormenores de sus obras aparecen en las columnas que siguen. — ",
+		"closerSignature": "LA REDACCIÓN.",
+		"portrait": {
+			"alt": "Retrato grabado de Joaquín Godoy, joven ingeniero de pelo enrulado, con levita oscura y corbata de plastrón, al estilo de 1901",
+			"caption": "EL SR. J. GODOY, INGENIERO — ",
+			"captionItalic": "según un grabado de este mismo año"
+		},
+		"inThisEdition": {
+			"title": "EN ESTA EDICIÓN",
+			"rows": [
+				{
+					"label": "La semblanza — en cuatro partes",
+					"target": "profile"
+				},
+				{
+					"label": "Maquinaria recientemente construida",
+					"target": "works"
+				},
+				{
+					"label": "Nombramientos y avisos",
+					"target": "appointments"
+				},
+				{
+					"label": "Telegramas al director",
+					"target": "telegrams"
+				}
+			]
+		},
+		"almanac": {
+			"title": "EL ALMANAQUE",
+			"rows": [
+				{
+					"label": "SALE EL SOL SOBRE EL DEPLOY",
+					"value": "6:12"
+				},
+				{
+					"label": "LUNA",
+					"value": "PROPICIA PARA REFACTORS"
+				},
+				{
+					"label": "MERCURIO",
+					"value": "RETRÓGRADO; COMMITEE CON CAUTELA"
+				},
+				{
+					"label": "MAREA DE CORRESPONDENCIA",
+					"value": "ALTA AL MEDIODÍA"
+				}
+			],
+			"footer": "Las estrellas no aceptan tickets."
+		},
+		"notices": {
+			"title": "RESPUESTAS A LOS LECTORES",
+			"items": [
+				{
+					"lead": "AL RECRUITER ANSIOSO —",
+					"body": "El ingeniero está al tanto de sus diecisiete mensajes; se está redactando una respuesta a mano."
+				},
+				{
+					"lead": "A J. S., DE PALERMO —",
+					"body": "No. La máquina no puede arreglar su impresora. Nada puede."
+				},
+				{
+					"lead": "A UN ESTUDIANTE, A LA DERIVA —",
+					"body": "Empiece más chico de lo que se anima a admitir. Después, termínelo."
+				}
+			]
+		},
+		"cue": "PASE LA PÁGINA"
+	},
+	"profile": {
+		"kicker": "LA SEMBLANZA",
+		"title": "Una descripción del sujeto, en cuatro partes",
+		"parts": [
+			{
+				"kicker": "PARTE I — DE ORIGEN",
+				"title": "Cimientos.",
+				"body": "Su oficio empezó, como suele ocurrir con estas cosas, por curiosidad. Desarmar sistemas, averiguar cómo funcionaban por dentro y preguntarse por qué algunas máquinas perduraban mientras otras se derrumbaban bajo el peso de su propio ingenio.",
+				"tight": "La costumbre, se dice, nunca lo abandonó.",
+				"footer": "LA COSTUMBRE DE PREGUNTARSE POR QUÉ."
+			},
+			{
+				"kicker": "PARTE II — DE MÉTODO",
+				"title": "Práctica.",
+				"body": "Godoy trabaja sobre todo por sustracción. Prefiere las estructuras simples, el código legible y las herramientas que se ganan su lugar. La maquinaria nueva es bienvenida cuando acorta el camino, pero nunca cuando esconde adónde lleva.",
+				"footer": "HERRAMIENTAS. MÉTODOS. INSTINTOS."
+			},
+			{
+				"kicker": "PARTE III — DE CONVICCIÓN",
+				"title": "Principios.",
+				"body": "Tiene poca paciencia con la complejidad sin motivo, el ornamento sin propósito y los artefactos que ni su autor sabe explicar. El software, sostiene, debe ser útil, comprensible y estar hecho para sobrevivir a las manos que vengan después de las suyas.",
+				"footer": "LO QUE SE NIEGA A ENTREGAR."
+			},
+			{
+				"kicker": "PARTE IV — DEL HOMBRE EN SÍ",
+				"title": "Extramuros.",
+				"body": "Lejos del taller, las curiosidades del sujeto se extienden bastante más allá. Se lo puede encontrar recorriendo mundos inventados, siguiendo la actualidad con una atención quizás excesiva, perdiendo una tarde con la música o con un libro, o persiguiendo alguna pregunta completamente innecesaria solo porque le picó la curiosidad.",
+				"tight": "Según todos los testimonios, la maquinaria es apenas una parte del hombre.",
+				"footer": "LA VIDA MÁS ALLÁ DE LA MAQUINARIA."
+			}
+		]
+	},
+	"machinery": {
+		"kicker": "DESDE EL TALLER",
+		"title": "MAQUINARIA RECIENTEMENTE CONSTRUIDA",
+		"subtitle": "{count} CRÓNICAS, TODAS CONTINÚAN AL DORSO",
+		"numberWords": [
+			"CERO",
+			"UNA",
+			"DOS",
+			"TRES",
+			"CUATRO",
+			"CINCO",
+			"SEIS",
+			"SIETE",
+			"OCHO",
+			"NUEVE",
+			"DIEZ",
+			"ONCE",
+			"DOCE"
+		],
+		"plateKicker": "N.º {n} — {label} · {year}",
+		"plateLabel": "LÁMINA N.º {roman}",
+		"chip": "GRABADO EN PREPARACIÓN — FALTA LA CAPTURA",
+		"fullAccount": "CRÓNICA COMPLETA EN LA PÁGINA TRES",
+		"fullAccountAria": "Abrir la crónica completa de {title}",
+		"accountFollow": "La crónica aparecerá en una edición futura.",
+		"subtitleSingular": "{count} CRÓNICA, CONTINÚA AL DORSO"
+	},
+	"cvAd": {
+		"kicker": "— AVISO —",
+		"title": "OBTENGA LOS PAPELES DEL SUJETO",
+		"dek": "El currículum completo, enviado a su sala de lectura por correo electrónico. Elija el idioma de su preferencia.",
+		"links": [
+			{
+				"label": "INGLÉS",
+				"href": "/cv/cv-en.pdf"
+			},
+			{
+				"label": "ESPAÑOL",
+				"href": "/cv/cv-es.pdf"
+			}
+		],
+		"footer": "EL EXPEDIENTE COMPLETO, DOBLADO PARA EL BOLSILLO."
+	},
+	"appointments": {
+		"kicker": "LA HOJA DE SERVICIOS",
+		"title": "Nombramientos",
+		"sub": "CARGOS PROFESIONALES — SE ATIENDEN CONSULTAS.",
+		"rows": [
+			{
+				"dates": "1925 — HOY",
+				"current": true,
+				"role": "Semi-Senior Software Engineer, ",
+				"company": "MarketFully",
+				"note": "Hoy a cargo de sistemas más amplios, con más ownership y maquinaria hecha para durar."
+			},
+			{
+				"dates": "1924 — 1925",
+				"role": "Software Engineer, ",
+				"company": "Vodafone",
+				"note": "Con más responsabilidad sobre las obras, llevando las ideas del primer boceto a la forma final."
+			},
+			{
+				"dates": "1923 — 1924",
+				"role": "Full Stack Junior Developer, ",
+				"company": "Vodafone",
+				"note": "Entró al oficio construyendo, manteniendo y aprendiendo la maquinaria de punta a punta."
+			}
+		]
+	},
+	"parodyAds": {
+		"kicker": "— AVISO —",
+		"ads": [
+			{
+				"title": [
+					{
+						"t": "TÓNICO "
+					},
+					{
+						"t": "TYPE-SCRIPT",
+						"acc": true
+					},
+					{
+						"t": " PATENTADO DE GODOY"
+					}
+				],
+				"lines": [
+					"¡Fortalece los tipos débiles! Cura los undefined a cualquier hora.",
+					"Garantizado null-safe o le devolvemos su centavo."
+				]
+			},
+			{
+				"title": [
+					{
+						"t": "ACEITE DE SERPIENTE "
+					},
+					{
+						"t": "PYTHON",
+						"acc": true
+					},
+					{
+						"t": "ICA ELÉCTRICO"
+					}
+				],
+				"lines": [
+					"Automatiza lo tedioso y simplifica lo oscuro.",
+					"Baterías incluidas."
+				]
+			},
+			{
+				"title": [
+					{
+						"t": "HERRERÍA "
+					},
+					{
+						"t": "RUST",
+						"acc": true
+					},
+					{
+						"t": "ICA"
+					}
+				],
+				"lines": [
+					"Maquinaria memory-safe, forjada sin garbage collector.",
+					"Si compila, aguanta."
+				]
+			}
+		]
+	},
+	"telegrams": {
+		"kicker": "LA MESA DE CABLES",
+		"title": "Telegramas al director",
+		"sub": "LOS TELEGRAMAS SE RESPONDEN EN UN PLAZO DE DOS DÍAS",
+		"postcard": "TARJETA POSTAL",
+		"postcardSub": "DE ESTE LADO ESCRÍBASE ÚNICAMENTE LA DIRECCIÓN — TARIFA INTERIOR, 2¢",
+		"messageLabel": "EL MENSAJE — SE AGRADECE LA BREVEDAD",
+		"messagePlaceholder": "Estimado señor: he visto su maquinaria y deseo conversar al respecto.",
+		"stampLines": ["2¢", "CORREO", "ELECTRÓNICO"],
+		"toLabel": "PARA —",
+		"toLines": ["Sr. J. Godoy, Ingeniero", "The Daily Godoy, Bs. As."],
+		"fromLabel": "DE — SU DIRECCIÓN ELECTRÓNICA",
+		"emailPlaceholder": "nombre@dominio.com",
+		"responseWindow": "PLAZO DE RESPUESTA — 48 HORAS",
+		"submit": "DESPACHAR",
+		"sending": "EN CAMINO …",
+		"postmaster": {
+			"prefix": "☞ EL JEFE DE CORREOS OBJETA: ",
+			"email": "SE REQUIERE UNA DIRECCIÓN EN REGLA",
+			"blank": "NO SE PUEDE ENVIAR UN TELEGRAMA EN BLANCO",
+			"rate": "LA LÍNEA ESTÁ SATURADA — AGUARDE UN MINUTO",
+			"wireDown": "EL CABLE ESTÁ CAÍDO — VUELVA A INTENTARLO MÁS TARDE"
+		},
+		"sent": {
+			"stampLines": ["THE DAILY", "GODOY"],
+			"stampMid": "DESPACHADO",
+			"stampDate": "25 AGO · 1901",
+			"stampDateTemplate": "{day} {month} · {year}",
+			"text": "Su tarjeta ya está en el buzón; el director responderá."
+		}
+	},
+	"classifieds": {
+		"heading": "— AVISOS CLASIFICADOS —",
+		"items": [
+			{
+				"lead": "SE BUSCA —",
+				"segments": [
+					{
+						"t": "Bug, visto por última vez en producción el viernes por la tarde. Responde al nombre de “no se puede reproducir”. Se ofrece recompensa."
+					}
+				]
+			},
+			{
+				"lead": "SE VENDE —",
+				"segments": [
+					{
+						"t": "Una lista de TODOs, casi sin uso. Su dueño empezó un nuevo sprint."
+					}
+				]
+			},
+			{
+				"lead": "PERDIDO —",
+				"segments": [
+					{
+						"t": "Tres horas, en las inmediaciones de un semicolon faltante. Solo de valor sentimental."
+					}
+				]
+			},
+			{
+				"lead": "AVISO —",
+				"segments": [
+					{
+						"t": "El propietario recibe visitas en "
+					},
+					{
+						"t": "GITHUB",
+						"href": "https://github.com/JoaccoG"
+					},
+					{
+						"t": ", "
+					},
+					{
+						"t": "LINKEDIN",
+						"href": "https://www.linkedin.com/in/joaquin--godoy/"
+					},
+					{
+						"t": " y por cable en "
+					},
+					{
+						"t": "JOAQUINGODOY2407@GMAIL.COM",
+						"href": "mailto:joaquingodoy2407@gmail.com"
+					},
+					{
+						"t": "."
+					}
+				]
+			}
+		]
+	},
+	"finale": {
+		"sign": "GODOY",
+		"colophon": [
+			"ASÍ CONCLUYE LA EDICIÓN MATUTINA",
+			"COMPUESTA EN FRAKTUR Y OLD STANDARD",
+			"IMPRESA EN ELECTRONES RECICLADOS",
+			"© 2026 J. GODOY, PROPIETARIO"
+		]
+	},
+	"pageTwo": {
+		"ariaLabel": "Página tres: {name}",
+		"header": "THE DAILY GODOY — PÁGINA TRES",
+		"return": "VOLVER A LA PORTADA",
+		"ghost": "Página tres",
+		"seriesKicker": "N.º {n} DE LA SERIE — {series} · {year} ",
+		"readAs": "(léase: {real})",
+		"byline": "DE NUESTRA MESA DE INGENIERÍA — VIENE DE LA PÁGINA UNO",
+		"chip": "GRABADO EN PREPARACIÓN — FALTA UNA CAPTURA DE LA MAQUINARIA",
+		"particularsTitle": "FICHA TÉCNICA.",
+		"particularsLabels": ["ROL", "AÑO", "STACK", "ESTADO"],
+		"repoLink": "INSPECCIONAR EL REPOSITORIO",
+		"liveLink": "VISITAR LA MAQUINARIA",
+		"signature": "LA REDACCIÓN.",
+		"footer": "NUEVAS CRÓNICAS APARECERÁN EN PRÓXIMAS EDICIONES."
+	},
+	"preloader": {
+		"title": "THE DAILY GODOY",
+		"caption": "COMPONIENDO LOS TIPOS — EDICIÓN MATUTINA"
+	},
+	"notFound": {
+		"title": "The Daily Godoy — Página extraviada",
+		"description": "La página que buscaba no se imprimió en esta edición. Vuelva a la portada de The Daily Godoy.",
+		"ticker": {
+			"items": [
+				"LA SALA DE COMPOSICIÓN LAMENTA LA OMISIÓN",
+				"PÁGINA TRASPAPELADA ENTRE LA FORMA Y LA PRENSA",
+				"NO EXISTE TAL DIRECCIÓN EN EL LIBRO DE LA MAÑANA",
+				"EL ARCHIVO FUE REVISADO DOS VECES Y UNA MÁS POR LAS DUDAS",
+				"SE OFRECE RECOMPENSA, PAGADA CON GRATITUD",
+				"TODAS LAS DEMÁS PÁGINAS ESTÁN EN SU SITIO"
+			]
+		},
+		"head": {
+			"section": "SECCIÓN ?",
+			"paper": "THE DAILY GODOY",
+			"tagline": "Edición desconocida",
+			"page": "PÁGINA 404 — NO IMPRESA",
+			"nameplate": "The Daily Godoy",
+			"headline": "TINTA AGOTADA"
+		},
+		"article": {
+			"kicker": "ÚLTIMA HORA — UNA IRREGULARIDAD",
+			"headline": ["PÁGINA", "PERDIDA"],
+			"dek": "La página que buscaba no se imprimió en esta edición. El cajista fue interrogado, la sala de prensas revisada y el libro consultado dos veces. La investigación continúa.",
+			"byline": "DE LA SALA DE COMPOSICIÓN — {date}, DE MADRUGADA",
+			"body": [
+				"Se recuerda a los lectores que este diario se compone a mano, y que las manos, a diferencia de las máquinas, a veces se distraen. Puede que la dirección se haya tipeado mal, que la página se haya retirado al archivo, o que el link lo haya reenviado un corresponsal que trabajaba con una edición anterior.",
+				"El propietario desea hacer saber que jamás se le negó deliberadamente una página a un lector, y que la única excepción fue un aviso del que esta casa todavía se avergüenza.",
+				"Sea cual fuere la causa, el remedio es el mismo: vuelva a la portada, donde todas las crónicas aún en circulación figuran completas y en orden."
+			],
+			"signoff": "— LA REDACCIÓN."
+		},
+		"actions": {
+			"home": "VOLVER A LA PORTADA",
+			"back": "LA PÁGINA LEÍDA ANTERIORMENTE"
+		},
+		"lostFound": {
+			"kicker": "OBJETOS PERDIDOS",
+			"title": "EXTRAVIADA.",
+			"caption": "SIN RETRATO DISPONIBLE",
+			"rows": [
+				{
+					"label": "RESPONDE A",
+					"value": "/la-dirección-que-tipeó",
+					"path": true
+				},
+				{
+					"label": "VISTA POR ÚLTIMA VEZ",
+					"value": "¿en una edición anterior?"
+				},
+				{
+					"label": "SEÑAS",
+					"value": "ninguna; nunca pasó por imprenta"
+				},
+				{
+					"label": "RECOMPENSA",
+					"value": "la gratitud del director",
+					"accent": true
+				}
+			],
+			"footer": "Se ruega a todo lector con información que avise a la redacción de inmediato."
+		},
+		"stamp": {
+			"text": "NOT FOUND",
+			"sub": "SALA DE COMPOSICIÓN · 404"
+		},
+		"classifieds": {
+			"heading": "— AVISOS CLASIFICADOS —",
+			"items": [
+				{
+					"lead": "PERDIDA —",
+					"body": "Una página, la N.º 404. Sin valor sentimental. Devuélvala de todos modos."
+				},
+				{
+					"lead": "HALLADAS —",
+					"body": "Una gran cantidad de páginas que nadie pidió. Consulte en el interior, bajo su propio riesgo."
+				},
+				{
+					"lead": "AVISO —",
+					"body": "El propietario no se responsabiliza por direcciones tipeadas con apuro."
+				}
+			]
+		},
+		"pencil": "no es culpa mía — la redacción"
+	},
+	"sections": {
+		"profile": {
+			"section": "SECCIÓN B",
+			"name": "EL RETRATADO",
+			"tagline": "Relacionado a la editorial, en cierto punto",
+			"page": "PÁGINA 2"
+		},
+		"works": {
+			"section": "SECCIÓN C",
+			"name": "LAS OBRAS",
+			"tagline": "Hechas en casa",
+			"page": "PÁGINA 3",
+			"pageNote": ", CONTINÚA AL DORSO"
+		},
+		"columns": {
+			"section": "SECCIÓN D",
+			"name": "LAS COLUMNAS",
+			"tagline": "Ocasionales, compuestas según se le ocurren",
+			"page": "PÁGINA 4"
+		},
+		"appointments": {
+			"section": "SECCIÓN E",
+			"name": "NOMBRAMIENTOS",
+			"tagline": "Asentados del más reciente al más antiguo",
+			"page": "PÁGINA 5"
+		},
+		"correspondence": {
+			"section": "SECCIÓN F",
+			"name": "CORRESPONDENCIA",
+			"tagline": "Tarifa interior, dos centavos; las respuestas corren por cuenta del director",
+			"page": "CONTRATAPA"
+		}
+	},
+	"columns": {
+		"home": {
+			"tally": "{n} a la fecha; sin fechas prometidas.",
+			"lately": "RECIÉN SALIDAS DE IMPRENTA",
+			"turn": "PASAR A LAS COLUMNAS"
+		},
+		"headings": {
+			"software": "SOFTWARE",
+			"ai": "IA",
+			"society": "SOCIEDAD",
+			"politics": "POLÍTICA",
+			"entertainment": "ENTRETENIMIENTO"
+		},
+		"count": {
+			"one": "UNA COLUMNA",
+			"many": "{n} COLUMNAS"
+		},
+		"reading": {
+			"one": "UN MINUTO DE LECTURA",
+			"many": "{n} MINUTOS DE LECTURA"
+		},
+		"readingShort": {
+			"one": "UN MINUTO",
+			"many": "{n} MINUTOS"
+		},
+		"words": "{n} PALABRAS",
+		"figure": {
+			"engraving": "GRABADO EN PREPARACIÓN",
+			"photograph": "FOTOGRAFÍA EN PREPARACIÓN",
+			"expand": "Ampliar la lámina: {caption}"
+		},
+		"head": {
+			"paper": "THE DAILY GODOY",
+			"nameplate": "The Daily Godoy"
+		},
+		"feed": {
+			"docTitle": "Las columnas — The Daily Godoy",
+			"description": "Las columnas de The Daily Godoy: una columna fija de Joaquín Godoy sobre el oficio, la máquina pensante, la sala de lectura y lo que sea que haya ocurrido en la semana.",
+			"headline": "LAS COLUMNAS",
+			"dek": "Una columna fija sobre el oficio, la máquina pensante, la sala de lectura y lo que sea que haya ocurrido en la semana.",
+			"filterLabel": "COMPUESTAS BAJO ESTOS TEMAS",
+			"filterAria": "Filtrar las columnas por tema",
+			"all": "TODAS LAS COLUMNAS",
+			"tally": "{count} A LA FECHA",
+			"empty": "Todavía no se compuso nada sobre ese tema."
+		},
+		"article": {
+			"docTitle": "{title} — Las columnas",
+			"flag": "{section} — {roman}",
+			"breadcrumb": "LAS COLUMNAS",
+			"columnNo": "COLUMNA N.º {roman}",
+			"setByHand": "Compuesta a mano — J. G.",
+			"goBack": "VOLVER",
+			"next": "ARTÍCULO SIGUIENTE",
+			"later": "COLUMNA POSTERIOR",
+			"earlier": "COLUMNA ANTERIOR",
+			"all": "TODAS LAS COLUMNAS",
+			"navAria": "Entre las columnas",
+			"plateClose": "CERRAR LA LÁMINA",
+			"plateAria": "La lámina, ampliada"
+		},
+		"wire": {
+			"kicker": "POR TELÉGRAFO",
+			"title": "Reciba las columnas por cable.",
+			"emailAria": "Su dirección electrónica",
+			"submit": "SUSCRIBIRSE",
+			"sending": "EN CAMINO …",
+			"note": "Llega la misma mañana en que se compone. Sin publicidad.",
+			"already": "ESA DIRECCIÓN YA FIGURA EN EL LIBRO",
+			"sent": {
+				"stampLines": ["THE DAILY", "GODOY"],
+				"stampMid": "ASENTADA",
+				"stampDate": "25 AGO · 1901",
+				"stampDateTemplate": "{day} {month} · {year}",
+				"text": "Su dirección quedó asentada en el libro. La próxima columna le llegará."
+			}
+		},
+		"footer": "LAS COLUMNAS APARECEN CUANDO APARECEN"
+	}
+}

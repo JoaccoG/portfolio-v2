@@ -7,8 +7,9 @@ signoff: Written after clicking the link, again.
 ---
 
 import Figure from '../../../components/columns/Figure.astro';
-import bicycle from '../../../assets/columns/square-wheels.webp';
-import coal from '../../../assets/columns/coal-question.webp';
+import linesPerDay from '../../../assets/columns/lines-per-day.webp';
+import homepageTests from '../../../assets/columns/homepage-tests.webp';
+import finalFinal from '../../../assets/columns/final-final.webp';
 
 A full CRM over the weekend. An entire SaaS in one prompt. A “billion-dollar idea” he shipped between his kid’s football game and dinner, with a screenshot of a dashboard, a purple gradient button, and four hundred comments saying this is the future of work. He is usually a VP of something. He is always very excited.
 
@@ -16,13 +17,19 @@ I click the link (because I always click the link), and within ten seconds I kno
 
 It runs, though. So does a bicycle with square wheels, for a bit.
 
-<Figure src={bicycle} alt="Engraving: a delighted gentleman in a red suit rides a bicycle with square wheels down a cobbled street while two onlookers frown" caption="It runs, though — for a bit." credit="BLOCK No. 1001" />
-
 ## Three years in, where are they?
 
 This is the question I keep asking myself… if one prompt builds a company, where are the companies? Where is the solo founder who never wrote a line of code and now runs a real business with real users and real revenue on a codebase he vibed into existence? Not a landing page. Not a waitlist. A thing people pay for and that doesn’t fall over every Tuesday for the exact same error.
 
-I don’t mean it rhetorically, I have been looking and the best I could find is the CEO of a very famous startup accelerator posting his daily line count on X like it’s a step counter, tens of thousands of lines a day, across five projects, while his own homepage ships its unit tests to my browser. Bragging about lines of code is bragging about how many pages your novel has. Everyone who has ever written one knows the number goes down when the book gets good. The loudest builders are shipping the least.
+I don’t mean it rhetorically, I have been looking and the best I could find is the CEO of a very famous startup accelerator posting his daily line count on X like it’s a step counter, tens of thousands of lines a day, across five projects.
+
+<Figure src={linesPerDay} alt="Post on X by Garry Tan: “Absolutely insane week for agentic engineering. 37K LOC per day across 5 projects. Still speeding up,” above a terminal summary of 126 commits and 261,600 lines added in one week" caption="Thirty-seven thousand lines a day, and still speeding up." credit="FROM X, MARCH 2026" />
+
+Meanwhile, his own homepage ships its unit tests to my browser.
+
+<Figure src={homepageTests} alt="Post on X by @Gregorein: “the homepage ships 28 TEST FILES to every visitor. not test results - actual test harnesses,” above the Chrome DevTools network panel listing the .test.js files downloaded by garryslist.org" caption="The next day, someone looked at the homepage." credit="FROM X, MARCH 2026" />
+
+Bragging about lines of code is bragging about how many pages your novel has. Everyone who has ever written one knows the number goes down when the book gets good. The loudest builders are shipping the least.
 
 ## They just can’t stop
 
@@ -38,8 +45,6 @@ Jevons looked at the numbers and found the opposite. Every time the engine got m
 
 > “It is wholly a confusion of ideas to suppose that the economical use of fuel is equivalent to a diminished consumption. The very contrary is the truth.”
 
-<Figure src={coal} alt="Engraving: a locomotive on a plinth before a skyline of smoking chimneys, coal wagons in the foreground" caption="Britain, after the engines got efficient." credit="BLOCK No. 1002" />
-
 Cheap code works the same way. Prototypes are nearly free now, so there are a hundred times more of them, and every single one needs a developer to turn it into something that can meet a customer.
 
 A friend of mine rewrote one of these guru-prototypes last quarter. 200,000 lines went in. 60,000 came out. The manager who made it still thinks he wrote a product. He didn’t. He wrote a very long letter.
@@ -49,6 +54,8 @@ A friend of mine rewrote one of these guru-prototypes last quarter. 200,000 line
 Here’s the reframe that made me stop being annoyed, and it’s the most useful thing I can offer anyone on either side of this.
 
 A vibe-coded prototype is a spec. It’s the richest, most detailed description of what a manager wants that a manager has ever produced, and read that way, it’s a gift. For years we got a paragraph in a Jira ticket and a sketch on a whiteboard. Now we get a thing you can click. If you’ve ever opened the Figma files at a company that “moves fast,” you know they’re the same mess: forty artboards, six of them called Final, nobody sure which is current. The prototype is that mess, except it executes, and someone put customers in it.
+
+<Figure src={finalFinal} alt="Reconstruction of a Figma file named “Product — MAIN (copy) (copy)”: the pages list shows Final, Final v2, FINAL FINAL, Final (use this one), Final — old and ✅ Final; the canvas holds near-identical checkout screens and sticky notes asking which one is real" caption="Six of them called Final." credit="RECONSTRUCTION" />
 
 Nobody was ever hurt by a prototype. People get hurt when the prototype is called a product.
 
