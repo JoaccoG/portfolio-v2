@@ -1,0 +1,69 @@
+---
+title: Linda demo. ¿Y el producto?
+dek: Todas las mañanas, en LinkedIn, un señor acaba de construir algo.
+headings: [ai, society]
+pubDate: 2026-08-15
+signoff: Escrita después de hacer click en el link, otra vez.
+---
+
+import Figure from '../../../components/columns/Figure.astro';
+import bicycle from '../../../assets/columns/square-wheels.webp';
+import coal from '../../../assets/columns/coal-question.webp';
+
+Un CRM entero en un fin de semana. Un SaaS completo de un solo prompt. Una “idea millonaria” que lanzó entre el partido de fútbol de su hijo y la cena, con una screenshot de un dashboard, un botón violeta en degradé y cuatrocientos comentarios que dicen que esto es el futuro del trabajo. Por lo general es el VP de algo. Siempre está muy entusiasmado.
+
+Le doy click al link (porque siempre hago click en esos links) y en diez segundos ya veo cuatro cosas: toda la app es un solo archivo, la “database” es el local storage del browser, pasar el mouse por la página descarga un megabyte de data porque cada link hace preload de su destino y a nadie se le ocurrió cachear nada, y la test suite me la están sirviendo a mí, el usuario, dentro del bundle de producción. Tiene el look por defecto que arma cualquier IA cuando nadie tiene una opinión válida: fondo oscuro, un único acento neón, cards con bordes redondeados flotando en la nada. Ah, y el login no funciona, pero no pasa nada… del resto tampoco funciona nada.
+
+Eso sí, anda. Una bicicleta con ruedas cuadradas también anda, un rato.
+
+<Figure src={bicycle} alt="Grabado: un caballero encantado, de traje rojo, anda en una bicicleta de ruedas cuadradas por una calle empedrada mientras dos transeúntes fruncen el ceño" caption="Eso sí, anda… un rato." credit="GRABADO N.º 1001" />
+
+## Ya llevamos tres años
+
+La pregunta que me sigo haciendo es… si un prompt construye una empresa, ¿dónde están las empresas? ¿Dónde está el founder que empezó solo, sin haber escrito nunca una línea de código, y hoy maneja un negocio real, con usuarios reales e ingresos reales, sobre un codebase que levantó a fuerza de vibe coding? No me refiero a una landing page o una lista de espera, me refiero a algo por lo que la gente pague y que no se caiga todos los martes a la misma hora por exactamente el mismo error.
+
+No es una pregunta retórica: estuve buscando, y lo mejor que encontré fue el CEO de una aceleradora de startups muy famosa, que publica en X su conteo diario de líneas como si fuera un podómetro: decenas de miles de líneas por día, repartidas en cinco proyectos, mientras su propia homepage le manda sus unit tests a mi browser. Jactarse de las líneas de código es jactarse de cuántas páginas tiene la novela. Cualquiera que haya escrito una sabe que el número baja cuando el libro mejora. Los builders que más ruido hacen son los que menos entregan.
+
+## No pueden parar
+
+No estoy enojado con este tipo de personas, entiendo su ansiedad… pero siempre es el mismo escalón del organigrama.
+
+Durante más de veinte años, el trabajo del manager fue describir lo que tenía que existir y después encontrar a alguien capaz de hacer que exista, hasta que llegó una herramienta y todo el mundo le dijo que ahora cualquiera puede programar. Miralo del otro lado de la mesa… si ahora cualquiera puede construir y él no construye, ¿para qué sirve, exactamente? Entonces construye. Todos los fines de semana. Un prototipo, una feature, un producto entero. Y el lunes nos lo pasa a nosotros.
+
+Acá es donde un economista victoriano explica mi agenda.
+
+En 1865, William Stanley Jevons publicó *The Coal Question* (“La cuestión del carbón”), un libro donde sostenía que Gran Bretaña pronto se quedaría sin carbón. Para entonces, las máquinas de vapor llevaban un siglo volviéndose más eficientes: mucha más potencia con mucho menos carbón. Un país que necesitaba menos carbón por máquina seguramente iba a necesitar menos carbón… ¿no? Error.
+
+Jevons miró los números y vio lo contrario. Cada vez que la máquina se volvía más eficiente, Gran Bretaña quemaba más carbón, MUCHO más. Su conclusión fue que una máquina más eficiente es una máquina más barata de mantener en marcha, y que una máquina barata se pone a trabajar en cosas para las que nadie se habría molestado en encender una cara. Jevons dijo, textualmente:
+
+> “Es una completa confusión de ideas suponer que el uso económico del combustible equivale a una disminución del consumo. La verdad es precisamente lo contrario.”
+
+<Figure src={coal} alt="Grabado: una locomotora sobre un pedestal frente a un horizonte de chimeneas humeantes, con vagones de carbón en primer plano" caption="Gran Bretaña, cuando las máquinas se volvieron eficientes." credit="GRABADO N.º 1002" />
+
+El código barato funciona igual. Los prototipos hoy son casi gratis, así que hay cien veces más, pero cada uno de ellos necesita un desarrollador para convertirse en algo que se pueda poner frente a un cliente.
+
+Un amigo reescribió uno de estos “prototipos de gurú” el trimestre pasado. Entraron 200.000 líneas. Salieron 60.000. El manager que lo hizo todavía cree que hizo un producto… no, solamente escribió una carta muy larga.
+
+## Es un Figma que funciona
+
+Este fue el click que me sacó el enojo, y es lo más útil que puedo ofrecerle a cualquiera de los involucrados, esté del lado que esté.
+
+Un prototipo hecho con vibe coding es una spec. Es la descripción más rica y detallada de lo que quiere un manager que un manager haya producido jamás, y leído así, es un regalo. Durante años recibimos un párrafo mal hecho en un ticket de Jira y un wireframe en una pizarra. Ahora recibimos algo en lo que se puede hacer click. Si alguna vez abriste los archivos de Figma de una empresa que “se mueve rápido”, sabés que son el mismo desorden: cuarenta pages, seis se llaman Final, y nadie está seguro de cuál es la versión actual. El prototipo es ese mismo desorden, solo que se ejecuta, y alguien le puso clientes dentro.
+
+Ningún prototipo le hizo daño a nadie. El daño empieza cuando al prototipo se lo llama producto.
+
+## Por qué el señor de la screenshot no se da cuenta
+
+Un desarrollador sabe en diez segundos que la demo está rota porque vio mil cosas romperse. Ese es todo el oficio. Cinco años de eso te dan una segunda opinión carísima, que vive en tu cabeza y dice “eso se va a caer” antes de que se caiga.
+
+El manager no tiene esa voz; tiene un modelo, y el modelo trabaja para él. Preguntale si es buena idea hacer preload de todas las páginas en hover y te va a responder que es una intuición espectacular, y se va a poner manos a la obra. Ni una sola vez dice “metiste un editor de texto en tu landing page, ¿estás seguro?”. No hay nadie en la sala que haya visto mil cosas romperse, así que esa cosa se lanza, alguien publica una screenshot y el ciclo sigue.
+
+## Tu trabajo de programador está a salvo
+
+Quiero dejar claro lo que NO estoy diciendo: uso estas herramientas todos los días, entrego más rápido que nunca. Programar nunca fue tan accesible, y me parece genial, del mismo modo que me parece genial que cualquiera pueda comprarse una buena cámara.
+
+Si vos sos el manager que está leyendo esto: seguí construyendo. Lo digo en serio. El prototipo que hiciste el sábado pasado es la mejor spec que recibí jamás de alguien en tu puesto, y lo elegiría antes que un ticket de Jira todas y cada una de las veces, pero llamalo por su nombre. Entregalo como spec, lucilo como spec, y dejá que alguien que vio romperse mil cosas lo convierta en lo que de verdad tocan los clientes. Nadie va a pensar menos de vos. Vamos a pensar que por fin aprendiste a escribir requerimientos.
+
+Pero el código que llega a producción, el que tiene detrás el dinero de alguien y los datos de alguien, lo siguen escribiendo, o al menos juzgando, desarrolladores. La máquina sabe teclear, pero alguien en la sala todavía tiene que saber cuándo se equivoca, y la única herramienta para eso es un humano que ya se equivocó muchísimas veces.
+
+El señor que publica la screenshot no se equivocó antes (o no sabe que lo hizo)… y justamente por eso es que publica la screenshot.
