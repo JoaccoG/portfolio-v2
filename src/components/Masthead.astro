@@ -75,27 +75,24 @@ const [folioPre = '', folioPost = ''] = m.folio[1].split('{date}');
 </div>
 
 <div class="folio">
+	<span class="folio-date"
+		>{folioPre}<span
+			data-live-date
+			data-months={JSON.stringify(m.months)}
+			data-template={m.dateTemplate}>{date}</span
+		>{folioPost}</span
+	>
+	<span class="folio-place">{m.folio[0]}</span>
 	<a
-		class="folio-btn edition-btn"
+		class="folio-edition"
 		href={switchHref}
 		data-cur="1"
 		data-edition-switch
 		aria-label={m.stamp.ariaLabel}
 	>
 		<span class="btn-hand" aria-hidden="true">☞</span>
-		<span>{m.stamp.label}</span>
+		<span class="edition-label">{m.stamp.label}</span>
 	</a>
-	<div class="folio-center">
-		<span>{m.folio[0]}</span>
-		<span class="folio-sep" aria-hidden="true">✦</span>
-		<span
-			>{folioPre}<span
-				data-live-date
-				data-months={JSON.stringify(m.months)}
-				data-template={m.dateTemplate}>{date}</span
-			>{folioPost}</span
-		>
-	</div>
 </div>
 
 <script>
@@ -296,112 +293,102 @@ const [folioPre = '', folioPost = ''] = m.folio[1].split('{date}');
 		border-bottom: 3px double rgba(28, 23, 16, 0.75);
 		padding: 0.4rem clamp(0.4rem, 1.5vw, 1rem);
 		display: grid;
-		grid-template-columns: 1fr auto 1fr;
+		grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+		grid-template-areas: "date place edition";
 		align-items: center;
-		gap: 1rem;
+		column-gap: 1.2rem;
 		font-size: clamp(0.6rem, 1.1vw, 0.72rem);
 		letter-spacing: 0.2em;
+		white-space: nowrap;
 		opacity: calc(var(--mh, 1));
 		transition: opacity 0.9s ease 0.45s;
 	}
 
-	.folio-center {
-		display: flex;
-		justify-self: center;
-		min-width: 0;
-		justify-content: center;
-		flex-wrap: wrap;
-		gap: 1.6rem;
-	}
-
-	.folio-sep {
-		color: var(--acc, #b4342a);
-	}
-
-	.edition-btn {
+	.folio-date {
+		grid-area: date;
 		justify-self: start;
 	}
 
-	.folio-btn {
-		position: relative;
-		text-decoration: none;
-		flex: none;
+	.folio-place {
+		grid-area: place;
+		justify-self: center;
+	}
+
+	.folio-edition {
+		grid-area: edition;
+		justify-self: end;
 		display: inline-flex;
 		align-items: center;
 		gap: 0.45em;
-		background: var(--ink, #1c1710);
-		color: var(--paper, #f2ead8);
-		border: 1px solid transparent;
-		padding: 0.55rem 0.9rem;
-		font-size: clamp(0.55rem, 1vw, 0.66rem);
-		letter-spacing: 0.16em;
+		padding: 0.45rem 0;
+		color: var(--acc, #b4342a);
+		text-decoration: none;
 		cursor: inherit;
-		transition:
-			background 0.25s ease,
-			border-color 0.25s ease,
-			color 0.25s ease;
 	}
 
-	.folio-btn:hover {
-		background: transparent;
-		border-color: var(--ink, #1c1710);
-		color: var(--ink, #1c1710);
+	.edition-label {
+		border-bottom: 1px dotted currentColor;
+		padding-bottom: 0.1em;
+	}
+
+	.folio-edition:hover .edition-label {
+		border-bottom-style: solid;
+	}
+
+	.folio-edition[aria-busy="true"] {
+		opacity: 0.55;
 	}
 
 	.btn-hand {
-		color: var(--acc, #b4342a);
 		letter-spacing: 0;
 		font-size: 1.1em;
 	}
 
-	@media (min-width: 1240px) {
-		.folio-center {
-			grid-column: 1 / -1;
-			grid-row: 1;
-			justify-self: stretch;
-			display: grid;
-			grid-template-columns: 1fr auto 1fr;
-			align-items: center;
-		}
-
-		.folio-center > :first-child {
-			justify-self: end;
-		}
-
-		.folio-center > :last-child {
-			justify-self: start;
-		}
-
-		.edition-btn {
-			grid-column: 1;
-			grid-row: 1;
-		}
-	}
-
-	@media (max-width: 1239.98px) {
-		.folio-center {
-			flex-direction: column;
-			align-items: center;
-			gap: 0.2rem;
-		}
-
-		.folio-sep {
-			display: none;
-		}
-	}
-
-	@media (max-width: 767.98px) {
+	@media (max-width: 1199.98px) {
 		.folio {
-			grid-template-columns: 1fr;
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			grid-template-areas:
+				"place place"
+				"date edition";
+			row-gap: 0.1rem;
+		}
+	}
+
+	@media (max-width: 599.98px) {
+		.folio {
+			grid-template-columns: minmax(0, 1fr);
+			grid-template-areas:
+				"place"
+				"date"
+				"edition";
 			justify-items: center;
-			gap: 0.7rem;
+			row-gap: 0.25rem;
+			padding-top: 0.6rem;
+			text-align: center;
+			white-space: normal;
 		}
 
-		.folio-center {
-			order: -1;
+		.folio-date {
+			justify-self: center;
+			text-wrap: balance;
 		}
 
-		.edition-btn {
+		.folio-edition {
+			justify-self: center;
+			min-height: 44px;
+			padding: 0 0.6rem;
+		}
+	}
+	@media print {
+		.folio {
+			grid-template-columns: minmax(0, 1fr);
+			grid-template-areas:
+				"place"
+				"date";
+			justify-items: center;
+		}
+
+		.folio-date {
 			justify-self: center;
 		}
 	}

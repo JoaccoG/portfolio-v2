@@ -138,6 +138,7 @@ select {
 	.cur-ring,
 	.ticker,
 	.progress,
+	[data-edition-switch],
 	.full-account,
 	[data-page-two],
 	.spacer,
