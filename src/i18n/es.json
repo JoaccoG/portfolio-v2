@@ -46,9 +46,7 @@
 			"label": "LA PRENSA.",
 			"sealTop": "THE DAILY GODOY",
 			"sealBottom": "EDICIÓN MATUTINA",
-			"sealEst": "DESDE 2026",
-			"silent": "MÚSICA ON",
-			"audible": "MÚSICA OFF"
+			"sealEst": "DESDE 2026"
 		},
 		"folio": ["BUENOS AIRES Y LA VASTA RED", "EDICIÓN MATUTINA — {date}"],
 		"months": [

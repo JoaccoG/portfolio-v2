@@ -96,22 +96,6 @@ const [folioPre = '', folioPost = ''] = m.folio[1].split('{date}');
 			>{folioPost}</span
 		>
 	</div>
-	<button
-		type="button"
-		class="folio-btn music-btn"
-		data-cur="1"
-		data-sound-toggle
-		aria-pressed="false"
-	>
-		<span class="sound-slot">
-			<span
-				data-sound-label
-				data-silent={m.press.silent}
-				data-audible={m.press.audible}>{m.press.silent}</span>
-			<span class="sound-ghost" aria-hidden="true">{m.press.audible}</span>
-		</span>
-		<span class="btn-hand" aria-hidden="true">☜</span>
-	</button>
 </div>
 
 <script>
@@ -338,10 +322,6 @@ const [folioPre = '', folioPost = ''] = m.folio[1].split('{date}');
 		justify-self: start;
 	}
 
-	.music-btn {
-		justify-self: end;
-	}
-
 	.folio-btn {
 		position: relative;
 		text-decoration: none;
@@ -374,20 +354,6 @@ const [folioPre = '', folioPost = ''] = m.folio[1].split('{date}');
 		font-size: 1.1em;
 	}
 
-	.sound-slot {
-		display: inline-grid;
-		text-align: center;
-	}
-
-	.sound-slot > * {
-		grid-area: 1 / 1;
-	}
-
-	.sound-ghost {
-		visibility: hidden;
-		height: 0;
-	}
-
 	@media (min-width: 1240px) {
 		.folio-center {
 			grid-column: 1 / -1;
@@ -408,11 +374,6 @@ const [folioPre = '', folioPost = ''] = m.folio[1].split('{date}');
 
 		.edition-btn {
 			grid-column: 1;
-			grid-row: 1;
-		}
-
-		.music-btn {
-			grid-column: 3;
 			grid-row: 1;
 		}
 	}
@@ -440,8 +401,7 @@ const [folioPre = '', folioPost = ''] = m.folio[1].split('{date}');
 			order: -1;
 		}
 
-		.edition-btn,
-		.music-btn {
+		.edition-btn {
 			justify-self: center;
 		}
 	}
