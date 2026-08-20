@@ -620,6 +620,10 @@
 				"text": "Su dirección quedó asentada en el libro. La próxima columna le llegará."
 			}
 		},
+		"otherEdition": {
+			"kicker": "SUPPLEMENT",
+			"title": "The Columns, in English."
+		},
 		"footer": "LAS COLUMNAS APARECEN CUANDO APARECEN"
 	}
 }

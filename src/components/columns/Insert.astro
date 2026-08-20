@@ -1,0 +1,109 @@
+---
+import { copyFor, localePath } from '../../i18n/t';
+
+const copy = copyFor(Astro.currentLocale);
+const o = copy.columns.otherEdition;
+const other = Astro.currentLocale === 'es' ? 'en' : 'es';
+const bare = Astro.url.pathname.replace(/^\/es(?=\/|$)/, '') || '/';
+const href = `${localePath(other, bare)}?lang=${other}`;
+---
+
+<a
+	class="insert"
+	href={href}
+	data-cur="1"
+	data-edition-switch
+	data-swap-shell
+	aria-label={copy.masthead.stamp.ariaLabel}
+>
+	<span class="kicker" data-swap-text>{o.kicker}</span>
+	<span class="title" data-swap-text>{o.title}</span>
+	<span class="hand" aria-hidden="true">☞</span>
+</a>
+
+<style>
+	.insert {
+		position: absolute;
+		top: 22px;
+		right: clamp(1.4rem, 6.5vw, 6.5rem);
+		z-index: 2;
+		width: clamp(176px, 16vw, 232px);
+		box-sizing: border-box;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 0.35rem;
+		padding: 2rem 1rem 0.9rem;
+		background: #ecd5c1;
+		color: var(--ink, #1c1710);
+		text-align: center;
+		text-decoration: none;
+		cursor: inherit;
+		box-shadow:
+			inset 0 0 0 5px #ecd5c1,
+			inset 0 0 0 6px rgba(28, 23, 16, 0.45),
+			0 12px 20px -12px rgba(15, 12, 8, 0.6),
+			0 1px 2px rgba(15, 12, 8, 0.25);
+		transform: rotate(3deg);
+		transform-origin: 100% 0;
+		transition: transform 0.45s cubic-bezier(0.19, 1, 0.22, 1);
+	}
+
+	.insert:hover {
+		transform: rotate(1.6deg) translateY(8px);
+	}
+
+	.kicker {
+		color: var(--acc, #b4342a);
+		font-size: 0.56rem;
+		font-weight: 700;
+		letter-spacing: 0.26em;
+	}
+
+	.title {
+		font-family: var(--fHD, 'Abril Fatface'), Didot, serif;
+		font-size: clamp(1rem, 1.4vw, 1.2rem);
+		line-height: 1.15;
+		text-wrap: balance;
+	}
+
+	.hand {
+		color: var(--acc, #b4342a);
+		font-size: 1rem;
+		line-height: 1;
+	}
+
+	:global(div.running:has(+ a.insert)) {
+		position: relative;
+		z-index: 3;
+		background-color: #efe5ce;
+	}
+
+	@media (max-width: 1023.98px) {
+		:global(a.insert + header.head) {
+			padding-top: 7.4rem;
+		}
+
+		.insert {
+			left: 50%;
+			right: auto;
+			width: min(80%, 300px);
+			flex-direction: row;
+			flex-wrap: wrap;
+			justify-content: center;
+			column-gap: 0.5rem;
+			row-gap: 0.15rem;
+			padding: 1.9rem 1rem 0.8rem;
+			transform: translateX(-50%) rotate(-1.4deg);
+			transform-origin: 50% 0;
+		}
+
+		.insert:hover {
+			transform: translateX(-50%) rotate(-0.6deg) translateY(6px);
+		}
+
+		.kicker {
+			flex-basis: 100%;
+		}
+	}
+</style>

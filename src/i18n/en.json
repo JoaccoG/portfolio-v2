@@ -617,6 +617,10 @@
 				"text": "Your address is entered in the book. The next column will find you."
 			}
 		},
+		"otherEdition": {
+			"kicker": "SUPLEMENTO",
+			"title": "Las columnas, en castellano."
+		},
 		"footer": "THE COLUMNS APPEAR WHEN THEY APPEAR"
 	}
 }
