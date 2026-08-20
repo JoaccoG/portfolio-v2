@@ -2,7 +2,9 @@ export function initNotFound(): void {
 	const back = document.querySelector<HTMLElement>('[data-back]');
 	back?.addEventListener('click', () => {
 		if (history.length > 1) history.back();
-		else location.href = '/';
+		else
+			location.href =
+				document.querySelector<HTMLAnchorElement>('a[data-home]')?.href ?? '/';
 	});
 
 	const target = document.querySelector<HTMLElement>('[data-path]');
