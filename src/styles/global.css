@@ -73,10 +73,8 @@ select {
 	}
 }
 
-@media (pointer: coarse) {
-	body {
-		overflow-x: clip;
-	}
+body {
+	overflow-x: clip;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -110,7 +108,9 @@ select {
 		print-color-adjust: exact !important;
 	}
 
-	:root {
+	:root,
+	[data-hero],
+	[data-sec] {
 		--mh: 1 !important;
 		--intro: 1 !important;
 		--hp: 0 !important;
@@ -141,7 +141,6 @@ select {
 	[data-edition-switch],
 	.full-account,
 	[data-page-two],
-	.spacer,
 	.under,
 	.shadow-wide,
 	.shadow-tight,
@@ -156,13 +155,7 @@ select {
 		background: #fff !important;
 	}
 
-	.viewport {
-		position: static !important;
-		overflow: visible !important;
-	}
-
 	.frame {
-		transform: none !important;
 		padding: 0 !important;
 	}
 
@@ -188,6 +181,7 @@ select {
 	}
 
 	[data-sec="profile"] .board {
+		position: static !important;
 		display: block !important;
 		height: auto !important;
 		overflow: visible !important;

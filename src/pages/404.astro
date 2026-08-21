@@ -43,13 +43,11 @@ const h = nf.head;
 	import { initCursor } from '../engine/cursor';
 	import { initEngine } from '../engine/engine';
 	import { initLiveDate } from '../engine/livedate';
-	import { initNativeEngine } from '../engine/native';
 	import { initNotFound } from '../engine/notfound';
 	import { initReveals } from '../engine/reveal';
 	import { initTicker } from '../engine/ticker';
 
-	if (matchMedia('(pointer: coarse)').matches) initNativeEngine();
-	else initEngine();
+	initEngine();
 	initReveals();
 	initCursor();
 	initTicker();

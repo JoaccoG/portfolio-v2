@@ -164,10 +164,8 @@ const flag = a.flag.replace('{section}', s.section).replace('{roman}', numeral);
 	import { initCursor } from '../../engine/cursor';
 	import { initEdition } from '../../engine/edition';
 	import { initEngine } from '../../engine/engine';
-	import { initNativeEngine } from '../../engine/native';
 
-	if (matchMedia('(pointer: coarse)').matches) initNativeEngine();
-	else initEngine();
+	initEngine();
 	initCursor();
 	initArticle();
 	initEdition();

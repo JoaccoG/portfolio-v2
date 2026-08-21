@@ -101,14 +101,11 @@ const sec = copy.sections;
 	import { initEngine } from '../../engine/engine';
 	import { initForm } from '../../engine/form';
 	import { initIntro } from '../../engine/intro';
-	import { initNativeEngine } from '../../engine/native';
 	import { initOverlay } from '../../engine/overlay';
 	import { initReveals } from '../../engine/reveal';
 	import { initTicker } from '../../engine/ticker';
 
-	const engine = matchMedia('(pointer: coarse)').matches
-		? initNativeEngine()
-		: initEngine();
+	const engine = initEngine();
 	initIntro({ onSettled: () => engine?.measure() });
 	initReveals();
 	initCursor();
