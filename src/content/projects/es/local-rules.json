@@ -10,8 +10,8 @@
 		"sub": "INSPECTOR DE OBRAS"
 	},
 	"cover": {
-		"src": "../../../assets/local-rules-cover.webp",
-		"alt": "El autómata neuronal a medio crecer: un núcleo encendido que se expande en un anillo denso de células sobre fondo oscuro"
+		"src": "../../../assets/local-rules-cover.jpg",
+		"alt": "La portada de Local Rules: el título en blanco junto a un núcleo encendido que se expande en un anillo de células sobre fondo oscuro, sobre la frase “Every cell looks at its neighbours and decides what to do. Everything else is emergent.”"
 	},
 	"pageTwo": {
 		"name": "Local Rules",
