@@ -10,8 +10,8 @@
 		"sub": "WORKS INSPECTOR"
 	},
 	"cover": {
-		"src": "../../../assets/local-rules-cover.webp",
-		"alt": "The neural automaton mid-growth: a lit core spreading into a dense ring of cells against dark ground"
+		"src": "../../../assets/local-rules-cover.jpg",
+		"alt": "The Local Rules cover: the title in white beside a lit core spreading into a ring of cells against dark ground, over the line “Every cell looks at its neighbours and decides what to do. Everything else is emergent.”"
 	},
 	"pageTwo": {
 		"name": "Local Rules",
