@@ -14,6 +14,7 @@ import {
 } from '../../lib/columns';
 import CustomCursor from '../CustomCursor.astro';
 import Footer from '../columns/Footer.astro';
+import Insert from '../columns/Insert.astro';
 import Sheet from '../paper/Sheet.astro';
 import RunningHead from '../RunningHead.astro';
 
@@ -81,6 +82,7 @@ const flag = a.flag.replace('{section}', s.section).replace('{roman}', numeral);
 						<p class="kicker">{headingLabels(column.data.headings, locale)}</p>
 						<h1 class="title">{column.data.title}</h1>
 						<p class="dek">{column.data.dek}</p>
+						<Insert margin />
 						<p class="meta">
 							<span>{longDate(column.data.pubDate, locale)}</span>
 							<span class="dot" aria-hidden="true">·</span>
@@ -160,6 +162,7 @@ const flag = a.flag.replace('{section}', s.section).replace('{roman}', numeral);
 <script>
 	import { initArticle } from '../../engine/article';
 	import { initCursor } from '../../engine/cursor';
+	import { initEdition } from '../../engine/edition';
 	import { initEngine } from '../../engine/engine';
 	import { initNativeEngine } from '../../engine/native';
 
@@ -167,6 +170,7 @@ const flag = a.flag.replace('{section}', s.section).replace('{roman}', numeral);
 	else initEngine();
 	initCursor();
 	initArticle();
+	initEdition();
 </script>
 
 <style>
