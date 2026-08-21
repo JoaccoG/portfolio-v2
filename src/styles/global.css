@@ -166,9 +166,14 @@ body {
 
 	.sheet,
 	.deckle {
-		mask: none !important;
-		-webkit-mask: none !important;
 		box-shadow: none !important;
+	}
+
+	.sheet::before,
+	.sheet::after,
+	.deckle::before,
+	.deckle::after {
+		display: none !important;
 	}
 
 	.sheet {

@@ -178,20 +178,29 @@ const mul = mulSrc ? `--mottle-mul: url('${mulSrc}')` : undefined;
 
 	.deckle {
 		position: relative;
-		-webkit-mask:
-			url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2226%22 height=%22640%22><path fill=%22white%22 d=%22M4.5 0L3.4 62L5 128L3.8 198L5.4 262L4.2 306L4.4 330L9 341L4.1 353L3.5 422L5.1 486L4 558L4.5 640L26 640L26 0Z%22/></svg>')
-			left top / 26px 640px repeat-y,
-			url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2226%22 height=%22640%22><path fill=%22white%22 d=%22M21.5 0L22.6 58L21 124L22.4 202L20.8 258L22 302L21.7 336L17 347L21.9 359L22.5 424L21 482L22.2 560L21.5 640L0 640L0 0Z%22/></svg>')
-			right top / 26px 640px repeat-y,
-			linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)) 20px 0 /
-			calc(100% - 40px) 100% no-repeat;
-		mask:
-			url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2226%22 height=%22640%22><path fill=%22white%22 d=%22M4.5 0L3.4 62L5 128L3.8 198L5.4 262L4.2 306L4.4 330L9 341L4.1 353L3.5 422L5.1 486L4 558L4.5 640L26 640L26 0Z%22/></svg>')
-			left top / 26px 640px repeat-y,
-			url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2226%22 height=%22640%22><path fill=%22white%22 d=%22M21.5 0L22.6 58L21 124L22.4 202L20.8 258L22 302L21.7 336L17 347L21.9 359L22.5 424L21 482L22.2 560L21.5 640L0 640L0 0Z%22/></svg>')
-			right top / 26px 640px repeat-y,
-			linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)) 20px 0 /
-			calc(100% - 40px) 100% no-repeat;
+	}
+
+	.deckle::before,
+	.deckle::after {
+		content: '';
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		width: 26px;
+		z-index: 8;
+		pointer-events: none;
+	}
+
+	.deckle::before {
+		left: 0;
+		background: url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2226%22 height=%22640%22><defs><linearGradient id=%22g%22 gradientUnits=%22userSpaceOnUse%22 x1=%220%22 x2=%2226%22 y1=%220%22 y2=%220%22><stop offset=%220%22 stop-color=%22%23cec3ab%22/><stop offset=%220.0385%22 stop-color=%22%23cec3ab%22/><stop offset=%220.0385%22 stop-color=%22%23c3b9a2%22/><stop offset=%220.0769%22 stop-color=%22%23c3b9a2%22/><stop offset=%220.0769%22 stop-color=%22%23b6ac96%22/><stop offset=%220.1154%22 stop-color=%22%23b6ac96%22/><stop offset=%220.1154%22 stop-color=%22%23e7dbc1%22/><stop offset=%221%22 stop-color=%22%23e7dbc1%22/></linearGradient></defs><path fill=%22url(%23g)%22 d=%22M0 0L4.5 0L3.4 62L5 128L3.8 198L5.4 262L4.2 306L4.4 330L9 341L4.1 353L3.5 422L5.1 486L4 558L4.5 640L0 640Z%22/></svg>')
+			left top / 26px 640px repeat-y;
+	}
+
+	.deckle::after {
+		right: 0;
+		background: url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2226%22 height=%22640%22><defs><linearGradient id=%22g%22 gradientUnits=%22userSpaceOnUse%22 x1=%2226%22 x2=%220%22 y1=%220%22 y2=%220%22><stop offset=%220%22 stop-color=%22%23cec3ab%22/><stop offset=%220.0385%22 stop-color=%22%23cec3ab%22/><stop offset=%220.0385%22 stop-color=%22%23c3b9a2%22/><stop offset=%220.0769%22 stop-color=%22%23c3b9a2%22/><stop offset=%220.0769%22 stop-color=%22%23b6ac96%22/><stop offset=%220.1154%22 stop-color=%22%23b6ac96%22/><stop offset=%220.1154%22 stop-color=%22%23e7dbc1%22/><stop offset=%221%22 stop-color=%22%23e7dbc1%22/></linearGradient></defs><path fill=%22url(%23g)%22 d=%22M26 0L21.5 0L22.6 58L21 124L22.4 202L20.8 258L22 302L21.7 336L17 347L21.9 359L22.5 424L21 482L22.2 560L21.5 640L26 640Z%22/></svg>')
+			right top / 26px 640px repeat-y;
 	}
 
 	.sheet {
@@ -203,20 +212,30 @@ const mul = mulSrc ? `--mottle-mul: url('${mulSrc}')` : undefined;
 			inset 1px 0 0 rgba(255, 251, 240, 0.25),
 			inset 0 -1px 0 rgba(88, 66, 34, 0.22),
 			inset -1px 0 0 rgba(88, 66, 34, 0.14);
-		-webkit-mask:
-			url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%2232%22><path fill=%22white%22 d=%22M0 5L70 3.6L150 5.8L235 3.9L300 6.2L352 5L376 9.8L404 4.6L470 5.9L545 3.7L620 6.1L700 4.2L755 6L800 5L800 32L0 32Z%22/></svg>')
-			left top / 800px 32px repeat-x,
-			url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22820%22 height=%2234%22><path fill=%22white%22 d=%22M0 0L820 0L820 28L760 26.6L680 28.8L600 26.2L520 28.4L470 27L442 22.4L410 27.8L330 26.4L250 28.6L170 26.7L90 28.3L40 27.2L0 28Z%22/></svg>')
-			left bottom / 820px 34px repeat-x,
-			linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)) 0 26px / 100%
-			calc(100% - 54px) no-repeat;
-		mask:
-			url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%2232%22><path fill=%22white%22 d=%22M0 5L70 3.6L150 5.8L235 3.9L300 6.2L352 5L376 9.8L404 4.6L470 5.9L545 3.7L620 6.1L700 4.2L755 6L800 5L800 32L0 32Z%22/></svg>')
-			left top / 800px 32px repeat-x,
-			url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22820%22 height=%2234%22><path fill=%22white%22 d=%22M0 0L820 0L820 28L760 26.6L680 28.8L600 26.2L520 28.4L470 27L442 22.4L410 27.8L330 26.4L250 28.6L170 26.7L90 28.3L40 27.2L0 28Z%22/></svg>')
-			left bottom / 820px 34px repeat-x,
-			linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)) 0 26px / 100%
-			calc(100% - 54px) no-repeat;
+	}
+
+	.sheet::before,
+	.sheet::after {
+		content: '';
+		position: absolute;
+		left: 0;
+		right: 0;
+		z-index: 7;
+		pointer-events: none;
+	}
+
+	.sheet::before {
+		top: 0;
+		height: 32px;
+		background: url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%2232%22><path fill=%22%23e7dbc1%22 d=%22M0 0L800 0L800 5L755 6L700 4.2L620 6.1L545 3.7L470 5.9L404 4.6L376 9.8L352 5L300 6.2L235 3.9L150 5.8L70 3.6L0 5Z%22/></svg>')
+			left top / 800px 32px repeat-x;
+	}
+
+	.sheet::after {
+		bottom: 0;
+		height: 34px;
+		background: url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22820%22 height=%2234%22><defs><linearGradient id=%22g%22 gradientUnits=%22userSpaceOnUse%22 x1=%220%22 x2=%220%22 y1=%220%22 y2=%2234%22><stop offset=%220%22 stop-color=%22%23e7dbc1%22/><stop offset=%220.8824%22 stop-color=%22%23e7dbc1%22/><stop offset=%220.8824%22 stop-color=%22%238f8674%22/><stop offset=%220.9118%22 stop-color=%22%238f8674%22/><stop offset=%220.9118%22 stop-color=%22%239b927e%22/><stop offset=%220.9412%22 stop-color=%22%239b927e%22/><stop offset=%220.9412%22 stop-color=%22%23a89e8a%22/><stop offset=%220.9706%22 stop-color=%22%23a89e8a%22/><stop offset=%220.9706%22 stop-color=%22%23b5aa95%22/><stop offset=%221%22 stop-color=%22%23b5aa95%22/></linearGradient></defs><path fill=%22url(%23g)%22 d=%22M0 34L820 34L820 28L760 26.6L680 28.8L600 26.2L520 28.4L470 27L442 22.4L410 27.8L330 26.4L250 28.6L170 26.7L90 28.3L40 27.2L0 28Z%22/></svg>')
+			left bottom / 820px 34px repeat-x;
 	}
 
 	.stack.torn .under,
@@ -264,20 +283,24 @@ const mul = mulSrc ? `--mottle-mul: url('${mulSrc}')` : undefined;
 			inset 0 1px 0 rgba(255, 251, 240, 0.4),
 			inset 1px 0 0 rgba(255, 251, 240, 0.25),
 			inset -1px 0 0 rgba(88, 66, 34, 0.14);
-		-webkit-mask:
-			url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%2232%22><path fill=%22white%22 d=%22M0 5L70 3.6L150 5.8L235 3.9L300 6.2L352 5L376 9.8L404 4.6L470 5.9L545 3.7L620 6.1L700 4.2L755 6L800 5L800 32L0 32Z%22/></svg>')
-			left top / 800px 32px repeat-x,
-			url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22900%22 height=%2264%22><path fill=%22white%22 d=%22M0 0L900 0L900 26L878 44L856 22L834 47L812 28L790 52L768 31L746 19L724 45L702 26L680 50L658 30L636 43L614 21L592 46L570 27L548 53L526 33L504 18L482 42L460 25L438 51L416 32L394 45L372 23L350 49L328 29L306 42L284 20L262 45L240 27L218 53L196 34L174 21L152 44L130 26L108 48L86 30L64 43L42 22L20 45L0 24Z%22/></svg>')
-			left bottom / 900px 64px repeat-x,
-			linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)) 0 26px / 100%
-			calc(100% - 88px) no-repeat;
-		mask:
-			url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%2232%22><path fill=%22white%22 d=%22M0 5L70 3.6L150 5.8L235 3.9L300 6.2L352 5L376 9.8L404 4.6L470 5.9L545 3.7L620 6.1L700 4.2L755 6L800 5L800 32L0 32Z%22/></svg>')
-			left top / 800px 32px repeat-x,
-			url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22900%22 height=%2264%22><path fill=%22white%22 d=%22M0 0L900 0L900 26L878 44L856 22L834 47L812 28L790 52L768 31L746 19L724 45L702 26L680 50L658 30L636 43L614 21L592 46L570 27L548 53L526 33L504 18L482 42L460 25L438 51L416 32L394 45L372 23L350 49L328 29L306 42L284 20L262 45L240 27L218 53L196 34L174 21L152 44L130 26L108 48L86 30L64 43L42 22L20 45L0 24Z%22/></svg>')
-			left bottom / 900px 64px repeat-x,
-			linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)) 0 26px / 100%
-			calc(100% - 88px) no-repeat;
+	}
+
+	.stack.torn .deckle::before {
+		background-image: url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2226%22 height=%22640%22><path fill=%22%230f0c08%22 d=%22M0 0L4.5 0L3.4 62L5 128L3.8 198L5.4 262L4.2 306L4.4 330L9 341L4.1 353L3.5 422L5.1 486L4 558L4.5 640L0 640Z%22/></svg>');
+	}
+
+	.stack.torn .deckle::after {
+		background-image: url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2226%22 height=%22640%22><path fill=%22%230f0c08%22 d=%22M26 0L21.5 0L22.6 58L21 124L22.4 202L20.8 258L22 302L21.7 336L17 347L21.9 359L22.5 424L21 482L22.2 560L21.5 640L26 640Z%22/></svg>');
+	}
+
+	.sheet.torn::before {
+		background-image: url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%2232%22><path fill=%22%230f0c08%22 d=%22M0 0L800 0L800 5L755 6L700 4.2L620 6.1L545 3.7L470 5.9L404 4.6L376 9.8L352 5L300 6.2L235 3.9L150 5.8L70 3.6L0 5Z%22/></svg>');
+	}
+
+	.sheet.torn::after {
+		height: 64px;
+		background: url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22900%22 height=%2264%22><path fill=%22%230f0c08%22 d=%22M900 26L878 44L856 22L834 47L812 28L790 52L768 31L746 19L724 45L702 26L680 50L658 30L636 43L614 21L592 46L570 27L548 53L526 33L504 18L482 42L460 25L438 51L416 32L394 45L372 23L350 49L328 29L306 42L284 20L262 45L240 27L218 53L196 34L174 21L152 44L130 26L108 48L86 30L64 43L42 22L20 45L0 24L0 64L900 64Z%22/></svg>')
+			left bottom / 900px 64px repeat-x;
 	}
 
 	.tex {
@@ -358,35 +381,6 @@ const mul = mulSrc ? `--mottle-mul: url('${mulSrc}')` : undefined;
 
 		.tex-edges {
 			mix-blend-mode: normal;
-		}
-
-		.sheet {
-			-webkit-mask: none;
-			mask: none;
-		}
-
-		.sheet::before,
-		.sheet::after {
-			content: '';
-			position: absolute;
-			left: 0;
-			right: 0;
-			z-index: 7;
-			pointer-events: none;
-		}
-
-		.sheet::before {
-			top: 0;
-			height: 32px;
-			background: url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%2232%22><path fill=%22%23e7dbc1%22 d=%22M0 0L800 0L800 5L755 6L700 4.2L620 6.1L545 3.7L470 5.9L404 4.6L376 9.8L352 5L300 6.2L235 3.9L150 5.8L70 3.6L0 5Z%22/></svg>')
-				left top / 800px 32px repeat-x;
-		}
-
-		.sheet::after {
-			bottom: 0;
-			height: 34px;
-			background: url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22820%22 height=%2234%22><path fill=%22%23e7dbc1%22 d=%22M0 34L820 34L820 28L760 26.6L680 28.8L600 26.2L520 28.4L470 27L442 22.4L410 27.8L330 26.4L250 28.6L170 26.7L90 28.3L40 27.2L0 28Z%22/></svg>')
-				left bottom / 820px 34px repeat-x;
 		}
 	}
 </style>
