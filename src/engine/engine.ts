@@ -58,7 +58,9 @@ export function initEngine(): { measure: () => void } | undefined {
 	const svFin = fin ? setter(fin) : undefined;
 	const svCue = cue ? setter(cue) : undefined;
 	const visible = new Set<Element>();
+	const fluid = matchMedia('(hover: hover) and (pointer: fine)').matches;
 	let vh = innerHeight;
+	let lastW = 0;
 	let mx = 1;
 	let profTop = 0;
 	let travel = 1;
@@ -98,8 +100,12 @@ export function initEngine(): { measure: () => void } | undefined {
 		}
 	};
 	const measure = () => {
-		vh = innerHeight;
-		mx = Math.max(1, document.documentElement.scrollHeight - vh);
+		if (fluid || innerWidth !== lastW) {
+			lastW = innerWidth;
+			vh = innerHeight;
+			prof?.style.setProperty('--board-h', `${vh}px`);
+		}
+		mx = Math.max(1, document.documentElement.scrollHeight - innerHeight);
 		if (prof) {
 			profTop = docTop(prof);
 			travel = Math.max(1, prof.offsetHeight - (board?.offsetHeight ?? vh));

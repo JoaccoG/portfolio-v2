@@ -48,7 +48,7 @@ const numerals = ['I', 'II', 'III', 'IV'];
 
 <style>
 	section {
-		height: 380svh;
+		height: calc(var(--board-h, 100svh) * 3.8);
 		position: relative;
 		margin: 0
 			calc(var(--pad-x, clamp(1rem, 3.6vw, 3.6rem)) * -1) 0;
@@ -59,7 +59,7 @@ const numerals = ['I', 'II', 'III', 'IV'];
 		top: 0;
 		display: flex;
 		flex-direction: column;
-		height: 100svh;
+		height: var(--board-h, 100svh);
 		overflow: hidden;
 	}
 
