@@ -26,7 +26,7 @@ const {
 } = Astro.props;
 const site = Astro.site;
 const canonical = site ? new URL(Astro.url.pathname, site).href : undefined;
-const ogPath = locale === 'es' ? '/og-es.jpg?v=1' : '/og.jpg?v=2';
+const ogPath = locale === 'es' ? '/og-es.jpg?v=2' : '/og.jpg?v=3';
 const ogImage = site ? new URL(ogPath, site).href : undefined;
 const bare = Astro.url.pathname.replace(/^\/es(?=\/|$)/, '') || '/';
 const enHref = site ? new URL(bare, site).href : undefined;
