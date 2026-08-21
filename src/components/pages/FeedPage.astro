@@ -42,12 +42,10 @@ const s = copy.sections.columns;
 	import { initEdition } from '../../engine/edition';
 	import { initEngine } from '../../engine/engine';
 	import { initFeed } from '../../engine/feed';
-	import { initNativeEngine } from '../../engine/native';
 	import { initReveals } from '../../engine/reveal';
 	import { initWire } from '../../engine/wire';
 
-	if (matchMedia('(pointer: coarse)').matches) initNativeEngine();
-	else initEngine();
+	initEngine();
 	initReveals();
 	initCursor();
 	initFeed();

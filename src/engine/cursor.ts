@@ -18,11 +18,13 @@ export function initCursor(): void {
 	let dy = -60;
 	let rx = -60;
 	let ry = -60;
+	let running = false;
 	addEventListener(
 		'mousemove',
 		(e) => {
 			mx = e.clientX;
 			my = e.clientY;
+			start();
 		},
 		{ passive: true },
 	);
@@ -46,7 +48,6 @@ export function initCursor(): void {
 	const df = rm ? 1 : 0.55;
 	const rf = rm ? 1 : 0.16;
 	const loop = () => {
-		requestAnimationFrame(loop);
 		dx += (mx - dx) * df;
 		dy += (my - dy) * df;
 		rx += (mx - rx) * rf;
@@ -55,6 +56,21 @@ export function initCursor(): void {
 		dot.style.setProperty('--cdy', `${Math.round(dy * 10) / 10}px`);
 		ring.style.setProperty('--crx', `${Math.round(rx * 10) / 10}px`);
 		ring.style.setProperty('--cry', `${Math.round(ry * 10) / 10}px`);
+		if (
+			Math.abs(mx - rx) +
+				Math.abs(my - ry) +
+				Math.abs(mx - dx) +
+				Math.abs(my - dy) <
+			0.1
+		) {
+			running = false;
+			return;
+		}
+		requestAnimationFrame(loop);
 	};
-	requestAnimationFrame(loop);
+	const start = () => {
+		if (running) return;
+		running = true;
+		requestAnimationFrame(loop);
+	};
 }

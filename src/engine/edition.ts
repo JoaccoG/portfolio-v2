@@ -64,7 +64,13 @@ const markVisibleBlocks = (): HTMLElement[] => {
 	const bottom = innerHeight + MARGIN;
 	for (const el of document.querySelectorAll<HTMLElement>(`main ${BLOCKS}`)) {
 		if (el.closest(STILL) || el.hasAttribute('data-swap-shell')) continue;
+		if (el.closest('[inert]')) continue;
 		if (el.parentElement?.closest(`.${SWAP_CLASS}`)) continue;
+		const shown = el.checkVisibility?.({
+			opacityProperty: true,
+			visibilityProperty: true,
+		});
+		if (shown === false) continue;
 		const r = el.getBoundingClientRect();
 		if (r.bottom < top || r.top > bottom || r.width === 0) continue;
 		el.classList.add(SWAP_CLASS);
