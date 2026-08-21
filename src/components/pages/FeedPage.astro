@@ -4,6 +4,7 @@ import Base from '../../layouts/Base.astro';
 import CustomCursor from '../CustomCursor.astro';
 import Feed from '../columns/Feed.astro';
 import Footer from '../columns/Footer.astro';
+import Insert from '../columns/Insert.astro';
 import Wire from '../columns/Wire.astro';
 import PageHead from '../PageHead.astro';
 import Sheet from '../paper/Sheet.astro';
@@ -26,7 +27,9 @@ const s = copy.sections.columns;
 				nameplate={h.nameplate}
 				headline={f.headline}
 				dek={f.dek}
-			/>
+			>
+				<Insert />
+			</PageHead>
 			<Feed />
 			<Wire />
 			<Footer />
@@ -36,6 +39,7 @@ const s = copy.sections.columns;
 
 <script>
 	import { initCursor } from '../../engine/cursor';
+	import { initEdition } from '../../engine/edition';
 	import { initEngine } from '../../engine/engine';
 	import { initFeed } from '../../engine/feed';
 	import { initNativeEngine } from '../../engine/native';
@@ -48,4 +52,5 @@ const s = copy.sections.columns;
 	initCursor();
 	initFeed();
 	initWire();
+	initEdition();
 </script>

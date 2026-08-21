@@ -60,7 +60,7 @@ Switching editions doesn't reload the page. The button fetches the other edition
 
 ## Reads on paper
 
-It is a newspaper, so it prints like one. `@media print` clears the cursor, the ticker, the music toggle and the drawers, drops the textures to plain white stock and reflows the broadsheet into about five clean A4 pages. `Ctrl-P` is a feature, not an afterthought.
+It is a newspaper, so it prints like one. `@media print` clears the cursor, the ticker and the drawers, drops the textures to plain white stock and reflows the broadsheet into about five clean A4 pages. `Ctrl-P` is a feature, not an afterthought.
 
 ## Running locally
 

@@ -46,9 +46,7 @@
 			"label": "LA PRENSA.",
 			"sealTop": "THE DAILY GODOY",
 			"sealBottom": "EDICIÓN MATUTINA",
-			"sealEst": "DESDE 2026",
-			"silent": "MÚSICA ON",
-			"audible": "MÚSICA OFF"
+			"sealEst": "DESDE 2026"
 		},
 		"folio": ["BUENOS AIRES Y LA VASTA RED", "EDICIÓN MATUTINA — {date}"],
 		"months": [
@@ -621,6 +619,10 @@
 				"stampDateTemplate": "{day} {month} · {year}",
 				"text": "Su dirección quedó asentada en el libro. La próxima columna le llegará."
 			}
+		},
+		"otherEdition": {
+			"kicker": "OTRAS EDICIONES",
+			"title": "Switch to English"
 		},
 		"footer": "LAS COLUMNAS APARECEN CUANDO APARECEN"
 	}

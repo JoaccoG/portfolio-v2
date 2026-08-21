@@ -46,9 +46,7 @@
 			"label": "THE PRESS.",
 			"sealTop": "THE DAILY GODOY",
 			"sealBottom": "MORNING EDITION",
-			"sealEst": "EST. 2026",
-			"silent": "MUSIC SILENT",
-			"audible": "MUSIC AUDIBLE"
+			"sealEst": "EST. 2026"
 		},
 		"folio": ["BUENOS AIRES & THE WIDER WEB", "MORNING EDITION — {date}"],
 		"months": [
@@ -618,6 +616,10 @@
 				"stampDateTemplate": "{month} {day} · {year}",
 				"text": "Your address is entered in the book. The next column will find you."
 			}
+		},
+		"otherEdition": {
+			"kicker": "OTHER EDITIONS",
+			"title": "Cambiar al Español"
 		},
 		"footer": "THE COLUMNS APPEAR WHEN THEY APPEAR"
 	}

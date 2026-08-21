@@ -138,7 +138,7 @@ select {
 	.cur-ring,
 	.ticker,
 	.progress,
-	.music-btn,
+	[data-edition-switch],
 	.full-account,
 	[data-page-two],
 	.spacer,
