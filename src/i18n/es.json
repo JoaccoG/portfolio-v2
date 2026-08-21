@@ -622,7 +622,7 @@
 		},
 		"otherEdition": {
 			"kicker": "OTRAS EDICIONES",
-			"title": ["Switch to", "English"]
+			"title": "Switch to English"
 		},
 		"footer": "LAS COLUMNAS APARECEN CUANDO APARECEN"
 	}
