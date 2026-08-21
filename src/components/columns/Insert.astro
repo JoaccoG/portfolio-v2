@@ -1,6 +1,11 @@
 ---
 import { copyFor, localePath } from '../../i18n/t';
 
+interface Props {
+	inline?: boolean;
+}
+
+const { inline = false } = Astro.props;
 const copy = copyFor(Astro.currentLocale);
 const o = copy.columns.otherEdition;
 const other = Astro.currentLocale === 'es' ? 'en' : 'es';
@@ -9,7 +14,7 @@ const href = `${localePath(other, bare)}?lang=${other}`;
 ---
 
 <a
-	class="insert"
+	class:list={['insert', { inline }]}
 	href={href}
 	data-cur="1"
 	data-edition-switch
@@ -105,5 +110,19 @@ const href = `${localePath(other, bare)}?lang=${other}`;
 		.kicker {
 			flex-basis: 100%;
 		}
+	}
+
+	.insert.inline {
+		position: relative;
+		top: auto;
+		right: auto;
+		left: auto;
+		margin: -16px auto 0;
+		transform: rotate(-1.4deg);
+		transform-origin: 50% 0;
+	}
+
+	.insert.inline:hover {
+		transform: rotate(-0.6deg) translateY(6px);
 	}
 </style>
