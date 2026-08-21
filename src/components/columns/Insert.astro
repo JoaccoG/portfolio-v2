@@ -2,10 +2,10 @@
 import { copyFor, localePath } from '../../i18n/t';
 
 interface Props {
-	inline?: boolean;
+	margin?: boolean;
 }
 
-const { inline = false } = Astro.props;
+const { margin = false } = Astro.props;
 const copy = copyFor(Astro.currentLocale);
 const o = copy.columns.otherEdition;
 const other = Astro.currentLocale === 'es' ? 'en' : 'es';
@@ -14,7 +14,7 @@ const href = `${localePath(other, bare)}?lang=${other}`;
 ---
 
 <a
-	class:list={['insert', { inline }]}
+	class:list={['insert', { margin }]}
 	href={href}
 	data-cur="1"
 	data-edition-switch
@@ -112,17 +112,50 @@ const href = `${localePath(other, bare)}?lang=${other}`;
 		}
 	}
 
-	.insert.inline {
+	.insert.margin {
 		position: relative;
 		top: auto;
 		right: auto;
 		left: auto;
-		margin: -16px auto 0;
+		width: min(80%, 300px);
+		margin: 0 auto 1.4rem;
+		flex-direction: row;
+		flex-wrap: wrap;
+		justify-content: center;
+		column-gap: 0.5rem;
+		row-gap: 0.15rem;
+		padding: 1rem 1rem 0.8rem;
 		transform: rotate(-1.4deg);
-		transform-origin: 50% 0;
+		transform-origin: 50% 50%;
 	}
 
-	.insert.inline:hover {
-		transform: rotate(-0.6deg) translateY(6px);
+	.insert.margin:hover {
+		transform: rotate(-0.6deg) translateY(3px);
+	}
+
+	.margin .kicker {
+		flex-basis: 100%;
+	}
+
+	@media (min-width: 1200px) {
+		.insert.margin {
+			position: absolute;
+			right: 0;
+			width: clamp(168px, 13vw, 210px);
+			margin: 0;
+			flex-direction: column;
+			flex-wrap: nowrap;
+			padding: 1.1rem 0.9rem 0.85rem;
+			transform: rotate(2.4deg);
+			transform-origin: 100% 0;
+		}
+
+		.insert.margin:hover {
+			transform: rotate(1.2deg) translateY(4px);
+		}
+
+		.margin .kicker {
+			flex-basis: auto;
+		}
 	}
 </style>
