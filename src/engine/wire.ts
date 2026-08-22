@@ -22,6 +22,8 @@ export function initWire(): void {
 		error.hidden = false;
 	};
 	const setBusy = (busy: boolean) => {
+		if (busy) form.setAttribute('aria-busy', 'true');
+		else form.removeAttribute('aria-busy');
 		if (button) button.disabled = busy;
 		if (label) label.textContent = busy ? (say.sending ?? '') : submitLabel;
 		if (hand) hand.hidden = busy;
@@ -55,6 +57,7 @@ export function initWire(): void {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({ email, wire }),
+				signal: AbortSignal.timeout(15_000),
 			});
 			if (!res.ok) {
 				const payload = (await res.json().catch(() => null)) as {

@@ -19,6 +19,7 @@ export function initForm(): void {
 		error.hidden = false;
 	};
 	const restore = () => {
+		form.removeAttribute('aria-busy');
 		if (!button) return;
 		button.disabled = false;
 		if (label) label.textContent = submitLabel;
@@ -39,6 +40,7 @@ export function initForm(): void {
 			return;
 		}
 		if (error) error.hidden = true;
+		form.setAttribute('aria-busy', 'true');
 		if (button) {
 			button.disabled = true;
 			if (label) label.textContent = say.sending ?? '';
@@ -49,6 +51,7 @@ export function initForm(): void {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({ email, message, wire }),
+				signal: AbortSignal.timeout(15_000),
 			});
 			if (!res.ok) {
 				const payload = (await res.json().catch(() => null)) as {
@@ -63,6 +66,7 @@ export function initForm(): void {
 				return;
 			}
 			form.reset();
+			form.removeAttribute('aria-busy');
 			form.hidden = true;
 			if (sent) {
 				sent.hidden = false;
