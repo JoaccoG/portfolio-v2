@@ -15,6 +15,7 @@ interface Props {
 	title?: string;
 	description?: string;
 	alternates?: boolean;
+	preloadImage?: string;
 }
 
 const locale = localeOf(Astro.currentLocale);
@@ -23,6 +24,7 @@ const {
 	title = copy.meta.title,
 	description = copy.meta.description,
 	alternates = true,
+	preloadImage,
 } = Astro.props;
 const site = Astro.site;
 const canonical = site ? new URL(Astro.url.pathname, site).href : undefined;
@@ -147,6 +149,11 @@ const siteLd = {
 			type="font/woff2"
 			crossorigin
 		/>
+		{
+			preloadImage && (
+				<link rel="preload" href={preloadImage} as="image" fetchpriority="high" />
+			)
+		}
 		<title>{title}</title>
 		<script type="application/ld+json" set:html={JSON.stringify(personLd)} />
 		<script type="application/ld+json" set:html={JSON.stringify(siteLd)} />
