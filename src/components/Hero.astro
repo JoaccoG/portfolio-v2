@@ -185,10 +185,16 @@ const portraitSizes =
 		margin: 0 0 1.2rem;
 		font-family: var(--fHD, 'Bodoni Moda'), Didot, serif;
 		font-weight: 620;
-		font-size: clamp(2.5rem, 8.6vw, 8.2rem);
+		font-size: clamp(min(2.5rem, calc((100vw - 3rem) / 7.3)), 8.6vw, 8.2rem);
 		line-height: 0.95;
 		letter-spacing: 0.002em;
 		text-transform: uppercase;
+	}
+
+	@media (min-width: 1020px) {
+		.headline {
+			font-size: clamp(2.5rem, 8.1vw, 8.2rem);
+		}
 	}
 
 	.line-mask {
