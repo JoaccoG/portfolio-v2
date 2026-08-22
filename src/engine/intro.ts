@@ -4,6 +4,7 @@ export type IntroHooks = { onSettled?: () => void };
 
 export function initIntro(hooks: IntroHooks = {}): void {
 	const doc = document.documentElement;
+	const main = document.querySelector<HTMLElement>('main');
 	const sv = (k: string, v: string) => doc.style.setProperty(k, v);
 	let done = false;
 	const restoreCursorInk = () => {
@@ -19,6 +20,7 @@ export function initIntro(hooks: IntroHooks = {}): void {
 		delete doc.dataset.intro;
 		sv('--mh', '1');
 		doc.style.overflow = '';
+		if (main) main.inert = false;
 		restoreCursorInk();
 		hooks.onSettled?.();
 	};
@@ -33,6 +35,7 @@ export function initIntro(hooks: IntroHooks = {}): void {
 	sv('--cInk', '#e9e0cc');
 	sv('--crc', 'rgba(233, 224, 204, 0.65)');
 	doc.style.overflow = 'hidden';
+	if (main) main.inert = true;
 	window.scrollTo(0, 0);
 	const counter = document.querySelector<HTMLElement>('[data-precnt]');
 	const t0 = performance.now();
