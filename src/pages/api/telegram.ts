@@ -1,6 +1,7 @@
 import { RESEND_API_KEY, RESEND_FROM } from 'astro:env/server';
 import type { APIRoute } from 'astro';
 import { clientKey, createLimiter } from '../../server/rate-limit';
+import { resend } from '../../server/resend';
 import { buildTelegramHtml } from '../../server/telegram-template';
 
 export const prerender = false;
@@ -45,12 +46,9 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
 	if (!message || message.length > 5000) {
 		return respond({ ok: false, error: 'blank' }, 422);
 	}
-	const sent = await fetch('https://api.resend.com/emails', {
+	const sent = await resend('/emails', RESEND_API_KEY, {
 		method: 'POST',
-		headers: {
-			Authorization: `Bearer ${RESEND_API_KEY}`,
-			'Content-Type': 'application/json',
-		},
+		headers: { 'Content-Type': 'application/json' },
 		body: JSON.stringify({
 			from: RESEND_FROM,
 			to: [EDITOR],
@@ -60,6 +58,6 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
 			html: buildTelegramHtml(email, message),
 		}),
 	});
-	if (!sent.ok) return respond({ ok: false, error: 'send' }, 502);
+	if (!sent?.ok) return respond({ ok: false, error: 'send' }, 502);
 	return respond({ ok: true }, 200);
 };

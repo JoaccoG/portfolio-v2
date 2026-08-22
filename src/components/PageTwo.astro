@@ -48,7 +48,7 @@ const projects = (await getCollection('projects'))
 				inert
 				data-page-two={project.id}
 			>
-				<div class="p2sheet papered" lang="en" data-p2-sheet>
+				<div class="p2sheet papered" lang={localeOf(Astro.currentLocale)} data-p2-sheet>
 					<PaperTextures vignetteOnly />
 					<div class="content">
 						<p class="ghost" aria-hidden="true">
@@ -123,16 +123,22 @@ const projects = (await getCollection('projects'))
 									<p class="quote">{pt.quote.text}</p>
 									<cite>— {pt.quote.cite}</cite>
 								</blockquote>
-								<div class="links">
-									<a href={pt.links.repo} data-cur="1">
-										<span class="hand" aria-hidden="true">☞</span>
-										<span>{p.repoLink}</span>
-									</a>
-									<a href={pt.links.live} data-cur="1">
-										<span class="hand" aria-hidden="true">☞</span>
-										<span>{p.liveLink}</span>
-									</a>
-								</div>
+								{(pt.links?.repo || pt.links?.live) && (
+									<div class="links">
+										{pt.links?.repo && (
+											<a href={pt.links.repo} target="_blank" rel="noopener noreferrer" data-cur="1">
+												<span class="hand" aria-hidden="true">☞</span>
+												<span>{p.repoLink}</span>
+											</a>
+										)}
+										{pt.links?.live && (
+											<a href={pt.links.live} target="_blank" rel="noopener noreferrer" data-cur="1">
+												<span class="hand" aria-hidden="true">☞</span>
+												<span>{p.liveLink}</span>
+											</a>
+										)}
+									</div>
+								)}
 								{pt.note && <p class="note">{pt.note}</p>}
 							</aside>
 						</div>

@@ -1,6 +1,7 @@
 import { RESEND_API_KEY, RESEND_SEGMENT_ID } from 'astro:env/server';
 import type { APIRoute } from 'astro';
 import { clientKey, createLimiter } from '../../server/rate-limit';
+import { resend } from '../../server/resend';
 
 export const prerender = false;
 
@@ -35,10 +36,11 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
 	if (!EMAIL_RE.test(email) || email.length > 200) {
 		return respond({ ok: false, error: 'email' }, 422);
 	}
-	const known = await fetch(
-		`https://api.resend.com/contacts/${encodeURIComponent(email)}`,
-		{ headers: { Authorization: `Bearer ${RESEND_API_KEY}` } },
+	const known = await resend(
+		`/contacts/${encodeURIComponent(email)}`,
+		RESEND_API_KEY,
 	);
+	if (!known) return respond({ ok: false, error: 'send' }, 502);
 	if (known.ok) {
 		const found = (await known.json().catch(() => null)) as {
 			unsubscribed?: boolean;
@@ -49,14 +51,11 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
 	}
 	const contact: Record<string, unknown> = { email, unsubscribed: false };
 	if (RESEND_SEGMENT_ID) contact.segments = [{ id: RESEND_SEGMENT_ID }];
-	const entered = await fetch('https://api.resend.com/contacts', {
+	const entered = await resend('/contacts', RESEND_API_KEY, {
 		method: 'POST',
-		headers: {
-			Authorization: `Bearer ${RESEND_API_KEY}`,
-			'Content-Type': 'application/json',
-		},
+		headers: { 'Content-Type': 'application/json' },
 		body: JSON.stringify(contact),
 	});
-	if (!entered.ok) return respond({ ok: false, error: 'send' }, 502);
+	if (!entered?.ok) return respond({ ok: false, error: 'send' }, 502);
 	return respond({ ok: true }, 200);
 };
