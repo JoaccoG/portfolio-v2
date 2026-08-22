@@ -73,7 +73,7 @@ const projects = (await getCollection('projects'))
 								class="fig"
 								style={cover && `--figAR:${cover.src.width}/${cover.src.height}`}
 							>
-								{cover ? (
+								{cover && (
 									<Image
 										class="cover"
 										src={cover.src}
@@ -81,8 +81,6 @@ const projects = (await getCollection('projects'))
 										widths={figWidths}
 										sizes={figSizes}
 									/>
-								) : (
-									<span class="chip">{p.chip}</span>
 								)}
 							</div>
 							<figcaption>
@@ -313,15 +311,6 @@ const projects = (await getCollection('projects'))
 		height: 100%;
 		object-fit: cover;
 		filter: sepia(0.08) contrast(1.02);
-	}
-
-	.chip {
-		font-size: 0.6rem;
-		letter-spacing: 0.2em;
-		background: var(--paper, #f2ead8);
-		border: 1px solid rgba(28, 23, 16, 0.5);
-		padding: 0.5rem 0.8rem;
-		text-align: center;
 	}
 
 	figcaption {

@@ -1,5 +1,6 @@
 ---
 import { render } from 'astro:content';
+import paperTexture from '../../assets/tex/mul-mottle-19.webp';
 import { copyFor, localePath } from '../../i18n/t';
 import Base from '../../layouts/Base.astro';
 import {
@@ -42,6 +43,7 @@ const flag = a.flag.replace('{section}', s.section).replace('{roman}', numeral);
 <Base
 	title={a.docTitle.replace('{title}', column.data.title)}
 	description={column.data.dek}
+	preloadImage={paperTexture.src}
 >
 	<CustomCursor />
 	<main id="main-content">

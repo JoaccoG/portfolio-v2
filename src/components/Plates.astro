@@ -56,7 +56,7 @@ const coverSizes = '(max-width: 767.98px) 92vw, 44vw';
 							style={cover && `--plateAR:${cover.src.width}/${cover.src.height}`}
 						>
 							<div class="halftone">
-								{cover ? (
+								{cover && (
 									<Image
 										class="cover"
 										src={cover.src}
@@ -64,8 +64,6 @@ const coverSizes = '(max-width: 767.98px) 92vw, 44vw';
 										widths={coverWidths}
 										sizes={coverSizes}
 									/>
-								) : (
-									<span class="chip">{m.chip}</span>
 								)}
 							</div>
 							{project.data.stamp && (
@@ -256,14 +254,6 @@ const coverSizes = '(max-width: 767.98px) 92vw, 44vw';
 		height: 100%;
 		object-fit: cover;
 		filter: sepia(0.08) contrast(1.02);
-	}
-
-	.chip {
-		font-size: 0.6rem;
-		letter-spacing: 0.2em;
-		background: var(--paper, #f2ead8);
-		border: 1px solid rgba(28, 23, 16, 0.5);
-		padding: 0.5rem 0.8rem;
 	}
 
 	.stamp {

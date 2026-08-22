@@ -1,4 +1,5 @@
 ---
+import paperTexture from '../../assets/tex/mul-mottle-19.webp';
 import { copyFor } from '../../i18n/t';
 import Base from '../../layouts/Base.astro';
 import CustomCursor from '../CustomCursor.astro';
@@ -15,7 +16,11 @@ const h = copy.columns.head;
 const s = copy.sections.columns;
 ---
 
-<Base title={f.docTitle} description={f.description}>
+<Base
+	title={f.docTitle}
+	description={f.description}
+	preloadImage={paperTexture.src}
+>
 	<CustomCursor />
 	<main id="main-content">
 		<Sheet mottleSeed={19}>
