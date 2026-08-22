@@ -39,8 +39,7 @@
 		},
 		"nameplate": ["The", "Daily", "Godoy"],
 		"stamp": {
-			"label": "EDICIÓN EN CASTELLANO",
-			"ariaLabel": "Edición en castellano — switch to the Spanish edition"
+			"label": "EDICIÓN EN CASTELLANO"
 		},
 		"press": {
 			"label": "THE PRESS.",

@@ -88,10 +88,10 @@ const [folioPre = '', folioPost = ''] = m.folio[1].split('{date}');
 		href={switchHref}
 		data-cur="1"
 		data-edition-switch
-		aria-label={m.stamp.ariaLabel}
+		hreflang={other}
 	>
 		<span class="btn-hand" aria-hidden="true">☞</span>
-		<span class="edition-label">{m.stamp.label}</span>
+		<span class="edition-label" lang={other}>{m.stamp.label}</span>
 	</a>
 </div>
 

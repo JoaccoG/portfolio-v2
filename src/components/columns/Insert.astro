@@ -19,10 +19,10 @@ const href = `${localePath(other, bare)}?lang=${other}`;
 	data-cur="1"
 	data-edition-switch
 	data-swap-shell
-	aria-label={copy.masthead.stamp.ariaLabel}
+	hreflang={other}
 >
 	<span class="kicker" data-swap-text>{o.kicker}</span>
-	<span class="title" data-swap-text>{o.title}</span>
+	<span class="title" lang={other} data-swap-text>{o.title}</span>
 	<span class="hand" aria-hidden="true">☞</span>
 </a>
 
