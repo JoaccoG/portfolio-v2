@@ -31,7 +31,12 @@ const projects = defineCollection({
 						status: z.string(),
 					}),
 					quote: z.object({ text: z.string(), cite: z.string() }),
-					links: z.object({ repo: z.string(), live: z.string() }),
+					links: z
+						.object({
+							repo: z.string().url().optional(),
+							live: z.string().url().optional(),
+						})
+						.optional(),
 				})
 				.optional(),
 		}),
