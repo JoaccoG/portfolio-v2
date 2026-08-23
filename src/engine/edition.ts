@@ -129,12 +129,12 @@ export async function swapEdition(link: HTMLAnchorElement): Promise<void> {
 	const lang = target.searchParams.get('lang') === 'es' ? 'es' : 'en';
 	target.searchParams.delete('lang');
 	link.setAttribute('aria-busy', 'true');
+	rememberEdition(lang);
 	try {
 		const res = await fetch(target.pathname + target.search, {
 			headers: { Accept: 'text/html' },
 		});
 		if (!res.ok) {
-			rememberEdition(lang);
 			location.href = fallbackFor(target, lang);
 			return;
 		}
@@ -175,7 +175,6 @@ export async function swapEdition(link: HTMLAnchorElement): Promise<void> {
 			'',
 			target.pathname + target.search + location.hash,
 		);
-		rememberEdition(lang);
 		document.dispatchEvent(
 			new CustomEvent('edition:swapped', { detail: { lang } }),
 		);
