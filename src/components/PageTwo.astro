@@ -6,7 +6,6 @@ import PaperTextures from './paper/PaperTextures.astro';
 
 const copy = copyFor(Astro.currentLocale);
 const p = copy.pageTwo;
-const series = copy.machinery.title;
 const figWidths = [560, 800, 1060, 1220];
 const figSizes = '(max-width: 1059.98px) 92vw, 1000px';
 const projects = (await getCollection('projects'))
@@ -25,7 +24,7 @@ const projects = (await getCollection('projects'))
 		if (!pt) return null;
 		const kicker = p.seriesKicker
 			.replace('{n}', String(d.order))
-			.replace('{series}', series)
+			.replace('{series}', d.kickerLabel)
 			.replace('{year}', String(d.year));
 		const readAs = p.readAs.replace('{real}', String(d.year + 100));
 		const partYear = `${pt.particulars.year} `;
