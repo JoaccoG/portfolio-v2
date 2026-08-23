@@ -2,38 +2,27 @@
 import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
 import { copyFor, localeOf } from '../i18n/t';
+import { roman } from '../lib/columns';
 
 const copy = copyFor(Astro.currentLocale);
 const m = copy.machinery;
-const romans = [
-	'I',
-	'II',
-	'III',
-	'IV',
-	'V',
-	'VI',
-	'VII',
-	'VIII',
-	'IX',
-	'X',
-	'XI',
-	'XII',
-];
 const projects = (await getCollection('projects'))
 	.filter((project) =>
 		project.id.startsWith(`${localeOf(Astro.currentLocale)}/`),
 	)
 	.sort((a, b) => a.data.order - b.data.order);
-const countWord = m.numberWords[projects.length] ?? String(projects.length);
-const subtitle = (
-	projects.length === 1 ? m.subtitleSingular : m.subtitle
-).replace('{count}', countWord);
+const accounts = projects.filter((project) => project.data.pageTwo).length;
+const countWord = m.numberWords[accounts] ?? String(accounts);
+const subtitle = (accounts === 1 ? m.subtitleSingular : m.subtitle).replace(
+	'{count}',
+	countWord,
+);
 const plateKicker = (i: number, label: string, year: number) =>
 	m.plateKicker
 		.replace('{n}', String(i + 1))
 		.replace('{label}', label)
 		.replace('{year}', String(year));
-const plateLabel = (i: number) => m.plateLabel.replace('{roman}', romans[i]);
+const plateLabel = (i: number) => m.plateLabel.replace('{roman}', roman(i + 1));
 const coverWidths = [420, 640, 780, 1120];
 const coverSizes = '(max-width: 767.98px) 92vw, 44vw';
 ---
@@ -42,7 +31,7 @@ const coverSizes = '(max-width: 767.98px) 92vw, 44vw';
 	<div class="head" data-rv="1">
 		<p class="head-kicker">{m.kicker}</p>
 		<h2>{m.title}<span class="acc">.</span></h2>
-		<p class="head-sub">{subtitle}</p>
+		{accounts > 0 && <p class="head-sub">{subtitle}</p>}
 	</div>
 	{
 		projects.map((project, i) => {

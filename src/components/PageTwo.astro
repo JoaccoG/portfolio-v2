@@ -6,15 +6,14 @@ import PaperTextures from './paper/PaperTextures.astro';
 
 const copy = copyFor(Astro.currentLocale);
 const p = copy.pageTwo;
-const series = copy.machinery.title;
 const figWidths = [560, 800, 1060, 1220];
 const figSizes = '(max-width: 1059.98px) 92vw, 1000px';
-const projects = (await getCollection('projects'))
+const edition = (await getCollection('projects'))
 	.filter((project) =>
 		project.id.startsWith(`${localeOf(Astro.currentLocale)}/`),
 	)
-	.filter((project) => project.data.pageTwo)
 	.sort((a, b) => a.data.order - b.data.order);
+const projects = edition.filter((project) => project.data.pageTwo);
 ---
 
 {
@@ -24,8 +23,8 @@ const projects = (await getCollection('projects'))
 		const cover = d.cover;
 		if (!pt) return null;
 		const kicker = p.seriesKicker
-			.replace('{n}', String(d.order))
-			.replace('{series}', series)
+			.replace('{n}', String(edition.indexOf(project) + 1))
+			.replace('{series}', d.kickerLabel)
 			.replace('{year}', String(d.year));
 		const readAs = p.readAs.replace('{real}', String(d.year + 100));
 		const partYear = `${pt.particulars.year} `;
@@ -37,7 +36,10 @@ const projects = (await getCollection('projects'))
 		const dropCap = story0.charAt(0);
 		const story0Rest = story0.slice(1);
 		const storyMid = storyRest.slice(0, -1);
-		const storyLast = storyRest[storyRest.length - 1];
+		const storyLast = (storyRest[storyRest.length - 1] ?? '').replace(
+			/\s*—\s*$/,
+			'',
+		);
 		return (
 			<div
 				class="overlay"
@@ -98,7 +100,7 @@ const projects = (await getCollection('projects'))
 									<p class="para">{para}</p>
 								))}
 								<p class="para-last">
-									{storyLast}
+									{storyLast} —{' '}
 									<span class="sig">{p.signature}</span>
 								</p>
 							</div>

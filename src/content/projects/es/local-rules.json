@@ -17,8 +17,8 @@
 		"name": "Local Rules",
 		"headline": "CÓRTELO Y VUELVE A CRECER.",
 		"dek": "Un ensayo interactivo sobre autómatas celulares: seis simulaciones que corren en vivo en su propia tarjeta gráfica, desde el Juego de la Vida de Conway hasta una red de 33 kilobytes que hace crecer una mariposa y la repara.",
-		"figCaption": "EL AUTÓMATA NEURONAL, A MEDIO CRECER — ",
-		"figCaptionItalic": "capturado de la propia máquina",
+		"figCaption": "LA PORTADA DE LOCAL RULES — ",
+		"figCaptionItalic": "tal como la publica el propio proyecto",
 		"story": [
 			"Todas las simulaciones de este ensayo corren sobre una sola idea: cada célula de la grilla mira únicamente a sus vecinas inmediatas, aplica una única regla y no sabe nada del cuadro al que pertenece. Nadie le dice a la grilla qué dibujar. La estructura que aparece —planeadores, manchas, rayas, organismos enteros— es lo que se desprende de esa regla, aplicada en todas partes a la vez.",
 			"Son seis, ordenadas según cuán vivas llegan a estar: el Juego de la Vida de Conway, el espacio de reglas más amplio que lo rodea, Larger than Life, Lenia, reacción-difusión y, por último, un autómata celular neuronal. Las seis se calculan en su propia GPU mediante compute shaders de WebGPU: nada de lo que se ve aquí es un video grabado. En un chip Apple de la serie M, bajo Metal 3, Conway sostiene 5.800 millones de actualizaciones de célula por segundo sobre una grilla de 2048×2048. En cambio, el vecindario de Lenia, mucho más grande, se convoluciona con una FFT, que supera a la convolución directa a partir de un radio de alrededor de nueve y corre 2,4 veces más rápido con el radio de trece que usa Lenia.",
