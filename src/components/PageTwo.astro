@@ -36,7 +36,10 @@ const projects = edition.filter((project) => project.data.pageTwo);
 		const dropCap = story0.charAt(0);
 		const story0Rest = story0.slice(1);
 		const storyMid = storyRest.slice(0, -1);
-		const storyLast = storyRest[storyRest.length - 1];
+		const storyLast = (storyRest[storyRest.length - 1] ?? '').replace(
+			/\s*—\s*$/,
+			'',
+		);
 		return (
 			<div
 				class="overlay"
@@ -97,7 +100,7 @@ const projects = edition.filter((project) => project.data.pageTwo);
 									<p class="para">{para}</p>
 								))}
 								<p class="para-last">
-									{storyLast}
+									{storyLast} —{' '}
 									<span class="sig">{p.signature}</span>
 								</p>
 							</div>
