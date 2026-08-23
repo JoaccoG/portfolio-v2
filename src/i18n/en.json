@@ -80,7 +80,7 @@
 		"closer": "The full particulars of his works appear in the columns below. — ",
 		"closerSignature": "ED.",
 		"portrait": {
-			"alt": "Engraved portrait of Joaquín Godoy, curly-haired young engineer in a dark coat and cravat, 1901 style",
+			"alt": "Engraved portrait of Joaquín Godoy, curly-haired young engineer in a dark coat and cravat, rendered as a period engraving",
 			"caption": "MR. J. GODOY, ENGINEER — ",
 			"captionItalic": "from an engraving taken this year"
 		},
@@ -207,7 +207,7 @@
 	"cvAd": {
 		"kicker": "— ADVERTISEMENT —",
 		"title": "OBTAIN THE SUBJECT’S PAPERS",
-		"dek": "The complete Curriculum Vitae, dispatched to your reading-room by electronic post. State your preferred tongue.",
+		"dek": "The Curriculum Vitae in full, dispatched to your reading-room by electronic post. State your preferred tongue.",
 		"links": [
 			{
 				"label": "ENGLISH",
@@ -330,7 +330,7 @@
 			"stampMid": "DISPATCHED",
 			"stampDate": "AUG 25 · 1901",
 			"stampDateTemplate": "{month} {day} · {year}",
-			"text": "Your card is in the post, the editor will reply."
+			"text": "Your card is in the post; the editor will reply."
 		}
 	},
 	"classifieds": {

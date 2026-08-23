@@ -80,7 +80,7 @@
 		"closer": "Los pormenores de sus obras aparecen en las columnas que siguen. — ",
 		"closerSignature": "LA REDACCIÓN.",
 		"portrait": {
-			"alt": "Retrato grabado de Joaquín Godoy, joven ingeniero de pelo enrulado, con levita oscura y corbata de plastrón, al estilo de 1901",
+			"alt": "Retrato grabado de Joaquín Godoy, joven ingeniero de pelo enrulado, con levita oscura y corbata de plastrón, como un grabado de época",
 			"caption": "EL SR. J. GODOY, INGENIERO — ",
 			"captionItalic": "según un grabado de este mismo año"
 		},
@@ -207,7 +207,7 @@
 	"cvAd": {
 		"kicker": "— AVISO —",
 		"title": "OBTENGA LOS PAPELES DEL SUJETO",
-		"dek": "El currículum completo, enviado a su sala de lectura por correo electrónico. Elija el idioma de su preferencia.",
+		"dek": "El currículum íntegro, enviado a su sala de lectura por correo electrónico. Elija el idioma de su preferencia.",
 		"links": [
 			{
 				"label": "INGLÉS",
