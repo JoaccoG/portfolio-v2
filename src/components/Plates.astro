@@ -2,23 +2,10 @@
 import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
 import { copyFor, localeOf } from '../i18n/t';
+import { roman } from '../lib/columns';
 
 const copy = copyFor(Astro.currentLocale);
 const m = copy.machinery;
-const romans = [
-	'I',
-	'II',
-	'III',
-	'IV',
-	'V',
-	'VI',
-	'VII',
-	'VIII',
-	'IX',
-	'X',
-	'XI',
-	'XII',
-];
 const projects = (await getCollection('projects'))
 	.filter((project) =>
 		project.id.startsWith(`${localeOf(Astro.currentLocale)}/`),
@@ -35,7 +22,7 @@ const plateKicker = (i: number, label: string, year: number) =>
 		.replace('{n}', String(i + 1))
 		.replace('{label}', label)
 		.replace('{year}', String(year));
-const plateLabel = (i: number) => m.plateLabel.replace('{roman}', romans[i]);
+const plateLabel = (i: number) => m.plateLabel.replace('{roman}', roman(i + 1));
 const coverWidths = [420, 640, 780, 1120];
 const coverSizes = '(max-width: 767.98px) 92vw, 44vw';
 ---
