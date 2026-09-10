@@ -13,6 +13,7 @@ export default defineConfig({
 		routing: { prefixDefaultLocale: false },
 	},
 	output: 'static',
+	markdown: { syntaxHighlight: false },
 	adapter: node({ mode: 'standalone' }),
 	integrations: [
 		mdx(),

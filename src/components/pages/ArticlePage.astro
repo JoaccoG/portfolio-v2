@@ -358,6 +358,33 @@ const flag = a.flag.replace('{section}', s.section).replace('{roman}', numeral);
 		border-bottom: 1px dotted currentColor;
 	}
 
+	.body :global(code) {
+		font-family: 'Courier New', Courier, ui-monospace, monospace;
+	}
+
+	.body :global(:not(pre) > code) {
+		font-size: 0.9em;
+		background: rgba(28, 23, 16, 0.07);
+		padding: 0.05em 0.3em;
+		border-radius: 2px;
+		overflow-wrap: anywhere;
+	}
+
+	.body :global(pre) {
+		margin: 1.7rem 0.2rem;
+		padding: 1rem 1.2rem;
+		background: rgba(255, 252, 240, 0.6);
+		border-left: 3px solid var(--acc, #b4342a);
+		box-shadow:
+			0 1px 0 rgba(28, 23, 16, 0.08),
+			0 8px 16px -10px rgba(28, 23, 16, 0.45);
+		transform: rotate(-0.35deg);
+		font-size: 0.86rem;
+		line-height: 1.65;
+		white-space: pre-wrap;
+		overflow-wrap: anywhere;
+	}
+
 	.foot {
 		border-top: 3px double rgba(28, 23, 16, 0.7);
 		margin-top: clamp(1.6rem, 3vw, 2.4rem);
