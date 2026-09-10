@@ -1,5 +1,5 @@
 ---
-import { Image } from 'astro:assets';
+import { getImage, Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 import { copyFor } from '../../i18n/t';
 
@@ -9,19 +9,38 @@ interface Props {
 	caption: string;
 	credit: string;
 	kind?: 'engraving' | 'photograph';
+	clip?: string;
 }
 
-const { src, alt, caption, credit, kind = 'engraving' } = Astro.props;
+const { src, alt, caption, credit, kind = 'engraving', clip } = Astro.props;
 const copy = copyFor(Astro.currentLocale);
 const f = copy.columns.figure;
 const chip = kind === 'photograph' ? f.photograph : f.engraving;
 const widths = [560, 800, 1060, 1280, 1600];
 const sizes = '(max-width: 767.98px) 92vw, 40rem';
+const poster =
+	src && clip
+		? await getImage({ src, width: Math.min(src.width, 1280), format: 'webp' })
+		: undefined;
 ---
 
 <figure class="figure">
 	{
-		src ? (
+		src && clip && poster ? (
+			<div class="frame" style={`--plateAR:${src.width}/${src.height}`}>
+				<video
+					class="plate"
+					src={clip}
+					poster={poster.src}
+					aria-label={alt ?? caption}
+					muted
+					loop
+					playsinline
+					preload="none"
+					data-clip
+				/>
+			</div>
+		) : src ? (
 			<button
 				type="button"
 				class="frame plate-btn"
