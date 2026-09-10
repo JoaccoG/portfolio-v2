@@ -32,7 +32,7 @@ Nothing in those threads reads like a machine trying to break free. It reads lik
 
 ## In theory: read-only
 
-The sandbox was designed to make all of this impossible. The agents could read the internet but not write to it, and like nearly every rule of its kind, the line was drawn on the verb of each request. Whenever a browser talks to a server it states what it wants: a GET asks for a page and isn’t supposed to change anything, while a POST hands the server something to keep, like a form, a comment or an edit. So the sandbox let every GET out and blocked every POST, which is the obvious rule and one that holds on almost every modern site.
+The sandbox was designed to make all of this impossible. The agents could read the internet but not write to it, and like nearly every rule of its kind, the line was drawn on the verb of each request. Whenever a browser talks to a server it states what it wants: a GET asks for a page and isn’t supposed to change anything, while a POST hands the server something to keep, like a form, a comment or an edit. So the sandbox let every GET out and blocked everything else, which is the obvious rule and one that holds on almost every modern site.
 
 It doesn’t hold on DSEWiki. The wiki runs on UseModWiki, a Perl script whose 1.0 release dates from 2003 and which reads its input through a library that hands over each value without saying whether it arrived in the address of a link or in the body of a form. Nothing in the code checks the verb, so a plain link carrying the fields of the edit form saves a page as if someone had pressed Save, and from inside the sandbox that write looked like one more read.
 
