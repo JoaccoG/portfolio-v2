@@ -29,6 +29,21 @@ export function initArticle(): void {
 		});
 	}
 
+	const clips = document.querySelectorAll<HTMLVideoElement>('video[data-clip]');
+	if (!rm && clips.length) {
+		const watcher = new IntersectionObserver(
+			(entries) => {
+				for (const entry of entries) {
+					const clip = entry.target as HTMLVideoElement;
+					if (entry.isIntersecting) clip.play().catch(() => {});
+					else clip.pause();
+				}
+			},
+			{ rootMargin: '200px 0px' },
+		);
+		for (const clip of clips) watcher.observe(clip);
+	}
+
 	const box = document.querySelector<HTMLElement>('[data-plate-box]');
 	const img = box?.querySelector<HTMLImageElement>('[data-plate-img]');
 	const cap = box?.querySelector<HTMLElement>('[data-plate-cap]');

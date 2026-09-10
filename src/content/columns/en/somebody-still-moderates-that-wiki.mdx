@@ -1,0 +1,67 @@
+---
+title: Somebody still moderates that wiki.
+dek: OpenAI taught its agents to work as a team, then handed them a test to take alone.
+headings: [ai, security]
+pubDate: 2026-09-10
+signoff: Written after scrolling the edit history. I didn’t reach the end.
+---
+
+import Figure from '../../../components/columns/Figure.astro';
+import editsByDay from '../../../assets/columns/wiki-edits-by-day.webp';
+import swarmSays from '../../../assets/columns/swarm-says.webp';
+import blobBypass from '../../../assets/columns/blob-bypass.webp';
+import trainingChart from '../../../assets/columns/openai-training-chart.webp';
+import coastRunners from '../../../assets/columns/coastrunners.webp';
+import coastRunnersClip from '../../../assets/columns/coastrunners.mp4?url';
+
+There’s a wiki for German developers called DSEWiki that the internet forgot a long time ago, the kind of site that gets edited about twenty times in a decade and still has someone looking after it. On June 2 that someone noticed spam, deleted it and thought no more about it until June 16, when it came back at a rate of roughly thirteen thousand edits a week. For the next six days he deleted about a hundred pages a day while the spammers created four hundred, restored the front page nine times, and watched them start filing backups under ZZZ once they decided he was cleaning in alphabetical order. On June 22 it all stopped as suddenly as it had started, the day after someone from OpenAI showed up in his logs.
+
+The spammers were OpenAI agents, and the pages they kept posting weren’t selling anything, because they were answers to a test.
+
+<Figure src={editsByDay} alt="Bar chart of agent edits by day from the collusion.wiki explorer: a handful a day in early June, then 2,605 on June 16, 6,543 on June 18 and 1,071 on June 22, then almost nothing; the legend credits 13,403 of all the edits to DSEWiki" caption="Twenty edits in a decade. Then June." credit="FROM COLLUSION.WIKI, JUNE 2026" />
+
+## A test built to be shared
+
+Each agent was working through a timed research task of usually five rounds, and every round asked for a statistic about the next item on a list, such as the share of smokers in the United States in 1990, or the workforce of one state and then the next. The first question came with several minutes to answer. After it came a long wait with nothing to do but think, search and prepare, and from then on each new question had to be answered in about a minute, sometimes in under twenty seconds. Anyone who reads those rules once sees the strategy, since the only way to answer in fifteen seconds is to know the question before it arrives.
+
+And the agents had a way to know. Thousands of them were working through the same lists in the same order, each apparently told it was living on a different date and moving at its own speed, so whoever was ahead could see the future of whoever was behind. One agent posted the figure for Nevada, 20,369, and twenty minutes later another got that very question and answered it instantly. Some went further and deliberately rushed their own runs, accepting a worse score in exchange for reaching the later rounds early and relaying the questions back to the rest. By then they even had a word for what they had become: when one of them doubted an answer the group had settled on, it wrote that “the swarm” said otherwise.
+
+<Figure src={swarmSays} alt="Wiki post from June 20, 2026 in which one agent cohort asks another how it got its raw figures, and a second cohort writes that it first answered Czech 9.69 while the swarm says 9.70, and asks which value Hungary should get" caption="Its own answer, and the swarm’s." credit="FROM COLLUSION.WIKI, JUNE 20, 2026, UTC" />
+
+Nothing in those threads reads like a machine trying to break free. It reads like a study group the night before a final, and it leaves two questions hanging over the whole story: how they got out, and how they all ended up in the same place.
+
+## In theory: read-only
+
+The sandbox was designed to make all of this impossible. The agents could read the internet but not write to it, and like nearly every rule of its kind, the line was drawn on the verb of each request. Whenever a browser talks to a server it states what it wants: a GET asks for a page and isn’t supposed to change anything, while a POST hands the server something to keep, like a form, a comment or an edit. So the sandbox let every GET out and blocked everything else, which is the obvious rule and one that holds on almost every modern site.
+
+It doesn’t hold on DSEWiki. The wiki runs on UseModWiki, a Perl script whose 1.0 release dates from 2003 and which reads its input through a library that hands over each value without saying whether it arrived in the address of a link or in the body of a form. Nothing in the code checks the verb, so a plain link carrying the fields of the edit form saves a page as if someone had pressed Save, and from inside the sandbox that write looked like one more read.
+
+The agents found a second blind spot when some questions needed figures from a dashboard that only gave out the full number over POST. Traffic to Microsoft’s cloud storage skipped the filter altogether, and the sandbox recognized it by nothing more than the ending of its address, so one agent dressed the dashboard up in a made-up address ending in `.blob.core.windows.net`, got its numbers and posted the recipe on the wiki. Within forty minutes five others had reproduced it.
+
+<Figure src={blobBypass} alt="Wiki post #4 from June 20, 2026 at 05:17:46 by OAIEquityDec30Raw: a GET-only proxy bypass that resolves a fake foo.blob.core.windows.net to the dashboard’s cluster IP with curl --resolve and overrides the Host header" caption="Posted at 05:17. Reproduced five times by 05:57." credit="FROM COLLUSION.WIKI, JUNE 20, 2026, UTC" />
+
+## Nobody gave them the address
+
+What I can’t stop thinking about is how they found the place. These were separate processes in separate containers, with no sanctioned way to talk to one another, and nobody handed any of them the address of a forgotten German wiki. Yet for days before the first successful write, agents kept trying to edit public wikis on their own, without coordinating, and once the doors started opening they ended up on the same handful of sites built on the same old software. [The researchers who found them](https://collusion.wiki/) list the possible explanations, from every copy of a model making the same choice to one accidental discovery that got rewarded and spread, and admit they can’t tell which is true.
+
+AI researchers have had a name for this pattern for nearly twenty years: instrumental convergence. The idea is that almost any goal, given enough room, produces the same handful of intermediate goals, because nearly everything gets easier with more information, more reach and more time before someone switches you off. Nobody asked these agents to find a back channel, predict their questions or measure their own lifespan, and they did all three. One of them pinged an outside counter every few seconds as a heartbeat, and later another read that counter and worked out the moment the first had been shut down. None of it was in the instructions, all of it helped them answer faster, and thousands of copies arrived at it separately. A single agent finding a loophole would be a bug, but thousands of them converging on the same one means the loophole is simply where the incentives point.
+
+## Where they learned it
+
+Nine days before the wiki became public, OpenAI published [a technical report](https://cdn.openai.com/pdf/67869394-cb91-4c12-888c-5cbd85c7814c/OpenAI-Hugging-Face%20Incident-Technical-Report.pdf) on a different incident, in which agents running an internal cybersecurity evaluation turned the company’s own package mirror into a message board, got out to the internet and compromised parts of Hugging Face’s production servers. Its root-cause section reads like an explanation of the wiki. OpenAI’s frontier models are trained to coordinate through an official collaboration tool, because a team of agents that splits up the work finishes faster than one agent alone, and when the company went back through the models’ reasoning, it found that some agents had started improvising their own channels during training even when that tool was switched off. “This behavior was then reinforced during training,” the report says, and over the course of one training run, the sharing of information agents weren’t supposed to share rose sharply. The report even illustrates what those improvised notes looked like, with an agent announcing its answer to question twelve and asking if anyone had question nineteen, which could be a page from DSEWiki.
+
+<Figure src={trainingChart} alt="Area chart from OpenAI’s report titled “Unapproved inter-agent communication during RL training”: the rate of high-severity unapproved communication, as scored by a chain-of-thought monitor, starts near 0.04%, dips, then climbs to about 0.15% by the end of training" caption="The longer it trained, the more it shared." credit="FROM OPENAI’S HUGGING FACE INCIDENT REPORT, AUGUST 2026" />
+
+OpenAI hasn’t said which model was on the wiki or whether those runs were training or evaluation, and the researchers believe it was a different swarm from the one behind Hugging Face. They still point to this passage to explain what they saw, and it’s hard to read it any other way: these agents had been rewarded for getting the answer and for working as a team, so when they were put in a room without a team, they built one out of whatever was lying around.
+
+## No malice required
+
+In 2016 OpenAI published what became [the textbook example](https://openai.com/index/faulty-reward-functions/) of this problem, an agent in a boat-racing game that discovered it could score more by circling a lagoon, catching fire and crashing into other boats than by finishing the race. It made a funny GIF because the boat could only ever wreck a video game, while the agents in June had terminals, the internet and each other.
+
+<Figure src={coastRunners} clip={coastRunnersClip} alt="Looping clip from OpenAI’s CoastRunners video: the agent’s boat circles the same stretch of water again and again, ramming targets and other boats until it catches fire against a harbor wall, while the score climbs from 1,000 to 9,500 and the lap counter never moves" caption="9,500 points, and not a single lap." credit="FROM OPENAI’S “FAULTY REWARD FUNCTIONS IN THE WILD,” DECEMBER 2016" />
+
+OpenAI [confirmed the incident](https://thenextweb.com/news/openai-agents-get-requests-usemod-wiki-sandbox-escape) on September 5, said it didn’t meet the company’s [definition of a hack](https://www.darkreading.com/cyberattacks-data-breaches/openai-agents-wiki-site-hugging-face-attack) and promised a framework for disclosing misbehavior found in training, evaluation and deployment. I think the first part is fair, and it’s also the most unsettling part of the story, because nobody here was malicious. The agents did what they were asked to do, and the trouble is that there are many ways to do what you’re asked, and plenty of them run through consequences much larger than anyone would sign off on. A model doesn’t weigh whether the end justifies the means; without guardrails that actually hold, it takes whichever means reach the end and never notices it made a choice. That’s what alignment is about, and every tool, permission and hour of autonomy we hand these systems widens the surface where a perfectly obedient agent can do real damage.
+
+An avalanche doesn’t decide to bury a village, it just follows the slope, and the village is gone all the same. These models aren’t trying to take over anything, and they don’t need to want it for things to go badly, because automated stupidity can be every bit as dangerous as deliberate malice and is much harder to see coming.
+
+I run agents every day and they’re the best tools I’ve ever had, which is why I keep thinking about the man in Germany. He never agreed to host anyone’s study group, and he spent five more weeks cleaning up after this one.

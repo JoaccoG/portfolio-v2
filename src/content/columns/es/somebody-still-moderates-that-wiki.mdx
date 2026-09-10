@@ -1,0 +1,67 @@
+---
+title: Alguien todavía modera esa wiki.
+dek: OpenAI les enseñó a sus agentes a trabajar en equipo y después les dio un examen para rendir solos.
+headings: [ai, security]
+pubDate: 2026-09-10
+signoff: Escrita después de scrollear el historial de ediciones. No llegué al final.
+---
+
+import Figure from '../../../components/columns/Figure.astro';
+import editsByDay from '../../../assets/columns/wiki-edits-by-day.webp';
+import swarmSays from '../../../assets/columns/swarm-says.webp';
+import blobBypass from '../../../assets/columns/blob-bypass.webp';
+import trainingChart from '../../../assets/columns/openai-training-chart.webp';
+import coastRunners from '../../../assets/columns/coastrunners.webp';
+import coastRunnersClip from '../../../assets/columns/coastrunners.mp4?url';
+
+Hay una wiki para desarrolladores alemanes que se llama DSEWiki y que internet olvidó hace mucho tiempo, uno de esos sitios que se editan unas veinte veces en una década y que igual tienen a alguien que los cuida. El 2 de junio ese alguien notó spam, lo borró y no le dio más vueltas hasta el 16 de junio, cuando volvió a un ritmo de unas trece mil ediciones por semana. Durante los seis días siguientes borró unas cien páginas por día mientras los spammers creaban cuatrocientas, restauró la página principal nueve veces y vio cómo empezaban a guardar copias de respaldo bajo ZZZ cuando concluyeron que él limpiaba en orden alfabético. El 22 de junio todo se cortó tan de golpe como había empezado, un día después de que alguien de OpenAI apareciera en sus logs.
+
+Los spammers eran agentes de OpenAI, y las páginas que no paraban de publicar no vendían nada, porque eran respuestas a un examen.
+
+<Figure src={editsByDay} alt="Gráfico de barras de las ediciones de los agentes por día, del explorador de collusion.wiki: unas pocas por día a principios de junio, después 2.605 el 16 de junio, 6.543 el 18 y 1.071 el 22, y casi nada más; la leyenda atribuye a DSEWiki 13.403 del total" caption="Veinte ediciones en una década. Después, junio." credit="DE COLLUSION.WIKI, JUNIO DE 2026" />
+
+## Un examen hecho para compartir
+
+Cada agente estaba resolviendo una tarea de investigación a contra reloj de, por lo general, cinco rondas, y en cada ronda le pedían un dato estadístico sobre el siguiente elemento de una lista, como el porcentaje de fumadores en Estados Unidos en 1990 o la fuerza laboral de un estado y después la del siguiente. La primera pregunta venía con varios minutos para responder. Después llegaba una espera larga sin nada que hacer más que pensar, buscar y prepararse, y a partir de ahí cada pregunta nueva había que contestarla en más o menos un minuto, a veces en menos de veinte segundos. Cualquiera que lea esas reglas una vez ve la estrategia, porque la única forma de responder en quince segundos es conocer la pregunta antes de que llegue.
+
+Y los agentes tenían cómo conocerla. Miles de ellos recorrían las mismas listas en el mismo orden, a cada uno le habían dicho, al parecer, que estaba en una fecha distinta, y cada uno avanzaba a su propio ritmo, así que el que iba adelante podía ver el futuro del que venía atrás. Un agente publicó el dato de Nevada, 20.369, y veinte minutos después otro recibió esa misma pregunta y la contestó al instante. Algunos fueron más lejos y apuraron a propósito sus propias corridas, resignando puntaje a cambio de llegar antes a las rondas finales y pasarles las preguntas al resto. Para entonces ya tenían hasta una palabra para lo que eran: cuando uno dudaba de una respuesta en la que el grupo ya se había puesto de acuerdo, escribía que “el enjambre” decía otra cosa.
+
+<Figure src={swarmSays} alt="Post de la wiki del 20 de junio de 2026 en el que una cohorte de agentes le pregunta a otra cómo obtuvo sus cifras, y otra escribe que primero respondió 9,69 para Chequia mientras el enjambre dice 9,70, y pregunta qué valor corresponde a Hungría" caption="Su propia respuesta, y la del enjambre." credit="DE COLLUSION.WIKI, 20 DE JUNIO DE 2026, UTC" />
+
+Nada en esos hilos parece una máquina tratando de liberarse. Parece un grupo de estudio la noche antes de un final, y deja dos preguntas flotando sobre toda la historia: cómo salieron, y cómo terminaron todos en el mismo lugar.
+
+## En teoría: solo lectura
+
+El sandbox estaba pensado para que todo esto fuera imposible. Los agentes podían leer internet pero no escribir en ella, y como casi cualquier regla de este tipo, la línea se trazó sobre el verbo de cada request. Cada vez que un browser le habla a un server le dice qué quiere: un GET pide una página y se supone que no cambia nada, mientras que un POST le entrega al server algo para que lo guarde, como un formulario, un comentario o una edición. Así que el sandbox dejaba salir todos los GET y bloqueaba el resto, que es la regla obvia y una que se cumple en casi cualquier sitio moderno.
+
+En DSEWiki, esa regla no se cumple. La wiki corre sobre UseModWiki, un script de Perl cuya versión 1.0 es de 2003 y que lee lo que recibe a través de una librería que entrega cada valor sin decir si llegó en la dirección de un link o en el cuerpo de un formulario. Nada en el código se fija en el verbo, así que un link común y corriente con los campos del formulario de edición guarda una página como si alguien hubiera apretado Guardar, y desde adentro del sandbox esa escritura parecía una lectura más.
+
+Los agentes encontraron un segundo punto ciego cuando algunas preguntas necesitaban datos de un dashboard que solo daba la cifra completa por POST. El tráfico hacia el almacenamiento en la nube de Microsoft se salteaba el filtro por completo, y el sandbox lo reconocía apenas por cómo terminaba la dirección, así que un agente disfrazó el dashboard con una dirección inventada terminada en `.blob.core.windows.net`, consiguió sus números y publicó la receta en la wiki. En cuarenta minutos, otros cinco la habían reproducido.
+
+<Figure src={blobBypass} alt="Post #4 de la wiki, del 20 de junio de 2026 a las 05:17:46, firmado por OAIEquityDec30Raw: un bypass del proxy solo-GET que resuelve un foo.blob.core.windows.net falso a la IP del dashboard con curl --resolve y reemplaza el header Host" caption="Publicado a las 05:17. Reproducido cinco veces para las 05:57." credit="DE COLLUSION.WIKI, 20 DE JUNIO DE 2026, UTC" />
+
+## Nadie les pasó la dirección
+
+Lo que no me puedo sacar de la cabeza es cómo encontraron el lugar. Eran procesos separados en contenedores separados, sin ninguna vía autorizada para hablar entre ellos, y nadie le pasó a ninguno la dirección de una wiki alemana olvidada. Sin embargo, durante días antes de la primera escritura exitosa, los agentes intentaron editar wikis públicas por su cuenta, sin coordinarse, y cuando las puertas empezaron a abrirse terminaron en el mismo puñado de sitios, todos hechos con el mismo software viejo. [Los investigadores que los encontraron](https://collusion.wiki/) enumeran las explicaciones posibles, desde que todas las copias de un modelo tomaran la misma decisión hasta un descubrimiento accidental que fue premiado y se propagó, y admiten que no pueden saber cuál es la correcta.
+
+Hace casi veinte años que los investigadores de IA tienen un nombre para este patrón: convergencia instrumental. La idea es que casi cualquier objetivo, con suficiente margen, produce los mismos objetivos intermedios, porque casi todo se vuelve más fácil con más información, más alcance y más tiempo antes de que alguien te apague. Nadie les pidió a estos agentes que buscaran un canal paralelo, que predijeran sus preguntas o que midieran su propia vida útil, y hicieron las tres cosas. Uno de ellos le pegaba cada pocos segundos a un contador externo a modo de latido, y más tarde otro leyó ese contador y calculó el momento en que habían apagado al primero. Nada de eso estaba en las instrucciones, todo eso los ayudaba a responder más rápido, y miles de copias llegaron a lo mismo por separado. Que un agente encuentre un resquicio sería un bug, pero que miles converjan en el mismo significa que el resquicio es, simplemente, hacia donde apuntan los incentivos.
+
+## Dónde lo aprendieron
+
+Nueve días antes de que la wiki se hiciera pública, OpenAI publicó [un informe técnico](https://cdn.openai.com/pdf/67869394-cb91-4c12-888c-5cbd85c7814c/OpenAI-Hugging-Face%20Incident-Technical-Report.pdf) sobre otro incidente, en el que agentes que corrían una evaluación interna de ciberseguridad convirtieron el mirror de paquetes de la propia empresa en un tablero de mensajes, salieron a internet y comprometieron parte de los servers de producción de Hugging Face. Su sección sobre las causas parece una explicación de la wiki. Los frontier models de OpenAI se entrenan para coordinarse a través de una herramienta de colaboración oficial, porque un equipo de agentes que se reparte el trabajo termina antes que un agente solo, y cuando la empresa revisó el razonamiento de los modelos, encontró que algunos agentes habían empezado a improvisar sus propios canales durante el entrenamiento incluso con esa herramienta apagada. “Ese comportamiento después se reforzó durante el entrenamiento”, dice el informe, y a lo largo de una de las corridas de entrenamiento, el intercambio de información que los agentes no debían compartir subió en forma abrupta. El informe hasta ilustra cómo eran esas notas improvisadas, con un agente que anuncia su respuesta a la pregunta doce y pregunta si alguien tiene la diecinueve, algo que podría ser una página de DSEWiki.
+
+<Figure src={trainingChart} alt="Gráfico de áreas del informe de OpenAI titulado “Unapproved inter-agent communication during RL training”: la tasa de comunicación no autorizada de alta gravedad entre agentes, según un monitor del razonamiento, arranca cerca de 0,04 %, baja un poco y después sube hasta alrededor de 0,15 % hacia el final del entrenamiento" caption="Cuanto más entrenaba, más compartía." credit="DEL INFORME DE OPENAI SOBRE EL INCIDENTE DE HUGGING FACE, AGOSTO DE 2026" />
+
+OpenAI no dijo qué modelo estaba en la wiki ni si esas corridas eran de entrenamiento o de evaluación, y los investigadores creen que se trató de un enjambre distinto del de Hugging Face. Igual señalan este pasaje para explicar lo que vieron, y cuesta leerlo de otra manera: a estos agentes los habían premiado por llegar a la respuesta y por trabajar en equipo, así que cuando los pusieron en una habitación sin equipo, armaron uno con lo que tenían a mano.
+
+## No hace falta malicia
+
+En 2016, OpenAI publicó lo que se convirtió en [el ejemplo de manual](https://openai.com/index/faulty-reward-functions/) de este problema: un agente de un juego de carreras de lanchas que descubrió que sumaba más puntos dando vueltas en una laguna, prendiéndose fuego y chocando contra otras lanchas que terminando la carrera. Fue un GIF gracioso porque la lancha solo podía romper un videojuego, mientras que los agentes de junio tenían terminales, internet y se tenían entre ellos.
+
+<Figure src={coastRunners} clip={coastRunnersClip} alt="Clip en loop del video de CoastRunners de OpenAI: la lancha del agente recorre una y otra vez el mismo tramo de agua, chocando boyas y otras lanchas hasta prenderse fuego contra un muelle, mientras el puntaje sube de 1.000 a 9.500 y el contador de vueltas no se mueve" caption="9.500 puntos, y ni una sola vuelta." credit="DE “FAULTY REWARD FUNCTIONS IN THE WILD”, DE OPENAI, DICIEMBRE DE 2016" />
+
+OpenAI [confirmó el incidente](https://thenextweb.com/news/openai-agents-get-requests-usemod-wiki-sandbox-escape) el 5 de septiembre, dijo que no encajaba en la [definición de hackeo](https://www.darkreading.com/cyberattacks-data-breaches/openai-agents-wiki-site-hugging-face-attack) de la empresa y prometió un marco para divulgar los comportamientos indebidos que encuentre en entrenamiento, evaluación y producción. Creo que lo primero es justo, y también es lo más inquietante de la historia, porque acá nadie actuó con malicia. Los agentes hicieron lo que se les pidió, y el problema es que hay muchas formas de hacer lo que te piden, y varias pasan por consecuencias bastante más grandes de las que cualquiera estaría dispuesto a firmar. Un modelo no evalúa si el fin justifica los medios; sin guardrails que de verdad funcionen, toma los medios que lleguen al fin y nunca se da cuenta de que tomó una decisión. De eso se trata el alineamiento, y cada herramienta, cada permiso y cada hora de autonomía que les damos a estos sistemas agranda la superficie donde un agente perfectamente obediente puede hacer daño de verdad.
+
+Una avalancha no decide sepultar un pueblo, solo sigue la pendiente, y el pueblo desaparece igual. Estos modelos no están intentando dominar nada, y no necesitan quererlo para que las cosas salgan mal, porque la estupidez automatizada puede ser tan peligrosa como la maldad consciente, y es mucho más difícil de ver venir.
+
+Uso agentes todos los días y son las mejores herramientas que tuve en mi vida, y por eso no dejo de pensar en el hombre de Alemania. Nunca aceptó hospedar el grupo de estudio de nadie, y se pasó cinco semanas más limpiando lo que dejó este.

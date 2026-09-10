@@ -552,7 +552,8 @@
 			"ai": "IA",
 			"society": "SOCIEDAD",
 			"politics": "POLÍTICA",
-			"entertainment": "ENTRETENIMIENTO"
+			"entertainment": "ENTRETENIMIENTO",
+			"security": "SEGURIDAD"
 		},
 		"count": {
 			"one": "UNA COLUMNA",
