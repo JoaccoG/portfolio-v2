@@ -16,6 +16,14 @@ interface Props {
 	description?: string;
 	alternates?: boolean;
 	preloadImage?: string;
+	image?: string;
+	imageAlt?: string;
+	article?: {
+		headline: string;
+		published: Date;
+		section: string;
+		tags: string[];
+	};
 }
 
 const locale = localeOf(Astro.currentLocale);
@@ -25,11 +33,14 @@ const {
 	description = copy.meta.description,
 	alternates = true,
 	preloadImage,
+	image,
+	imageAlt = copy.meta.ogAlt,
+	article,
 } = Astro.props;
 const site = Astro.site;
 const canonical = site ? new URL(Astro.url.pathname, site).href : undefined;
 const ogPath = locale === 'es' ? '/og-es.jpg?v=2' : '/og.jpg?v=3';
-const ogImage = site ? new URL(ogPath, site).href : undefined;
+const ogImage = site ? new URL(image ?? ogPath, site).href : undefined;
 const bare = Astro.url.pathname.replace(/^\/es(?=\/|$)/, '') || '/';
 const enHref = site ? new URL(bare, site).href : undefined;
 const esHref = site ? new URL(`/es${bare}`, site).href : undefined;
@@ -50,6 +61,23 @@ const personLd = {
 		'https://www.linkedin.com/in/joaquin--godoy/',
 	],
 	...(site ? { url: site.href } : {}),
+};
+const articleLd = article && {
+	'@context': 'https://schema.org',
+	'@type': 'NewsArticle',
+	headline: article.headline,
+	description,
+	datePublished: article.published.toISOString(),
+	articleSection: article.section,
+	keywords: article.tags.join(', '),
+	inLanguage: locale,
+	author: {
+		'@type': 'Person',
+		name: person.name,
+		...(site ? { url: site.href } : {}),
+	},
+	...(ogImage ? { image: ogImage } : {}),
+	...(canonical ? { url: canonical, mainEntityOfPage: canonical } : {}),
 };
 const siteLd = {
 	'@context': 'https://schema.org',
@@ -89,7 +117,7 @@ const siteLd = {
 		{alternates && enHref && <link rel="alternate" hreflang="en" href={enHref} />}
 		{alternates && esHref && <link rel="alternate" hreflang="es" href={esHref} />}
 		{alternates && enHref && <link rel="alternate" hreflang="x-default" href={enHref} />}
-		<meta property="og:type" content="website" />
+		<meta property="og:type" content={article ? 'article' : 'website'} />
 		<meta property="og:site_name" content={copy.meta.siteName} />
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
@@ -98,7 +126,11 @@ const siteLd = {
 		{ogImage && <meta property="og:image" content={ogImage} />}
 		{ogImage && <meta property="og:image:width" content="1200" />}
 		{ogImage && <meta property="og:image:height" content="630" />}
-		{ogImage && <meta property="og:image:alt" content={copy.meta.ogAlt} />}
+		{ogImage && <meta property="og:image:alt" content={imageAlt} />}
+		{article && <meta property="article:published_time" content={article.published.toISOString()} />}
+		{article && <meta property="article:author" content={person.name} />}
+		{article && <meta property="article:section" content={article.section} />}
+		{article?.tags.map((tag) => <meta property="article:tag" content={tag} />)}
 		<meta
 			name="twitter:card"
 			content={ogImage ? 'summary_large_image' : 'summary'}
@@ -106,7 +138,7 @@ const siteLd = {
 		<meta name="twitter:title" content={title} />
 		<meta name="twitter:description" content={description} />
 		{ogImage && <meta name="twitter:image" content={ogImage} />}
-		{ogImage && <meta name="twitter:image:alt" content={copy.meta.ogAlt} />}
+		{ogImage && <meta name="twitter:image:alt" content={imageAlt} />}
 		<link
 			rel="preload"
 			href={ornaments}
@@ -157,6 +189,7 @@ const siteLd = {
 		<title>{title}</title>
 		<script type="application/ld+json" set:html={JSON.stringify(personLd)} />
 		<script type="application/ld+json" set:html={JSON.stringify(siteLd)} />
+		{articleLd && <script type="application/ld+json" set:html={JSON.stringify(articleLd)} />}
 	</head>
 	<body>
 		<a class="skip-link" href="#main-content">{copy.meta.skipToContent}</a>
