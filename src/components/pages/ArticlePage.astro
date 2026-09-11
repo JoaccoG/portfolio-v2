@@ -226,6 +226,11 @@ const flag = a.flag.replace('{section}', s.section).replace('{roman}', numeral);
 		padding-top: 24px;
 		position: relative;
 		z-index: 1;
+		pointer-events: none;
+	}
+
+	.nav-pair > * {
+		pointer-events: auto;
 	}
 
 	.btn {
