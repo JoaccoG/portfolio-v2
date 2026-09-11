@@ -1,0 +1,222 @@
+---
+import { copyFor } from '../../i18n/t';
+
+interface Props {
+	url: string;
+	text: string;
+	title: string;
+	placement: 'top' | 'foot';
+}
+
+const { url, text, title, placement } = Astro.props;
+const s = copyFor(Astro.currentLocale).columns.article.shareSlip;
+const enc = encodeURIComponent;
+const slipId = `share-${placement}`;
+const networks = [
+	{
+		name: 'X',
+		hint: s.post,
+		href: `https://x.com/intent/post?text=${enc(text)}&url=${enc(url)}`,
+	},
+	{
+		name: 'Threads',
+		hint: s.post,
+		href: `https://www.threads.com/intent/post?text=${enc(`${text} ${url}`)}`,
+	},
+	{
+		name: 'LinkedIn',
+		hint: s.share,
+		href: `https://www.linkedin.com/sharing/share-offsite/?url=${enc(url)}`,
+	},
+];
+---
+
+<div
+	class:list={['share', placement]}
+	data-share
+	data-url={url}
+	data-text={text}
+	data-title={title}
+>
+	<button
+		type="button"
+		class="trigger"
+		aria-expanded="false"
+		aria-controls={slipId}
+		aria-label={s.aria}
+		data-share-toggle
+		data-cur="1"
+	>
+		<span>{s.label}</span><span class="hand">☞</span>
+	</button>
+	<div class="slip" id={slipId} data-share-slip>
+		<p class="head">{s.heading}</p>
+		<ul>
+			{
+				networks.map((n) => (
+					<li>
+						<a href={n.href} target="_blank" rel="noopener noreferrer" data-cur="1">
+							<span class="hand">☞</span>
+							<span class="name">{n.name}</span>
+							<small>{n.hint}</small>
+						</a>
+					</li>
+				))
+			}
+		</ul>
+		<ul class="extra">
+			<li>
+				<button type="button" data-share-copy data-copied={s.copied} data-cur="1">
+					<span class="hand">☞</span>
+					<span class="name" data-share-copy-label>{s.copy}</span>
+					<small>{s.link}</small>
+				</button>
+			</li>
+			<li data-share-native hidden>
+				<button type="button" data-share-more data-cur="1">
+					<span class="hand">☞</span>
+					<span class="name">{s.more}</span>
+					<small>{s.moreHint}</small>
+				</button>
+			</li>
+		</ul>
+	</div>
+</div>
+
+<style>
+	.share {
+		position: relative;
+		display: inline-flex;
+	}
+
+	.trigger {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+		background: none;
+		border: 1px solid rgba(28, 23, 16, 0.6);
+		padding: 0.5rem 0.9rem;
+		font-size: 0.58rem;
+		letter-spacing: 0.2em;
+		color: inherit;
+		transition:
+			background 0.3s ease,
+			color 0.3s ease;
+	}
+
+	.trigger:hover,
+	.share.open .trigger {
+		background: var(--ink, #1c1710);
+		color: var(--paper, #f2ead8);
+	}
+
+	.hand {
+		color: var(--acc, #b4342a);
+	}
+
+	.slip {
+		position: absolute;
+		z-index: 30;
+		width: min(17rem, calc(100vw - 2rem));
+		padding: 0.9rem 1.1rem 0.8rem;
+		background: #f6efdd;
+		border: 1px solid rgba(28, 23, 16, 0.45);
+		box-shadow:
+			0 1px 0 rgba(28, 23, 16, 0.08),
+			0 14px 24px -14px rgba(28, 23, 16, 0.55);
+		opacity: 0;
+		visibility: hidden;
+		transform: translateY(var(--slipFrom, 6px)) rotate(-0.6deg);
+		transition:
+			opacity 0.22s ease,
+			transform 0.28s cubic-bezier(0.32, 0.72, 0.25, 1),
+			visibility 0s linear 0.28s;
+	}
+
+	.top .slip {
+		top: calc(100% + 0.5rem);
+		right: 0;
+		--slipFrom: -6px;
+	}
+
+	.foot .slip {
+		bottom: calc(100% + 0.6rem);
+		left: 0;
+	}
+
+	.share.open .slip,
+	.share:not([data-ready]):focus-within .slip {
+		opacity: 1;
+		visibility: visible;
+		transform: translateY(0) rotate(-0.6deg);
+		transition:
+			opacity 0.22s ease,
+			transform 0.28s cubic-bezier(0.32, 0.72, 0.25, 1),
+			visibility 0s;
+	}
+
+	.head {
+		margin: 0 0 0.6rem;
+		padding-bottom: 0.45rem;
+		border-bottom: 1px solid rgba(28, 23, 16, 0.35);
+		font-size: 0.56rem;
+		letter-spacing: 0.26em;
+		opacity: 0.7;
+	}
+
+	ul {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.extra {
+		margin-top: 0.4rem;
+		padding-top: 0.4rem;
+		border-top: 1px dotted rgba(28, 23, 16, 0.45);
+	}
+
+	.slip a,
+	.slip button {
+		display: flex;
+		align-items: baseline;
+		gap: 0.6rem;
+		width: 100%;
+		padding: 0.38rem 0;
+		background: none;
+		border: 0;
+		color: inherit;
+		font: inherit;
+		font-size: 0.95rem;
+		text-align: left;
+		text-decoration: none;
+	}
+
+	.slip a:hover .name,
+	.slip button:hover .name,
+	.slip a:focus-visible .name,
+	.slip button:focus-visible .name {
+		text-decoration: underline dotted;
+		text-underline-offset: 0.2em;
+	}
+
+	small {
+		margin-left: auto;
+		font-size: 0.55rem;
+		letter-spacing: 0.18em;
+		opacity: 0.6;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.slip,
+		.share.open .slip {
+			transition: none;
+		}
+	}
+
+	@media print {
+		.share {
+			display: none;
+		}
+	}
+</style>
