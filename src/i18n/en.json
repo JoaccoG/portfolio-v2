@@ -591,6 +591,18 @@
 			"breadcrumb": "THE COLUMNS",
 			"columnNo": "COLUMN No. {roman}",
 			"cardAlt": "A newspaper clipping of the column “{title}” from The Daily Godoy",
+			"shareSlip": {
+				"label": "SHARE",
+				"heading": "SEND THIS COLUMN BY",
+				"post": "POST",
+				"share": "SHARE",
+				"link": "LINK",
+				"copy": "Copy the address",
+				"copied": "Address copied",
+				"more": "More options…",
+				"moreHint": "PHONE",
+				"aria": "Share this column"
+			},
 			"setByHand": "Set by hand — J. G.",
 			"goBack": "GO BACK",
 			"next": "NEXT ARTICLE",

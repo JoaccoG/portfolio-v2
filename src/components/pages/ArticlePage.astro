@@ -16,6 +16,7 @@ import {
 import CustomCursor from '../CustomCursor.astro';
 import Footer from '../columns/Footer.astro';
 import Insert from '../columns/Insert.astro';
+import Share from '../columns/Share.astro';
 import Sheet from '../paper/Sheet.astro';
 import RunningHead from '../RunningHead.astro';
 
@@ -37,6 +38,11 @@ const later = columns[index - 1];
 const earlier = columns[index + 1];
 const words = wordCount(column);
 const { Content } = await render(column);
+const shareUrl = new URL(
+	localePath(locale, `/columns/${columnSlug(column)}/`),
+	Astro.site ?? Astro.url,
+).href;
+const shareText = column.data.share ?? column.data.dek;
 const flag = a.flag.replace('{section}', s.section).replace('{roman}', numeral);
 ---
 
@@ -84,11 +90,14 @@ const flag = a.flag.replace('{section}', s.section).replace('{roman}', numeral);
 				</nav>
 				<article class="article">
 					<div class="measure">
+						<div class="crumb-row">
 						<p class="crumb">
-							<a href={localePath(locale, '/columns/')} data-cur="1">{a.breadcrumb}</a>
-							<span class="crumb-sep" aria-hidden="true">›</span>
-							<span class="crumb-no">{a.columnNo.replace('{roman}', numeral)}</span>
-						</p>
+								<a href={localePath(locale, '/columns/')} data-cur="1">{a.breadcrumb}</a>
+								<span class="crumb-sep" aria-hidden="true">›</span>
+								<span class="crumb-no">{a.columnNo.replace('{roman}', numeral)}</span>
+							</p>
+							<Share url={shareUrl} text={shareText} title={column.data.title} placement="top" />
+						</div>
 						<p class="kicker">{headingLabels(column.data.headings, locale)}</p>
 						<h1 class="title">{column.data.title}</h1>
 						<p class="dek">{column.data.dek}</p>
@@ -107,6 +116,9 @@ const flag = a.flag.replace('{section}', s.section).replace('{roman}', numeral);
 						</div>
 						<div class="foot">
 							<p class="signoff">{column.data.signoff}</p>
+							<div class="foot-share">
+								<Share url={shareUrl} text={shareText} title={column.data.title} placement="foot" />
+							</div>
 							<div class="foot-nav">
 								{
 									later ? (
@@ -174,10 +186,12 @@ const flag = a.flag.replace('{section}', s.section).replace('{roman}', numeral);
 	import { initCursor } from '../../engine/cursor';
 	import { initEdition } from '../../engine/edition';
 	import { initEngine } from '../../engine/engine';
+	import { initShare } from '../../engine/share';
 
 	initEngine();
 	initCursor();
 	initArticle();
+	initShare();
 	initEdition();
 </script>
 
@@ -212,6 +226,11 @@ const flag = a.flag.replace('{section}', s.section).replace('{roman}', numeral);
 		padding-top: 24px;
 		position: relative;
 		z-index: 1;
+		pointer-events: none;
+	}
+
+	.nav-pair > * {
+		pointer-events: auto;
 	}
 
 	.btn {
@@ -253,6 +272,22 @@ const flag = a.flag.replace('{section}', s.section).replace('{roman}', numeral);
 	.measure {
 		width: min(100%, 40rem);
 		margin: 0 auto;
+	}
+
+	.crumb-row {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1rem;
+		margin: 0 0 1.1rem;
+	}
+
+	.crumb-row .crumb {
+		margin: 0;
+	}
+
+	.foot-share {
+		margin: 0 0 1.1rem;
 	}
 
 	.crumb {

@@ -594,6 +594,18 @@
 			"breadcrumb": "LAS COLUMNAS",
 			"columnNo": "COLUMNA N.º {roman}",
 			"cardAlt": "Recorte de diario con la columna “{title}” de The Daily Godoy",
+			"shareSlip": {
+				"label": "COMPARTIR",
+				"heading": "ENVIAR ESTA COLUMNA POR",
+				"post": "PUBLICAR",
+				"share": "COMPARTIR",
+				"link": "ENLACE",
+				"copy": "Copiar la dirección",
+				"copied": "Dirección copiada",
+				"more": "Más opciones…",
+				"moreHint": "TELÉFONO",
+				"aria": "Compartir esta columna"
+			},
 			"setByHand": "Compuesta a mano — J. G.",
 			"goBack": "VOLVER",
 			"next": "ARTÍCULO SIGUIENTE",
