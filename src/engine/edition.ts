@@ -58,24 +58,28 @@ const syncHead = (next: Document) => {
 		});
 };
 
-const markVisibleBlocks = (): HTMLElement[] => {
+const markVisibleBlocks = (next: Document): HTMLElement[] => {
 	const marked: HTMLElement[] = [];
 	const top = -MARGIN;
 	const bottom = innerHeight + MARGIN;
-	for (const el of document.querySelectorAll<HTMLElement>(`main ${BLOCKS}`)) {
-		if (el.closest(STILL) || el.hasAttribute('data-swap-shell')) continue;
-		if (el.closest('[inert]')) continue;
-		if (el.parentElement?.closest(`.${SWAP_CLASS}`)) continue;
+	const blocks = document.querySelectorAll<HTMLElement>(`main ${BLOCKS}`);
+	const twins = next.querySelectorAll<HTMLElement>(`main ${BLOCKS}`);
+	const paired = twins.length === blocks.length;
+	blocks.forEach((el, i) => {
+		if (paired && twins[i]?.textContent === el.textContent) return;
+		if (el.closest(STILL) || el.hasAttribute('data-swap-shell')) return;
+		if (el.closest('[inert]')) return;
+		if (el.parentElement?.closest(`.${SWAP_CLASS}`)) return;
 		const shown = el.checkVisibility?.({
 			opacityProperty: true,
 			visibilityProperty: true,
 		});
-		if (shown === false) continue;
+		if (shown === false) return;
 		const r = el.getBoundingClientRect();
-		if (r.bottom < top || r.top > bottom || r.width === 0) continue;
+		if (r.bottom < top || r.top > bottom || r.width === 0) return;
 		el.classList.add(SWAP_CLASS);
 		marked.push(el);
-	}
+	});
 	return marked;
 };
 
@@ -160,7 +164,7 @@ export async function swapEdition(link: HTMLAnchorElement): Promise<void> {
 			typeof document.startViewTransition === 'function' &&
 			!matchMedia('(prefers-reduced-motion: reduce)').matches;
 		if (animate) {
-			const marked = markVisibleBlocks();
+			const marked = markVisibleBlocks(next);
 			const transition = document.startViewTransition(apply);
 			try {
 				await transition.finished;
