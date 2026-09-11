@@ -590,6 +590,7 @@
 			"flag": "{section} — {roman}",
 			"breadcrumb": "THE COLUMNS",
 			"columnNo": "COLUMN No. {roman}",
+			"cardAlt": "A newspaper clipping of the column “{title}” from The Daily Godoy",
 			"setByHand": "Set by hand — J. G.",
 			"goBack": "GO BACK",
 			"next": "NEXT ARTICLE",
