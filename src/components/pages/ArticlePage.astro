@@ -43,6 +43,14 @@ const flag = a.flag.replace('{section}', s.section).replace('{roman}', numeral);
 <Base
 	title={a.docTitle.replace('{title}', column.data.title)}
 	description={column.data.dek}
+	image={localePath(locale, `/columns/${columnSlug(column)}/card.png`)}
+	imageAlt={a.cardAlt.replace('{title}', column.data.title)}
+	article={{
+		headline: column.data.title,
+		published: column.data.pubDate,
+		section: a.breadcrumb,
+		tags: headingLabels(column.data.headings, locale).split(' · '),
+	}}
 	preloadImage={paperTexture.src}
 >
 	<CustomCursor />
