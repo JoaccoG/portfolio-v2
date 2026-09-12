@@ -93,6 +93,20 @@ const siteLd = {
 		<script is:inline>
 			(() => {
 				const q = new URLSearchParams(location.search);
+				const mode = q.get('stats');
+				if (mode !== 'on' && mode !== 'off') return;
+				try {
+					if (mode === 'off') localStorage.setItem('umami.disabled', '1');
+					else localStorage.removeItem('umami.disabled');
+				} catch {}
+				q.delete('stats');
+				const rest = q.toString();
+				history.replaceState(null, '', location.pathname + (rest ? `?${rest}` : '') + location.hash);
+			})();
+		</script>
+		<script is:inline>
+			(() => {
+				const q = new URLSearchParams(location.search);
 				const want = q.get('lang');
 				if (want !== 'es' && want !== 'en') return;
 				document.cookie = `edition=${want}; path=/; max-age=31536000; samesite=lax`;
@@ -190,6 +204,32 @@ const siteLd = {
 		<script type="application/ld+json" set:html={JSON.stringify(personLd)} />
 		<script type="application/ld+json" set:html={JSON.stringify(siteLd)} />
 		{articleLd && <script type="application/ld+json" set:html={JSON.stringify(articleLd)} />}
+		<script is:inline>
+			(() => {
+				let last;
+				window.inkBeforeSend = (type, payload) => {
+					if (type !== 'event' || payload.name) return payload;
+					let path;
+					try {
+						path = new URL(payload.url, location.origin).pathname;
+					} catch {
+						return payload;
+					}
+					if (path === last) return false;
+					last = path;
+					return payload;
+				};
+			})();
+		</script>
+		<script
+			is:inline
+			defer
+			src="/ink/press.js"
+			data-website-id="634b268f-3b6d-4c23-a7d3-05375e5fdd2c"
+			data-host-url="/ink"
+			data-domains="joaquingodoy.com"
+			data-before-send="inkBeforeSend"
+		></script>
 	</head>
 	<body>
 		<a class="skip-link" href="#main-content">{copy.meta.skipToContent}</a>
