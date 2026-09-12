@@ -15,20 +15,6 @@ export function initArticle(): void {
 	const content = document.querySelector<HTMLElement>(
 		'[data-engine="content"]',
 	);
-	const feedPath = location.pathname.startsWith('/es/')
-		? '/es/columns/'
-		: '/columns/';
-
-	for (const btn of document.querySelectorAll<HTMLElement>(
-		'[data-back-columns]',
-	)) {
-		btn.addEventListener('click', () => {
-			const fromFeed = document.referrer.startsWith(location.origin + feedPath);
-			if (history.length > 1 && fromFeed) history.back();
-			else location.href = feedPath;
-		});
-	}
-
 	const clips = document.querySelectorAll<HTMLVideoElement>('video[data-clip]');
 	if (!rm && clips.length) {
 		const watcher = new IntersectionObserver(

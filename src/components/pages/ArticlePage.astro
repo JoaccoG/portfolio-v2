@@ -71,9 +71,9 @@ const flag = a.flag.replace('{section}', s.section).replace('{roman}', numeral);
 			/>
 			<div class="page">
 				<nav class="nav-pair" aria-label={a.navAria} data-article-chrome>
-					<button type="button" class="btn" data-back-columns data-cur="1">
+					<a class="btn" href={localePath(locale, '/columns/')} data-cur="1">
 						<span class="hand">☜</span><span>{a.goBack}</span>
-					</button>
+					</a>
 					{
 						earlier ? (
 							<a class="btn" href={localePath(locale, `/columns/${columnSlug(earlier)}/`)} data-cur="1">
