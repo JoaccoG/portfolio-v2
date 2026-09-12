@@ -112,7 +112,6 @@ body {
 	[data-hero],
 	[data-sec] {
 		--mh: 1 !important;
-		--intro: 1 !important;
 		--hp: 0 !important;
 		--fp: 1 !important;
 		--pc0: 1 !important;
