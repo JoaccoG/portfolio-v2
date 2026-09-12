@@ -1,3 +1,5 @@
+import { track } from './stats';
+
 const largestSource = (img: HTMLImageElement): string => {
 	const candidates = (img.srcset || '')
 		.split(',')
@@ -28,6 +30,16 @@ export function initArticle(): void {
 			{ rootMargin: '200px 0px' },
 		);
 		for (const clip of clips) watcher.observe(clip);
+	}
+
+	const foot = document.querySelector<HTMLElement>('[data-column-end]');
+	if (foot) {
+		const finish = new IntersectionObserver((entries) => {
+			if (!entries.some((entry) => entry.isIntersecting)) return;
+			finish.disconnect();
+			track('column-finished');
+		});
+		finish.observe(foot);
 	}
 
 	const box = document.querySelector<HTMLElement>('[data-plate-box]');

@@ -99,7 +99,7 @@ const flag = a.flag.replace('{section}', s.section).replace('{roman}', numeral);
 						<div class="body">
 							<Content />
 						</div>
-						<div class="foot">
+						<div class="foot" data-column-end>
 							<div class="foot-row">
 								<p class="signoff">{column.data.signoff}</p>
 								<Share url={shareUrl} text={shareText} title={column.data.title} placement="foot" />
@@ -107,7 +107,7 @@ const flag = a.flag.replace('{section}', s.section).replace('{roman}', numeral);
 							<nav class="turn" aria-label={a.turnAria}>
 								{
 									earlier ? (
-										<a class="side earlier" href={localePath(locale, `/columns/${columnSlug(earlier)}/`)} rel="prev" data-cur="1">
+										<a class="side earlier" href={localePath(locale, `/columns/${columnSlug(earlier)}/`)} rel="prev" data-cur="1" data-ev="column-open" data-ev-from="nav">
 											<span class="label"><span class="hand">☜</span>{a.earlier}</span>
 											<span class="title-to">{earlier.data.title}</span>
 										</a>
@@ -120,7 +120,7 @@ const flag = a.flag.replace('{section}', s.section).replace('{roman}', numeral);
 								}
 								{
 									later ? (
-										<a class="side later" href={localePath(locale, `/columns/${columnSlug(later)}/`)} rel="next" data-cur="1">
+										<a class="side later" href={localePath(locale, `/columns/${columnSlug(later)}/`)} rel="next" data-cur="1" data-ev="column-open" data-ev-from="nav">
 											<span class="label">{a.later}<span class="hand">☞</span></span>
 											<span class="title-to">{later.data.title}</span>
 										</a>
@@ -174,12 +174,14 @@ const flag = a.flag.replace('{section}', s.section).replace('{roman}', numeral);
 	import { initEdition } from '../../engine/edition';
 	import { initEngine } from '../../engine/engine';
 	import { initShare } from '../../engine/share';
+	import { initStats } from '../../engine/stats';
 
 	initEngine();
 	initCursor();
 	initArticle();
 	initShare();
 	initEdition();
+	initStats();
 </script>
 
 <style>

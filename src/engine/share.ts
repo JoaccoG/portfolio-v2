@@ -68,7 +68,7 @@ export function initShare(): void {
 					.share({
 						title: root.dataset.title,
 						text: root.dataset.text,
-						url: root.dataset.url,
+						url: root.dataset.nativeUrl,
 					})
 					.catch(() => {});
 			});
