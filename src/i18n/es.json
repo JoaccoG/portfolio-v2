@@ -608,10 +608,12 @@
 			},
 			"setByHand": "Compuesta a mano — J. G.",
 			"goBack": "VOLVER",
-			"next": "ARTÍCULO SIGUIENTE",
 			"later": "COLUMNA POSTERIOR",
 			"earlier": "COLUMNA ANTERIOR",
 			"all": "TODAS LAS COLUMNAS",
+			"firstNote": "Esta abrió la serie.",
+			"latestNote": "La última en salir de imprenta.",
+			"turnAria": "Más columnas",
 			"navAria": "Entre las columnas",
 			"plateClose": "CERRAR LA LÁMINA",
 			"plateAria": "La lámina, ampliada"

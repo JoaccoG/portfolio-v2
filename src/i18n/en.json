@@ -605,10 +605,12 @@
 			},
 			"setByHand": "Set by hand — J. G.",
 			"goBack": "GO BACK",
-			"next": "NEXT ARTICLE",
 			"later": "LATER COLUMN",
 			"earlier": "EARLIER COLUMN",
 			"all": "ALL THE COLUMNS",
+			"firstNote": "This one opened the series.",
+			"latestNote": "The latest to press.",
+			"turnAria": "More columns",
 			"navAria": "Between the columns",
 			"plateClose": "CLOSE THE PLATE",
 			"plateAria": "The plate, enlarged"

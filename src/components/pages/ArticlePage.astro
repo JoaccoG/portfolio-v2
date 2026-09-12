@@ -71,33 +71,18 @@ const flag = a.flag.replace('{section}', s.section).replace('{roman}', numeral);
 			/>
 			<div class="page">
 				<nav class="nav-pair" aria-label={a.navAria} data-article-chrome>
-					<button type="button" class="btn" data-back-columns data-cur="1">
+					<a class="btn" href={localePath(locale, '/columns/')} data-cur="1">
 						<span class="hand">☜</span><span>{a.goBack}</span>
-					</button>
-					{
-						earlier ? (
-							<a class="btn" href={localePath(locale, `/columns/${columnSlug(earlier)}/`)} data-cur="1">
-								<span>{a.next}</span>
-								<span class="hand">☞</span>
-							</a>
-						) : (
-							<span class="btn is-off" aria-disabled="true">
-								<span>{a.next}</span>
-								<span class="hand">☞</span>
-							</span>
-						)
-					}
+					</a>
+					<Share url={shareUrl} text={shareText} title={column.data.title} placement="top" />
 				</nav>
 				<article class="article">
 					<div class="measure">
-						<div class="crumb-row">
 						<p class="crumb">
-								<a href={localePath(locale, '/columns/')} data-cur="1">{a.breadcrumb}</a>
-								<span class="crumb-sep" aria-hidden="true">›</span>
-								<span class="crumb-no">{a.columnNo.replace('{roman}', numeral)}</span>
-							</p>
-							<Share url={shareUrl} text={shareText} title={column.data.title} placement="top" />
-						</div>
+							<a href={localePath(locale, '/columns/')} data-cur="1">{a.breadcrumb}</a>
+							<span class="crumb-sep" aria-hidden="true">›</span>
+							<span class="crumb-no">{a.columnNo.replace('{roman}', numeral)}</span>
+						</p>
 						<p class="kicker">{headingLabels(column.data.headings, locale)}</p>
 						<h1 class="title">{column.data.title}</h1>
 						<p class="dek">{column.data.dek}</p>
@@ -115,39 +100,41 @@ const flag = a.flag.replace('{section}', s.section).replace('{roman}', numeral);
 							<Content />
 						</div>
 						<div class="foot">
-							<p class="signoff">{column.data.signoff}</p>
-							<div class="foot-share">
+							<div class="foot-row">
+								<p class="signoff">{column.data.signoff}</p>
 								<Share url={shareUrl} text={shareText} title={column.data.title} placement="foot" />
 							</div>
-							<div class="foot-nav">
-								{
-									later ? (
-										<a class="btn" href={localePath(locale, `/columns/${columnSlug(later)}/`)} data-cur="1">
-											<span class="hand">☜</span>
-											<span>{a.later}</span>
-										</a>
-									) : (
-										<span class="btn is-off" aria-disabled="true">
-											<span class="hand">☜</span>
-											<span>{a.later}</span>
-										</span>
-									)
-								}
-								<a class="btn" href={localePath(locale, '/columns/')} data-cur="1">{a.all}</a>
+							<nav class="turn" aria-label={a.turnAria}>
 								{
 									earlier ? (
-										<a class="btn" href={localePath(locale, `/columns/${columnSlug(earlier)}/`)} data-cur="1">
-											<span>{a.earlier}</span>
-											<span class="hand">☞</span>
+										<a class="side earlier" href={localePath(locale, `/columns/${columnSlug(earlier)}/`)} rel="prev" data-cur="1">
+											<span class="label"><span class="hand">☜</span>{a.earlier}</span>
+											<span class="title-to">{earlier.data.title}</span>
 										</a>
 									) : (
-										<span class="btn is-off" aria-disabled="true">
-											<span>{a.earlier}</span>
-											<span class="hand">☞</span>
-										</span>
+										<div class="side earlier none">
+											<span class="label"><span class="hand">☜</span>{a.earlier}</span>
+											<span class="note">{a.firstNote}</span>
+										</div>
 									)
 								}
-							</div>
+								{
+									later ? (
+										<a class="side later" href={localePath(locale, `/columns/${columnSlug(later)}/`)} rel="next" data-cur="1">
+											<span class="label">{a.later}<span class="hand">☞</span></span>
+											<span class="title-to">{later.data.title}</span>
+										</a>
+									) : (
+										<div class="side later none">
+											<span class="label">{a.later}<span class="hand">☞</span></span>
+											<span class="note">{a.latestNote}</span>
+										</div>
+									)
+								}
+							</nav>
+							<p class="all">
+								<a href={localePath(locale, '/columns/')} data-cur="1">{a.all}</a>
+							</p>
 						</div>
 					</div>
 				</article>
@@ -225,11 +212,11 @@ const flag = a.flag.replace('{section}', s.section).replace('{roman}', numeral);
 		gap: 1rem;
 		padding-top: 24px;
 		position: relative;
-		z-index: 1;
+		z-index: 4;
 		pointer-events: none;
 	}
 
-	.nav-pair > * {
+	.nav-pair > :global(*) {
 		pointer-events: auto;
 	}
 
@@ -253,11 +240,6 @@ const flag = a.flag.replace('{section}', s.section).replace('{roman}', numeral);
 		color: var(--paper, #f2ead8);
 	}
 
-	.is-off {
-		opacity: 0.35;
-		pointer-events: none;
-	}
-
 	.hand {
 		color: var(--acc, #b4342a);
 	}
@@ -272,22 +254,6 @@ const flag = a.flag.replace('{section}', s.section).replace('{roman}', numeral);
 	.measure {
 		width: min(100%, 40rem);
 		margin: 0 auto;
-	}
-
-	.crumb-row {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		gap: 1rem;
-		margin: 0 0 1.1rem;
-	}
-
-	.crumb-row .crumb {
-		margin: 0;
-	}
-
-	.foot-share {
-		margin: 0 0 1.1rem;
 	}
 
 	.crumb {
@@ -435,17 +401,113 @@ const flag = a.flag.replace('{section}', s.section).replace('{roman}', numeral);
 	}
 
 	.signoff {
-		margin: 0 0 1.1rem;
+		margin: 0;
 		font-style: italic;
 		font-size: 0.9rem;
 		opacity: 0.75;
 	}
 
-	.foot-nav {
+	.foot-row {
 		display: flex;
+		align-items: center;
 		justify-content: space-between;
-		gap: 0.7rem;
+		gap: 0.8rem 1.2rem;
 		flex-wrap: wrap;
+		margin: 0 0 1.4rem;
+	}
+
+	.foot-row :global(.share) {
+		margin-left: auto;
+	}
+
+	.turn {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		border-top: 1px solid rgba(28, 23, 16, 0.55);
+		border-bottom: 1px solid rgba(28, 23, 16, 0.55);
+	}
+
+	.side {
+		display: flex;
+		flex-direction: column;
+		gap: 0.45rem;
+		padding: 0.95rem 0.9rem 1rem;
+		color: inherit;
+		text-decoration: none;
+		border: 0;
+		transition: background 0.25s ease;
+	}
+
+	.side.later {
+		align-items: flex-end;
+		text-align: right;
+		border-left: 1px solid rgba(28, 23, 16, 0.35);
+	}
+
+	a.side:hover,
+	a.side:focus-visible {
+		background: rgba(28, 23, 16, 0.05);
+	}
+
+	a.side:hover .title-to,
+	a.side:focus-visible .title-to {
+		text-decoration: underline;
+		text-decoration-thickness: 1px;
+		text-underline-offset: 0.18em;
+	}
+
+	.label {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+		font-size: 0.56rem;
+		letter-spacing: 0.22em;
+	}
+
+	.title-to {
+		font-family: var(--fHD, 'Abril Fatface'), Didot, serif;
+		font-size: 0.98rem;
+		line-height: 1.25;
+		text-wrap: balance;
+	}
+
+	.side.none .label {
+		opacity: 0.45;
+	}
+
+	.side.none .hand {
+		color: inherit;
+	}
+
+	.note {
+		font-style: italic;
+		font-size: 0.88rem;
+		opacity: 0.55;
+	}
+
+	.all {
+		margin: 1rem 0 0;
+		text-align: center;
+	}
+
+	.all a {
+		font-size: 0.58rem;
+		letter-spacing: 0.22em;
+		color: inherit;
+		text-decoration: none;
+		border-bottom: 1px dotted currentColor;
+		padding-bottom: 0.15rem;
+	}
+
+	@media (max-width: 599.98px) {
+		.turn {
+			grid-template-columns: 1fr;
+		}
+
+		.side.later {
+			border-left: 0;
+			border-top: 1px dotted rgba(28, 23, 16, 0.4);
+		}
 	}
 
 	.plate-box {

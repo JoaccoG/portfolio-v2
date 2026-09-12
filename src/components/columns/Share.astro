@@ -117,6 +117,7 @@ const networks = [
 	.slip {
 		position: absolute;
 		z-index: 30;
+		box-sizing: border-box;
 		width: min(17rem, calc(100vw - 2rem));
 		padding: 0.9rem 1.1rem 0.8rem;
 		background: #f6efdd;
@@ -126,7 +127,7 @@ const networks = [
 			0 14px 24px -14px rgba(28, 23, 16, 0.55);
 		opacity: 0;
 		visibility: hidden;
-		transform: translateY(var(--slipFrom, 6px)) rotate(-0.6deg);
+		transform: translateY(var(--slipFrom, 6px));
 		transition:
 			opacity 0.22s ease,
 			transform 0.28s cubic-bezier(0.32, 0.72, 0.25, 1),
@@ -141,14 +142,14 @@ const networks = [
 
 	.foot .slip {
 		bottom: calc(100% + 0.6rem);
-		left: 0;
+		right: 0;
 	}
 
 	.share.open .slip,
 	.share:not([data-ready]):focus-within .slip {
 		opacity: 1;
 		visibility: visible;
-		transform: translateY(0) rotate(-0.6deg);
+		transform: translateY(0);
 		transition:
 			opacity 0.22s ease,
 			transform 0.28s cubic-bezier(0.32, 0.72, 0.25, 1),
