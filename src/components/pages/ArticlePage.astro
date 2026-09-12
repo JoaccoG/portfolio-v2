@@ -74,30 +74,15 @@ const flag = a.flag.replace('{section}', s.section).replace('{roman}', numeral);
 					<a class="btn" href={localePath(locale, '/columns/')} data-cur="1">
 						<span class="hand">☜</span><span>{a.goBack}</span>
 					</a>
-					{
-						earlier ? (
-							<a class="btn" href={localePath(locale, `/columns/${columnSlug(earlier)}/`)} data-cur="1">
-								<span>{a.next}</span>
-								<span class="hand">☞</span>
-							</a>
-						) : (
-							<span class="btn is-off" aria-disabled="true">
-								<span>{a.next}</span>
-								<span class="hand">☞</span>
-							</span>
-						)
-					}
+					<Share url={shareUrl} text={shareText} title={column.data.title} placement="top" />
 				</nav>
 				<article class="article">
 					<div class="measure">
-						<div class="crumb-row">
 						<p class="crumb">
-								<a href={localePath(locale, '/columns/')} data-cur="1">{a.breadcrumb}</a>
-								<span class="crumb-sep" aria-hidden="true">›</span>
-								<span class="crumb-no">{a.columnNo.replace('{roman}', numeral)}</span>
-							</p>
-							<Share url={shareUrl} text={shareText} title={column.data.title} placement="top" />
-						</div>
+							<a href={localePath(locale, '/columns/')} data-cur="1">{a.breadcrumb}</a>
+							<span class="crumb-sep" aria-hidden="true">›</span>
+							<span class="crumb-no">{a.columnNo.replace('{roman}', numeral)}</span>
+						</p>
 						<p class="kicker">{headingLabels(column.data.headings, locale)}</p>
 						<h1 class="title">{column.data.title}</h1>
 						<p class="dek">{column.data.dek}</p>
@@ -227,11 +212,11 @@ const flag = a.flag.replace('{section}', s.section).replace('{roman}', numeral);
 		gap: 1rem;
 		padding-top: 24px;
 		position: relative;
-		z-index: 1;
+		z-index: 4;
 		pointer-events: none;
 	}
 
-	.nav-pair > * {
+	.nav-pair > :global(*) {
 		pointer-events: auto;
 	}
 
@@ -255,11 +240,6 @@ const flag = a.flag.replace('{section}', s.section).replace('{roman}', numeral);
 		color: var(--paper, #f2ead8);
 	}
 
-	.is-off {
-		opacity: 0.35;
-		pointer-events: none;
-	}
-
 	.hand {
 		color: var(--acc, #b4342a);
 	}
@@ -274,18 +254,6 @@ const flag = a.flag.replace('{section}', s.section).replace('{roman}', numeral);
 	.measure {
 		width: min(100%, 40rem);
 		margin: 0 auto;
-	}
-
-	.crumb-row {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		gap: 1rem;
-		margin: 0 0 1.1rem;
-	}
-
-	.crumb-row .crumb {
-		margin: 0;
 	}
 
 	.crumb {
