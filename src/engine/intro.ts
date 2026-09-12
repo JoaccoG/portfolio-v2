@@ -64,6 +64,8 @@ export function initIntro(hooks: IntroHooks = {}): void {
 	if (main) main.inert = true;
 	window.scrollTo(0, 0);
 	const counter = document.querySelector<HTMLElement>('[data-precnt]');
+	const loader = document.querySelector<HTMLElement>('[data-preloader]');
+	let lastBar = '';
 	const t0 = performance.now();
 	const end = LOAD_END + SPIN;
 	const fallback = setTimeout(settle, end + 1500);
@@ -76,7 +78,11 @@ export function initIntro(hooks: IntroHooks = {}): void {
 			const n = Math.floor(load * 100);
 			counter.textContent = (n < 10 ? '0' : '') + n;
 		}
-		sv('--plw', String(Math.round(load * 1000) / 1000));
+		const bar = String(Math.round(load * 1000) / 1000);
+		if (loader && bar !== lastBar) {
+			lastBar = bar;
+			loader.style.setProperty('--plw', bar);
+		}
 		if (el > 1500) {
 			sv('--preO', '0');
 			sv('--prePE', 'none');
