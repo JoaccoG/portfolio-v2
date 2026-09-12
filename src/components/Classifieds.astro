@@ -21,6 +21,8 @@ const c = copy.classifieds;
 								target={external ? '_blank' : undefined}
 								rel={external ? 'noreferrer' : undefined}
 								data-cur="1"
+								data-ev="classified-link"
+								data-ev-to={external ? new URL(href).hostname.replace(/^www\./, '').split('.')[0] : 'email'}
 							>
 								{seg.t}
 								{external && (

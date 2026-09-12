@@ -13,7 +13,14 @@ const c = copy.cvAd;
 		<div class="links">
 			{
 				c.links.map((link) => (
-					<a href={link.href} data-cur="1" target="_blank" rel="noreferrer">
+					<a
+						href={link.href}
+						data-cur="1"
+						target="_blank"
+						rel="noreferrer"
+						data-ev="cv-download"
+						data-ev-lang={link.href.includes('Resume') ? 'en' : 'es'}
+					>
 						<span class="acc">☞</span>
 						{` ${link.label}`}
 					</a>
