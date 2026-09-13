@@ -1,11 +1,12 @@
 ---
-import { copyFor } from '../../i18n/t';
+import { copyFor, localeOf } from '../../i18n/t';
 import RubberStamp from '../RubberStamp.astro';
 
 const copy = copyFor(Astro.currentLocale);
 const w = copy.columns.wire;
 const s = w.sent;
 const t = copy.telegrams;
+const edition = localeOf(Astro.currentLocale);
 ---
 
 <div class="wrap">
@@ -16,6 +17,7 @@ const t = copy.telegrams;
 		<form
 			novalidate
 			data-wire
+			data-edition={edition}
 			data-prefix={t.postmaster.prefix}
 			data-email={t.postmaster.email}
 			data-rate={t.postmaster.rate}

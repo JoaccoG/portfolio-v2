@@ -58,6 +58,8 @@ Readership is counted by [Umami](https://umami.is/): no cookies, nothing stored 
 
 Section D of the front page is *The Columns*, the paper's standing column, and it keeps its own archive at [`/columns`](https://joaquingodoy.com/columns). Each column is an MDX file in a typed collection — title, dek, headings, date and sign-off in the frontmatter, the prose underneath — with two pieces of period furniture for the body: an `<Aside>` for the notes ruled into the margin and a `<Figure>` for the plates, which open enlarged when pressed. Nothing else is written by hand. The roman numeral comes from the column's place in the archive, the year block from its date (shown a century behind, like every date on the paper), the reading time and the word count from the body itself. The feed filters by heading and keeps the filter in the address, and the archive is set on a third sheet of paper, mottled with its own seed so it never reads as the front page reprinted.
 
+A new column also goes out by wire. Every subscriber is filed under the edition they were reading when they signed up, so the English book and the Spanish book get their own telegram: each column sets one per edition at build time — the blackletter masthead as a plate, the dek, the opening paragraph and a way across to the other edition — and `npm run wire -- <slug>` reads both from the live site and leaves them as Resend broadcast drafts. Nothing goes out until the editor presses Send.
+
 ## Two editions
 
 The paper also runs in Spanish, at [`/es`](https://joaquingodoy.com/es/). The Spanish copy is rewritten, not translated: the furniture keeps its 1926 register in the Spanish of a Buenos Aires newsroom, the puns are rebuilt rather than carried over, and the trade's own vocabulary — deploy, merge, OUTAGE — stays in English, the way it does on any Spanish-speaking engineering team. The columns are written again for the edition, captions and all, and each edition carries its own social card.
@@ -80,21 +82,23 @@ npm run build        # static pages + node server → dist/
 npm run check        # astro check — types and templates
 npm run lint         # biome check .
 npm run format       # biome format --write .
+npm run wire -- <slug>  # draft the column's telegrams as Resend broadcasts
 ```
 
 The postmaster needs a Resend key to actually send; everything else runs without one.
 
 ## Environment
 
-Three variables, in `.env` locally and in the host's dashboard in production. See [`.env.example`](.env.example):
+Four variables, in `.env` locally and in the host's dashboard in production. See [`.env.example`](.env.example):
 
 ```bash
 RESEND_API_KEY=re_your_api_key_here
 RESEND_FROM=The Daily Godoy <telegrams@mail.yourdomain.com>
 RESEND_SEGMENT_ID=
+RESEND_SEGMENT_ID_ES=
 ```
 
-All three are declared in the `astro:env` schema and validated at build. `RESEND_FROM` carries a safe default (`onboarding@resend.dev`) and `RESEND_SEGMENT_ID` is optional — set it to file subscribers under a Resend segment, leave it empty and they go in the book unfiled — so the site builds and runs without any of them; it just can't post a telegram or enter a subscriber until the key is set.
+All four are declared in the `astro:env` schema and validated at build. `RESEND_FROM` carries a safe default (`onboarding@resend.dev`) and both segments are optional — set `RESEND_SEGMENT_ID` to file subscribers under a Resend segment and `RESEND_SEGMENT_ID_ES` to give the Spanish edition its own, leave them empty and they go in the book unfiled — so the site builds and runs without any of them; it just can't post a telegram or enter a subscriber until the key is set.
 
 ## Deploy
 

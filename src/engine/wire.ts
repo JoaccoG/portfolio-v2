@@ -58,7 +58,7 @@ export function initWire(): void {
 			const res = await fetch('/api/subscribe', {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
-				body: JSON.stringify({ email, wire }),
+				body: JSON.stringify({ email, wire, edition: say.edition }),
 				signal: AbortSignal.timeout(15_000),
 			});
 			if (!res.ok) {

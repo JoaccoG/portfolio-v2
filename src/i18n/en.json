@@ -629,6 +629,13 @@
 				"stampDate": "AUG 25 · 1901",
 				"stampDateTemplate": "{month} {day} · {year}",
 				"text": "Your address is entered in the book. The next column will find you."
+			},
+			"mail": {
+				"kicker": "BY TELEGRAPH",
+				"read": "READ THE COLUMN",
+				"other": "This column is also set in Spanish",
+				"why": "You asked to have the columns wired to you.",
+				"unsubscribe": "Strike my name from the book"
 			}
 		},
 		"otherEdition": {
