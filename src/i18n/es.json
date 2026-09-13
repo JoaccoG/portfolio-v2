@@ -632,6 +632,13 @@
 				"stampDate": "25 AGO · 1901",
 				"stampDateTemplate": "{day} {month} · {year}",
 				"text": "Su dirección quedó asentada en el libro. La próxima columna le llegará."
+			},
+			"mail": {
+				"kicker": "POR TELÉGRAFO",
+				"read": "LEER LA COLUMNA",
+				"other": "Esta columna también está compuesta en inglés",
+				"why": "Usted pidió recibir las columnas por cable.",
+				"unsubscribe": "Borrar mi nombre del libro"
 			}
 		},
 		"otherEdition": {
