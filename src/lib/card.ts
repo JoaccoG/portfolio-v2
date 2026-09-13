@@ -226,6 +226,30 @@ export async function renderCard(copy: CardCopy): Promise<Buffer> {
 		.toBuffer();
 }
 
+export async function renderMasthead(): Promise<Buffer> {
+	const svg = await satori(
+		h(
+			'div',
+			{
+				width: 1040,
+				height: 132,
+				alignItems: 'center',
+				justifyContent: 'center',
+				background: PAPER,
+				color: INK,
+				fontFamily: 'Unif',
+				fontSize: 104,
+				lineHeight: 1,
+			},
+			'The Daily Godoy',
+		) as never,
+		{ width: 1040, height: 132, fonts: loadFonts() },
+	);
+	return sharp(Buffer.from(svg))
+		.png({ compressionLevel: 9, palette: true })
+		.toBuffer();
+}
+
 export async function columnCard(
 	column: Column,
 	index: number,
