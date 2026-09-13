@@ -10,7 +10,8 @@
 		"preview": "astro preview",
 		"check": "astro check",
 		"lint": "biome check .",
-		"format": "biome format --write ."
+		"format": "biome format --write .",
+		"wire": "node --env-file=.env scripts/wire.mjs"
 	},
 	"dependencies": {
 		"@astrojs/node": "^11.1.4",
