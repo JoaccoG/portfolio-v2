@@ -88,6 +88,8 @@ const coverSizes = '(max-width: 767.98px) 92vw, 44vw';
 							class="full-account"
 							data-cur="1"
 							data-page-open={project.id}
+							data-ev="project-open"
+							data-ev-project={project.id.split('/').pop()}
 							aria-label={m.fullAccountAria.replace(
 								'{title}',
 								project.data.titleLines.join(' '),

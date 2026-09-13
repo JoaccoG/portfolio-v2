@@ -44,7 +44,7 @@ const lately = columns.slice(0, 3).map((column, i) => ({
 			<p class="lately-label">{h.lately}</p>
 			{
 				lately.map((row) => (
-					<a class="row" href={localePath(locale, `/columns/${row.id}/`)} data-cur="1">
+					<a class="row" href={localePath(locale, `/columns/${row.id}/`)} data-cur="1" data-ev="column-open" data-ev-from="home">
 						<span class="num">{row.numeral}</span>
 						<span class="text">
 							<span class="title">{row.title}</span>

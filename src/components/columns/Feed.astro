@@ -48,7 +48,9 @@ const inYear = (year: string) => rows.filter((row) => row.year === year);
 				class="chip"
 				aria-pressed="true"
 				data-heading=""
-				data-cur="1">{f.all}</button
+				data-cur="1"
+				data-ev="columns-filter"
+				data-ev-heading="all">{f.all}</button
 			>
 			{
 				headings.map((heading) => (
@@ -58,6 +60,8 @@ const inYear = (year: string) => rows.filter((row) => row.year === year);
 						aria-pressed="false"
 						data-heading={heading}
 						data-cur="1"
+						data-ev="columns-filter"
+						data-ev-heading={heading}
 					>
 						{headingLabel(heading, locale)}
 					</button>
@@ -90,6 +94,8 @@ const inYear = (year: string) => rows.filter((row) => row.year === year);
 							data-year={year}
 							data-headings={row.headings.join(' ')}
 							data-cur="1"
+							data-ev="column-open"
+							data-ev-from="feed"
 							data-rv="1"
 						>
 							<span class="num">{row.numeral}</span>

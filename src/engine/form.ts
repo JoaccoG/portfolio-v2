@@ -1,3 +1,5 @@
+import { track } from './stats';
+
 const EMAIL_RE = /^\S+@\S+\.\S+$/;
 
 export function initForm(): void {
@@ -66,6 +68,7 @@ export function initForm(): void {
 				return;
 			}
 			form.reset();
+			track('contact-sent');
 			form.removeAttribute('aria-busy');
 			form.hidden = true;
 			if (sent) {

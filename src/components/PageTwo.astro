@@ -128,13 +128,13 @@ const projects = edition.filter((project) => project.data.pageTwo);
 								{(pt.links?.repo || pt.links?.live) && (
 									<div class="links">
 										{pt.links?.repo && (
-											<a href={pt.links.repo} target="_blank" rel="noopener noreferrer" data-cur="1">
+											<a href={pt.links.repo} target="_blank" rel="noopener noreferrer" data-cur="1" data-ev="project-link" data-ev-project={project.id.split('/').pop()} data-ev-kind="repo">
 												<span class="hand" aria-hidden="true">☞</span>
 												<span>{p.repoLink}</span>
 											</a>
 										)}
 										{pt.links?.live && (
-											<a href={pt.links.live} target="_blank" rel="noopener noreferrer" data-cur="1">
+											<a href={pt.links.live} target="_blank" rel="noopener noreferrer" data-cur="1" data-ev="project-link" data-ev-project={project.id.split('/').pop()} data-ev-kind="live">
 												<span class="hand" aria-hidden="true">☞</span>
 												<span>{p.liveLink}</span>
 											</a>

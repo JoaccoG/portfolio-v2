@@ -78,7 +78,14 @@ const portraitSizes =
 			<div class="index-rows">
 				{
 					h.inThisEdition.rows.map((row) => (
-						<button type="button" data-cur="1" data-target={row.target} class="index-row">
+						<button
+							type="button"
+							data-cur="1"
+							data-target={row.target}
+							class="index-row"
+							data-ev="index-jump"
+							data-ev-to={row.target}
+						>
 							<span class="index-label">{row.label}</span>
 							<span class="hand" aria-hidden="true">☞</span>
 						</button>

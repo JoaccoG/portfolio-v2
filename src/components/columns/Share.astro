@@ -11,22 +11,27 @@ interface Props {
 const { url, text, title, placement } = Astro.props;
 const s = copyFor(Astro.currentLocale).columns.article.shareSlip;
 const enc = encodeURIComponent;
+const tagged = (source: string) =>
+	`${url}?utm_source=${source}&utm_medium=share`;
 const slipId = `share-${placement}`;
 const networks = [
 	{
 		name: 'X',
+		key: 'x',
 		hint: s.post,
-		href: `https://x.com/intent/post?text=${enc(text)}&url=${enc(url)}`,
+		href: `https://x.com/intent/post?text=${enc(text)}&url=${enc(tagged('x'))}`,
 	},
 	{
 		name: 'Threads',
+		key: 'threads',
 		hint: s.post,
-		href: `https://www.threads.com/intent/post?text=${enc(`${text} ${url}`)}`,
+		href: `https://www.threads.com/intent/post?text=${enc(`${text} ${tagged('threads')}`)}`,
 	},
 	{
 		name: 'LinkedIn',
+		key: 'linkedin',
 		hint: s.share,
-		href: `https://www.linkedin.com/sharing/share-offsite/?url=${enc(url)}`,
+		href: `https://www.linkedin.com/sharing/share-offsite/?url=${enc(tagged('linkedin'))}`,
 	},
 ];
 ---
@@ -34,7 +39,8 @@ const networks = [
 <div
 	class:list={['share', placement]}
 	data-share
-	data-url={url}
+	data-url={tagged('link')}
+	data-native-url={tagged('native')}
 	data-text={text}
 	data-title={title}
 >
@@ -55,7 +61,14 @@ const networks = [
 			{
 				networks.map((n) => (
 					<li>
-						<a href={n.href} target="_blank" rel="noopener noreferrer" data-cur="1">
+						<a
+							href={n.href}
+							target="_blank"
+							rel="noopener noreferrer"
+							data-cur="1"
+							data-ev="share"
+							data-ev-network={n.key}
+						>
 							<span class="hand">☞</span>
 							<span class="name">{n.name}</span>
 							<small>{n.hint}</small>
@@ -66,14 +79,27 @@ const networks = [
 		</ul>
 		<ul class="extra">
 			<li>
-				<button type="button" data-share-copy data-copied={s.copied} data-cur="1">
+				<button
+					type="button"
+					data-share-copy
+					data-copied={s.copied}
+					data-cur="1"
+					data-ev="share"
+					data-ev-network="link"
+				>
 					<span class="hand">☞</span>
 					<span class="name" data-share-copy-label>{s.copy}</span>
 					<small>{s.link}</small>
 				</button>
 			</li>
 			<li data-share-native hidden>
-				<button type="button" data-share-more data-cur="1">
+				<button
+					type="button"
+					data-share-more
+					data-cur="1"
+					data-ev="share"
+					data-ev-network="native"
+				>
 					<span class="hand">☞</span>
 					<span class="name">{s.more}</span>
 					<small>{s.moreHint}</small>
