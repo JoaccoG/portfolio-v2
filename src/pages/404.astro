@@ -45,6 +45,7 @@ const h = nf.head;
 	import { initLiveDate } from '../engine/livedate';
 	import { initNotFound } from '../engine/notfound';
 	import { initReveals } from '../engine/reveal';
+	import { initStats, track } from '../engine/stats';
 	import { initTicker } from '../engine/ticker';
 
 	initEngine();
@@ -53,4 +54,6 @@ const h = nf.head;
 	initTicker();
 	initLiveDate();
 	initNotFound();
+	initStats();
+	track('not-found', { path: location.pathname });
 </script>

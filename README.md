@@ -46,9 +46,13 @@ The scroll used to be hand-rolled too: the page held still while a script transl
 
 ## The postmaster
 
-The site is static except for two doors. The *Telegrams to the Editor* postcard wires a telegram through an on-demand route, [`/api/telegram`](src/pages/api/telegram.ts), and *Have the columns wired to you* enters a subscriber in the Resend contact book through [`/api/subscribe`](src/pages/api/subscribe.ts); everything else is prerendered. There is no third-party form widget and no key in the browser.
+The site is static except for a few doors. Two of them belong to the postmaster: the *Telegrams to the Editor* postcard wires a telegram through an on-demand route, [`/api/telegram`](src/pages/api/telegram.ts), and *Have the columns wired to you* enters a subscriber in the Resend contact book through [`/api/subscribe`](src/pages/api/subscribe.ts). The rest, bar the circulation desk below, is prerendered. There is no third-party form widget and no key in the browser.
 
 Both routes rate-limit **before** they parse a body, each with its own counter. It keys on `CF-Connecting-IP` — the true visitor IP that Cloudflare sets in front of the origin and a client can't spoof through it — and falls back to the last hop of `X-Forwarded-For` when the origin is reached directly, with a per-IP window, a global ceiling that protects the Resend quota against IP rotation, and a bounded in-memory map that sweeps expired keys and evicts the oldest. The message goes out via [Resend](https://resend.com/) from a verified subdomain, and the API key lives only in the server environment, validated through `astro:env`. The counter is per-instance memory, so it is a courtesy bouncer, not a distributed one — named as such rather than oversold.
+
+## The circulation desk
+
+Readership is counted by [Umami](https://umami.is/): no cookies, nothing stored on the reader's device, no banner. The tracker and its collector are both served from the paper's own address, through [`/ink/press.js`](src/pages/ink/press.js.ts) and [`/ink/api/send`](src/pages/ink/api/send.ts), so a blocker that drops third-party analytics doesn't drop the count. The relay passes along the visitor's `CF-Connecting-IP` and Cloudflare's location headers, so the geography is the reader's, not the server's. Events are named on the elements themselves (`data-ev`, `data-ev-*`) and sent by a single listener that never holds up a link: CV downloads, opened accounts, shares by network, columns read to the sign-off, telegrams that actually went out.
 
 ## The columns
 
@@ -103,7 +107,7 @@ docker run -p 8080:8080 daily-godoy   # → http://localhost:8080
 
 ## Built with
 
-**[Astro 7](https://astro.build/)** with the Node standalone adapter and `@astrojs/sitemap`, **TypeScript** in strict mode and **Biome** for lint and format. Images run through Astro's `<Image>` and `sharp`; the projects are a typed content collection (Zod-validated JSON) and the columns another (MDX under a Zod frontmatter), with the copy in one i18n bundle per edition. All the motion is the hand-written engine under [`src/engine/`](src/engine), and idiomorph swaps the editions in place; the mail is Resend, and Cloudflare sits in front for DNS and the edition redirect. CI runs Biome, `astro check` and the build on every push.
+**[Astro 7](https://astro.build/)** with the Node standalone adapter and `@astrojs/sitemap`, **TypeScript** in strict mode and **Biome** for lint and format. Images run through Astro's `<Image>` and `sharp`; the projects are a typed content collection (Zod-validated JSON) and the columns another (MDX under a Zod frontmatter), with the copy in one i18n bundle per edition. All the motion is the hand-written engine under [`src/engine/`](src/engine), and idiomorph swaps the editions in place; the mail is Resend, the readership count is Umami, and Cloudflare sits in front for DNS and the edition redirect. CI runs Biome, `astro check` and the build on every push.
 
 ## License
 

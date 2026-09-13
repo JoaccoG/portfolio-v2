@@ -1,4 +1,5 @@
 import { Idiomorph } from 'idiomorph';
+import { track } from './stats';
 
 const JS_OWNED = new Set([
 	'style',
@@ -182,6 +183,7 @@ export async function swapEdition(link: HTMLAnchorElement): Promise<void> {
 		document.dispatchEvent(
 			new CustomEvent('edition:swapped', { detail: { lang } }),
 		);
+		track('edition-switch', { to: lang });
 	} catch {
 		location.href = link.href;
 	} finally {

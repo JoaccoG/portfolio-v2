@@ -1,3 +1,5 @@
+import { track } from './stats';
+
 const EMAIL_RE = /^\S+@\S+\.\S+$/;
 const POSTAL_MS = 8000;
 
@@ -74,6 +76,7 @@ export function initWire(): void {
 			form.reset();
 			setBusy(false);
 			showPostal();
+			track('subscribe');
 		} catch {
 			showError(say.wireDown);
 			setBusy(false);
