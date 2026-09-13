@@ -1,4 +1,8 @@
-import { RESEND_API_KEY, RESEND_SEGMENT_ID } from 'astro:env/server';
+import {
+	RESEND_API_KEY,
+	RESEND_SEGMENT_ID,
+	RESEND_SEGMENT_ID_ES,
+} from 'astro:env/server';
 import type { APIRoute } from 'astro';
 import { clientKey, createLimiter } from '../../server/rate-limit';
 import { resend } from '../../server/resend';
@@ -24,7 +28,7 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
 	if (limiter.overLimit(clientKey(request, clientAddress), now)) {
 		return respond({ ok: false, error: 'rate' }, 429);
 	}
-	let body: { email?: unknown; wire?: unknown };
+	let body: { email?: unknown; wire?: unknown; edition?: unknown };
 	try {
 		body = await request.json();
 	} catch {
@@ -32,6 +36,9 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
 	}
 	const email = typeof body.email === 'string' ? body.email.trim() : '';
 	const wire = typeof body.wire === 'string' ? body.wire.trim() : '';
+	const spanish = body.edition === 'es' && Boolean(RESEND_SEGMENT_ID_ES);
+	const segment = spanish ? RESEND_SEGMENT_ID_ES : RESEND_SEGMENT_ID;
+	const other = spanish ? RESEND_SEGMENT_ID : RESEND_SEGMENT_ID_ES;
 	if (wire) return respond({ ok: true }, 200);
 	if (!EMAIL_RE.test(email) || email.length > 200) {
 		return respond({ ok: false, error: 'email' }, 422);
@@ -48,9 +55,16 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
 		if (found && !found.unsubscribed) {
 			return respond({ ok: false, error: 'already' }, 409);
 		}
+		if (found && other && other !== segment) {
+			await resend(
+				`/contacts/${encodeURIComponent(email)}/segments/${other}`,
+				RESEND_API_KEY,
+				{ method: 'DELETE' },
+			);
+		}
 	}
 	const contact: Record<string, unknown> = { email, unsubscribed: false };
-	if (RESEND_SEGMENT_ID) contact.segments = [{ id: RESEND_SEGMENT_ID }];
+	if (segment) contact.segments = [{ id: segment }];
 	const entered = await resend('/contacts', RESEND_API_KEY, {
 		method: 'POST',
 		headers: { 'Content-Type': 'application/json' },

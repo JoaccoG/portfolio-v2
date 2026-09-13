@@ -42,6 +42,11 @@ export default defineConfig({
 				access: 'secret',
 				optional: true,
 			}),
+			RESEND_SEGMENT_ID_ES: envField.string({
+				context: 'server',
+				access: 'secret',
+				optional: true,
+			}),
 		},
 	},
 });
