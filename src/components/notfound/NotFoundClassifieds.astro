@@ -10,9 +10,9 @@ const nf = copy.notFound;
 	<div class="grid">
 		{
 			nf.classifieds.items.map((item) => (
-				<p class="ad">
-					<span class="ad-lead">{item.lead}</span>{' '}
-					<span class="ad-body">{item.body}</span>
+				<p class="notice">
+					<span class="notice-lead">{item.lead}</span>{' '}
+					<span class="notice-body">{item.body}</span>
 				</p>
 			))
 		}
@@ -53,22 +53,22 @@ const nf = copy.notFound;
 		line-height: 1.6;
 	}
 
-	.ad {
+	.notice {
 		margin: 0;
 		padding-left: clamp(0rem, 1.4vw, 1.2rem);
 	}
 
-	.ad + .ad {
+	.notice + .notice {
 		border-left: 1px solid rgba(28, 23, 16, 0.35);
 	}
 
-	.ad-lead {
+	.notice-lead {
 		font-weight: 700;
 		color: var(--acc, #b4342a);
 		letter-spacing: 0.1em;
 	}
 
-	.ad-body {
+	.notice-body {
 		font-style: italic;
 	}
 
@@ -116,7 +116,7 @@ const nf = copy.notFound;
 			grid-template-columns: 1fr;
 		}
 
-		.ad + .ad {
+		.notice + .notice {
 			border-left: none;
 		}
 	}
